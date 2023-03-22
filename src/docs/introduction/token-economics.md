@@ -1,6 +1,6 @@
 ---
 title: Token Economics
-order: 3
+order: 4
 ---
 
 # Token Economics
