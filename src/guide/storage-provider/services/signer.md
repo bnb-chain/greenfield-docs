@@ -135,7 +135,7 @@ message MsgSealObject {
 
 ## GetApprovalRequest
 
-Primary SP sends GetApprovalRequest to other SPs, asking if they are willing to serve as obejcet's secondary SP through 
+Primary SP sends GetApprovalRequest to other SPs, asking if they are willing to serve as obeject's secondary SP through 
 the p2p protocol.
 
 ```protobuf
