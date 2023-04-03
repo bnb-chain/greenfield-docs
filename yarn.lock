@@ -2965,7 +2965,7 @@ eve-raphael@0.5.0:
   resolved "https://registry.yarnpkg.com/eve-raphael/-/eve-raphael-0.5.0.tgz#17c754b792beef3fa6684d79cf5a47c63c4cda30"
   integrity sha512-jrxnPsCGqng1UZuEp9DecX/AuSyAszATSjf4oEcRxvfxa1Oux4KkIPKBAAWWnpdwfARtr+Q0o9aPYWjsROD7ug==
 
-execa@^7.0.0, execa@^7.1.0:
+execa@^7.0.0, execa@^7.1.0, execa@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/execa/-/execa-7.1.1.tgz#3eb3c83d239488e7b409d48e8813b76bb55c9c43"
   integrity sha512-wH0eMf/UXckdUYnO21+HDztteVv05rq2GXksxT4fCGeHkBhw1DROXh40wcjMcRqDOWE7iPJ4n3M7e2+YFP+76Q==
@@ -4400,6 +4400,15 @@ sass@^1.58.3, sass@^1.59.2:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
+sass@^1.60.0:
+  version "1.60.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.60.0.tgz#657f0c23a302ac494b09a5ba8497b739fb5b5a81"
+  integrity sha512-updbwW6fNb5gGm8qMXzVO7V4sWf7LMXnMly/JEyfbfERbVH46Fn6q02BX7/eHTdKpE7d+oTkMMQpFWNUMfFbgQ==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
 sax@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.1.tgz#7b8e656190b228e81a66aea748480d828cd2d37a"
@@ -5060,6 +5069,23 @@ vuepress-plugin-reading-time2@2.0.0-beta.193:
   dependencies:
     vuepress-shared "2.0.0-beta.193"
 
+vuepress-plugin-redirect@^2.0.0-beta.199:
+  version "2.0.0-beta.199"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-redirect/-/vuepress-plugin-redirect-2.0.0-beta.199.tgz#1e9fd3fa28eb8de8fb432a877082909858fff37d"
+  integrity sha512-/LAGrJzaPb0iKNfblYG/vEkqBJ9+a7TrH8YnAQoamySPmZoPfpycFQlpTrJ0BQNXHjDEhrjL6ozYMQhyZqDQhg==
+  dependencies:
+    "@vuepress/cli" "2.0.0-beta.61"
+    "@vuepress/client" "2.0.0-beta.61"
+    "@vuepress/core" "2.0.0-beta.61"
+    "@vuepress/shared" "2.0.0-beta.61"
+    "@vuepress/utils" "2.0.0-beta.61"
+    "@vueuse/core" "^9.13.0"
+    cac "^6.7.14"
+    vue "^3.2.47"
+    vue-router "^4.1.6"
+    vuepress-plugin-sass-palette "2.0.0-beta.199"
+    vuepress-shared "2.0.0-beta.199"
+
 vuepress-plugin-rtl@2.0.0-beta.193:
   version "2.0.0-beta.193"
   resolved "https://registry.yarnpkg.com/vuepress-plugin-rtl/-/vuepress-plugin-rtl-2.0.0-beta.193.tgz#3f323272fbbf26e688c679630b190250b2d416d7"
@@ -5081,6 +5107,17 @@ vuepress-plugin-sass-palette@2.0.0-beta.193:
     chokidar "^3.5.3"
     sass "^1.59.2"
     vuepress-shared "2.0.0-beta.193"
+
+vuepress-plugin-sass-palette@2.0.0-beta.199:
+  version "2.0.0-beta.199"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-sass-palette/-/vuepress-plugin-sass-palette-2.0.0-beta.199.tgz#3591366b1c66521ab9f526d036e7eacdbc2d1432"
+  integrity sha512-q8jAUvm5yvyUvqHzDI1BuuR6RxKfQ6I2pRtEtnwXupQ3MmVae/92MOs/olSymV3Jm9DCk7b0y7I7kGVF91Ubvw==
+  dependencies:
+    "@vuepress/shared" "2.0.0-beta.61"
+    "@vuepress/utils" "2.0.0-beta.61"
+    chokidar "^3.5.3"
+    sass "^1.60.0"
+    vuepress-shared "2.0.0-beta.199"
 
 vuepress-plugin-search-pro@^2.0.0-beta.193:
   version "2.0.0-beta.193"
@@ -5129,6 +5166,25 @@ vuepress-shared@2.0.0-beta.193:
     cheerio "1.0.0-rc.12"
     dayjs "^1.11.7"
     execa "^7.1.0"
+    fflate "^0.7.4"
+    gray-matter "^4.0.3"
+    semver "^7.3.8"
+    striptags "^3.2.0"
+    vue "^3.2.47"
+    vue-router "^4.1.6"
+
+vuepress-shared@2.0.0-beta.199:
+  version "2.0.0-beta.199"
+  resolved "https://registry.yarnpkg.com/vuepress-shared/-/vuepress-shared-2.0.0-beta.199.tgz#e722f5bf756a40fdc33a756e1b5a5556fdd1b1c6"
+  integrity sha512-hmdpARmQOObqmjVirelNpuLpW+Cgzlu0iocQsYxCFAXRgoqloxD9LoEDveHXxSpP65Gux81WB2d/QqyzQOXnrA==
+  dependencies:
+    "@vuepress/client" "2.0.0-beta.61"
+    "@vuepress/shared" "2.0.0-beta.61"
+    "@vuepress/utils" "2.0.0-beta.61"
+    "@vueuse/core" "^9.13.0"
+    cheerio "1.0.0-rc.12"
+    dayjs "^1.11.7"
+    execa "^7.1.1"
     fflate "^0.7.4"
     gray-matter "^4.0.3"
     semver "^7.3.8"

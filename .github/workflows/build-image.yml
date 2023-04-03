@@ -1,0 +1,61 @@
+name: Docker
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  # Push image to GitHub Packages.
+  push:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          # if your docs needs submodules, uncomment the following line
+          # submodules: true
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Install Deps
+        run: yarn install --frozen-lockfile
+
+      - name: Build Docs
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+        run: |-
+          BASE_PATH=/docs/ yarn run docs:build
+          > src/.vuepress/dist/.nojekyll
+
+      - name: Build image
+        run: |
+          docker build . \
+          --build-arg "BASE_PATH=docs" \
+          --label "org.opencontainers.image.source=${{ vars.IMAGE_SOURCE }}" \
+          --label "org.opencontainers.image.revision=$(git rev-parse HEAD)" \
+          --label "org.opencontainers.image.version=$(git describe --tags --abbrev=0)" \
+          --label "org.opencontainers.image.licenses=LGPL-3.0,GPL-3.0" \
+          -f ./Dockerfile -t "${{ vars.IMAGE_NAME }}"
+
+      - name: Log into registry
+        run: echo "${{ secrets.GH_ACCESS_SECRET }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push image
+        run: |
+          VERSION=${{ github.sha }}
+          IMAGE_NAME=${{ vars.IMAGE_NAME }}
+          # Use Docker `latest` tag convention
+          echo IMAGE_NAME=$IMAGE_NAME
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
+          docker tag $IMAGE_NAME $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$VERSION
+          docker push $IMAGE_NAME:latest
+          

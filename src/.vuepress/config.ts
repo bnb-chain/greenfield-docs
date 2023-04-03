@@ -1,9 +1,12 @@
 import { defineUserConfig } from "vuepress";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
+import { redirectPlugin } from 'vuepress-plugin-redirect';
 import theme from "./theme.js";
 
+const base = process.env.BASE_PATH ? process.env.BASE_PATH : "/";
+
 export default defineUserConfig({
-  base: "/",
+  base: base,
   title: "BNB Greenfield",
   description: "Greenfield is a decentralized storage platform",
   // locales: {
@@ -39,6 +42,8 @@ export default defineUserConfig({
           formatter: "Tag: $content",
         },
       ],
+    }),
+    redirectPlugin({
     }),
   ],
 });

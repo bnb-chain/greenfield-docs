@@ -5,7 +5,7 @@ follow the [Documentation Writing Guidelines](DOC_WRITING_GUIDELINES.md).
 
 
 ## Stack
-The documentation for Cosmos SDK is hosted at https://docs.gnfd.io and built from the files in the /docs directory. 
+The documentation for Greenfield is hosted at https://docs.gnfd.io and built from the files in the /docs directory. 
 It is built using the following stack:
 
 - [Vuepress-theme-hope](https://theme-hope.vuejs.press/). A VuePress theme with tons of features
