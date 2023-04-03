@@ -17,7 +17,7 @@ Uploader receives the PutObjectRequest from Gateway that has been authenticated.
 that saves system memory resources to the greatest extent. Implemented PayloadStream for customized dynamic cutting 
 segments, it will return the segment's data and segment metadata for storing the piece store.
 
-```golang
+```go
 // PayloadStream implement a one-way data flow, writes bytes of any size
 // read the fixed data size with payload metadata
 type PayloadStream struct {
@@ -39,7 +39,7 @@ type PayloadStream struct {
 The background will start multiple goroutines to process the segment entry processed by PayloadStream and store it in 
 the piece store.
 
-```golang
+```go
 type SegmentEntry struct {
 	objectID       uint64
 	replicaIdx     uint32

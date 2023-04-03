@@ -60,7 +60,7 @@ includes ObjectInfo is used to make decisions for other SPs whether they are wil
 expectedAccept indicates that it can return after receiving the number of approvals, timeout means that it can return 
 after the timeout and has not received expectedAccept approvals in time.
 
-```golang
+```go
 GetReplicateApproval(object *storagetypes.ObjectInfo, expectedAccept int, timeout int64) 
 ```
 
