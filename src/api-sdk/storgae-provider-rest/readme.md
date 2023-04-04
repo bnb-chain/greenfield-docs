@@ -2,6 +2,6 @@
 title: Storage Provider REST
 index: false
 dir:
-  order: 4
+  order: 3
 icon: discover
 ---
