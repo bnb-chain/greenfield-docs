@@ -3,6 +3,11 @@ title: Concept
 order: 2
 ---
 
+An object on the Greenfield is stored among multi-SPs like below, for example, 50MB:
+<div align=center><img src="../../../asset/10-SP-EC.jpg" alt="EC.png" width="700"/></div>
+
+We will introduce some concepts about SP before describing in detail.
+
 ## Segment 
 Segment is the basic storage unit of an object. An object payload is composed of one
 or many segments in sequence. The segment size is globally configured on the Greenfield
