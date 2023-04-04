@@ -1,23 +1,61 @@
 ---
-title: Local Test
-order: 2
+title: Run Local SP Network
+order: 1
 ---
-# Local Test
-## Setup Local StorageProviders
+This guide helps you to set up a local Greenfield Storage Provider network for testing
+and other development related purposes.
 
-## Dependence
+## Prerequisites
+The hardware needs to meet below requirements:
+* VPS running recent versions of Mac OS X, Linux, or Windows；
+* 16 cores of CPU, 64 GB of memory(RAM);
+* 1 GBbps network connection with upload/download speeds of 10MB/s+；
+* At least 1 TB disk space for backend storage; 
+* 50GB+ SQL database;
 * SQLDB: MariaDB - 5.5.68 and Aurora(MySQL 5.7) 2.10.3 has been practiced.
 
-## Setup local greenfield chain
-[setup private network](https://github.com/bnb-chain/greenfield/blob/master/docs/tutorial/03-local-network.md)
+## Setup local Greenfield block chain
+[setup private Greenfield block chain network](https://gnksidemo.github.io/docs/greenfield-blockchain/run-node/run-local-network.html)
 
-## Add SP to greenfield chain
-[add sp to greenfield chain](https://github.com/bnb-chain/greenfield/blob/master/docs/cli/storage-provider.md)
+## Setup local SP network
 
-## Setup local sps
-1. Generate localup env
+1. Compile
+```shell
+# clone source code
+git clone https://github.com/bnb-chain/greenfield-storage-provider.git
 
-Including build sp binary, generate directories/configs, create databases.
+# install complie tools
+cd greenfield-storage-provider
+make install-tools
+
+# complie
+bash build.sh
+
+# show the gnfd-sp version information
+cd build
+./gnfd-sp version
+
+Greenfield Storage Provider
+    __                                                       _     __
+    _____/ /_____  _________ _____ ____     ____  _________ _   __(_)___/ /__  _____
+    / ___/ __/ __ \/ ___/ __  / __  / _ \   / __ \/ ___/ __ \ | / / / __  / _ \/ ___/
+    (__  ) /_/ /_/ / /  / /_/ / /_/ /  __/  / /_/ / /  / /_/ / |/ / / /_/ /  __/ /
+    /____/\__/\____/_/   \__,_/\__, /\___/  / .___/_/   \____/|___/_/\__,_/\___/_/
+    /____/       /_/
+
+Version : vx.x.x
+Branch  : master
+Commit  : 6eb30c3bda1a29fc97a4345559944c35cd560517
+Build   : go1.20.1 darwin amd64 2023-03-04 23:54
+
+# show the gnfd-sp help
+./gnfd-sp -h
+```
+
+
+2. Generate localup env
+
+Generate directories/configs, create databases after building gnfd binary.
 ```bash
 # The first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
 # When equal to 1, the configuration template will be generated.
@@ -25,7 +63,7 @@ GEN_CONFIG_TEMPLATE=1
 bash ./deployment/localup/localup.sh --reset ${GEN_CONFIG_TEMPLATE}
 ```
 
-2. Overwrite db and sp info
+3. Overwrite db and sp info
 
 Overwrite all sps' db.info and sp.info according to the real environment.
 
@@ -40,7 +78,7 @@ deployment/localup/local_env/
 ├── ...
 ```
 
-3. Start sp
+4. Start SP
 
 Make config.toml real according to db.info and sp.info, and start sps.
 
@@ -65,7 +103,7 @@ deployment/localup/local_env/
 ├── sp1
 ├── ...
 ```
-4. Other supported commands
+5. Other supported commands
 
 ```bash
 % bash ./deployment/localup/localup.sh --help
