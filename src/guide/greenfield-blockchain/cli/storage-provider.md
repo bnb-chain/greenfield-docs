@@ -77,19 +77,23 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
     },
     "sp_address":"0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC",
     "funding_address":"0x1d05CCD43A6c27fBCdfE6Ac727B0e9B889AAbC3B",
-    "seal_address": "0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC",
-    "approval_address": "0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC",
+    "seal_address":"0x2163A7A41a71ea4A831E4F5Af7f90dd32E440592",
+    "approval_address":"0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC",
     "endpoint": "sp0.greenfield.io",
     "deposit":{
-      "denom":"bnb",
-      "amount":"10000"
+      "denom":"BNB",
+      "amount":"10000000000000000000000"
     },
+    "read_price": "100.000000000000000000",
+    "store_price": "10000.000000000000000000",
+    "free_read_quota": 10000,
     "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2"
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
-  "deposit": "1bnb"
+  "deposit": "1000000000000000000BNB"
 }
+
 ```
 
 ### 4. deposit tokens to the proposal
@@ -104,7 +108,7 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 Validators are required to send transactions to vote. Only after more than 2/3 of the validators vote in favor can this proposal pass.
 
 ```shell
-./build/bin/gnfd tx gov deposit 1 10000bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node http://localhost:26750
+./build/bin/gnfd tx gov vote {proposal_id} yes --from validator0 --keyring-backend test --home ./deployment/localup/.local/validator0  --node http://localhost:26750     
 ```
 
 ### 6. Wait for the voting results
