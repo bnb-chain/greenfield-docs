@@ -4,7 +4,12 @@ order: 10
 ---
 
 # Challenge
-The challenge module is responsible for obtaining the data and hash information of the challenge piece.
+It is always the first priority of any decentralized storage network to guarantee data integrity and availability.
+We use data challenge instead of storage proof to get better HA. There will be some data challenges to random
+pieces on greenfield chain continuously. And the SP, which stores the challenged piece, uses the challenge workflow
+to response. Each SP splits the object payload data to segments, and store segment data to piece store and store
+segment checksum to SP DB.
+
 ## Overview
 <div align=center><img src="../../..//asset/07-SP-Challenge.jpg" width="700px"></div>
 <div align="center"><i>Challenge Architecture</i></div>
@@ -20,6 +25,12 @@ Query the integrity hash and Piece Hash information stored in this SP for the co
 
 ### SP DB Lib
 Lib for accessing the underlying SP DB currently supports MySQL and may adapt to more underlying indexing services in the future.
+
+## Challenge Piece Workflow
+* Receives the Challenge request from the Gateway.
+* Returns all piece data checksums and challenge piece data payload to the Gateway service.
+    * Retrieve all piece data checksums from the SP DB.
+    * Get the challenge piece data from the piece store.
 
 ## protocol
 ### RPC Interface

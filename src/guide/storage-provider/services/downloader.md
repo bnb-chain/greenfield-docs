@@ -28,6 +28,13 @@ Provide Bucket Quota query interface and bill detail interface, and may provide 
 ### SP DB Lib
 Lib for accessing the underlying SP DB currently supports MySQL and may adapt to more underlying indexing services in the future.
 
+## GetObject Workflow
+* Receives the GetObject request from the Gateway service.
+* Check whether the read traffic exceeds the quota.
+    * If exceeds the quota, the Downloader refuses to serve and returns a not-enough-quota error to the Gateway.
+    * If the quota is sufficient, the Downloader inserts read record into the SP traffic-db.
+* Splits the GetObject request info the GetPiece requests(support range read) to get piece payload data, 
+and returns the object payload data streaming to the Gateway.
 
 ## Protocol
 ### RPC Interface

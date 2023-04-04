@@ -11,9 +11,10 @@ If you are interested in the specific programming interface, we invite you to th
 <div align=center><img src="../../..//asset/05-SP-Gateway.jpg" width="700px"></div>
 <div align="center"><i>Gateway Architecture</i></div>
 
-### Permission Checker
-According to the Authorization information, obtain the user information and check whether the corresponding user 
-has the relevant action permission on the corresponding resource.
+### Authorization Checker
+* Verifies the signature of request to ensure that the request has not been tampered with.
+* Checks the authorization to ensure the corresponding account has permissions on resources.
+* Checks the object state and payment account state to ensure the object is sealed and the payment account is active.
 
 ### Request Router
 According to the type of specific request, it is forwarded to the corresponding backend microservice.
