@@ -4,7 +4,7 @@ order: 2
 ---
 
 An object on the Greenfield is stored among multi-SPs like below, for example, 50MB:
-<div align=center><img src="../../../asset/10-SP-EC.jpg" alt="EC.png" width="700"/></div>
+<div align=left><img src="../../../asset/10-SP-EC.jpg" alt="EC.png" width="700"/></div>
 
 We will introduce some concepts about SP before describing in detail.
 
