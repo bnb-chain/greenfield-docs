@@ -5,7 +5,7 @@ order: 3
 
 SP provides storage service with a modular microservice architecture.
 
-<div align=center><img src="../../../asset/sp_arch.jpg" alt="architecture.png" width="700"/></div>
+<div align=center><img src="../../../asset/09-SP-Arch.jpg" alt="architecture.png" width="700"/></div>
 <div align="center"><i>Storage Provider Architecture</i></div>
 
 - **Gateway** is the entry point of each SP. It parses requests from the  client and dispatches them to special service.
