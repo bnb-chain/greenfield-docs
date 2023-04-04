@@ -10,11 +10,11 @@ This API is used to download an object from Greenfield SP.
 
 ## HTTP Request Format
 
-| Desscription | Definition                   |
-| ------------ | ---------------------------- |
-| Host         | BucketName.gnfd.nodereal.com |
-| Path         | /ObjectName                  |
-| Method       | GET                          |
+| Desscription | Definition                                |
+| ------------ | ----------------------------------------- |
+| Host         | BucketName.gnfd-testnet-sp-1.bnbchain.org |
+| Path         | /ObjectName                               |
+| Method       | GET                                       |
 
 You should set `BucketName` in url host to download an object.
 

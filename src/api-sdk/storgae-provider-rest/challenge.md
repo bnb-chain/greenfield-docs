@@ -2,7 +2,6 @@
 title: Challenge Object Data
 order: 4
 ---
-
 # ChallengeObjectData
 
 ## RESTful API Description
@@ -13,7 +12,7 @@ This API is used to challenge object data.
 
 | Desscription | Definition                     |
 | ------------ | ------------------------------ |
-| Host         | gnfd.nodereal.com              |
+| Host         | gnfd-testnet-sp-*.bnbchain.org |
 | Path         | /greenfield/admin/v1/challenge |
 | Method       | GET                            |
 | Accept       | application/xml                |

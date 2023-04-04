@@ -10,11 +10,11 @@ This API is used to upload an object to Greenfield SP.
 
 ## HTTP Request Format
 
-| Desscription | Definition                   |
-| ------------ | ---------------------------- |
-| Host         | BucketName.gnfd.nodereal.com |
-| Path         | /ObjectName                  |
-| Method       | PUT                          |
+| Desscription | Definition                                |
+| ------------ | ----------------------------------------- |
+| Host         | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path         | /ObjectName                               |
+| Method       | PUT                                       |
 
 You should set `BucketName` in url host to upload an object.
 

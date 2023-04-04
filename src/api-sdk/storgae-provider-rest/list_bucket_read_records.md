@@ -2,7 +2,6 @@
 title: List Bucket Read Records
 order: 6
 ---
-
 # ListBucketReadRecords
 
 ## RESTful API Description
@@ -11,11 +10,11 @@ This API is used to list bucket read records.
 
 ## HTTP Request Format
 
-| Desscription | Definition                   |
-| ------------ | ---------------------------- |
-| Host         | BucketName.gnfd.nodereal.com |
-| Path         | /                            |
-| Method       | GET                          |
+| Desscription | Definition                                |
+| ------------ | ----------------------------------------- |
+| Host         | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path         | /                                         |
+| Method       | GET                                       |
 
 You should set `BucketName` in url host to determine which bucket do you want to query.
 
@@ -59,7 +58,7 @@ The response returns the following HTTP headers.
 | ParameterName     | Type   | Description                           |
 | ----------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
-| Content-Type      | string | value is `application/xml`            |
+| Content-Type      | string | value is `application/xml`          |
 
 ## HTTP Response Parameter
 
