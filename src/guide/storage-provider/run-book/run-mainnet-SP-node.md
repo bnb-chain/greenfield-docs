@@ -11,6 +11,7 @@ The hardware must meet below requirements:
 * 1 GBbps network connection with upload/download speeds of 10MB/s+；
 * At least 1 TB disk space for backend storage; 
 * 50GB+ SQL database;
+* Piece Store: AWS S3, MinIO(Beta)
 
 ## Create Storage Provider
 ### 1. Prepare 4 account addresses in advance

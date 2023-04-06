@@ -9,10 +9,7 @@ and other development related purposes.
 The hardware needs to meet below requirements:
 * VPS running recent versions of Mac OS X, Linux, or Windows；
 * 16 cores of CPU, 64 GB of memory(RAM);
-* 1 GBbps network connection with upload/download speeds of 10MB/s+；
-* At least 1 TB disk space for backend storage; 
-* 50GB+ SQL database;
-* SQLDB: MariaDB - 5.5.68 and Aurora(MySQL 5.7) 2.10.3 has been practiced.
+* At least 100GB disk space for backend storage; 
 
 ## Setup local Greenfield block chain
 [setup private Greenfield block chain network](https://gnksidemo.github.io/docs/greenfield-blockchain/run-node/run-local-network.html)
