@@ -1,6 +1,6 @@
 ---
 title: Architecture
-order: 3
+order: 2
 ---
 
 SP provides storage service with a modular microservice architecture.
