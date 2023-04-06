@@ -41,6 +41,9 @@ BNB between these two networks.  [Try it out →](https://dcellar.io)
 - Tendermint RPC: 
    - `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org` 
    - `https://gnfd-testnet-fullnode-tendermint-us.nodereal.io`
+- Eth API:
+  - `https://gnfd-testnet-ethapi-us.bnbchain.org`
+  - `https://gnfd-testnet-ethapi-us.nodereal.io`
 
 ### Greenfield Storage Provider (Testnet)
 - `https://gnfd-testnet-sp-1.bnbchain.org` 
@@ -50,7 +53,7 @@ BNB between these two networks.  [Try it out →](https://dcellar.io)
 - `https://gnfd-testnet-sp-5.bnbchain.org`
 - `https://gnfd-testnet-sp-6.bnbchain.org`
 - `https://gnfd-testnet-sp-7.bnbchain.org`
-- `http://gnfd-testnet-sp-1.nodereal.io`
+- `https://gnfd-testnet-sp-1.nodereal.io`
 
 ### BSC(Testnet chain-id 5601)
 RPC Endpoints:
