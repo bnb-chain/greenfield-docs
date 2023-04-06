@@ -21,7 +21,7 @@ Block Syncer retrieves the historical data on the chain, optimizes the storage, 
 
 ### Object Table
 
-An object represents a fundamental unit of storage in Greenfield, bsdb object table consists of only associated metadata synced from chain side.
+An object represents a fundamental unit of storage in Greenfield, BSDB object table consists of only associated metadata synced from chain side.
 
 Below is the schema of `Object`:
 
@@ -58,7 +58,7 @@ type Object struct {
     RedundancyType string `gorm:"redundancy_type"`
     // SourceType defines the source of the object.
     SourceType string `gorm:"source_type"`
-    // CheckSums defines the root hash of the pieces which stored in a SP
+    // CheckSums defines the root hash of the pieces which stored in an SP
     Checksums pq.ByteaArray `gorm:"check_sums;type:text"`
     // SecondarySpAddresses defines the addresses of secondary_sps
     SecondarySpAddresses pq.StringArray `gorm:"secondary_sp_addresses;type:text"`

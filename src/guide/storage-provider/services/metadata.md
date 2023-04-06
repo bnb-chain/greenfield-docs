@@ -12,7 +12,7 @@ Also, it provides additional extensions such as Pagination, Sort Key, and filter
 
 ## Role
 Sync all the Greenfield chain data to the distributed stores, and offers the read RPC
-requests for chain data(in addition to payload). SP service will query the info, Eg.
+requests for chain data(in addition to payload). SP service will query the info, E.g.
 permission, ListBucket, ListObject, etc. It will reduce the pressure on the Greenfield chain.
 
 ## Scalability

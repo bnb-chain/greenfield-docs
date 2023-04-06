@@ -11,11 +11,11 @@ This API is used to query a user's own buckets metadata info.
 
 ## HTTP Request Format
 
-| Desscription | Definition                       |
-| ------------ |----------------------------------|
-| Host         | gnfd-testnet-sp-*.bnbchain.org   |
-| Path         | /                                |
-| Method       | GET                              |
+| Description | Definition                     |
+|-------------|--------------------------------|
+| Host        | gnfd-testnet-sp-*.bnbchain.org |
+| Path        | /                              |
+| Method      | GET                            |
 
 ## HTTP Request Header
 
@@ -51,9 +51,9 @@ X-Gnfd-User-Address: Address
 
 The response returns the following HTTP headers.
 
-| ParameterName     | Type   | Description                           |
-| ----------------- | ------ |---------------------------------------|
-| Content-Type      | string | value is `application/json`           |
+| ParameterName | Type   | Description                 |
+|---------------|--------|-----------------------------|
+| Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 

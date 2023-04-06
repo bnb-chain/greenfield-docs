@@ -11,11 +11,11 @@ This API is used to query a bucket's all objects metadata info.
 
 ## HTTP Request Format
 
-| Desscription | Definition                                |
-| ------------ |-------------------------------------------|
-| Host         | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path         | /                                         |
-| Method       | GET                                       |
+| Description | Definition                                |
+|-------------|-------------------------------------------|
+| Host        | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path        | /                                         |
+| Method      | GET                                       |
 
 You should set `BucketName` in url host to list objects of the bucket.
 
@@ -51,9 +51,9 @@ Authorization: Authorization
 
 The response returns the following HTTP headers.
 
-| ParameterName     | Type   | Description                           |
-| ----------------- | ------ |---------------------------------------|
-| Content-Type      | string | value is `application/json`           |
+| ParameterName | Type   | Description                 |
+|---------------|--------|-----------------------------|
+| Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
@@ -83,7 +83,7 @@ Authorization: authorization string
 
 ```
 
-### Sample Response: Query a buckets's objects
+### Sample Response: Query a bucket's objects
 
 ```shell
 HTTP/1.1 200 OK
