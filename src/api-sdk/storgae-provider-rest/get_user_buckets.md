@@ -42,7 +42,7 @@ The request does not have a request body.
 
 ```shell
 GET / HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 X-Gnfd-User-Address: Address
 ```
@@ -77,11 +77,10 @@ JSON Body
 
 ```shell
 GET / HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 X-Gnfd-User-Address: user address string
-
 ```
 
 ### Sample Response: Query a user's buckets successfully
@@ -92,5 +91,4 @@ Date: Fri, 31 March 2023 17:32:10 GMT
 Content-Length: 11434
 
 [11434 bytes of bucket data]
-
 ```

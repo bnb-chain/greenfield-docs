@@ -2,6 +2,7 @@
 title: Put Object
 order: 2
 ---
+
 # PutObject
 
 ## RESTful API Description
@@ -45,7 +46,7 @@ The request body is a binary data that you want to store in Greenfield SP.
 
 ```shell
 PUT /ObjectName HTTP/1.1
-Host: BucketName.gnfd.nodereal.com
+Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 X-Gnfd-Txn-Hash: Txn-Hash
 Authorization: Authorization
 
@@ -83,7 +84,7 @@ Etag: Etag
 
 ```shell
 PUT /my-image.jpg HTTP/1.1
-Host: myBucket.gnfd.nodereal.com
+Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 Content-Type: image/jpeg

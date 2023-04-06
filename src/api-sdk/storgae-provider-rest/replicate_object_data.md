@@ -45,7 +45,7 @@ The replicated binary data.
 
 ```shell
 PUT /greenfield/receiver/v1/sync-piece
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 X-Gnfd-Object-Info: ObjectInfo
 X-Gnfd-Redundancy-Index: RedundancyIndex
 X-Gnfd-Piece-Size: PieceSize
@@ -87,7 +87,7 @@ X-Gnfd-Integrity-Hash-Signature: IntegrityHashSignature
 
 ```shell
 GET /greenfield/receiver/v1/sync-piece HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Object-Info: ObjectInfo
 X-Gnfd-Redundancy-Index: RedundancyIndex

@@ -2,6 +2,7 @@
 title: List Bucket Read Records
 order: 6
 ---
+
 # ListBucketReadRecords
 
 ## RESTful API Description
@@ -47,7 +48,7 @@ The request does not have a request body.
 
 ```shell
 GET /?list-read-record&max-records=MaxRecord&start-timstamp=StartTimestamp&end-timestamp=End-Timestqamp
-Host: BucketName.gnfd.nodereal.com
+Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 ```
 
@@ -58,7 +59,7 @@ The response returns the following HTTP headers.
 | ParameterName     | Type   | Description                           |
 | ----------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
-| Content-Type      | string | value is `application/xml`          |
+| Content-Type      | string | value is `application/xml`            |
 
 ## HTTP Response Parameter
 
@@ -93,7 +94,7 @@ XML Body
 
 ```shell
 GET /?list-read-record&max-records=2&start-timstamp=1680520105786&end-timestamp=1680520178958 HTTP/1.1
-Host: gnfd.nodereal.com
+Host: myBucket.gnfd.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

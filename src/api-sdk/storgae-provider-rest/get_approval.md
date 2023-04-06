@@ -18,10 +18,10 @@ This API is used to sign an approval for creating a bucket action or creating an
 
 ## HTTP Request Header
 
-| ParameterName                                       | Type   | Required | Description                                  |
-| --------------------------------------------------- | ------ | -------- | -------------------------------------------- |
+| ParameterName                                          | Type   | Required | Description                                  |
+| ------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
 | [X-Gnfd-Unsigned-Msg](./header/get_approval_header.md) | string | yes      | defines unsigned msg                         |
-| Authorization                                       | string | yes      | The authorization string of the HTTP request |
+| Authorization                                          | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 
@@ -31,8 +31,8 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-| ParameterName | Type   | Required | Description                                                 |
-| ------------- | ------ | -------- | ----------------------------------------------------------- |
+| ParameterName | Type   | Required | Description                                             |
+| ------------- | ------ | -------- | ------------------------------------------------------- |
 | action        | string | yes      | The action of approval:`CreateBucket` or `CreateObject` |
 
 ### Request Body
@@ -43,6 +43,7 @@ The request does not have a request body.
 
 ```shell
 GET /greenfield/admin/v1/get-approval?action=action HTTP/1.1
+Host: gnfd-testnet-sp-*.bnbchain.org
 Content-Type: ContentType
 X-Gnfd-Unsigned-Msg: UnsignedMsg
 Authorization: Authorization
@@ -52,9 +53,9 @@ Authorization: Authorization
 
 The response returns the following HTTP headers.
 
-| ParameterName                                     | Type   | Description                           |
-| ------------------------------------------------- | ------ | ------------------------------------- |
-| X-Gnfd-Request-ID                                 | string | defines trace id, trace request in sp |
+| ParameterName                                        | Type   | Description                           |
+| ---------------------------------------------------- | ------ | ------------------------------------- |
+| X-Gnfd-Request-ID                                    | string | defines trace id, trace request in sp |
 | [X-Gnfd-Signed-Msg](./header/get_approval_header.md) | string | defines signed msg                    |
 
 ## HTTP Response Parameter
@@ -81,7 +82,7 @@ The following request sends `CreateBucket` action to get approval.
 
 ```shell
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string
@@ -101,7 +102,7 @@ The following request sends `CreateObject` action to get approval.
 
 ```shell
 GET /greenfield/admin/v1/get-approval?action=CreateObject HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string
@@ -121,7 +122,7 @@ The following request sends `CreateBucket` action to get approval.
 
 ```shell
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string

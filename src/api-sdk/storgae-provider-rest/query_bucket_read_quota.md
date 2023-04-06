@@ -46,7 +46,7 @@ None
 
 ```shell
 GET /?read-quota&year-month=YearMonth
-Host: BucketName.gnfd.nodereal.com
+Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 ```
 
@@ -90,7 +90,7 @@ XML Body
 
 ```shell
 GET /?read-quota&year-month=2023-03 HTTP/1.1
-Host: gnfd.nodereal.com
+Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

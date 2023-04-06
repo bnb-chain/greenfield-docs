@@ -2,6 +2,7 @@
 title: Challenge Object Data
 order: 4
 ---
+
 # ChallengeObjectData
 
 ## RESTful API Description
@@ -44,6 +45,7 @@ The request does not have a request body.
 
 ```shell
 GET /greenfield/admin/v1/challenge
+Host: gnfd-testnet-sp-*.bnbchain.org
 X-Gnfd-Object-ID: ObjectID
 X-Gnfd-Redundancy-Index: RedundancyIndex
 X-Gnfd-Piece-Index: PieceIndex
@@ -85,7 +87,7 @@ Body
 
 ```shell
 GET /greenfield/admin/v1/challenge HTTP/1.1
-Host: gnfd.nodereal.com
+Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 X-Gnfd-Object-ID: 1010

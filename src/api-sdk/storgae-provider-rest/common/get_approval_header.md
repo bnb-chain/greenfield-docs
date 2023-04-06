@@ -1,9 +1,8 @@
 ---
-title: Get Approval Header Parameter
+title: Get Approval Header
 order: 1
 ---
-
-# Get Approval Header Parameter
+# Get Approval Header
 
 ## MsgCreateBucket
 

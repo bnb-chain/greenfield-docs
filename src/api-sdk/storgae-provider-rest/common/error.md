@@ -1,9 +1,8 @@
 ---
-title: SP Error Response Parameter
+title: SP Error Response
 order: 2
 ---
-
-# SP Error Response Parameter
+# SP Error Response
 
 | ParameterName | Type   | Description   |
 | ------------- | ------ | ------------- |

@@ -2,6 +2,7 @@
 title: Get Object
 order: 3
 ---
+
 # GetObject
 
 ## RESTful API Description
@@ -43,7 +44,7 @@ The request does not have a request body.
 
 ```shell
 GET /ObjectName HTTP/1.1
-Host: BucketName.gnfd.nodereal.com
+Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 Range: Range
 ```
@@ -77,7 +78,7 @@ Body
 
 ```shell
 GET /my-image.jpg HTTP/1.1
-Host: myBucket.gnfd.nodereal.com
+Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```
