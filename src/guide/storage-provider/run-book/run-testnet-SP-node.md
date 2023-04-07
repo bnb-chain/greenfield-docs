@@ -14,6 +14,125 @@ The hardware must meet below requirements:
 * Piece Store: AWS S3, MinIO(Beta)
 
 ## Create Storage Provider
+### 1. Build
+```shell
+# build gnfd-sp
+make build && cd build 
+
+# show version
+./gnfd-sp version
+Greenfield Storage Provider
+    __                                                       _     __
+    _____/ /_____  _________ _____ ____     ____  _________ _   __(_)___/ /__  _____
+    / ___/ __/ __ \/ ___/ __  / __  / _ \   / __ \/ ___/ __ \ | / / / __  / _ \/ ___/
+    (__  ) /_/ /_/ / /  / /_/ / /_/ /  __/  / /_/ / /  / /_/ / |/ / / /_/ /  __/ /
+    /____/\__/\____/_/   \__,_/\__, /\___/  / .___/_/   \____/|___/_/\__,_/\___/_/
+    /____/       /_/
+
+Version : v0.0.3
+Branch  : master
+Commit  : e332362ec59724e143725dc5a5a0dacae3be73be
+Build   : go1.19.1 darwin amd64 2023-03-13 14:11
+
+# show help
+./gnfd-sp help
+```
+
+### 2. Configuration
+#### Make configuration template
+```shell
+# dump default configuration
+./gnfd-sp config.dump
+```
+
+#### Edit configuration 
+```toml
+# start service list
+Service = ["gateway", "uploader", "downloader", "challenge", "tasknode", "receiver", "signer", "blocksyncer", "metadata", "manager"]
+# sp operator address 
+SpOperatorAddress = ""
+# service endpoint for other to connect
+[Endpoint]
+challenge = "localhost:9333"
+downloader = "localhost:9233"
+gateway = "gnfd.nodereal.com"
+metadata = "localhost:9733"
+p2p = "localhost:9833"
+receiver = "localhost:9533"
+signer = "localhost:9633"
+tasknode = "localhost:9433"
+uploader = "localhost:9133"
+# service listen address
+[ListenAddress]
+challenge = "localhost:9333"
+downloader = "localhost:9233"
+gateway = "localhost:9033"
+metadata = "localhost:9733"
+p2p = "localhost:9833"
+receiver = "localhost:9533"
+signer = "localhost:9633"
+tasknode = "localhost:9433"
+uploader = "localhost:9133"
+# SQL configuration
+[SpDBConfig]
+User = "root"
+Passwd = "test_pwd"
+Address = "localhost:3306"
+Database = "storage_provider_db"
+# piece store configuration
+[PieceStoreConfig]
+Shards = 0
+[PieceStoreConfig.Store]
+# default use local file system 
+Storage = "file"
+BucketURL = "./data"
+# greenfiel chain configuration
+[ChainConfig]
+ChainID = "greenfield_9000-1741"
+[[ChainConfig.NodeAddr]]
+GreenfieldAddresses = ["localhost:9090"]
+TendermintAddresses = ["http://localhost:26750"]
+# signer configuration
+[SignerCfg]
+GRPCAddress = "localhost:9633"
+APIKey = ""
+WhitelistCIDR = ["127.0.0.1/32"]
+GasLimit = 210000
+OperatorPrivateKey = ""
+FundingPrivateKey = ""
+SealPrivateKey = ""
+ApprovalPrivateKey = ""
+# block syncer configuration
+# signer configuration
+[SignerCfg]
+WhitelistCIDR = ["0.0.0.0/0"]
+GasLimit = 210000
+OperatorPrivateKey = "${SP_Operator_PrivKey}"
+FundingPrivateKey = "${SP_Funding_PrivKey}"
+SealPrivateKey = "${SP_Seal_PrivKey}"
+ApprovalPrivateKey = "${SP_Approval_PrivKey}"
+[BlockSyncerCfg]
+Modules = ["epoch", "bucket", "object", "payment"]
+Dsn = "localhost:3308"
+# p2p node configuration
+[P2PCfg]
+ListenAddress = "127.0.0.1:9933"
+# p2p node msg Secp256k1 encryption key, it is different from other SP's addresses
+P2PPrivateKey = ""
+# p2p node's bootstrap node, format: [node_id1@ip1:port1, node_id2@ip1:port2]
+Bootstrap = []
+# log configuration
+[LogCfg]
+Level = "info"
+Path = "./gnfd-sp.log"
+```
+
+### 3. Start
+```shell
+# start sp
+./gnfd-sp --config ${config_file_path}
+```
+## Add Storage Provider to Greenfield testnet
 ### 1. Prepare 4 account addresses in advance
 
 Each storage provider will hold 4 different accounts serving different purposes:
