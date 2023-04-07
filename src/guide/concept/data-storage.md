@@ -11,7 +11,7 @@ We will introduce some concepts about data storage before describing in detail.
 ## Segment 
 Segment is the basic storage unit of an object. An object payload is composed of one
 or many segments in sequence. The segment size is globally configured on the Greenfield
-block chain. The default segment size is 16MB.  For larger objects, the payload data will
+blockchain. The default segment size is 16MB.  For larger objects, the payload data will
 be broken into many segments. If the object's size is less than 16MB, it has only one
 segment and the segment size is the same as the object's size.
 
@@ -32,7 +32,7 @@ Piece is the basic storage unit for backend storage on Greenfield. Each segment 
 can be regarded as one data piece. And the key for each piece is generated based on the
 policy on the Greenfield chain.
 
-## Pieces' RootHash
+## Pieces' Root Hash
 There is one pieces' root hash for the pieces of an object stored in a SP. The pieces' root
 hash is part of object meta data on the Greenfield block chain. Each piece's hash is computed
 by using hash algorithm on the data piece's content. The pieces' root hash is computed based
@@ -40,7 +40,7 @@ on all the pieces' hashes.
 
 ## Redundancy Strategy
 Redundancy strategy defines how an object payload is stored among SPs, which is globally
-configured on the Greenfield block chain. Below is the current strategy:
+configured on the Greenfield blockchain. Below is the current strategy:
 * The segment size is 16MB;
 * The EC strategy is 4+2;
 * All the segment pieces of an object are stored on the Primary SP;

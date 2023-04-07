@@ -12,7 +12,7 @@ Greenfield validators and SPs form a pair synergy to provide the whole storage
 service. Validators store the metadata and financial ledger with consensus, while
 SPs store the objects' real data, i.e. the payload data, use the Greenfield chain
 as the ledger and the single source of truth. SPs provide plenty of convenient
-services for users and dApps to operate data about Greenfield.
+services for users and dApps to operate data on Greenfield.
 
 ## How the Greenfield Storage Providers works
 
@@ -25,7 +25,7 @@ for the users; otherwise, their "Service Stake" will be fined.
 SPs provide publicly accessible APIs for users to upload, download, and manage data.
 These APIs are very similar to Amazon S3 APIs so that existing developers may feel
 familiar enough to write code for it. Each SP can and will respond to users' requests
-to write (upload) and read (download) data, and serve as the gatekeeper for user rights
+to write (upload) and read (download) data, and serve as the gatekeeper for user permissions
 and authentications.
 
 Also each SP has a good connection with the Greenfield network by maintaining its own

@@ -62,7 +62,7 @@ bash ./deployment/localup/localup.sh --reset ${GEN_CONFIG_TEMPLATE}
 
 3. Overwrite db and sp info
 
-Overwrite all sps' db.info and sp.info according to the real environment.
+Overwrite all sps' db and sp info according to the real environment.
 
 ```
 deployment/localup/local_env/
@@ -77,7 +77,7 @@ deployment/localup/local_env/
 
 4. Start SP
 
-Make config.toml real according to db.info and sp.info, and start sps.
+Make config.toml real according to db and sp info, and start sps.
 
 ```bash
 # In first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
