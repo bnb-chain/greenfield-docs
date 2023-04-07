@@ -23,8 +23,10 @@ to identify the same owner by referring to the same addresses on both BSC and Gr
 
 In this guide, you will learn how to use the MetaMask extension to interact with Greenfield Testnet and
 Greenfield BSC Testnet, which is a fork of BSC and deployed dedicated for Greenfield Testnet.
-
-We assume you have installed MetaMask and have an account, if not, you can refer to [MetaMask](https://metamask.io/download/)
+::: info
+Greenfield BSC Testnet is a temporary testnet for Greenfield, and it will be replaced by BSC Testnet in the future.
+:::
+We assume you have installed MetaMask and have an account, if not, please refer to [MetaMask](https://metamask.io/download/)
 to install it.
 
 ### Add Greenfield BSC Testnet Network

@@ -9,7 +9,7 @@ Order: 6
 
 The payment module is responsible for the payment of the greenfield network. It is mainly used to manage the payment account of the user, and the payment account is used to pay the storage fee. The payment module also provides the function of automatic settlement of the user's payment account.
 
-You can refer to the [billing and payment section](../modules/billing_and_payment.md) for more details.
+You can refer to the [billing and payment section](../modules/billing-and-payment.md) for more details.
 
 ## Quick Start
 
