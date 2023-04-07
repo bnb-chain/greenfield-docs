@@ -36,7 +36,7 @@ users and records the storage metadata as the common blockchain state data. Its 
 BNB, which is transferred from BNB Smart Chain. Additionally, BNB Greenfield blockchain has its own staking logic
 designed for governance.
 
-The [Storage Providers (SP)](../storage-provider/overview.md) are storage service infrastructures
+The [Storage Providers (SP)](../storage-provider/introduction/overview.md) are storage service infrastructures
 provided by organizations or individuals that use Greenfield as the ledger and the single source of truth. Each SP is
 responsible for responding to user requests to upload and download data, while also serving as the gatekeeper for user
 rights and authentications.

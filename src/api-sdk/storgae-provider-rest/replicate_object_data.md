@@ -22,10 +22,10 @@ This API is used by primary SP to replicate object data to secondary SP.
 
 | ParameterName           | Type   | Required | Description                                                                                                                            |
 | ----------------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| X-Gnfd-Object-Info      | string | yes      | The marshal string of the [ObjectInfo](./header/replicate_object_data_header.md#objectinfo) Message                                    |
+| X-Gnfd-Object-Info      | string | yes      | The marshal string of the [ObjectInfo](./common/replicate_object_data_header.md#objectinfo) Message                                    |
 | X-Gnfd-Redundancy-Index | string | yes      | The index of SP.                                                                                                                       |
 | X-Gnfd-Piece-Size       | string | yes      | The piece size of replicated data.                                                                                                     |
-| X-Gnfd-Replica-Approval | string | yes      | Defines SP approval that allows to replicate piece data[ReplicateApproval](./header/replicate_object_data_header.md#replicateapproval) |
+| X-Gnfd-Replica-Approval | string | yes      | Defines SP approval that allows to replicate piece data[ReplicateApproval](./common/replicate_object_data_header.md#replicateapproval) |
 
 ## HTTP Request Parameter
 

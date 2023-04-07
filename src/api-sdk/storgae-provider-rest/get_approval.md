@@ -20,7 +20,7 @@ This API is used to sign an approval for creating a bucket action or creating an
 
 | ParameterName                                          | Type   | Required | Description                                  |
 | ------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
-| [X-Gnfd-Unsigned-Msg](./header/get_approval_header.md) | string | yes      | defines unsigned msg                         |
+| [X-Gnfd-Unsigned-Msg](./common/get_approval_header.md) | string | yes      | defines unsigned msg                         |
 | Authorization                                          | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -56,7 +56,7 @@ The response returns the following HTTP headers.
 | ParameterName                                        | Type   | Description                           |
 | ---------------------------------------------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID                                    | string | defines trace id, trace request in sp |
-| [X-Gnfd-Signed-Msg](./header/get_approval_header.md) | string | defines signed msg                    |
+| [X-Gnfd-Signed-Msg](./common/get_approval_header.md) | string | defines signed msg                    |
 
 ## HTTP Response Parameter
 
