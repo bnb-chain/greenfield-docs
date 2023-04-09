@@ -54,7 +54,7 @@ to install it.
 
 ### Add Greenfield Testnet Network
 1. Visit [BNBChain List](https://www.bnbchainlist.org/).
-   2. Click **Connect Wallet** if wallet didn't connect.
+2. Click **Connect Wallet** if wallet didn't connect.
 
 <div align="center"><img src="../asset/201-Connect-Wallet.png"  height="95%" width="95%"></div>
 <div align="center"><i>Connect Wallet</i></div>
@@ -76,18 +76,19 @@ You can claim the test BNB on Greenfield BSC Testnet by the faucet, and bridge i
 ### Faucet
 
 1. Visit [Greenfield BSC Testnet Faucet](https://gnfd-bsc-faucet.bnbchain.org/).
-2. Make a tweet with your BSC address.
+2. Click **Tweet** to make a tweet.
 
-<div align="center"><img src="../asset/206-Faucet-Tweet-Content.png"  height="95%" width="95%"></div>
-<div align="center"><i>Faucet Tweet</i></div>
+<div align="center"><img src="../asset/206-Faucet-Click-Tweet.png"  height="100%" width="100%"></div>
+<div align="center"><i>Click Tweet</i></div>
 
-3. Find your tweet URL and copy it to request for tBNBs.
-4. After receiving tBNBs, you can check them in your wallet.
+3. Replace the **0x000000000000000000000000000000000000000** with your BSC address.
+4. Find your tweet URL and copy it to request for tBNBs.
+5. After receiving tBNBs, you can check them in your wallet.
 
 ### Bridge to Greenfield
 
 [DCellar](http://dcellar.io) builds a bridge for transferring BNB from BSC to Greenfield and vice versa. You can follow
-[How to Transfer In](http://dcellar.io) to bridge tBNBs from Greenfield BSC Testnet to
+[How to Transfer In](https://dcellar.io/wallet) to bridge tBNBs from Greenfield BSC Testnet to
 Greenfield Testnet.
 
 ## Interact with Greenfield
@@ -96,9 +97,10 @@ With tBNBs on Greenfield Testnet, you can interact with Greenfield, and start yo
 
 ### DCellar
 
-[DCellar](http://dcellar.io) is a file management tool and an ultimate client for Greenfield. With DCellar, you can
-store and manage your files in a decentralized way, fully control your data, and even make profits out of them.
-Meanwhile, you can also use DCellar to manage your account, balance, and billings.
+[DCellar](http://dcellar.io) is a file management tool and an ultimate client for Greenfield, which is developed by
+our community member [Nodereal](https://nodereal.io/). With DCellar, you can store and manage your files in a
+decentralized way, fully control your data, and even make profits out of them. Meanwhile, you can also use DCellar to
+manage your account, balance, and billings.
 
 ### Greenfield Command
 
