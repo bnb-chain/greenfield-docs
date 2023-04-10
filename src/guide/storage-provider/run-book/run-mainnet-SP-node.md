@@ -1,6 +1,6 @@
 ---
-title: Run Mainnet SP node
-order: 3
+title: Run MainNet SP node
+order: 4
 ---
 
 Pending

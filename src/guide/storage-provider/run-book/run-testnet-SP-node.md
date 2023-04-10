@@ -1,20 +1,25 @@
 ---
 title: Run Testnet SP node
-order: 2
+order: 3
 ---
+
 This guide helps you to set up a Storage Provider and add it to Greenfield testnet.
 
-## Prerequisites
-The hardware must meet below requirements:
+## Recommended Prerequisites
+
+The following lists the recommended hardware requirements:
+
 * VPS running recent versions of Mac OS X, Linux, or Windows；
 * 16 cores of CPU, 64 GB of memory(RAM);
-* 1 GBbps network connection with upload/download speeds of 10MB/s+；
+* 1 Gbps network connection with upload/download speeds of 10MB/s+；
 * At least 1 TB disk space for backend storage; 
 * 50GB+ SQL database;
 * Piece Store: AWS S3, MinIO(Beta)
 
 ## Create Storage Provider
+
 ### 1. Build
+
 ```shell
 # build gnfd-sp
 make build && cd build 
@@ -32,14 +37,16 @@ Greenfield Storage Provider
 Version : v0.0.3
 Branch  : master
 Commit  : e332362ec59724e143725dc5a5a0dacae3be73be
-Build   : go1.19.1 darwin amd64 2023-03-13 14:11
+Build   : go1.18.4 darwin amd64 2023-03-13 14:11
 
 # show help
 ./gnfd-sp help
 ```
 
 ### 2. Configuration
+
 #### Make configuration template
+
 ```shell
 # dump default configuration
 ./gnfd-sp config.dump
@@ -103,14 +110,6 @@ FundingPrivateKey = ""
 SealPrivateKey = ""
 ApprovalPrivateKey = ""
 # block syncer configuration
-# signer configuration
-[SignerCfg]
-WhitelistCIDR = ["0.0.0.0/0"]
-GasLimit = 210000
-OperatorPrivateKey = "${SP_Operator_PrivKey}"
-FundingPrivateKey = "${SP_Funding_PrivKey}"
-SealPrivateKey = "${SP_Seal_PrivKey}"
-ApprovalPrivateKey = "${SP_Approval_PrivKey}"
 [BlockSyncerCfg]
 Modules = ["epoch", "bucket", "object", "payment"]
 Dsn = "localhost:3308"
@@ -128,11 +127,14 @@ Path = "./gnfd-sp.log"
 ```
 
 ### 3. Start
+
 ```shell
 # start sp
 ./gnfd-sp --config ${config_file_path}
 ```
+
 ## Add Storage Provider to Greenfield testnet
+
 ### 1. Prepare 4 account addresses in advance
 
 Each storage provider will hold 4 different accounts serving different purposes:
@@ -143,6 +145,7 @@ Each storage provider will hold 4 different accounts serving different purposes:
 * Approval Address: Used to approve user's requests.
 
 ### 2. Deduct Tokens Authorization
+
 Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. "The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
 
 ```shell
@@ -193,6 +196,7 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 ```
 
 ### 4. deposit tokens to the proposal
+
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ::: info
@@ -225,7 +229,6 @@ Alternatively, you can check the proposal to know about its execution status.
 ./build/bin/gnfd query proposal {proposal_id} --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
-
 ## Deposit 
 
 This command is used for the SP to supplement collateral, because if the service status of the SP is not good during operation, it will be slashed by users, resulting in the deduction of its deposit tokens.
@@ -233,7 +236,6 @@ This command is used for the SP to supplement collateral, because if the service
 ```shell
 gnfd tx sp deposit [sp-address] [value] [flags]
 ```
-
 
 ## EditStorageProvider
 

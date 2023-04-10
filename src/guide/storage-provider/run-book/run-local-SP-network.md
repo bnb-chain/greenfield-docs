@@ -1,32 +1,38 @@
 ---
 title: Run Local SP Network
-order: 1
+order: 2
 ---
+
 This guide helps you to set up a local Greenfield Storage Provider network for testing
 and other development related purposes.
 
-## Prerequisites
-The hardware needs to meet below requirements:
+## Recommended Prerequisites
+
+The following lists the recommended hardware requirements:
+
 * VPS running recent versions of Mac OS X, Linux, or Windows；
 * 16 cores of CPU, 64 GB of memory(RAM);
 * At least 100GB disk space for backend storage; 
+* 10GB+ SQL Database.
 
-## Setup local Greenfield block chain
-[setup private Greenfield block chain network](https://gnksidemo.github.io/docs/greenfield-blockchain/run-node/run-local-network.html)
+## Setup local Greenfield blockchain
+
+[Setup private Greenfield blockchain network](https://github.com/bnb-chain/greenfield-docs/blob/master/src/guide/greenfield-blockchain/run-node/run-local-network.md)
 
 ## Setup local SP network
 
 1. Compile
+
 ```shell
 # clone source code
 git clone https://github.com/bnb-chain/greenfield-storage-provider.git
 
-# install complie tools
+# install compile tools
 cd greenfield-storage-provider
 make install-tools
 
-# complie
-bash build.sh
+# compile
+make build
 
 # show the gnfd-sp version information
 cd build
@@ -43,16 +49,16 @@ Greenfield Storage Provider
 Version : vx.x.x
 Branch  : master
 Commit  : 6eb30c3bda1a29fc97a4345559944c35cd560517
-Build   : go1.20.1 darwin amd64 2023-03-04 23:54
+Build   : go1.18.4 darwin amd64 2023-03-04 23:54
 
 # show the gnfd-sp help
 ./gnfd-sp -h
 ```
 
-
 2. Generate localup env
 
 Generate directories/configs, create databases after building gnfd binary.
+
 ```bash
 # The first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
 # When equal to 1, the configuration template will be generated.
@@ -86,6 +92,7 @@ GEN_CONFIG_TEMPLATE=0
 bash ./deployment/localup/localup.sh --reset ${GEN_CONFIG_TEMPLATE}
 bash ./deployment/localup/localup.sh --start
 ```
+
 The environment directory is as follows:
 ```
 deployment/localup/local_env/
@@ -100,6 +107,7 @@ deployment/localup/local_env/
 ├── sp1
 ├── ...
 ```
+
 5. Other supported commands
 
 ```bash
