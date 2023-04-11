@@ -9,7 +9,7 @@ order: 6
 # Resources
 
 ## DCellar
-DCellar is a file management tool and an ultimate client for Greenfield. With DCellar, you can store and management your
+DCellar is a file management tool and an ultimate client for Greenfield. With DCellar, you can store and manage your
 files in a decentralized way, fully control your data, and even make profit out of them.
 Meanwhile, you can also use DCellar to manage your account, balance, and billings. DCellar supports
 common crypto wallets such as Metamask, with no more than one-click, you can login with your existing crypto wallet,
@@ -27,7 +27,7 @@ Please notice that each account is allowed to claim 0.1tBNB per day.
 ## Bridge
 
 Greenfield Data Network is a seperate blockchain system connected to BNB Smart Chain(BSC),
-Developers usually need to move assets betweem Greenfield and BNB Smart Chain(BSC).
+Developers usually need to move assets between Greenfield and BNB Smart Chain(BSC).
 Besides using native bridge SDKs , you can use DCellar as a Bridge WebUI to move your
 BNB between these two networks.  [Try it out →](https://dcellar.io)
 
