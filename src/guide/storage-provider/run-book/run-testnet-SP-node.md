@@ -12,7 +12,27 @@ The hardware must meet below requirements:
 * At least 1 TB disk space for backend storage; 
 * 50GB+ SQL database;
 * Piece Store: AWS S3, MinIO(Beta)
+* 4 Greenfield Account with enough BNB tokens
 
+::: info
+Each storage provider will hold 4 different accounts serving different purposes:
+
+* Operator Account: Used to edit the information of the StorageProvider. At least 100+ BNB are required to pay transaction fees.
+* Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
+* Seal Account: Used to seal the user's object.  At least 100+ BNB are required to pay transaction fees.
+* Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
+
+You can use the below command to generate a new account:
+```
+./build/bin/gnfd keys add funding --home ./ --keyring-backend test
+```
+
+and then export the private key to prepare for later SP deployment
+
+```
+./build/bin/gnfd keys export funding --unarmored-hex --unsafe  --home . --keyring-backend test
+```
+:::
 ## Create Storage Provider
 ### 1. Build
 ```shell
@@ -104,13 +124,6 @@ SealPrivateKey = ""
 ApprovalPrivateKey = ""
 # block syncer configuration
 # signer configuration
-[SignerCfg]
-WhitelistCIDR = ["0.0.0.0/0"]
-GasLimit = 210000
-OperatorPrivateKey = "${SP_Operator_PrivKey}"
-FundingPrivateKey = "${SP_Funding_PrivKey}"
-SealPrivateKey = "${SP_Seal_PrivKey}"
-ApprovalPrivateKey = "${SP_Approval_PrivKey}"
 [BlockSyncerCfg]
 Modules = ["epoch", "bucket", "object", "payment"]
 Dsn = "localhost:3308"
@@ -133,25 +146,16 @@ Path = "./gnfd-sp.log"
 ./gnfd-sp --config ${config_file_path}
 ```
 ## Add Storage Provider to Greenfield testnet
-### 1. Prepare 4 account addresses in advance
-
-Each storage provider will hold 4 different accounts serving different purposes:
-
-* Operator Address: Used to edit the information of the StorageProvider.
-* Funding Address: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee.
-* Seal Address: Used to seal the user's object.
-* Approval Address: Used to approve user's requests.
-
-### 2. Deduct Tokens Authorization
-Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. "The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
+### 1. Authorization
+Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
 
 ```shell
-./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000000bnb --SPAddress 0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC --from sp0_fund --home ./deployment/localup/.local/sp0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000bnb --SPAddress 0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC --from sp0_fund --home ./deployment/localup/.local/sp0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 The above command requires the funding account of the SP to send the transaction to allow the gov module to have the permission to deduct tokens from the funding account of SP which specified by operator address
 
-### 3. submit-proposal
+### 2. submit-proposal
 
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
@@ -192,18 +196,14 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 
 ```
 
-### 4. deposit tokens to the proposal
+### 3. deposit tokens to the proposal
 Each proposal needs to have enough tokens deposited to enter the voting stage.
-
-::: info
-To be a SP of the Greenfield testnet, now the minimum amount required for staking is 1000 BNB.
-:::
 
 ```shell
 ./build/bin/gnfd tx gov deposit 1 1000bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
-### 5. Validator voting 
+### 4. Validator voting 
 
 Validators are required to send transactions to vote. Only after more than 2/3 of the validators vote in favor can this proposal pass.
 
@@ -211,7 +211,7 @@ Validators are required to send transactions to vote. Only after more than 2/3 o
 ./build/bin/gnfd tx gov vote {proposal_id} yes --from validator0 --keyring-backend test --home ./deployment/localup/.local/validator0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
 ```
 
-### 6. Wait for the voting results
+### 5. Wait for the voting results
 
 Generally, each proposal has a voting window period, which can be viewed in the on-chain configuration. The default is 300 seconds. After the voting period ends, it will be determined whether enough validators have voted in favor. You can check the on-chain SP information to confirm whether the SP has been successfully created.
 
