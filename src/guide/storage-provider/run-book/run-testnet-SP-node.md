@@ -210,17 +210,16 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 ./build/bin/gnfd tx gov deposit 1 1bnb --from sp0 --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
-### 4. Validator voting 
+### 4. Wait voting and check voting result
+After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
-Validators are required to send transactions to vote. Only after more than 2/3 of the validators vote in favor can this proposal pass.
+::: Note
 
-```shell
-./build/bin/gnfd tx gov vote {proposal_id} yes --from validator0 --keyring-backend os  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
-```
+Please ensure that the storage provider service is running before it has been joined.
 
-### 5. Wait for the voting results
+::: 
 
-Generally, each proposal has a voting window period, which can be viewed in the on-chain configuration. The default is 300 seconds. After the voting period ends, it will be determined whether enough validators have voted in favor. You can check the on-chain SP information to confirm whether the SP has been successfully created.
+You can check the on-chain SP information to confirm whether the SP has been successfully created.
 
 ```shell
 ./build/bin/gnfd query sp storage-providers --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
