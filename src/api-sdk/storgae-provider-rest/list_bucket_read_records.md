@@ -1,6 +1,6 @@
 ---
 title: List Bucket Read Records
-order: 6
+order: 5
 ---
 
 # ListBucketReadRecords

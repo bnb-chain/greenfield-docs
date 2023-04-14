@@ -1,6 +1,6 @@
 ---
 title: Query Bucket Read Quota
-order: 5
+order: 4
 ---
 
 # QueryBucketReadQuota

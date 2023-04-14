@@ -1,6 +1,6 @@
 ---
 title: List Objects By Bucket
-order: 9
+order: 7
 ---
 
 # ListObjectsByBucket

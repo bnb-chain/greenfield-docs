@@ -1,6 +1,6 @@
 ---
 title: Get User Buckets
-order: 8
+order: 6
 ---
 
 # GetUserBuckets
