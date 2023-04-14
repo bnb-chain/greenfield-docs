@@ -17,20 +17,26 @@ The hardware must meet below requirements:
 ::: info
 Each storage provider will hold 4 different accounts serving different purposes:
 
-* Operator Account(cold wallet): Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of EditStorageProvider transaction.
-* Funding Account(hot wallet): Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
-* Seal Account(hot wallet): Used to seal the user's object. Please make sure it have enough BNB to pay the gas fee of SealObject transaction. 
-* Approval Account(cold wallet): Used to approve user's requests. This account does not require holding BNB tokens.
+* Operator Account(**cold wallet**): Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of EditStorageProvider transaction.
+* Funding Account(**hot wallet**): Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
+* Seal Account(**hot wallet**): Used to seal the user's object. Please make sure it have enough BNB to pay the gas fee of SealObject transaction. 
+* Approval Account(**cold wallet**): Used to approve user's requests. This account does not require holding BNB tokens.
 
-You can use the below command to generate a new account:
+You can use the below command to generate this four account:
 ```
-./build/bin/gnfd keys add funding --home ./ --keyring-backend test
+./build/bin/gnfd keys add operator --keyring-backend os
+./build/bin/gnfd keys add funding --keyring-backend os
+./build/bin/gnfd keys add seal --keyring-backend os
+./build/bin/gnfd keys add approval --keyring-backend os
 ```
 
-and then export the private key to prepare for later SP deployment
+and then export the private key to prepare for SP deployment
 
 ```
-./build/bin/gnfd keys export funding --unarmored-hex --unsafe  --home . --keyring-backend test
+./build/bin/gnfd keys export operator --unarmored-hex --unsafe  --keyring-backend os
+./build/bin/gnfd keys export funding --unarmored-hex --unsafe  --keyring-backend os
+./build/bin/gnfd keys export seal --unarmored-hex --unsafe --keyring-backend os
+./build/bin/gnfd keys export approval --unarmored-hex --unsafe --keyring-backend os
 ```
 :::
 ## Create Storage Provider
@@ -150,7 +156,8 @@ Path = "./gnfd-sp.log"
 Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
 
 ```shell
-./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000bnb --SPAddress 0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC --from sp0_fund --home ./deployment/localup/.local/sp0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd keys show operator --keyring-backend os 
+./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000bnb --SPAddress {operatorAddress} --from funding --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
 ```
 
 The above command requires the funding account of the SP to send the transaction to allow the gov module to have the permission to deduct tokens from the funding account of SP which specified by operator address
@@ -160,7 +167,7 @@ The above command requires the funding account of the SP to send the transaction
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
 ```shell
-./build/bin/gnfd tx gov submit-proposal ./deployment/localup/create_sp.json --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov submit-proposal path/to/create_sp.json --from operator --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 
 # create_sp.json
 ./create_sp.json
@@ -175,17 +182,17 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
       "security_contact":"",
       "details":""
     },
-    "sp_address":"0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC",
-    "funding_address":"0x1d05CCD43A6c27fBCdfE6Ac727B0e9B889AAbC3B",
-    "seal_address":"0x2163A7A41a71ea4A831E4F5Af7f90dd32E440592",
-    "approval_address":"0x78FeF615b06251ecfA9Ba01B7DB2BFA892722dDC",
-    "endpoint": "sp0.greenfield.io",
+    "sp_address":"{operate_address}",
+    "funding_address":"{funding_address}",
+    "seal_address":"{seal_address}",
+    "approval_address":"{approval_address}",
+    "endpoint": "https://sp0.greenfield.io",
     "deposit":{
       "denom":"BNB",
       "amount":"10000000000000000000000"
     },
-    "read_price": "100.000000000000000000",
-    "store_price": "10000.000000000000000000",
+    "read_price": "0.060000000000000000",
+    "store_price": "0.019000000000000000",
     "free_read_quota": 10000,
     "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2"
   }
@@ -200,7 +207,7 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ```shell
-./build/bin/gnfd tx gov deposit 1 1bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov deposit 1 1bnb --from sp0 --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 ### 4. Validator voting 
@@ -208,7 +215,7 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 Validators are required to send transactions to vote. Only after more than 2/3 of the validators vote in favor can this proposal pass.
 
 ```shell
-./build/bin/gnfd tx gov vote {proposal_id} yes --from validator0 --keyring-backend test --home ./deployment/localup/.local/validator0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
+./build/bin/gnfd tx gov vote {proposal_id} yes --from validator0 --keyring-backend os  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
 ```
 
 ### 5. Wait for the voting results
