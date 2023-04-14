@@ -17,10 +17,10 @@ The hardware must meet below requirements:
 ::: info
 Each storage provider will hold 4 different accounts serving different purposes:
 
-* Operator Account: Used to edit the information of the StorageProvider. At least 100+ BNB are required to pay transaction fees.
-* Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
-* Seal Account: Used to seal the user's object.  At least 100+ BNB are required to pay transaction fees.
-* Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
+* Operator Account(cold wallet): Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of EditStorageProvider transaction.
+* Funding Account(hot wallet): Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
+* Seal Account(hot wallet): Used to seal the user's object. Please make sure it have enough BNB to pay the gas fee of SealObject transaction. 
+* Approval Account(cold wallet): Used to approve user's requests. This account does not require holding BNB tokens.
 
 You can use the below command to generate a new account:
 ```
@@ -200,7 +200,7 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ```shell
-./build/bin/gnfd tx gov deposit 1 1000bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov deposit 1 1bnb --from sp0 --keyring-backend test --home ./deployment/localup/.local/sp0  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 ### 4. Validator voting 
