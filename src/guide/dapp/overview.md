@@ -36,10 +36,10 @@ of storage in Greenfield that represents a file consisting of data and its assoc
 Lastly, a group is a collection of accounts with the same permissions.
 
 These resources can be mirrored on the BSC as ERC-721 NFTs, along with the members within a group, which represent 
-permissions to specify resources, that can be mirrored as ERC-1155 NFTs. At present, the NFTs are not transferable, 
+permissions to specify resources, that can be mirrored as ERC-1155 token. At present, the NFTs are not transferable, 
 but the transferability feature will be added in the near future.
 
-Once these resources are mirrored on BSC, they can be directly accessed and managed by smart contracts on BSC. 
+Once these resources are mirrored on BSC, they can be directly managed by smart contracts on BSC. 
 These operations will directly affect the storage format, access permissions, and other aspects of the data on greenfield. 
 In other words, any changes made to the decentralized application on BSC will also reflect changes on Greenfield. 
 This integration between Greenfield Blockchain and BNB Smart Chain allows for greater flexibility and accessibility 
