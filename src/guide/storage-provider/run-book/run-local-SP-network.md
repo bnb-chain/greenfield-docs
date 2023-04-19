@@ -11,8 +11,42 @@ The hardware needs to meet below requirements:
 * 16 cores of CPU, 64 GB of memory(RAM);
 * At least 100GB disk space for backend storage; 
 
-## Setup local Greenfield block chain
-[setup private Greenfield block chain network](https://gnksidemo.github.io/docs/greenfield-blockchain/run-node/run-local-network.html)
+## Quickly setup local Greenfield BlockChain network
+
+1. Build
+
+```shell
+git clone https://github.com/bnb-chain/greenfield.git
+cd greenfield
+make build
+```
+
+2. Start
+```shell
+# 1 validator and 7 storage providers
+bash ./deployment/localup/localup.sh all 1 7
+```
+
+3. Export the keys of sps
+```shell
+bash ./deployment/localup/localup.sh export_sps 1 1
+
+# result example
+# {
+#   "sp0": {
+#     "OperatorAddr": "0x14539343413EB47899B0935287ab1111Df891d04",
+#     "FundingAddr": "0x21c6ff21DD7012DE1CCf9055f2eB234A44a1d3fB",
+#     "SealAddr": "0x8e424c6Db42Ad9A5d91b24e20b5f603eC70abbA3",
+#     "ApprovalAddr": "0x7Aa5C8B50696f1D15B3A60d6629f7318c605bb4C",
+#     "GcAddr": "0xfa238a4B262e1dc35c4970A2296A2444B956c9Ca",
+#     "OperatorPrivKey": "ba6e97958d9c43d1ad54923eba99f8d59f54a0c66c78a5dcbc004c5c3ec72f8c",
+#     "FundingPrivKey": "bd9d9e7823cd2dc7bc20f1b6676c3025cdda6cf5a8df9b04597fdff42c29af01",
+#     "SealPrivKey": "aacd6b834627fdbc5de2bfdb1db31be0ea810a941854787653814c8040a9dd39",
+#     "ApprovalPrivKey": "32108ed1a47c0af965824f84ac2162c029f347eec6d0988e642330b0ac264c85",
+#     "GcPrivKey": "2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d"
+#   }
+# }
+```
 
 ## Setup local SP network
 
@@ -49,7 +83,6 @@ Build   : go1.20.1 darwin amd64 2023-03-04 23:54
 ./gnfd-sp -h
 ```
 
-
 2. Generate localup env
 
 Generate directories/configs, create databases after building gnfd binary.
@@ -73,6 +106,25 @@ deployment/localup/local_env/
 │   └── sp.info       # to overwrite real sp info
 ├── sp1
 ├── ...
+```
+
+Update the `config.toml` of the SP with the private key and address exported above.
+
+```toml
+...
+SpOperatorAddress = "<OperatorAddress>"
+...
+
+[SignerCfg]
+GRPCAddress = "localhost:10633"
+APIKey = ""
+WhitelistCIDR = ["0.0.0.0/0"]
+GasLimit = 210000
+OperatorPrivateKey = "<PrivateKey>"
+FundingPrivateKey = "<PrivateKey>"
+SealPrivateKey = "<PrivateKey>"
+ApprovalPrivateKey = "<PrivateKey>"
+GcPrivateKey = "<PrivateKey>"
 ```
 
 4. Start SP
