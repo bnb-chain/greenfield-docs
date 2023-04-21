@@ -157,7 +157,7 @@ Before creating the storage provider, it is necessary to allow the module accoun
 
 ```shell
 ./build/bin/gnfd keys show operator --keyring-backend os 
-./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000bnb --SPAddress {operatorAddress} --from funding --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
+./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000BNB --SPAddress {operatorAddress} --from funding --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
 ```
 
 The above command requires the funding account of the SP to send the transaction to allow the gov module to have the permission to deduct tokens from the funding account of SP which specified by operator address
@@ -207,7 +207,7 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ```shell
-./build/bin/gnfd tx gov deposit 1 1bnb --from sp0 --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from sp0 --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 ### 4. Wait voting and check voting result
@@ -228,7 +228,7 @@ You can check the on-chain SP information to confirm whether the SP has been suc
 Alternatively, you can check the proposal to know about its execution status.
 
 ```shell
-./build/bin/gnfd query proposal {proposal_id} --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd query gov proposal {proposal_id} --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 
