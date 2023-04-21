@@ -25,7 +25,7 @@ Get familiar with the Greenfield Blockchain and explore its main modules.
 
 
 ## Explore the Storage Provider
-- [An overview about Storage Provider](storage-provider/introduction/overview.md
+- [An overview about Storage Provider](storage-provider/introduction/overview.md)
 - [Architecture of Storage Provider](storage-provider/introduction/architecture.md)
 
 ## Building Dapps on Greenfield
