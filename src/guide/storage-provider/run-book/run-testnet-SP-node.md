@@ -12,7 +12,7 @@ The following lists the recommended hardware requirements:
 * VPS running recent versions of Mac OS X, Linux, or Windows；
 * 16 cores of CPU, 64 GB of memory(RAM);
 * 1 Gbps network connection with upload/download speeds of 10MB/s+；
-* At least 1 TB disk space for backend storage; 
+* At least 1 TB disk space for backend storage;
 * 50GB+ SQL database;
 * Piece Store: AWS S3, MinIO(Beta)
 * 4 Greenfield Account with enough BNB tokens
@@ -22,11 +22,12 @@ Each storage provider will hold 4 different accounts serving different purposes:
 
 * Operator Account(**cold wallet**): Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of EditStorageProvider transaction.
 * Funding Account(**hot wallet**): Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
-* Seal Account(**hot wallet**): Used to seal the user's object. Please make sure it have enough BNB to pay the gas fee of SealObject transaction. 
+* Seal Account(**hot wallet**): Used to seal the user's object. Please make sure it have enough BNB to pay the gas fee of SealObject transaction.
 * Approval Account(**cold wallet**): Used to approve user's requests. This account does not require holding BNB tokens.
 
 You can use the below command to generate this four account:
-```
+
+```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
 ./build/bin/gnfd keys add funding --keyring-backend os
 ./build/bin/gnfd keys add seal --keyring-backend os
@@ -35,39 +36,19 @@ You can use the below command to generate this four account:
 
 and then export the private key to prepare for SP deployment
 
-```
+```shell
 ./build/bin/gnfd keys export operator --unarmored-hex --unsafe  --keyring-backend os
 ./build/bin/gnfd keys export funding --unarmored-hex --unsafe  --keyring-backend os
 ./build/bin/gnfd keys export seal --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export approval --unarmored-hex --unsafe --keyring-backend os
 ```
 :::
+
 ## Create Storage Provider
 
-### 1. Build
+### 1. Compile SP
 
-```shell
-# build gnfd-sp
-make build && cd build 
-
-# show version
-./gnfd-sp version
-Greenfield Storage Provider
-    __                                                       _     __
-    _____/ /_____  _________ _____ ____     ____  _________ _   __(_)___/ /__  _____
-    / ___/ __/ __ \/ ___/ __  / __  / _ \   / __ \/ ___/ __ \ | / / / __  / _ \/ ___/
-    (__  ) /_/ /_/ / /  / /_/ / /_/ /  __/  / /_/ / /  / /_/ / |/ / / /_/ /  __/ /
-    /____/\__/\____/_/   \__,_/\__, /\___/  / .___/_/   \____/|___/_/\__,_/\___/_/
-    /____/       /_/
-
-Version : v0.0.3
-Branch  : master
-Commit  : e332362ec59724e143725dc5a5a0dacae3be73be
-Build   : go1.18.4 darwin amd64 2023-03-13 14:11
-
-# show help
-./gnfd-sp help
-```
+Compile SP can refer this [doc](./compile-dependences.md#compile-sp).
 
 ### 2. Configuration
 
@@ -78,7 +59,8 @@ Build   : go1.18.4 darwin amd64 2023-03-13 14:11
 ./gnfd-sp config.dump
 ```
 
-#### Edit configuration 
+#### Edit configuration
+
 ```toml
 # start service list
 Service = ["gateway", "uploader", "downloader", "challenge", "tasknode", "receiver", "signer", "blocksyncer", "metadata", "manager"]
@@ -88,7 +70,7 @@ SpOperatorAddress = ""
 [Endpoint]
 challenge = "localhost:9333"
 downloader = "localhost:9233"
-gateway = "gnfd.nodereal.com"
+gateway = "gnfd.test-sp.com"
 metadata = "localhost:9733"
 p2p = "localhost:9833"
 receiver = "localhost:9533"
@@ -151,6 +133,10 @@ Bootstrap = []
 [LogCfg]
 Level = "info"
 Path = "./gnfd-sp.log"
+# metrics configuration
+[MetricsCfg]
+Enabled = false
+HTTPAddress = "localhost:24036"
 ```
 
 ### 3. Start
@@ -161,7 +147,9 @@ Path = "./gnfd-sp.log"
 ```
 
 ## Add Storage Provider to Greenfield testnet
+
 ### 1. Authorization
+
 Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
 
 ```shell
@@ -213,6 +201,7 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
 ```
 
 ### 3. deposit tokens to the proposal
+
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ```shell
@@ -220,13 +209,14 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 ```
 
 ### 4. Wait voting and check voting result
+
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
 ::: Note
 
 Please ensure that the storage provider service is running before it has been joined.
 
-::: 
+:::
 
 You can check the on-chain SP information to confirm whether the SP has been successfully created.
 
@@ -240,7 +230,7 @@ Alternatively, you can check the proposal to know about its execution status.
 ./build/bin/gnfd query gov proposal {proposal_id} --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
-## Deposit 
+## Deposit
 
 This command is used for the SP to supplement collateral, because if the service status of the SP is not good during operation, it will be slashed by users, resulting in the deduction of its deposit tokens.
 
@@ -251,6 +241,7 @@ gnfd tx sp deposit [sp-address] [value] [flags]
 ## EditStorageProvider
 
 This command is used to edit the information of the SP, including endpoint, description and .etc.
+
 ```shell
 gnfd tx sp edit-storage-provider [sp-address] [flags]
 ```

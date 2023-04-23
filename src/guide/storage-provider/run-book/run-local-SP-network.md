@@ -12,7 +12,7 @@ The following lists the recommended hardware requirements:
 
 * VPS running recent versions of Mac OS X, Linux, or Windows；
 * 16 cores of CPU, 64 GB of memory(RAM);
-* At least 100GB disk space for backend storage; 
+* At least 100GB disk space for backend storage;
 * 10GB+ SQL Database.
 
 ## Quickly setup local Greenfield BlockChain network
@@ -26,12 +26,14 @@ make build
 ```
 
 2. Start
+
 ```shell
 # 1 validator and 7 storage providers
 bash ./deployment/localup/localup.sh all 1 7
 ```
 
-3. Export the keys of sps
+1. Export the keys of sps
+
 ```shell
 bash ./deployment/localup/localup.sh export_sps 1 1
 
@@ -54,45 +56,13 @@ bash ./deployment/localup/localup.sh export_sps 1 1
 
 ## Setup local SP network
 
-1. Compile
-
-```shell
-# clone source code
-git clone https://github.com/bnb-chain/greenfield-storage-provider.git
-
-# install compile tools
-cd greenfield-storage-provider
-make install-tools
-
-# compile
-make build
-
-# show the gnfd-sp version information
-cd build
-./gnfd-sp version
-
-Greenfield Storage Provider
-    __                                                       _     __
-    _____/ /_____  _________ _____ ____     ____  _________ _   __(_)___/ /__  _____
-    / ___/ __/ __ \/ ___/ __  / __  / _ \   / __ \/ ___/ __ \ | / / / __  / _ \/ ___/
-    (__  ) /_/ /_/ / /  / /_/ / /_/ /  __/  / /_/ / /  / /_/ / |/ / / /_/ /  __/ /
-    /____/\__/\____/_/   \__,_/\__, /\___/  / .___/_/   \____/|___/_/\__,_/\___/_/
-    /____/       /_/
-
-Version : vx.x.x
-Branch  : master
-Commit  : 6eb30c3bda1a29fc97a4345559944c35cd560517
-Build   : go1.18.4 darwin amd64 2023-03-04 23:54
-
-# show the gnfd-sp help
-./gnfd-sp -h
-```
+1. Compile SP can refer this [doc](./compile-dependences.md#compile-sp).
 
 2. Generate localup env
 
 Generate directories/configs, create databases after building gnfd binary.
 
-```bash
+```shell
 # The first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
 # When equal to 1, the configuration template will be generated.
 GEN_CONFIG_TEMPLATE=1
@@ -103,7 +73,7 @@ bash ./deployment/localup/localup.sh --reset ${GEN_CONFIG_TEMPLATE}
 
 Overwrite all sps' db and sp info according to the real environment.
 
-```
+```shell
 deployment/localup/local_env/
 ├── sp0
 │   ├── config.toml   # templated config
@@ -137,7 +107,7 @@ GcPrivateKey = "<PrivateKey>"
 
 Make config.toml real according to db and sp info, and start sps.
 
-```bash
+```shell
 # In first time setup GEN_CONFIG_TEMPLATE=1, and the other time is 0.
 # When equal to 1, the configuration template will be generated.
 GEN_CONFIG_TEMPLATE=0
@@ -146,7 +116,8 @@ bash ./deployment/localup/localup.sh --start
 ```
 
 The environment directory is as follows:
-```
+
+```shell
 deployment/localup/local_env/
 ├── sp0
 │   ├── config.toml    # real config
@@ -162,7 +133,7 @@ deployment/localup/local_env/
 
 5. Other supported commands
 
-```bash
+```shell
 % bash ./deployment/localup/localup.sh --help
 Usage: deployment/localup/localup.sh [option...] {help|reset|start|stop|print}
 
