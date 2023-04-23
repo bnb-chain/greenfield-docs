@@ -83,21 +83,23 @@ Used to create a new bucket. Buckets are used to contain storage objects.
 message MsgCreateBucket {
   option (cosmos.msg.v1.signer) = "creator";
 
-  // creator is the account address of bucket creator, it is also the bucket owner.
+  // creator defines the account address of bucket creator, it is also the bucket owner.
   string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // bucket_name is a globally unique name of bucket
+  // bucket_name defines a globally unique name of bucket
   string bucket_name = 2;
-  // is_public means the bucket is private or public. if private, only bucket owner or grantee can read it,
+  // visibility means the bucket is private or public. if private, only bucket owner or grantee can read it,
   // otherwise every greenfield user can read it.
-  bool is_public = 3;
-  // payment_address is an account address specified by bucket owner to pay the read fee. Default: creator
+  VisibilityType visibility = 3;
+  // payment_address defines an account address specified by bucket owner to pay the read fee. Default: creator
   string payment_address = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // primary_sp_address is the address of primary sp.
+  // primary_sp_address defines the address of primary sp.
   string primary_sp_address = 6 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // primary_sp_approval is the approval info of the primary SP which indicates that primary sp confirm the user's request.
+  // primary_sp_approval defines the approval info of the primary SP which indicates that primary sp confirm the user's request.
   Approval primary_sp_approval = 7;
-  // read_quota
-  ReadQuota read_quota = 8;
+  // charged_read_quota defines the read data that users are charged for, measured in bytes.
+  // The available read data for each user is the sum of the free read data provided by SP and
+  // the ChargeReadQuota specified here.
+  uint64 charged_read_quota = 8;
 }
 ```
 
@@ -125,17 +127,19 @@ Used to update the information in a bucket.
 message MsgUpdateBucketInfo {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // operator is the account address of the operator
+  // operator defines the account address of the operator
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // bucket_name is the name of bucket which you'll update
+  // bucket_name defines the name of bucket which you'll update
   string bucket_name = 2;
-
-  // read_quota is the traffic quota that you read from primary sp
-  ReadQuota read_quota = 3;
-
-  // payment_address is the account address of the payment account
+  // charged_read_quota defines the traffic quota that you read from primary sp
+  // if read_quota is nil, it means don't change the read_quota
+  common.UInt64Value charged_read_quota = 3;
+  // payment_address defines the account address of the payment account
+  // if payment_address is empty, it means don't change the payment_address
   string payment_address = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // visibility means the bucket is private or public. if private, only bucket owner or grantee can read it,
+  // otherwise every greenfield user can read it.
+  VisibilityType visibility = 5;
 }
 ```
 
@@ -147,26 +151,26 @@ Used to create an initial object under a bucket.
 message MsgCreateObject {
   option (cosmos.msg.v1.signer) = "creator";
 
-  // creator is the account address of object uploader
+  // creator defines the account address of object uploader
   string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // bucket_name is the name of the bucket where the object is stored.
+  // bucket_name defines the name of the bucket where the object is stored.
   string bucket_name = 2;
-  // object_name is the name of object
+  // object_name defines the name of object
   string object_name = 3;
-  // payload_size is size of the object's payload
+  // payload_size defines size of the object's payload
   uint64 payload_size = 4;
-  // is_public means the bucket is private or public. if private, only bucket owner or grantee can access it,
+  // visibility means the object is private or public. if private, only object owner or grantee can access it,
   // otherwise every greenfield user can access it.
-  bool is_public = 5;
-  // content_type is a standard MIME type describing the format of the object.
+  VisibilityType visibility = 5;
+  // content_type defines a standard MIME type describing the format of the object.
   string content_type = 6;
-  // primary_sp_approval is the approval info of the primary SP which indicates that primary sp confirm the user's request.
+  // primary_sp_approval defines the approval info of the primary SP which indicates that primary sp confirm the user's request.
   Approval primary_sp_approval = 7;
-  // expect_checksums is a list of hashes which was generate by redundancy algorithm.
+  // expect_checksums defines a list of hashes which was generate by redundancy algorithm.
   repeated bytes expect_checksums = 8;
   // redundancy_type can be ec or replica
   RedundancyType redundancy_type = 9;
-  // expect_secondarySPs is a list of StorageProvider address, which is optional
+  // expect_secondarySPs defines a list of StorageProvider address, which is optional
   repeated string expect_secondary_sp_addresses = 10 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
 
@@ -196,15 +200,15 @@ With this message, Storage providers seal an object once the underlying files ar
 message MsgSealObject {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // operator is the account address of primary SP
+  // operator defines the account address of primary SP
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // bucket_name is the name of the bucket where the object is stored.
+  // bucket_name defines the name of the bucket where the object is stored.
   string bucket_name = 2;
-  // object_name is the name of object to be sealed.
+  // object_name defines the name of object to be sealed.
   string object_name = 3;
-  // secondary_sp_addresses is a list of storage provider which store the redundant data.
+  // secondary_sp_addresses defines a list of storage provider which store the redundant data.
   repeated string secondary_sp_addresses = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // secondary_sp_signatures is the signature of the secondary sp that can
+  // secondary_sp_signatures defines the signature of the secondary sp that can
   // acknowledge that the payload data has received and stored.
   repeated bytes secondary_sp_signatures = 5;
 }

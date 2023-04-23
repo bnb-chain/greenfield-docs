@@ -262,7 +262,7 @@ participate in consensus - i.e. they cannot vote - but listen for votes to under
 
 When they receive enough validator votes (2/3+ _precommits_ weighted by voting power), full nodes commit to a new block to be added to the blockchain and
 finalize the state transitions in the application layer. A new state root is generated to serve as
-a merkle proof for the state transitions. The applications use the `Commit`
+a merkle proof for the state transitions. Applications use the `Commit`
 ABCI method inherited from `Baseapp`; it syncs all the state transitions by
 writing the `deliverState` into the application's internal state. As soon as the state changes are
 committed, `checkState` start afresh from the most recently committed state and `deliverState`

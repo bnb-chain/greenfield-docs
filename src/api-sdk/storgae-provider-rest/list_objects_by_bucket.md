@@ -1,6 +1,6 @@
 ---
 title: List Objects By Bucket
-order: 9
+order: 7
 ---
 
 # ListObjectsByBucket
@@ -41,7 +41,7 @@ The request does not have a request body.
 
 ## Request Syntax
 
-```shell
+```HTTP
 GET / HTTP/1.1
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
@@ -65,7 +65,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 
 JSON Body
@@ -75,7 +75,7 @@ JSON Body
 
 ### Example 1: Query a bucket's objects
 
-```shell
+```HTTP
 GET / HTTP/1.1
 Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -84,7 +84,7 @@ Authorization: authorization string
 
 ### Sample Response: Query a bucket's objects
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 Date: Fri, 31 March 2023 17:32:10 GMT
 Content-Length: 11434

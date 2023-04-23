@@ -41,7 +41,7 @@ The request does not have a request body.
 
 ## Request Syntax
 
-```shell
+```HTTP
 GET /greenfield/admin/v1/get-approval?action=action HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Content-Type: ContentType
@@ -68,7 +68,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 X-Gnfd-Signed-Msg: SignedMsg
@@ -80,7 +80,7 @@ X-Gnfd-Signed-Msg: SignedMsg
 
 The following request sends `CreateBucket` action to get approval.
 
-```shell
+```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -90,7 +90,7 @@ Authorization: authorization string
 
 ### Sample Response: Create bucket successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 14779951378820359452
 X-Gnfd-Signed-Msg: df5857b2ac67b491ba6d9c6632618be7fb22de13662356b593d74103408cf1af46eed90edaa77bdb65b12fc63ee3bec8314ad7bb0f3ae099ccf7dafe22abff2e01
@@ -100,7 +100,7 @@ X-Gnfd-Signed-Msg: df5857b2ac67b491ba6d9c6632618be7fb22de13662356b593d74103408cf
 
 The following request sends `CreateObject` action to get approval.
 
-```shell
+```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateObject HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -110,7 +110,7 @@ Authorization: authorization string
 
 ### Sample Response: Create object successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 X-Gnfd-Signed-Msg: f00daace3251076f270984e596bbd72b1b1f2a1ae0443e6f32f37cef73d541d568a542333f6a9af2f235724d2a763b3cdc0b370d978d0315b8414fa51fc32a2e00
@@ -120,7 +120,7 @@ X-Gnfd-Signed-Msg: f00daace3251076f270984e596bbd72b1b1f2a1ae0443e6f32f37cef73d54
 
 The following request sends `CreateBucket` action to get approval.
 
-```shell
+```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -130,7 +130,7 @@ Authorization: authorization string
 
 ## Sample Response: There is an internal error in SP server
 
-```shell
+```HTTP
 HTTP/1.1 403 Forbidden
 
 <Error>

@@ -6,8 +6,8 @@ order: 2
 ---
 
 ::: warning
-**Please note that data and test assets on the test network may be periodically cleared, and please do not rely on 
-Greenfield to save important data on the test network.**
+**Please note we will reset the test network around every two weeks, the data and test assets on the test network may be
+periodically cleared, and please do not rely on Greenfield to save important data on the test network.**
 :::
 
 
@@ -21,8 +21,8 @@ There is a native cross-chain bridge between Greenfield and BSC (BNB Smart Chain
 and Greenfield. For more details about the cross-chain, you can refer to [Cross Chain](./greenfield-blockchain/modules/cross-chain.md).
 
 Greenfield defines its account in the same format as BSC and Ethereum, with this compatible address scheme, you can
-reuse existing accounts and infrastructure from BSC. For example, you can use TrustWallet and Metamask (or other
-compatible wallets) to deposit your BNB from BSC to Greenfield and interact with dApps on Greenfield. It is also easy
+reuse existing accounts and infrastructure from BSC. For example, you can use TrustWallet, Metamask or other
+compatible wallets to deposit your BNB from BSC to Greenfield and interact with dApps on Greenfield. It is also easy
 to identify the same owner by referring to the same addresses on both BSC and Greenfield.
 
 ## Wallet Configuration
@@ -88,7 +88,7 @@ You can claim the test BNB on Greenfield BSC Testnet by the faucet, and bridge i
 ### Bridge to Greenfield
 
 [DCellar](http://dcellar.io) builds a bridge for transferring BNB from BSC to Greenfield and vice versa. You can follow
-[How to Transfer In](https://docs.nodereal.io/docs/dcellar-get-started) to bridge tBNBs from Greenfield BSC Testnet to
+[How to Transfer In](https://docs.nodereal.io/docs/dcellar-get-started#transfer-in) to bridge tBNBs from Greenfield BSC Testnet to
 Greenfield Testnet.
 
 ## Interact with Greenfield

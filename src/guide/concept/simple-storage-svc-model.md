@@ -36,27 +36,42 @@ address will be the default payment account.
 ```protobuf
 message BucketInfo {
   // owner is the account address of bucket creator, it is also the bucket owner.
-  string owner;
+  string owner = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // bucket_name is a globally unique name of bucket
-  string bucket_name;
-  // is_public define the highest permissions for bucket. When the bucket is public, everyone can get the object in it.
-  bool is_public;
+  string bucket_name = 2;
+  // visibility defines the highest permissions for bucket. When a bucket is public, everyone can get storage objects in it.
+  VisibilityType visibility = 3;
   // id is the unique identification for bucket.
-  string id;
-  // source_type define the source of the bucket
-  SourceType source_type;
-  // create_at define the block number when the bucket created.
-  int64 create_at;
+  string id = 4 [
+    (cosmos_proto.scalar) = "cosmos.Uint",
+    (gogoproto.customtype) = "Uint",
+    (gogoproto.nullable) = false
+  ];
+  // source_type defines which chain the user should send the bucket management transactions to
+  SourceType source_type = 5;
+  // create_at define the block timestamp when the bucket created.
+  int64 create_at = 6;
   // payment_address is the address of the payment account
-  string payment_address;
+  string payment_address = 7 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // primary_sp_address is the address of the primary sp. Objects belongs to this bucket will never
   // leave this SP, unless you explicitly shift them to another SP.
-  string primary_sp_address;
-  // read_quota defines the traffic quota for read
-  ReadQuota read_quota;
-  int64 payment_price_time;
-  // payment_out_flows, for billing;
-  repeated payment.OutFlowInUSD payment_out_flows;
+  string primary_sp_address = 8 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // charged_read_quota defines the traffic quota for read in bytes per month.
+  // The available read data for each user is the sum of the free read data provided by SP and
+  // the ChargeReadQuota specified here.
+  uint64 charged_read_quota = 9;
+  // billing info of the bucket
+  BillingInfo billing_info = 10 [(gogoproto.nullable) = false];
+}
+
+// BillingInfo is the billing information of the bucket
+message BillingInfo {
+  // the time of the payment price, used to calculate the charge rate of the bucket
+  int64 price_time = 1;
+  // the total size of the objects in the bucket, used to calculate the charge rate of the bucket
+  uint64 total_charge_size = 2;
+  // secondary sp objects size statistics
+  repeated SecondarySpObjectsSize secondary_sp_objects_size = 3 [(gogoproto.nullable) = false];
 }
 ```
 
@@ -88,34 +103,38 @@ objects under the same bucket, but it may be a heavy-lifting job for a large buc
 ```protobuf
 
 message ObjectInfo {
-  string owner;
+  string owner = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // bucket_name is the name of the bucket
-  string bucket_name;
+  string bucket_name = 2;
   // object_name is the name of object
-  string object_name;
+  string object_name = 3;
   // id is the unique identifier of object
-  string id;
+  string id = 4 [
+    (cosmos_proto.scalar) = "cosmos.Uint",
+    (gogoproto.customtype) = "Uint",
+    (gogoproto.nullable) = false
+  ];
   // payloadSize is the total size of the object payload
-  uint64 payload_size;
-  // is_public define the highest permissions for object. When the object is public, everyone can access it.
-  bool is_public;
+  uint64 payload_size = 5;
+  // visibility defines the highest permissions for object. When an object is public, everyone can access it.
+  VisibilityType visibility = 6;
   // content_type define the format of the object which should be a standard MIME type.
-  string content_type;
-  // create_at define the block number when the object created
-  int64 create_at;
+  string content_type = 7;
+  // create_at define the block timestamp when the object is created
+  int64 create_at = 8;
   // object_status define the upload status of the object.
-  ObjectStatus object_status;
+  ObjectStatus object_status = 9;
   // redundancy_type define the type of the redundancy which can be multi-replication or EC.
-  RedundancyType redundancy_type;
+  RedundancyType redundancy_type = 10;
   // source_type define the source of the object.
-  SourceType source_type;
+  SourceType source_type = 11;
   // checksums define the root hash of the pieces which stored in a SP.
-  repeated bytes checksums;
+  // add omit tag to omit the field when converting to NFT metadata
+  repeated bytes checksums = 12 [(gogoproto.moretags) = "traits:\"omit\""];
   // secondary_sp_addresses define the addresses of secondary_sps
-  repeated string secondary_sp_addresses ;
-  // lockedBalance
-  string lockedBalance;
+  repeated string secondary_sp_addresses = 13 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
+
 ```
 
 ### Group
@@ -130,13 +149,18 @@ permission check can be finished within a constant time.
 
 ```protobuf
 message GroupInfo {
-  // owner is the owner of the group. It can not changed once created.
-  string owner ;
+  // owner is the owner of the group. It can not changed once it created.
+  string owner = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // group_name is the name of group which is unique under an account.
-  string group_name;
+  string group_name = 2;
   // source_type
-  SourceType source_type;
+  SourceType source_type = 3;
   // id is the unique identifier of group
-  string id;
+  string id = 4 [
+    (cosmos_proto.scalar) = "cosmos.Uint",
+    (gogoproto.customtype) = "Uint",
+    (gogoproto.nullable) = false
+  ];
 }
+
 ```

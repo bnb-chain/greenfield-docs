@@ -26,9 +26,9 @@ Details on how to configure each endpoint is provided in the endpoint's own sect
 
 ::: tip
 The node also exposes some other endpoints, such as the Tendermint P2P endpoint, or the 
-[Prometheus endpoint](https://docs.tendermint.com/master/nodes/metrics.html#metrics), 
+[Prometheus endpoint](https://docs.tendermint.com/main/tendermint-core/metrics.html#list-of-available-metrics), 
 which are not directly related to the Cosmos SDK. Please refer to the 
-[Tendermint documentation](https://docs.tendermint.com/master/tendermint-core/using-tendermint.html#configuration) 
+[Tendermint documentation](https://docs.tendermint.com/main/tendermint-core/using-tendermint.html#configuration) 
 for more information about these endpoints.
 :::
 

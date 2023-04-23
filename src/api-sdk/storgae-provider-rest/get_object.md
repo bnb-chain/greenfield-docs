@@ -42,7 +42,7 @@ The request does not have a request body.
 
 ## Request Syntax
 
-```shell
+```HTTP
 GET /ObjectName HTTP/1.1
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
@@ -65,7 +65,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 
@@ -76,7 +76,7 @@ Body
 
 ### Example 1: Download an object
 
-```shell
+```HTTP
 GET /my-image.jpg HTTP/1.1
 Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -85,7 +85,7 @@ Authorization: authorization string
 
 ### Sample Response: Download an object successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT

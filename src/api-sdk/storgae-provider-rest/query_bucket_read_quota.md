@@ -1,6 +1,6 @@
 ---
 title: Query Bucket Read Quota
-order: 5
+order: 4
 ---
 
 # QueryBucketReadQuota
@@ -44,8 +44,8 @@ None
 
 ## Request Syntax
 
-```shell
-GET /?read-quota&year-month=YearMonth
+```HTTP
+GET /?read-quota&year-month=YearMonth HTTP/1.1
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 ```
@@ -77,7 +77,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 
@@ -88,7 +88,7 @@ XML Body
 
 ### Example 1: Query a bucket read quota
 
-```shell
+```HTTP
 GET /?read-quota&year-month=2023-03 HTTP/1.1
 Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -97,7 +97,7 @@ Authorization: authorization string
 
 ### Sample Response: Query a bucket read quota successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT

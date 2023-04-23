@@ -28,7 +28,7 @@ See more details [here](../../concept/key-management.md).
 
 ```bash
 gnfd keys add validator --keyring-backend test
-gnfd keys add validator_bls --keyring-backend test
+gnfd keys add validator_bls --keyring-backend test --algo eth_bls
 gnfd keys add validator_relayer --keyring-backend test
 gnfd keys add validator_challenger --keyring-backend test
 ```
@@ -39,7 +39,7 @@ Alternatively, if you choose a different $KEY_HOME location and you are not usin
 
 ```bash
 gnfd keys add validator --keyring-backend test --home ${KEY_HOME}
-gnfd keys add validator_bls --keyring-backend test --home ${KEY_HOME}
+gnfd keys add validator_bls --keyring-backend test --algo eth_bls --home ${KEY_HOME}
 gnfd keys add validator_relayer --keyring-backend test --home ${KEY_HOME}
 gnfd keys add validator_challenger --keyring-backend test --home ${KEY_HOME}
 ```

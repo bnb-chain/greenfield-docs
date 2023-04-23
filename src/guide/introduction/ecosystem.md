@@ -36,6 +36,8 @@ and accessible at all times.
 
 For more information about the storage providers, have a look at the [Storage Provider's page](../greenfield-blockchain/modules/storage-provider.md).
 
+## Greenfield Features
+
 ### dApps
 `Greenfield dApps` are applications that leverage the unique features of the Greenfield blockchain to 
 solve various problems for their users. These `dApps` are designed to utilize Greenfield storage and 

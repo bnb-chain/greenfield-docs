@@ -1,6 +1,6 @@
 ---
 title: List Bucket Read Records
-order: 6
+order: 5
 ---
 
 # ListBucketReadRecords
@@ -46,8 +46,8 @@ The request does not have a request body.
 
 ## Request Syntax
 
-```shell
-GET /?list-read-record&max-records=MaxRecord&start-timstamp=StartTimestamp&end-timestamp=End-Timestqamp
+```HTTP
+GET /?list-read-record&max-records=MaxRecord&start-timstamp=StartTimestamp&end-timestamp=End-Timestamp HTTP/1.1 
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 ```
@@ -81,7 +81,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 
@@ -92,7 +92,7 @@ XML Body
 
 ### Example 1: List bucket read records
 
-```shell
+```HTTP
 GET /?list-read-record&max-records=2&start-timstamp=1680520105786&end-timestamp=1680520178958 HTTP/1.1
 Host: myBucket.gnfd.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -101,7 +101,7 @@ Authorization: authorization string
 
 ### Sample Response: List bucket read records successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT

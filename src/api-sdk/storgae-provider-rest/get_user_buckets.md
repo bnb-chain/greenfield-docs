@@ -1,6 +1,6 @@
 ---
 title: Get User Buckets
-order: 8
+order: 6
 ---
 
 # GetUserBuckets
@@ -40,7 +40,7 @@ The request does not have a request body.
 
 ## Request Syntax
 
-```shell
+```HTTP
 GET / HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
@@ -65,7 +65,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 
 JSON Body
@@ -75,7 +75,7 @@ JSON Body
 
 ### Example 1: Query a user's buckets
 
-```shell
+```HTTP
 GET / HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -85,7 +85,7 @@ X-Gnfd-User-Address: user address string
 
 ### Sample Response: Query a user's buckets successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 Date: Fri, 31 March 2023 17:32:10 GMT
 Content-Length: 11434

@@ -44,7 +44,7 @@ The request body is a binary data that you want to store in Greenfield SP.
 
 ## Request Syntax
 
-```shell
+```HTTP
 PUT /ObjectName HTTP/1.1
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 X-Gnfd-Txn-Hash: Txn-Hash
@@ -72,7 +72,7 @@ If you failed to send request to get approval, you will get error response body 
 
 ## Response Syntax
 
-```shell
+```HTTP
 HTTP/1.1 200
 X-Gnfd-Request-ID: RequestID
 Etag: Etag
@@ -82,7 +82,7 @@ Etag: Etag
 
 ### Example 1: Upload an object
 
-```shell
+```HTTP
 PUT /my-image.jpg HTTP/1.1
 Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
@@ -95,7 +95,7 @@ X-Gnfd-Txn-Hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b85
 
 ### Sample Response: Upload an object successfully
 
-```shell
+```HTTP
 HTTP/1.1 200 OK
 X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
