@@ -5,214 +5,123 @@ order: 2
 
 # Quick Start
 
-In this quick-start guide, we will walk you through the process of creating a decentralized application using the `EbookShop` contract as an example. The `EbookShop` contract is part of the SDK and provides a foundation for creating a digital ebook marketplace.
-
 ## Prerequisites
 
 Before starting, make sure you have the following tools installed:
+- [gnfd-cmd](https://github.com/bnb-chain/greenfield-cmd)
+- [gnfd-contract](https://github.com/bnb-chain/greenfield-contracts)
 
-- [Node.js](https://nodejs.org/)
-- [Foundry](https://book.getfoundry.sh/)
+Please follow the readme of the above two repositories to install the tools and configure the environment.
 
-## Installation
-
-```console
-$ npm install @bnb-chain/greenfield-contracts-sdk
-```
-
-Alternatively, you can obtain the contracts directly from the GitHub repository (`bnb-chain/greenfield-contracts-sdk`). When doing so, ensure that you specify the appropriate release.
+Ensure you get an account that get funds on both BSC and Greenfield network.
 
 ### Steps
 
-1. Import the desired contracts, for example in `examples/ebook-shop.sol`:
+In the following example, Account A(0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0) will grant Account B(0x3bD70E10D71C6E882E3C1809d26a310d793646eB)
+the access to his private file through BSC contract.
 
-   ```solidity
-   pragma solidity ^0.8.0;
-   
-   import "@bnb-chain/greenfield-contracts-sdk/BucketApp.sol";
-   import "@bnb-chain/greenfield-contracts-sdk/ObjectApp.sol";
-   import "@bnb-chain/greenfield-contracts-sdk/GroupApp.sol";
-   import "@bnb-chain/greenfield-contracts-sdk/interface/IERC1155.sol";
-   import "@bnb-chain/greenfield-contracts-sdk/interface/IERC721Nontransferable.sol";
-   import "@bnb-chain/greenfield-contracts-sdk/interface/IERC1155Nontransferable.sol";
-   ...
-   
-   contract EbookShop is BucketApp, ObjectApp, GroupApp {
-   	...
-   }
-   ```
+Before starting, please make sure you have the config.toml file in the current directory. 
+The content of the config.toml is as follows:
 
-2. Define the `initialize` function. Initialize the global variables in the init function. You can use the internal init functions:
-   ```solidity
-   function initialize(
-       address _crossChain,
-       address _bucketHub,
-       address _objectHub,
-       address _groupHub,
-       address _ebookToken,
-       address _paymentAddress,
-       uint256 _callbackGasLimit,
-       address _refundAddress,
-       uint8 _failureHandleStrategy,
-       ...
-   ) public initializer {
-       __base_app_init_unchained(_crossChain, _callbackGasLimit, _refundAddress, _failureHandleStrategy);
-       __bucket_app_init_unchained(_bucketHub, _paymentAddress);
-       __group_app_init_unchained(_groupHub);
-       __object_app_init_unchained(_objectHub);
-   
-       ...
-   }
-   ```
+```toml
+endpoint = "https://gnfd-testnet-sp-1.bnbchain.org"
+grpcAddr = "gnfd-testnet-fullnode-cosmos-us.bnbchain.org:9090"
+chainId = "greenfield_5600-1"
 
-3. Define and override the `greenfieldCall`, `retryPackage` and `skipPackage` functions if your dApp needs callback. You can route calls with the help of the internal method:
-   ```solidity
-   function greenfieldCall(
-       uint32 status,
-       uint8 resoureceType,
-       uint8 operationType,
-       uint256 resourceId,
-       bytes calldata callbackData
-   ) external override(BucketApp, ObjectApp, GroupApp) {
-       require(msg.sender == crossChain, string.concat("EbookShop: ", ERROR_INVALID_CALLER));
-   
-       if (resoureceType == RESOURCE_BUCKET) {
-           _bucketGreenfieldCall(status, operationType, resourceId, callbackData);
-       } else if (resoureceType == RESOURCE_OBJECT) {
-           _objectGreenfieldCall(status, operationType, resourceId, callbackData);
-       } else if (resoureceType == RESOURCE_GROUP) {
-           _groupGreenfieldCall(status, operationType, resourceId, callbackData);
-       } else {
-           revert(string.concat("EbookShop: ", ERROR_INVALID_RESOURCE));
-       }
-   }
-   
-   function retryPackage(uint8 resoureceType) external override onlyOperator {
-       if (resoureceType == RESOURCE_BUCKET) {
-           _retryBucketPackage();
-       } else if (resoureceType == RESOURCE_OBJECT) {
-           _retryObjectPackage();
-       } else if (resoureceType == RESOURCE_GROUP) {
-           _retryGroupPackage();
-       } else {
-           revert(string.concat("EbookShop: ", ERROR_INVALID_RESOURCE));
-       }
-   }
-   
-   function skipPackage(uint8 resoureceType) external override onlyOperator {
-       if (resoureceType == RESOURCE_BUCKET) {
-           _skipBucketPackage();
-       } else if (resoureceType == RESOURCE_OBJECT) {
-           _skipObjectPackage();
-       } else if (resoureceType == RESOURCE_GROUP) {
-           _skipGroupPackage();
-       } else {
-           revert(string.concat("EbookShop: ", ERROR_INVALID_RESOURCE));
-       }
-   }
-   ```
+## Please replace the ${PrivateKey} with your own Account A's private key
+privateKey = "${PrivateKey}"
+```
 
-4. Next you need to define the main functional parts of the app. You can send cross-chain request to system contracts with the help of internal functions like below:
-   ```solidity
-   /**
-    * @dev Create a new series.
-    * 
-    * Assuming the sp provider's info will be provided by the front-end.
-    */
-   function createSeries(
-       string calldata name,
-       BucketStorage.BucketVisibilityType visibility,
-       uint64 chargedReadQuota,
-       address spAddress,
-       uint256 expireHeight,
-       bytes calldata sig
-   ) external payable {
-       require(bytes(name).length > 0, string.concat("EbookShop: ", ERROR_INVALID_NAME));
-       require(seriesId[name] == 0, string.concat("EbookShop: ", ERROR_RESOURCE_EXISTED));
-   
-       bytes memory _callbackData = bytes(name); // use name as callback data
-       _createBucket(msg.sender, name, visibility, chargedReadQuota, spAddress, expireHeight, sig, _callbackData); // send cross-chain request
-   }
-   
-   /**
-    * @dev Provide an ebook's ID to publish it.
-    *
-    * An ERC1155 token will be minted to the owner.
-    * Other users can buy the ebook by calling `buyEbook` function with given price.
-    */
-   function publishEbook(uint256 _ebookId, uint256 price) external {
-       require(
-           IERC721NonTransferable(objectToken).ownerOf(_ebookId) == msg.sender,
-           string.concat("EbookShop: ", ERROR_INVALID_CALLER)
-       );
-       require(ebookGroup[_ebookId] != 0, string.concat("EbookShop: ", ERROR_GROUP_NOT_EXISTED));
-       require(price > 0, string.concat("EbookShop: ", ERROR_INVALID_PRICE));
-   
-       ebookPrice[_ebookId] = price;
-       IERC1155(ebookToken).mint(msg.sender, _ebookId, 1, "");
-   }
-       
-   /**
-    * @dev Provide an ebook's ID to buy it.
-    *
-    * Buyer will be added to the group of the ebook.
-    * An ERC1155 token will be minted to the buyer.
-    */
-   function buyEbook(uint256 _ebookId) external payable {
-       require(ebookPrice[_ebookId] > 0, string.concat("EbookShop: ", ERROR_EBOOK_NOT_ONSHELF));
-   
-       uint256 price = ebookPrice[_ebookId];
-       require(msg.value >= price, string.concat("EbookShop: ", ERROR_NOT_ENOUGH_VALUE));
-   
-       IERC1155(ebookToken).mint(msg.sender, _ebookId, 1, "");
-   
-       uint256 _groupId = ebookGroup[_ebookId];
-       address _owner = IERC721NonTransferable(groupToken).ownerOf(_groupId);
-       address[] memory _member = new address[](1);
-       _member[0] = msg.sender;
-       _updateGroup(_owner, _groupId, UPDATE_ADD, _member);
-   }
-   
-   /**
-    * @dev Provide an ebook's ID to downshelf it.
-    *
-    * The ebook will be removed from the shelf and cannot be bought.
-    * Those who have already purchased are not affected.
-    */
-   function downshelfEbook(uint256 _ebookId) external {
-       require(
-           IERC721NonTransferable(objectToken).ownerOf(_ebookId) == msg.sender,
-           string.concat("EbookShop: ", ERROR_INVALID_CALLER)
-       );
-       require(ebookPrice[_ebookId] > 0, string.concat("EbookShop: ", ERROR_EBOOK_NOT_ONSHELF));
-   
-       ebookPrice[_ebookId] = 0;
-   }
-   ...
-   ```
+1. Create a temporary file `story.txt`
 
-5. Besides, you may need to provide a function for user to register their own resource that were created at greenfield side and then mirrored to BSC manually:
-   ```solidity
-   /**
-    * @dev Register bucket resource that mirrored from GreenField to BSC.
-    */
-   function registerSeries(string calldata name, uint256 tokenId) external {
-       require(
-           IERC721NonTransferable(bucketToken).ownerOf(tokenId) == msg.sender,
-           string.concat("EbookShop: ", ERROR_INVALID_CALLER)
-       );
-       require(bytes(name).length > 0, string.concat("EbookShop: ", ERROR_INVALID_NAME));
-       require(seriesId[name] == 0, string.concat("EbookShop: ", ERROR_RESOURCE_EXISTED));
-   
-       seriesName[tokenId] = name;
-       seriesId[name] = tokenId;
-   }
-   ...
-   ```
+```shell
+$ echo "this is a fun story" > story.txt 
+```
 
-6. Define other view functions, internal funcions and access control system according to your own needs.
+2. Create a bucket named `funbucket`.
 
-## Conclusion
+```shell
+$ gnfd-cmd -c config.toml make-bucket gnfd://funbucket
+```
 
-This quick-start guide provided a brief introduction to the SDK and the `EbookShop` contract. By following these steps, you can easily create a decentralized ebook marketplace using the provided SDK.
+3. Create a private object named `story.txt` in the bucket `funbucket`.
+
+```shell
+$ gnfd-cmd -c config.toml  put  --contentType "text/xml" --visibility private ./story.txt  gnfd://funbucket/story.txt
+```
+
+4. Create a group named `fungroup`.
+
+```shell
+$ gnfd-cmd -c config.toml make-group gnfd://fungroup
+create group: fungroup succ, txn hash:17B6AE2C8D30B6D6EEABEE81DB8B37CF735655E9087CB02DC98EFF1DCA9FBE3A, group id: 136 
+```
+
+The console will return the id of the group, which is `136` in this case.
+
+5. Bind the group `fungroup` to the object `story.txt`.
+
+```shell
+## Example
+$ gnfd-cmd -c config.toml put-obj-policy --groupId 136  --actions get  gnfd://funbucket/story.txt   
+```
+
+6. Mirror the group to BSC network.
+
+```shell
+## Example
+$ gnfd-cmd -c config.toml mirror --resource group --id  136 
+```
+
+7. Change the `PrivateKey` of config.toml to AccountB, and try to access the file through AccountB.
+    
+```shell
+## Example
+$ gnfd-cmd -c config.toml head-member  --groupOwner 0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0 --headMember 0x3bD70E10D71C6E882E3C1809d26a310d793646eB gnfd://fungroup
+the user does not exist in the group
+$ gnfd-cmd -c config.toml get gnfd://funbucket/story.txt ./story.txt
+run command error: statusCode 403 : code : AccessDenied  (Message: Access Denied)
+```
+
+8. clone the [gnfd-contract](https://github.com/bnb-chain/greenfield-contracts) repository and install the dependencies.
+
+
+9. Grant the access to Account B through the contract.
+
+```shell
+### Do not run the following command directly, please replace the ${PrivateKey} with your own Account A's private key
+### Please replace the ${GroupId} with the group id you get in step 4
+### Please replace the ${AccountB} with your own Account B's address
+export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org  
+forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
+--sig "updateGroup(address operator, uint256 groupId, address member)" \
+${AccountA} ${GroupId} ${AccountB} \
+-f https://gnfd-bsc-testnet-dataseed1.bnbchain.org \
+--private-key ${privateKeyOfAccountA} \
+--legacy \
+--broadcast
+
+
+### Example
+export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org 
+$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
+--sig "updateGroup(address operator, uint256 groupId, address member)" \
+0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0 136 0x3bD70E10D71C6E882E3C1809d26a310d793646eB \
+-f https://greenfield-bsc-testnet-ap.nodereal.io/ \
+--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
+--legacy \
+--broadcast
+```
+
+9. Wait 30 seconds, and try to access the file through AccountB again.
+```shell
+## Example
+$ gnfd-cmd -c config.toml head-member  --groupOwner 0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0 --headMember 0x3bD70E10D71C6E882E3C1809d26a310d793646eB gnfd://fungroup
+the user is a member of the group
+$ gnfd-cmd -c config.toml get gnfd://funbucket/story.txt ./story-copy.txt
+download object story.txt successfully, the file path is ./story-copy.txt
+```
+
+
+
 

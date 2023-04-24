@@ -1,9 +1,9 @@
 ---
-title: Contract Address List
+title: Contract Entrypoint
 order: 4
 ---
 
-# Contract Address List
+# Contract Entrypoint
 
 ## Testnet
 
