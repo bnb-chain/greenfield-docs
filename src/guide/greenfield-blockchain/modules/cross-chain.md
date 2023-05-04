@@ -188,8 +188,7 @@ in a similar way as EOAs.
 
 **BNB**:
 
-- transfer bidirectionally between BSC and Greenfield among accounts
-  (including even payment accounts)
+- transfer BNB bidirectionally between BSC and Greenfield
 
 **Bucket**:
 

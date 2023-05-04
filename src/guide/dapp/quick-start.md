@@ -5,6 +5,9 @@ order: 2
 
 # Quick Start
 
+In this guide, we will walk you through the process of data permission management using the BSC smart contract as a simple
+showcase of cross chain program-ability of Greenfield.
+
 ## Prerequisites
 
 Before starting, make sure you have the following tools installed:
@@ -32,25 +35,32 @@ chainId = "greenfield_5600-1"
 privateKey = "${PrivateKey}"
 ```
 
-1. Create a temporary file `story.txt`
+1. Prepare environment
+
+```shell
+$ export AccountA=0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0
+$ export AccountB=0x3bD70E10D71C6E882E3C1809d26a310d793646eB
+```
+
+2. Create a temporary file `story.txt`
 
 ```shell
 $ echo "this is a fun story" > story.txt 
 ```
 
-2. Create a bucket named `funbucket`.
+3. Create a bucket named `funbucket`.
 
 ```shell
 $ gnfd-cmd -c config.toml make-bucket gnfd://funbucket
 ```
 
-3. Create a private object named `story.txt` in the bucket `funbucket`.
+4. Create a private object named `story.txt` in the bucket `funbucket`.
 
 ```shell
 $ gnfd-cmd -c config.toml  put  --contentType "text/xml" --visibility private ./story.txt  gnfd://funbucket/story.txt
 ```
 
-4. Create a group named `fungroup`.
+5. Create a group named `fungroup`.
 
 ```shell
 $ gnfd-cmd -c config.toml make-group gnfd://fungroup
@@ -59,54 +69,44 @@ create group: fungroup succ, txn hash:17B6AE2C8D30B6D6EEABEE81DB8B37CF735655E908
 
 The console will return the id of the group, which is `136` in this case.
 
-5. Bind the group `fungroup` to the object `story.txt`.
+6. Bind the group `fungroup` to the object `story.txt`.
 
 ```shell
-## Example
-$ gnfd-cmd -c config.toml put-obj-policy --groupId 136  --actions get  gnfd://funbucket/story.txt   
+## Example, replace the ${GroupId} with the group id you get in the previous step
+$ export GroupId=136
+$ gnfd-cmd -c config.toml put-obj-policy --groupId ${GroupId}  --actions get  gnfd://funbucket/story.txt   
 ```
 
 6. Mirror the group to BSC network.
 
 ```shell
-## Example
-$ gnfd-cmd -c config.toml mirror --resource group --id  136 
+## Example, replace the ${GroupId} with the group id you get in the previous step
+$ gnfd-cmd -c config.toml mirror --resource group --id  ${GroupId} 
 ```
 
 7. Change the `PrivateKey` of config.toml to AccountB, and try to access the file through AccountB.
     
 ```shell
 ## Example
-$ gnfd-cmd -c config.toml head-member  --groupOwner 0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0 --headMember 0x3bD70E10D71C6E882E3C1809d26a310d793646eB gnfd://fungroup
+$ gnfd-cmd -c config.toml head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
 the user does not exist in the group
 $ gnfd-cmd -c config.toml get gnfd://funbucket/story.txt ./story.txt
 run command error: statusCode 403 : code : AccessDenied  (Message: Access Denied)
 ```
 
-8. clone the [gnfd-contract](https://github.com/bnb-chain/greenfield-contracts) repository and install the dependencies.
+It turns out that AccountB is not permitted to access the file, which is expected.
+
+8. Clone the [gnfd-contract](https://github.com/bnb-chain/greenfield-contracts) repository and install the dependencies.
 
 
 9. Grant the access to Account B through the contract.
 
 ```shell
-### Do not run the following command directly, please replace the ${PrivateKey} with your own Account A's private key
-### Please replace the ${GroupId} with the group id you get in step 4
-### Please replace the ${AccountB} with your own Account B's address
-export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org  
-forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
---sig "updateGroup(address operator, uint256 groupId, address member)" \
-${AccountA} ${GroupId} ${AccountB} \
--f https://gnfd-bsc-testnet-dataseed1.bnbchain.org \
---private-key ${privateKeyOfAccountA} \
---legacy \
---broadcast
-
-
 ### Example
 export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org 
 $ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
 --sig "updateGroup(address operator, uint256 groupId, address member)" \
-0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0 136 0x3bD70E10D71C6E882E3C1809d26a310d793646eB \
+${AccountA} ${GroupId} ${AccountB} \
 -f https://greenfield-bsc-testnet-ap.nodereal.io/ \
 --private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
 --legacy \
@@ -116,12 +116,10 @@ $ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
 9. Wait 30 seconds, and try to access the file through AccountB again.
 ```shell
 ## Example
-$ gnfd-cmd -c config.toml head-member  --groupOwner 0x0fEd1aDD48b497d619EF50160f9135c6E221D5F0 --headMember 0x3bD70E10D71C6E882E3C1809d26a310d793646eB gnfd://fungroup
+$ gnfd-cmd -c config.toml head-member  --groupOwner ${AccountA} --headMember ${AccountB} gnfd://fungroup
 the user is a member of the group
 $ gnfd-cmd -c config.toml get gnfd://funbucket/story.txt ./story-copy.txt
 download object story.txt successfully, the file path is ./story-copy.txt
 ```
-
-
 
 

@@ -1,6 +1,6 @@
 ---
 title: Contract Entrypoint
-order: 4
+order: 5
 ---
 
 # Contract Entrypoint
