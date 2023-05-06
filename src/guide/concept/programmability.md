@@ -36,7 +36,7 @@ The first layer is the `Cross-Chain Communication Layer`, which is responsible f
 the communication packages between the BSC and the Greenfield blockchain networks. This layer serves as the backbone of 
 the entire ecosystem, ensuring the smooth and secure transfer of information between the two platforms.
 
-The second layer is the `Resource Mirror Layer`, which provides a bridge between Greenfield and BNB Smart Chain. 
+The second layer is the `Resource Mirror Layer`. 
 This layer manages the resource assets defined on Greenfield, which are then mirrored onto BSC. 
 The `Resource Mirror Layer` enables users to interact with these assets on BSC using smart contracts, 
 which operate on the primitives defined by Greenfield. This layer plays a critical role in the 
@@ -44,16 +44,15 @@ Greenfield ecosystem, enabling seamless cross-chain asset management and more ef
 
 At the top of the Greenfield ecosystem is the `Application Layer`. This layer consists of smart contracts 
 that are developed by the community on BSC, enabling them to operate the mirrored resource entities on
-the `Resource Mirror Layer`. While Greenfield itself does not currently offer programmability, the `Application Layer`
-allows for the creation of decentralized applications (dApps) that can interact with Greenfield 
-Core and other supporting infrastructures. The `Application Layer` represents the true power and 
-potential of the Greenfield ecosystem, enabling developers and users to create and leverage a 
+the `Resource Mirror Layer`. While Greenfield itself does not offer programmability, the `Application Layer`
+can interact with Greenfield Core and other supporting infrastructures. The `Application Layer` represents the true power and 
+potential of the Greenfield ecosystem. Developers are able to create and leverage a 
 wide range of innovative and decentralized applications while benefiting from Greenfield's robust 
 infrastructure and cross-chain capabilities.
 
 ## Cross-Chain Bridge
 The native cross-chain bridge is an essential part of the Greenfield ecosystem, 
-as it enables seamless interoperability between different blockchain networks. 
+as it enables seamless interoperability between BSC and Greenfield. 
 To ensure the security and integrity of the bridge, a new relayer system have been implemented for the validators of Greenfield
 based on an aggregated multisig scheme.
 

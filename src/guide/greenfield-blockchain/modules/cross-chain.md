@@ -21,7 +21,7 @@ The communication layer is composed of a set of **Greenfield Relayers**:
 - The relayer watches all cross-chain events happen on BSC and the
   Greenfield blockchain independently. Once a sufficient number of blocks 
   have been confirmed to reach finality, the relayer will sign a message 
-  using the BLS key to confirm the events. This signed message is called the "vote." 
+  using the BLS key to confirm the events. This signed message is called the "vote". 
   The relayer will then broadcast the vote through a p2p network to other relayers.
 
 - Once enough votes from the relayer are collected, the relayer will
@@ -31,7 +31,7 @@ The communication layer is composed of a set of **Greenfield Relayers**:
 Here more details about the communication layer and economics will be explained.
 
 ### Vote Poll
-A new p2p communication across the cross-chain relayers will be
+A new p2p communication across the cross-chain relayers is
 introduced, called `Vote Poll`. This `Vote Poll` will gossip about the
 signed votes within the network. To avoid message flooding, all the
 signed votes will expire after a fixed time. The Greenfield relayers can
@@ -82,9 +82,8 @@ of packages:
    layer of the target chain, usually caused by damaged data or
    protocol inconsistency triggered by the edge case.
 
-Each communication package must start with `SYN` and end with ACK or
-`FAIL_ACK`. The handler code and contracts on each side must handle these
-primitives.
+Each communication package must start with `SYN` and end with `ACK` or
+`FAIL_ACK`.
 
 ### Validator Update
 
@@ -222,7 +221,7 @@ in a similar way as EOAs.
 
 Once these primitives are called by an EOA or smart contracts, the
 predefined events will be emitted. Greenfield Relayers should pick up
-these events and relay them over to Greenfield and BSC. As the change
+these events and relay them over to Greenfield. As the change
 will happen asynchronously, there will be specific cross-chain packages
 for acknowledgments or errors, which can trigger a callback. The caller
 of the primitives should pay the fees upfront for cross-chain operations
