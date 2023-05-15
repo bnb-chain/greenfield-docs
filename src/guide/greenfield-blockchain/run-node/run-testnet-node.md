@@ -64,6 +64,21 @@ gnfd start --home /usr/local/gnfd-testnet
 ```
 :::
 
+&nbsp;&nbsp; 4.1. Starting your Full Node via Docker-Compose (optional)
+
+```bash
+$ mkdir ~/.gnfd/data
+$ docker-compose up
+```
+---
+**Tips** 
+
+```bash
+# Assigning permissions to config and data folders.
+$ chmod 777 -R ~/.gnfd/config
+$ chmod 777 -R ~/.gnfd/data
+```
+
 If you encounter any issue when running a Full Node, you should read the FAQ provided here.
 
 
