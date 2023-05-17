@@ -75,10 +75,10 @@ You can take note of the operator-address information for the storage provider t
 
 You can run "./gnfd-cmd storage -h " to get help of the storage operations.
 
-The below command can be used to create a new bucket called testBucket:
+The below command can be used to create a new bucket called testbucket:
 
 ```
-gnfd-cmd storage make-bucket gnfd://testBucket
+gnfd-cmd storage make-bucket gnfd://testbucket
 ```
 
 The command supports "-primarySP" flag to select the storage provider on which you want to create a bucket. The content of the flag should be the operator address of the storage provider. If this value is not set, the first SP in the storage provider list will be selected as the upload target by default.
@@ -88,17 +88,17 @@ The user can update the bucket meta by the "storage update-bucket" command. It s
 
 ```
 // update bucket charged quota 
-gnfd-cmd storage update-bucket --chargedQuota 50000 gnfd://testBucket
+gnfd-cmd storage update-bucket --chargedQuota 50000 gnfd://testbucket
 ```
 
 #### Upload/Download Files
 
 (1) put Object
 
-The user can upload the local file to the bucket by the "storage put" command. The following command example uploads an object named 'testObject' to the 'testBucket' bucket. The file payload for the upload is read from the local file indicated by 'file-path'.
+The user can upload the local file to the bucket by the "storage put" command. The following command example uploads an object named 'testobject' to the 'testbucket' bucket. The file payload for the upload is read from the local file indicated by 'file-path'.
 
 ```
-gnfd-cmd storage put --contentType "text/xml" file-path gnfd://testBucket/testObject
+gnfd-cmd storage put --contentType "text/xml" file-path gnfd://testbucket/testobject
 ```
 
 After the command is executed, it will send createObject txn to the chain and uploads the payload of the object to the storage provider.
@@ -107,10 +107,10 @@ The command will return the uploading info after the object have been sealed.
 
 (2) download object
 
-The user can download the object into the local file by the "storage get" command. The following command example downloads 'testObject' from 'testBucket' to the local 'file-path' and prints the length of the downloaded file.
+The user can download the object into the local file by the "storage get" command. The following command example downloads 'testobject' from 'testbucket' to the local 'file-path' and prints the length of the downloaded file.
 
 ```
-gnfd-cmd storage get gnfd://testBucket/testObject file-path
+gnfd-cmd storage get gnfd://testbucket/testobject file-path
 ```
 
 After the command is executed, it will send a download request to the storage provider and download the object.
@@ -136,13 +136,13 @@ Users can run "./gnfd-cmd permission -h " to get help of permission operations.
 Users can use the "put-obj-policy" command to assign object permissions to other accounts or groups (called principal), such as the permission to delete objects. After the command executes successfully, the object policy information of the principal will be returned. The principal is set by --groupId which indicates the group or --granter which indicates the account.
 
 ```
-gnfd-cmd permission put-obj-policy --groupId --actions get,delete gnfd://testBucket/testObject
+gnfd-cmd permission put-obj-policy --groupId --actions get,delete gnfd://testbucket/testobject
 ```
 
-Users can use the 'permission put-bucket-policy' command to assign bucket permissions to other accounts or groups, such as the permission to update the bucket. After the command executes successfully, the bucket policy information of the principal will be returned.
+Users can use the 'put-bucket-policy' command to assign bucket permissions to other accounts or groups, such as the permission to update the bucket. After the command executes successfully, the bucket policy information of the principal will be returned.
 
 ```
-gnfd-cmd permission put-bucket-policy --granter --actions delete gnfd://testBucket
+gnfd-cmd permission put-bucket-policy --granter --actions delete gnfd://testbucket
 ```
 
 In addition to the basic commands mentioned above, the Greenfield Command also supports functions such as transferring tokens and cross-chain operations. You can find more examples in the readme file.
