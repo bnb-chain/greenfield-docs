@@ -5,19 +5,12 @@ order: 3
 
 # Getting your test BNB
 
-You can claim the test BNB on Greenfield BSC Testnet by the faucet, and bridge it to Greenfield Testnet.
+You can claim the test BNB on BSC Testnet by the faucet, and bridge it to Greenfield Testnet.
 
 ## Faucet
 
-1. Visit [Greenfield BSC Testnet Faucet](https://gnfd-bsc-faucet.bnbchain.org/).
-2. Click **Tweet** to make a tweet.
-
-<div align="center"><img src="../../asset/206-Faucet-Click-Tweet.png"  height="100%" width="100%"></div>
-<div align="center"><i>Click Tweet</i></div>
-
-3. Replace the **0x000000000000000000000000000000000000000** with your BSC address.
-4. Find your tweet URL and copy it to request for tBNBs.
-5. After receiving tBNBs, you can check them in your wallet.
+1. Visit [BNB-Chain discord](https://discord.com/invite/bnbchain) and join the `testnet-faucet` channel.
+2. Type `/faucet {your wallet address}` to get test BNB.
 
 ## Bridge to Greenfield
 

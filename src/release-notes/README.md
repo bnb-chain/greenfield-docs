@@ -10,7 +10,7 @@ order: 7
 
 ## Greenfield v0.2.1 - Mekong Testnet reset.
 
-On May 25th, between 6:00 am - 10:00 am UTC, we'll be resetting the Greenfield Testnet and upgrading the Greenfield version to v0.2.1. We're excited to introduce this as the Mekong Testnet. Here are key changes to note.
+On May 25th, we reset the Greenfield Testnet and upgrade the Greenfield version to v0.2.1. We're excited to introduce this as the Mekong Testnet. Here are key changes to note.
 
 🔸The Greenfield BSC Testnet (Chain ID: 5601) will be discontinued. Instead, we'll deploy the Greenfield Cross-Chain contracts on the BSC Chapel Testnet (Chain ID: 97).  This means you can fully utilize all the infrastructure of the current BSC Chapel Testnet, such as bscscan, tenderly, theGraph, and so on. BNB and Greenfield resources can still flow freely between Greenfield testnet and BSC testnet.
 
