@@ -17,12 +17,11 @@ and start your decentralized data journey. [Check it out →](https://dcellar.io
 
 ## Block Explorers
 - [GreenfieldScan](https://greenfieldscan.com), developed by TraceReal.
-- [BSC Testnet Explorer](https://greenfield-bsc-testnet-explorer.nodereal.io/)
+- [BSC Testnet Explorer](hhttps://testnet.bscscan.com/)
 
 ## Testnet Faucet
-We provide a faucet for Geenfield BSC Testnet. you will be asked to make a tweet in order to get your test BNB.
-Please notice that each account is allowed to claim 0.1tBNB per day.
-[Check it out →](https://gnfd-bsc-faucet.bnbchain.org)
+Please use the official BSC testnet faucet and convert it into BNB on Greenfield through Dcellar,
+[Check it out →](https://discord.com/invite/bnbchain) and claim in the testnet-faucet channel.
 
 ## Bridge
 
@@ -35,15 +34,8 @@ BNB between these two networks.  [Try it out →](https://dcellar.io)
 ## RPC Endpoints
 
 ### Greenfield Blockchain (Testnet chain-id: greenfield_5600-1)
-- GRPC: 
-  - `gnfd-testnet-fullnode-cosmos-us.bnbchain.org:9090`
-  - `gnfd-testnet-fullnode-cosmos-us.nodereal.io:9090`
-- Tendermint RPC: 
-   - `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org` 
-   - `https://gnfd-testnet-fullnode-tendermint-us.nodereal.io`
-- Eth API:
-  - `https://gnfd-testnet-ethapi-us.bnbchain.org`
-  - `https://gnfd-testnet-ethapi-us.nodereal.io`
+- `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org` 
+- `https://gnfd-testnet-fullnode-tendermint-us.nodereal.io`
 
 ### Greenfield Storage Provider (Testnet)
 - `https://gnfd-testnet-sp-1.bnbchain.org` 
@@ -54,13 +46,6 @@ BNB between these two networks.  [Try it out →](https://dcellar.io)
 - `https://gnfd-testnet-sp-6.bnbchain.org`
 - `https://gnfd-testnet-sp-7.bnbchain.org`
 - `https://gnfd-testnet-sp-1.nodereal.io`
-
-### BSC(Testnet chain-id 5601)
-RPC Endpoints:
-- `https://gnfd-bsc-testnet-dataseed1.bnbchain.org`
-- `https://gnfd-bsc-testnet-dataseed2.bnbchain.org`
-- `https://greenfield-bsc-testnet-ap.nodereal.io`
-- `https://greenfield-bsc-testnet-us.nodereal.io`
 
 ## Related Projects
 - [Greenfield-Blockchain](https://github.com/bnb-chain/greenfield): official Golang implementation of the Greenfield Blockchain.
