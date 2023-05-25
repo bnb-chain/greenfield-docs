@@ -20,7 +20,7 @@ The first step is to install the necessary dependencies, which include `Golang`,
 Build the Greenfield CLI tools by running the following command in your terminal:
 
 ```bash
-git clone https://github.com/bnb-chain/greenfield.git
+git clone --branch "$(curl -s https://api.github.com/repos/bnb-chain/greenfield/releases/latest  | jq -r '.tag_name')" https://github.com/bnb-chain/greenfield.git
 cd greenfield
 make build
 ```
