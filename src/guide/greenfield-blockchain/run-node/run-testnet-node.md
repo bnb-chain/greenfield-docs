@@ -16,7 +16,7 @@ The hardware must meet certain requirements to run a Full Node.
 ## Setting Up a New Node
 
 ::: info 
-Please check the [greenfield repo](https://github.com/bnb-chain/greenfield/releases/latest) for information on the testnet,
+Please check the [greenfield repo](https://github.com/bnb-chain/greenfield/releases/tag/v0.2.1-hf.1) for information on the testnet,
 including the correct version of the binaries to use and details about the config file
 :::
 
@@ -26,10 +26,10 @@ including the correct version of the binaries to use and details about the confi
 mkdir ~/.gnfd
 mkdir ~/.gnfd/config
 ```
-2. Download `app.toml`,  `config.toml` and `genesis.json` from `https://github.com/bnb-chain/greenfield/releases` and copy them into `$NODE_HOME/config`
+2. Download `app.toml`,  `config.toml` and `genesis.json` from `https://github.com/bnb-chain/greenfield/tag/v0.2.1-hf.1` and copy them into `$NODE_HOME/config`
 
 ```
-wget  $(curl -s https://api.github.com/repos/bnb-chain/greenfield/releases/latest |grep browser_ |grep testnet_config |cut -d\" -f4)
+wget https://github.com/bnb-chain/greenfield/releases/download/v0.2.1-hf.1/testnet_config.zip
 unzip testnet_config.zip
 cp testnet_config/*  ~/.gnfd/config/
 ```

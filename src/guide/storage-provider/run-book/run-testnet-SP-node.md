@@ -191,7 +191,7 @@ Before creating the storage provider, it is necessary to allow the module accoun
 
 ```shell
 ./build/bin/gnfd keys show operator --keyring-backend os 
-./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000BNB --SPAddress {operatorAddress} --from funding --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
+./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 100000000000000000000BNB --SPAddress {operatorAddress} --from funding --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
 ```
 
 The above command requires the funding account of the SP to send the transaction to allow the gov module to have the permission to deduct tokens from the funding account of SP which specified by operator address
@@ -232,6 +232,8 @@ The SP needs to initiate an on-chain proposal that specifies the Msg information
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
+  "title": "Create <name> Validator",
+  "summary": "create <name> validator",
   "deposit": "1000000000000000000BNB"
 }
 

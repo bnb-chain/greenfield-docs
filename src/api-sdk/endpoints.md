@@ -7,9 +7,6 @@ order: 3
 # Endpoints
 
 ### Greenfield Blockchain (Testnet chain-id: greenfield_5600-1)
-- GRPC:
-    - `gnfd-testnet-fullnode-cosmos-us.bnbchain.org:9090`
-    - `gnfd-testnet-fullnode-cosmos-us.nodereal.io:9090`
 - Tendermint RPC:
     - `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org`
     - `https://gnfd-testnet-fullnode-tendermint-us.nodereal.io`
@@ -22,11 +19,13 @@ order: 3
 - `https://gnfd-testnet-sp-5.bnbchain.org`
 - `https://gnfd-testnet-sp-6.bnbchain.org`
 - `https://gnfd-testnet-sp-7.bnbchain.org`
-- `http://gnfd-testnet-sp-1.nodereal.io`
+- `https://gnfd-testnet-sp-1.nodereal.io`
 
-### BSC(Testnet chain-id 5601)
+### BSC (Testnet chain-id 97)
 RPC Endpoints:
-- `https://gnfd-bsc-testnet-dataseed1.bnbchain.org`
-- `https://gnfd-bsc-testnet-dataseed2.bnbchain.org`
-- `https://greenfield-bsc-testnet-ap.nodereal.io`
-- `https://greenfield-bsc-testnet-us.nodereal.io`
+- `https://data-seed-prebsc-1-s1.binance.org:8545`
+- `https://data-seed-prebsc-2-s1.binance.org:8545`
+- `https://data-seed-prebsc-1-s2.binance.org:8545`
+- `https://data-seed-prebsc-2-s2.binance.org:8545`
+- `https://data-seed-prebsc-1-s3.binance.org:8545`
+- `https://data-seed-prebsc-2-s3.binance.org:8545`

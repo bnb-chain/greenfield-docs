@@ -111,13 +111,15 @@ Replace the values in the following JSON and save it as create_validator_proposa
   }
  ],
  "metadata": "",
- "deposit": "100000000BNB"
+ "title": "Create <name> Validator",
+ "summary": "create <name> validator",
+ "deposit": "1000000000000000000BNB"
 }
 ```
 
 Submit the proposal. Ensure the validator account has enough BNB tokens.
 ```bash
-gnfd tx gov submit-proposal ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${VALIDATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b block --gas "200000000" --fees "1000000000000000000BNB" --yes
+gnfd tx gov submit-proposal ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${VALIDATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
 ```
 
 ### 6. Wait for the voting until the Proposal is passed.
