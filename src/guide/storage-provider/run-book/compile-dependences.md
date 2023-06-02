@@ -19,7 +19,7 @@ git clone https://github.com/bnb-chain/greenfield-storage-provider.git
 
 cd greenfield-storage-provider
 
-# install dependent tools: buf, protoc-gen-gogofaster and mockgen
+# install dependent tools: buf, protoc-gen-gocosmos and mockgen
 make install-tools
 
 # compile sp
@@ -56,17 +56,19 @@ If you've already executed `make install-tools` command in your shell, but you f
 ```shell
 # error message 1
 buf: command not found
-# you can execute the following command
+# you can execute the following command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
 
 # error message 2
 Failure: plugin gocosmos: could not find protoc plugin for name gocosmos - please make sure protoc-gen-gocosmos is installed and present on your $PATH
-# you can execute the fowllowing command
+# you can execute the fowllowing command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/cosmos/gogoproto/protoc-gen-gocosmos@latest
 
-# if you want to execute unit test of sp, you should execute the following command
+# if you want to execute unit test of sp, you should execute the following command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
 ```
+
+Above error messages are due to users don't set go env correctly. More info users can search `GOROOT`, `GOPATH` and `GOBIN`.
 
 ## SP Dependencies
 

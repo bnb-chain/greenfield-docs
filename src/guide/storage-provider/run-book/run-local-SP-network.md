@@ -18,10 +18,24 @@ The following lists the recommended hardware requirements:
 
 1. Build Greenfield Blockchain
 
+**Note** Greenfield blockchain uses a lib which uses `cgo`, so you should set `cgo env var`; in addition, you should install `gcc` compiler in your OS.
+
 ```shell
 git clone https://github.com/bnb-chain/greenfield.git
 cd greenfield/
+export CGO_ENABLED=1
 make build
+```
+
+If you encoutered the following error messages while compiling greenfield blockchain, you should install `glibc-static` and `libstdc++-static`.
+
+```shell
+# command-line-arguments
+/usr/local/go/pkg/tool/linux_amd64/link: running gcc failed: exit status 1
+/bin/ld: cannot find -lstdc++
+collect2: error: ld returned 1 exit status
+
+make: *** [build] Error 1
 ```
 
 2. Start Greenfield Blockchain
@@ -154,6 +168,7 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
    --reset           reset env
    --start           start storage providers
    --stop            stop storage providers
+   --clean           clean local sp env"
    --print           print sp local env work directory
 ```
 
