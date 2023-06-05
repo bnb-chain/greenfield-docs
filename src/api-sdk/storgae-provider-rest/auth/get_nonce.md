@@ -8,6 +8,8 @@ order: 1
 
 This API is used to query the current user account key record.
 
+See [off-chain authentication specification](http://localhost:8080/guide/storage-provider/services/auth.html)
+
 ## HTTP Request Format
 
 | Desscription | Definition                     |
