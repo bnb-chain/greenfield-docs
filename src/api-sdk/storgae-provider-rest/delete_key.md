@@ -1,6 +1,6 @@
 ---
 title: Delete User Account Key
-order: 4
+order: 11
 ---
 # DeleteKey 
 

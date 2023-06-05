@@ -1,6 +1,6 @@
 ---
 title: Update User Account Key
-order: 2
+order: 9
 ---
 # UpdateKey 
 
@@ -8,7 +8,7 @@ order: 2
 
 This API is used to update the current user account key record.
 
-See [off-chain authentication specification](http://localhost:8080/guide/storage-provider/services/auth.html)
+See [off-chain authentication specification](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/auth.html)
 
 
 
