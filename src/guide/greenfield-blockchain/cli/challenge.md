@@ -39,13 +39,16 @@ gnfd query challenge latest-attested-challenges [flags]
 Example:
 
 ```sh
-./build/bin/gnfd query challenge latest-attested-challenges  --home ./deployment/localup/.local/validator0  --node http://localhost:26750
+./build/bin/gnfd query challenge latest-attested-challenges --node http://127.0.0.1:26750
 ```
 
 Example Output:
 
 ```yml
-challengeIds: [10, 30]
+ - id: "400"
+   result: CHALLENGE_FAILED
+ - id: "461"
+   result: CHALLENGE_SUCCEED
 ```
 
 #### inturn-attest-submitter
@@ -109,7 +112,7 @@ Example:
 
 #### attest
 
-The `attest` command allows users to query the latest attested challenges.
+The `attest` command allows users to send an attestation for a challenge.
 
 ```sh
 gnfd tx challenge attest [challenge-id] [object-id] [sp-operator-address] [vote-result] [challenger-address] [vote-validator-set] [vote-agg-signature] [flags]
