@@ -62,7 +62,7 @@ gnfd query inturn-attest-submitter [flags]
 Example:
 
 ```sh
-./build/bin/gnfd query challenge inturn-attestation-submitter --home ./deployment/localup/.local/validator0  --node http://localhost:26750
+./build/bin/gnfd query challenge inturn-attestation-submitter --node http://localhost:26750
 ```
 
 Example Output:
@@ -85,7 +85,7 @@ gnfd query challenge params [flags]
 Example:
 
 ```sh
-gnfd query challenge params --home ./deployment/localup/.local/validator0  --node http://localhost:26750
+gnfd query challenge params --node http://localhost:26750
 ```
 
 ### Transactions
