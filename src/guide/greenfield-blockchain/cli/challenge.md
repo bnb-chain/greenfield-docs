@@ -15,8 +15,7 @@ Users can submit a challenge and query the latest attested challenges through cl
 No local node setup is required for this module as it relies on multiple services to function. We will be using the testnet node instead.    
 
 1. Clone the [greenfield repository](https://github.com/bnb-chain/greenfield)
-2. Build the `gnfd` binary with `make build`  
-
+2. Build the `gnfd` binary with `make build`
 
 ## Detailed CLI
 
