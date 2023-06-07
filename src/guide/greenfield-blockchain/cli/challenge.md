@@ -12,7 +12,10 @@ Users can submit a challenge and query the latest attested challenges through cl
 
 ## Quick Start
 
-No local setup is required for this module as it relies on multiple services to function. We will be using the testnet node instead.    
+No local node setup is required for this module as it relies on multiple services to function. We will be using the testnet node instead.    
+
+1. Clone the [greenfield repository](https://github.com/bnb-chain/greenfield)
+2. Build the `gnfd` binary with `make build`  
 
 
 ## Detailed CLI
@@ -39,7 +42,7 @@ gnfd query challenge latest-attested-challenges [flags]
 Example:
 
 ```sh
-./build/bin/gnfd query challenge latest-attested-challenges --node http://127.0.0.1:26750
+./build/bin/gnfd query challenge latest-attested-challenges --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433
 ```
 
 Example Output:
