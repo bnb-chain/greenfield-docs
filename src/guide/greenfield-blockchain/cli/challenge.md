@@ -12,7 +12,7 @@ Users can submit a challenge and query the latest attested challenges through cl
 
 ## Quick Start
 
-Please refer to the node setup [documentation](https://greenfield.bnbchain.org/docs/guide/greenfield-blockchain/run-node/run-testnet-node.html#setting-up-a-new-node) to setup a new node.  
+No local setup is required for this module as it relies on multiple services to function. We will be using the testnet node instead.    
 
 
 ## Detailed CLI
@@ -62,7 +62,7 @@ gnfd query inturn-attest-submitter [flags]
 Example:
 
 ```sh
-./build/bin/gnfd query challenge inturn-attestation-submitter --node http://localhost:26750
+./build/bin/gnfd query challenge inturn-attestation-submitter --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433
 ```
 
 Example Output:
@@ -85,7 +85,7 @@ gnfd query challenge params [flags]
 Example:
 
 ```sh
-gnfd query challenge params --node http://localhost:26750
+gnfd query challenge params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433
 ```
 
 ### Transactions
@@ -107,7 +107,7 @@ gnfd tx challenge submit [sp-operator-address] [bucket-name] [object-name] [rand
 Example:
 
 ```sh
-./build/bin/gnfd tx challenge submit 0x950E2FBD285BC42E30EA69A8C1AB17EEDC70C447 ch69bd3t tq true 0 --home ./deployment/localup/.local/validator0 --keyring-backend test   --node http://localhost:26750 -b block --from validator0
+./build/bin/gnfd tx challenge submit 0x950E2FBD285BC42E30EA69A8C1AB17EEDC70C447 ch69bd3t tq true 0 --home ./deployment/localup/.local/validator0 --keyring-backend test   --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433 -b block --from validator0
 ```
 
 #### attest
@@ -121,6 +121,6 @@ gnfd tx challenge attest [challenge-id] [object-id] [sp-operator-address] [vote-
 Example:
 
 ```sh
-./build/bin/gnfd tx challenge attest 205895 21 0x950e2FbD285bc42E30eA69A8C1Ab17eEDC70C447 1 ""  1,0,0,0 a955a414bf982f5a67883c97cbec88ab06dfcdce255ee36e927c4c4fd416f74d39a2c812a3ffb8bac37c2269a589973810799fefe1d5ea8ecd6a4158165b85bd6f24339320eb1c85aa5f4e908c97a966865962928272474d11092031f48c9e7c --home ./deployment/localup/.local/validator0 --keyring-backend test --node http://localhost:26750 -b block --from validator0
+./build/bin/gnfd tx challenge attest 205895 21 0x950e2FbD285bc42E30eA69A8C1Ab17eEDC70C447 1 ""  1,0,0,0 a955a414bf982f5a67883c97cbec88ab06dfcdce255ee36e927c4c4fd416f74d39a2c812a3ffb8bac37c2269a589973810799fefe1d5ea8ecd6a4158165b85bd6f24339320eb1c85aa5f4e908c97a966865962928272474d11092031f48c9e7c --home ./deployment/localup/.local/validator0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433 -b block --from validator0
 ```
 
