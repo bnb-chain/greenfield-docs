@@ -72,7 +72,7 @@ export default defineComponent({
                 "span",
                 h(ClientOnly, () =>
                   updateTime
-                    ? updateTime.toLocaleDateString(lang.value)
+                    ? updateTime.toLocaleDateString(lang.value, { month: "long", day: "numeric", year: "numeric" })
                     : props.localizedDate || props.date!.toLocaleDateString(lang.value),
                 ),
               ),
