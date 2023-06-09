@@ -1,6 +1,7 @@
 import { defineUserConfig } from "vuepress";
 import { searchProPlugin } from "vuepress-plugin-search-pro";
-import { redirectPlugin } from 'vuepress-plugin-redirect';
+import { redirectPlugin } from "vuepress-plugin-redirect";
+import { getDirname, path } from "@vuepress/utils";
 import theme from "./theme.js";
 
 const base = process.env.BASE_PATH ? process.env.BASE_PATH : "/";
@@ -46,4 +47,15 @@ export default defineUserConfig({
     redirectPlugin({
     }),
   ],
+
+  alias: {
+    // Redirect aliases to modified theme components
+    //
+    // The modified DateInfo component displays the last published date rather than the
+    // first published date so it is easier to see if a document has recently changed. 
+    "@theme-hope/modules/info/components/DateInfo": path.resolve(
+      getDirname(import.meta.url),
+      "./components/DateInfo.ts",
+    ),
+  },
 });
