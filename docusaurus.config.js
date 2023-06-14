@@ -9,7 +9,7 @@ const config = {
   title: "BNB Greenfield",
   tagline: "Decentralized Data Storage and Economy",
   url: "https://bnb-chain.github.io/",
-  baseUrl: "/bnbgreenfield-docs/",
+  baseUrl: "/greenfield-docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "bnb-chain", // Usually your GitHub org/user name.
-  projectName: "bnbgreenfield-docs", // Usually your repo name.
+  projectName: "greenfield-docs", // Usually your repo name.
 
   presets: [
     [
@@ -29,13 +29,13 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/bnb-chain/bnbgreenfield-docs/blob/master/",
+            "https://github.com/bnb-chain/greenfield-docs/blob/master/",
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem" // Derived from docusaurus-theme-openapi
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/bnb-chain/bnbgreenfield-docs/blob/master/",
+          editUrl: "https://github.com/bnb-chain/greenfield-docs/blob/master/",
 
         },
         theme: {
@@ -98,7 +98,7 @@ const config = {
             to: "/docs/faq/greenfield-faqs"
           },
           {
-            href: 'https://github.com/bnb-chain/bnbgreenfield-docs',
+            href: 'https://github.com/bnb-chain/greenfield-docs',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -184,7 +184,7 @@ const config = {
             specPath: "swagger/greenfield-api.yaml",
             outputDir: "docs/greenfield-api",
             downloadUrl:
-              "https://raw.githubusercontent.com/PaloAltoNetworks/docusaurus-template-openapi-docs/main/examples/petstore.yaml",
+              "https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/swagger/greenfield-api.yaml",
            sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag"
