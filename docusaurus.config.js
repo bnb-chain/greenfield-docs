@@ -67,23 +67,9 @@ const config = {
           },
           {
             //type: 'dropdown',
-            label: "API",
+            label: "API Reference",
             position: "left",
-            to: "/docs/api-sdk/grpc-rest",
-            /*items:[
-              {
-                type: 'doc',
-                label: 'API Reference',
-                //sidebarid: 'apiReferenceSidebar',
-                docId: 'api-sdk/grpc-rest',
-
-              },
-              {
-                type: 'doc',
-                label: "Greenfield Blockchain API",
-                docId: 'greenfield-api/grpc-rest'
-              },
-            ]*/
+            to: "/docs/api-sdk/endpoints",
           },
           
           {

@@ -1,5 +1,5 @@
 ---
-title: Storage Provider REST
+title: Storage Provider API
 index: false
 dir:
   order: 3

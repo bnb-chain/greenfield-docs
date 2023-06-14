@@ -1,13 +1,11 @@
 ---
-title: Blockchain GRPC REST
+title: Blockchain API
 icon: generic
 order: 1
 ---
-# Blockchain GRPC REST
+# Blockchain API
 
 This document presents an overview of all the endpoints a node exposes: gRPC, REST as well as some other endpoints.
-
-For more details, please refer to [Greenfield Blockchain API](../greenfield-api/grpc-rest.md).
 
 :::info
 Since Greenfield Blockchain is based on Cosmos, The majority of the content in this page is copied from the
@@ -31,7 +29,7 @@ which are not directly related to the Cosmos SDK. Please refer to the
 for more information about these endpoints.
 :::
 
-## gRPC Server
+## gRPC Server （Deprecated）
 
 In the Greenfield, Protobuf is the main encoding library. This brings a wide range of Protobuf-based tools that can be 
 plugged. One such tool is [gRPC](https://grpc.io), a modern open-source high performance RPC framework that has 
@@ -91,9 +89,9 @@ Some Tendermint RPC endpoints are directly related to the Cosmos SDK:
 
 ## Comparison Table
 
-| Name           | Advantages                                                                                                                                                            | Disadvantages                                                                                                 |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| gRPC           | - can use code-generated stubs in various languages<br/>- supports streaming and bidirectional communication (HTTP2)<br/>- small wire binary sizes, faster transmission | - based on HTTP2, not available in browsers<br/>- learning curve (mostly due to Protobuf)                      |
-| REST           | - ubiquitous<br/>- client libraries in all languages, faster implementation<br/> | - only supports unary request-response communication (HTTP1.1)<br/>- bigger over-the-wire message sizes (JSON) |
-| Tendermint RPC | - easy to use   | - bigger over-the-wire message sizes (JSON)                                                                   |
+| Name             | Advantages                                                                                                                                                            | Disadvantages                                                                                                 |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| gRPC（Deprecated） | - can use code-generated stubs in various languages<br/>- supports streaming and bidirectional communication (HTTP2)<br/>- small wire binary sizes, faster transmission | - based on HTTP2, not available in browsers<br/>- learning curve (mostly due to Protobuf)                      |
+| REST             | - ubiquitous<br/>- client libraries in all languages, faster implementation<br/> | - only supports unary request-response communication (HTTP1.1)<br/>- bigger over-the-wire message sizes (JSON) |
+| Tendermint RPC   | - easy to use   | - bigger over-the-wire message sizes (JSON)                                                                   |
 

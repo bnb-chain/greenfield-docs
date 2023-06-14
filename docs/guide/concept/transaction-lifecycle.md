@@ -15,7 +15,7 @@ The transaction will be referred to as `Tx`.
 ### Transaction Creation
 
 There are various ways to create transactions. 
-While the command-line is a straightforward method to interact with an application, transactions can also be generated through a [gRPC or REST interface](../../api-sdk/grpc-rest.md) or another entry point specified by the application developer. 
+While the command-line is a straightforward method to interact with an application, transactions can also be generated through a [gRPC or REST interface](../../api-sdk/blockchain-rest.md) or another entry point specified by the application developer. 
 The interaction between the user and the application varies based on the web interface or wallet they use. 
 For example, users can create `Tx` through platforms like [Lunie.io](https://lunie.io/#/) and sign them using a Ledger Nano S.
 

@@ -192,29 +192,20 @@ const sidebars = {
   ],
 
   apiReferenceSidebar:[
-
+    {type: 'doc', id: 'api-sdk/endpoints'},
     {
       type: "category",
-      label: "API Reference",
-      /*items:[
-        {type: 'doc', id: 'api-sdk/grpc-rest', label:'Overview'},
-        //{type: 'doc', id:'greenfield-api/greenfield-grpc-gateway-docs'},
-        {
-          type: 'link',
-          label: 'API', // The link label
-          href: '/docs/greenfield-api/grpc-rest', // The external URL
-        }
-      ]*/
-     link:{type: 'doc', id: 'api-sdk/grpc-rest'},
-     items:["greenfield-api/grpc-rest"]
+      label: "Blockchain API",
+      link: {
+        type: 'doc',
+        id: 'api-sdk/blockchain-rest',
+      },
+      // @ts-ignore
+      items: require("./docs/greenfield-api/sidebar.js"),
     },
-
-    {type: 'doc', id: 'api-sdk/events'},
-    {type: 'doc', id: 'api-sdk/endpoints'},
-
     {
       type:"category",
-      label: "Storage Provider REST",
+      label: "Storage Provider API",
       items:[
         "api-sdk/storgae-provider-rest/get_approval",
         "api-sdk/storgae-provider-rest/put_object",
@@ -242,6 +233,7 @@ const sidebars = {
       ]
     },
 
+    {type: 'doc', id: 'api-sdk/events'},
     { type:'doc', id:'api-sdk/sdk'}
   ],
 
@@ -254,24 +246,6 @@ const sidebars = {
     {type: 'doc', id: 'release-notes/roadmap'},
     {type: 'doc', id: 'release-notes/features'},
   ],
-
-  openApiSidebar: [
-    {
-      type: "category",
-      label: "Greenfield Blockchain API",
-      link: {
-        //type: "generated-index",
-        type: 'doc',
-        id: 'greenfield-api/grpc-rest',
-       // title: "BNB Greenfield- gRPC Gateway docs",
-        //description: "REST interface for state queries of BNB Green",
-        //slug: "/greenfield-api"
-      },
-      // @ts-ignore
-      items: require("./docs/greenfield-api/sidebar.js"),
-    },
-
-  ]
 
 };
 
