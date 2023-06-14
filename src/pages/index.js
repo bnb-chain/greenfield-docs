@@ -2,5 +2,5 @@ import React from 'react';
 import  { Redirect } from 'react-router-dom';
 
 export default function Home() {
-  return <Redirect to='/bnbgreenfield-docs/docs/guide/home' />;
+  return <Redirect to='/greenfield-docs/docs/guide/home' />;
 }
