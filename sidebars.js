@@ -251,6 +251,8 @@ const sidebars = {
 
   releaseNotesSidebar:[
     {type: 'doc', id: 'release-notes/releaseNotes'},
+    {type: 'doc', id: 'release-notes/roadmap'},
+    {type: 'doc', id: 'release-notes/features'},
   ],
 
   openApiSidebar: [
