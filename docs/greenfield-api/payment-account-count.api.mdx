@@ -1,11 +1,11 @@
 ---
 id: payment-account-count
-title: "Queries a PaymentAccountCount by index."
+title: "PaymentAccountCount"
 description: "Queries a PaymentAccountCount by index."
 sidebar_label: "PaymentAccountCount"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"PaymentAccountCount","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"payment_account_count":{"type":"object","properties":{"owner":{"type":"string","title":"owner is the account address"},"count":{"type":"string","format":"uint64","title":"count is the number of payment accounts for the account"}},"title":"PaymentAccountCount defines the state struct which stores the number of payment accounts for an account"}}}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"owner","in":"path","required":true,"schema":{"type":"string"}}],"tags":["Query"],"description":"Queries a PaymentAccountCount by index.","method":"get","path":"/greenfield/payment/payment_account_count/{owner}","info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Queries a PaymentAccountCount by index.","description":{"type":"text/plain"},"url":{"path":["greenfield","payment","payment_account_count",":owner"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"owner"}]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"operationId":"PaymentAccountCount","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"payment_account_count":{"type":"object","properties":{"owner":{"type":"string","title":"owner is the account address"},"count":{"type":"string","format":"uint64","title":"count is the number of payment accounts for the account"}},"title":"PaymentAccountCount defines the state struct which stores the number of payment accounts for an account"}}}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"owner","in":"path","required":true,"schema":{"type":"string"}}],"tags":["Query"],"description":"Queries a PaymentAccountCount by index.","method":"get","path":"/greenfield/payment/payment_account_count/{owner}","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Queries a PaymentAccountCount by index.","description":{"type":"text/plain"},"url":{"path":["greenfield","payment","payment_account_count",":owner"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"owner"}]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -22,7 +22,7 @@ import TabItem from "@theme/TabItem";
 
 ## PaymentAccountCount
 
-Queries a PaymentAccountCount by index.
+PaymentAccountCount queries a PaymentAccountCount by index.
 
 <details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"owner","in":"path","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 

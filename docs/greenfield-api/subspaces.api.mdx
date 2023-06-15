@@ -1,11 +1,11 @@
 ---
 id: subspaces
-title: "Subspaces queries for all registered subspaces and all keys for a subspace."
-description: "Since: cosmos-sdk 0.46"
+title: "Subspaces"
+description: "queries for all registered subspaces and all keys for a subspace"
 sidebar_label: "Subspaces"
 hide_title: true
 hide_table_of_contents: true
-api: {"description":"Since: cosmos-sdk 0.46","operationId":"Subspaces","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"subspaces":{"type":"array","items":{"type":"object","properties":{"subspace":{"type":"string"},"keys":{"type":"array","items":{"type":"string"}}},"description":"Subspace defines a parameter subspace name and all the keys that exist for\nthe subspace.\n\nSince: cosmos-sdk 0.46"}}},"description":"QuerySubspacesResponse defines the response types for querying for all\nregistered subspaces and all keys for a subspace.\n\nSince: cosmos-sdk 0.46"}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"method":"get","path":"/cosmos/params/v1beta1/subspaces","info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Subspaces queries for all registered subspaces and all keys for a subspace.","description":{"content":"Since: cosmos-sdk 0.46","type":"text/plain"},"url":{"path":["cosmos","params","v1beta1","subspaces"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"description":"Subspaces queries for all registered subspaces and all keys for a subspace.","operationId":"Subspaces","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"subspaces":{"type":"array","items":{"type":"object","properties":{"subspace":{"type":"string"},"keys":{"type":"array","items":{"type":"string"}}},"description":"Subspace defines a parameter subspace name and all the keys that exist for\nthe subspace.\n\nSince: cosmos-sdk 0.46"}}},"description":"QuerySubspacesResponse defines the response types for querying for all\nregistered subspaces and all keys for a subspace.\n\nSince: cosmos-sdk 0.46"}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"method":"get","path":"/cosmos/params/v1beta1/subspaces","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Subspaces queries for all registered subspaces and all keys for a subspace.","description":{"content":"Since: cosmos-sdk 0.46","type":"text/plain"},"url":{"path":["cosmos","params","v1beta1","subspaces"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -22,10 +22,11 @@ import TabItem from "@theme/TabItem";
 
 ## Subspaces 
 
+
 Subspaces queries for all registered subspaces and all keys for a subspace.
 
 
-Since: cosmos-sdk 0.46
+Uses: cosmos-sdk 0.46
 
 <div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 

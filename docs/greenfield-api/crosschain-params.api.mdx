@@ -1,11 +1,11 @@
 ---
 id: crosschain-params
-title: "Params returns the total set of cross chain parameters."
-description: "Params returns the total set of cross chain parameters."
-sidebar_label: "Cross Chain Params"
+title: "CrossChainParams"
+description: "CrosschainParams returns the total set of cross chain parameters."
+sidebar_label: "CrosschainParams returns the total set of cross chain parameters."
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"CrosschainParams","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"params":{"description":"params defines the parameters of the module.","type":"object","properties":{"init_module_balance":{"type":"string","title":"initial balance to mint for crosschain module when the chain starts"}}}},"description":"QueryParamsResponse is the response type for the Query/Params RPC method."}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"description":"Params returns the total set of cross chain parameters.","method":"get","path":"/cosmos/crosschain/v1/params","info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Params returns the total set of cross chain parameters.","description":{"type":"text/plain"},"url":{"path":["cosmos","crosschain","v1","params"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"operationId":"CrosschainParams","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"params":{"description":"params defines the parameters of the module.","type":"object","properties":{"init_module_balance":{"type":"string","title":"initial balance to mint for crosschain module when the chain starts"}}}},"description":"QueryParamsResponse is the response type for the Query/Params RPC method."}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"description":"Params returns the total set of cross chain parameters.","method":"get","path":"/cosmos/crosschain/v1/params","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Params returns the total set of cross chain parameters.","description":{"type":"text/plain"},"url":{"path":["cosmos","crosschain","v1","params"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -20,9 +20,10 @@ import SchemaTabs from "@theme/SchemaTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## Cross Chain Params 
+## CrosschainParams
 
-Cross Chain Params returns the total set of cross chain parameters.
+
+CrosschainParams returns the total set of cross chain parameters.
 
 <div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 
