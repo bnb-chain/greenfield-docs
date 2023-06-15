@@ -1,11 +1,11 @@
 ---
 id: get-payment-accounts-by-owner
-title: "Queries a list of GetPaymentAccountsByOwner items."
+title: "GetPaymentAccountsByOwner"
 description: "Queries a list of GetPaymentAccountsByOwner items."
 sidebar_label: "GetPaymentAccountsByOwner"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"GetPaymentAccountsByOwner","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"paymentAccounts":{"type":"array","items":{"type":"string"}}}}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"owner","in":"path","required":true,"schema":{"type":"string"}}],"tags":["Query"],"description":"Queries a list of GetPaymentAccountsByOwner items.","method":"get","path":"/greenfield/payment/get_payment_accounts_by_owner/{owner}","info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Queries a list of GetPaymentAccountsByOwner items.","description":{"type":"text/plain"},"url":{"path":["greenfield","payment","get_payment_accounts_by_owner",":owner"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"owner"}]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"operationId":"GetPaymentAccountsByOwner","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"paymentAccounts":{"type":"array","items":{"type":"string"}}}}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"owner","in":"path","required":true,"schema":{"type":"string"}}],"tags":["Query"],"description":"Queries a list of GetPaymentAccountsByOwner items.","method":"get","path":"/greenfield/payment/get_payment_accounts_by_owner/{owner}","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Queries a list of GetPaymentAccountsByOwner items.","description":{"type":"text/plain"},"url":{"path":["greenfield","payment","get_payment_accounts_by_owner",":owner"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"owner"}]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -22,7 +22,7 @@ import TabItem from "@theme/TabItem";
 
 ## GetPaymentAccountsByOwner
 
-Queries a list of GetPaymentAccountsByOwner items.
+GetPaymentAccountsByOwner queries a list of GetPaymentAccountsByOwner items.
 
 <details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"owner","in":"path","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 

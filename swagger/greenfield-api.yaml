@@ -3,6 +3,10 @@ info:
   title: Greenfield - gRPC Gateway docs
   description: A REST interface for state queries
   version: 1.0.0
+
+servers:
+- url: https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org
+
 paths:
   /greenfield/bridge/params:
     get:

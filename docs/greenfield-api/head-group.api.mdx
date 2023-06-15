@@ -1,11 +1,11 @@
 ---
 id: head-group
-title: "Queries a group with specify owner and name ."
-description: "Queries a group with specify owner and name ."
-sidebar_label: "Queries a group with specify owner and name ."
+title: "HeadGroup"
+description: "Queries a group with specify owner and name"
+sidebar_label: "HeadGroup"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"HeadGroup","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"group_info":{"type":"object","properties":{"owner":{"type":"string","description":"owner is the owner of the group. It can not changed once it created."},"group_name":{"type":"string","description":"group_name is the name of group which is unique under an account."},"source_type":{"title":"source_type","type":"string","enum":["SOURCE_TYPE_ORIGIN","SOURCE_TYPE_BSC_CROSS_CHAIN","SOURCE_TYPE_MIRROR_PENDING"],"default":"SOURCE_TYPE_ORIGIN"},"id":{"type":"string","title":"id is the unique identifier of group"}}}}}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"group_owner","in":"path","required":true,"schema":{"type":"string"}},{"name":"group_name","in":"path","required":true,"schema":{"type":"string"}}],"tags":["Query"],"description":"Queries a group with specify owner and name .","method":"get","path":"/greenfield/storage/head_group/{group_owner}/{group_name}","info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Queries a group with specify owner and name .","description":{"type":"text/plain"},"url":{"path":["greenfield","storage","head_group",":group_owner",":group_name"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"group_owner"},{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"group_name"}]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"operationId":"HeadGroup","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"group_info":{"type":"object","properties":{"owner":{"type":"string","description":"owner is the owner of the group. It can not changed once it created."},"group_name":{"type":"string","description":"group_name is the name of group which is unique under an account."},"source_type":{"title":"source_type","type":"string","enum":["SOURCE_TYPE_ORIGIN","SOURCE_TYPE_BSC_CROSS_CHAIN","SOURCE_TYPE_MIRROR_PENDING"],"default":"SOURCE_TYPE_ORIGIN"},"id":{"type":"string","title":"id is the unique identifier of group"}}}}}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"group_owner","in":"path","required":true,"schema":{"type":"string"}},{"name":"group_name","in":"path","required":true,"schema":{"type":"string"}}],"tags":["Query"],"description":"Queries a group with specify owner and name .","method":"get","path":"/greenfield/storage/head_group/{group_owner}/{group_name}","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Queries a group with specify owner and name .","description":{"type":"text/plain"},"url":{"path":["greenfield","storage","head_group",":group_owner",":group_name"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"group_owner"},{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"group_name"}]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -20,11 +20,10 @@ import SchemaTabs from "@theme/SchemaTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## Queries a group with specify owner and name .
+## HeadGroup
 
 
-
-Queries a group with specify owner and name .
+HeadGroup queries a group with specify owner and name.
 
 <details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"group_owner","in":"path","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"group_name","in":"path","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 
