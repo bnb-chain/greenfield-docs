@@ -58,12 +58,12 @@ It is used to verify wallet personal signature from a certain dApp website.
 * OffChainAuth
 It is used for some dApps and users to store the “off chain auth” account key in SPs. Users can communicate with the SP without explicit signature for most interactions.
 
-For more information please refer to [here](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers.html#authorization-header).
+For more information please refer to [here](https://docs.bnbchain.org/greenfield-docs/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers).
 
 ## P2P Protocol
 SP nodes form a P2P network where they probe node liveliness, coordinate file uploads, etc. Currently, there are two main definitions and scenarios for P2P messages.
-* [Ping service](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/p2p.html#ping-service). SP nodes ping each other to detect whether the other party is online and the delay status
-* [GetReplicateApproval Service](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/p2p.html#ping-service). SP nodes coordinate the upload and download of a file.
+* [Ping service](https://docs.bnbchain.org/greenfield-docs/docs/guide/storage-provider/services/p2p#ping-service). SP nodes ping each other to detect whether the other party is online and the delay status
+* [GetReplicateApproval Service](https://docs.bnbchain.org/greenfield-docs/docs/guide/storage-provider/services/p2p#ping-service). SP nodes coordinate the upload and download of a file.
 
 # Open source Implementation
 The open source storage provider framework implements the Greenfield storage provider API and protocol specifications. It provides standardized interfaces and abstractions for SP node developers, greatly reducing the difficulty of setting up a storage provider. Developers can quickly build SP based on this framework and conduct secondary development according to their business needs. This helps cultivate the developer ecosystem of the Greenfield Network and encourages more technical teams to join the construction of the Greenfield Network. Refer to the [github repo](https://github.com/bnb-chain/greenfield-storage-provider) for more details. 
