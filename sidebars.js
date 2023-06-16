@@ -127,6 +127,7 @@ const sidebars = {
           items:[
             "guide/storage-provider/introduction/overview",
             "guide/storage-provider/introduction/architecture",
+            "guide/storage-provider/introduction/standard",
           ]
         },
         {
