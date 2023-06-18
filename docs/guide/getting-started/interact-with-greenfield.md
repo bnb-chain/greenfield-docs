@@ -53,10 +53,17 @@ Before using the rich features of the command tool, you need to generate a keyst
 The following command can be used to generate a keystore file :
 
 ```
-gnfd-cmd create-keystore --privKeyFile key.txt
+gnfd-cmd keystore generate --privKeyFile key.txt
 ```
 The keystore will be generated in the path "keystore/key.json" under the home directory of the system or the directory set by "-home".
 And it is also the path to load keystore when running other commands.
+
+Users can use "keystore inspect" to display the keystore information include publicKey, address and privateKey.
+
+```
+// display the keystore info
+gnfd-cmd keystore inspect --privateKey true
+```
 
 4. Delete the private key file which is created in step 1. It is not needed after the keystore has been generated.
 
