@@ -168,7 +168,7 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
    --reset           reset env
    --start           start storage providers
    --stop            stop storage providers
-   --clean           clean local sp env"
+   --clean           clean local sp env
    --print           print sp local env work directory
 ```
 
