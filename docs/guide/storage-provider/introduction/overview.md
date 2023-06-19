@@ -20,7 +20,7 @@ SPs need to register themselves first by depositing on the Greenfield blockchain
 as their "Service Stake". Greenfield validators will go through a dedicated
 governance procedure to vote for the SPs of their election. When the SPs join and
 leave the network, they have to follow a series of actions to ensure data redundancy
-for the users; otherwise, their "Service Stake" will be fined. 
+for the users; otherwise, their "Service Stake" will be fined.
 
 SPs provide publicly accessible APIs for users to upload, download, and manage data.
 These APIs are very similar to Amazon S3 APIs so that existing developers may feel
