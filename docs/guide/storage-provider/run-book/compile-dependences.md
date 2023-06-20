@@ -43,7 +43,7 @@ Greenfield Storage Provider
 Version : vx.x.x
 Branch  : master
 Commit  : 342930b89466c15653af2f3695cfc72f6466d4b8
-Build   : go1.20.3 darwin arm64 2023-05-16 10:31
+Build   : go1.20.3 darwin arm64 2023-06-20 10:31
 
 # show the gnfd-sp help info
 ./gnfd-sp -h
