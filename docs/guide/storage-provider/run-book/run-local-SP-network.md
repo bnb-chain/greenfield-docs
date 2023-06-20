@@ -188,7 +188,11 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
 
 If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and DownloadObject. Detailed info about Greenfield Cmd can be found [here](../../getting-started/interact-with-greenfield.md).
 
-We will provide you a hand by hand tutorial to operate with chain and SP.
+:::tip
+We strongly recommend you reading [Greenfield Cmd](../../getting-started/interact-with-greenfield.md). It will help you explore the functions of Greenfield blockchain and SP.
+:::
+
+Next, We provide you a hand by hand tutorial to operate with chain and SP.
 
 ### 1. Generate your test account
 
@@ -248,6 +252,8 @@ Second, you can do some operations with SP:
 ./gnfd-cmd -c ./config.toml --home ./ bucket create gnfd://${BUCKET_NAME}
 # head bucket info
 ./gnfd-cmd -c ./config.toml --home ./ bucket head gnfd://${BUCKET_NAME}
+# choose one sp to create bucket, operator_address is shown in sp ls result
+./gnfd-cmd -c ./config.toml --home ./ bucket create --primarySP ${operator_address} gnfd://${BUCKET_NAME}
 ```
 
 2. PutObject & GetObject
@@ -264,36 +270,3 @@ dd if=/dev/urandom of=./random_file bs=17M count=1
 Users can use md5 to compare your generated file and downloaded file whether is the same.
 
 Ok, we just show some basic functions here, you can explore more functions with Greenfield Cmd:
-
-```shell
-cd greenfield-cmd/build
-# show cmd help info
-./gnfd-cmd -h
-
-NAME:
-   gnfd-cmd - cmd tool for supporting making request to greenfield
-
-USAGE:
-   gnfd-cmd [global options] command [command options] [arguments...]
-
-COMMANDS:
-   bucket           support the bucket operation functions, including create/update/delete/head/list and so on
-   object           support the object operation functions, including put/get/update/delete/head/list and so on
-   group            support the group operation functions, including create/update/delete/head/head-member/mirror
-   bank             support the bank functions, including transfer in greenfield and query balance
-   policy           support object,bucket and group policy operation functions
-   payment-account  support the payment account operation functions
-   sp               support the storage provider operation functions
-   keystore         support the keystore operation functions
-   help, h          Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
-   --chainId value                 greenfield chainId
-   --config FILE, -c FILE          Load configuration from FILE
-   --help, -h                      show help (default: false)
-   --home value                    directory for config and keystore (default: "/Users/zhaoyu/.gnfd-cmd")
-   --host value                    host name of request
-   --keystore value, -k value      keystore file path
-   --passwordfile value, -p value  password file for encrypting and decoding the private key
-   --rpcAddr value                 greenfield chain client rpc address
-```
