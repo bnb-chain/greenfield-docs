@@ -1,7 +1,7 @@
 ---
 title: List Bucket Read Records
-order: 5
 ---
+
 # ListBucketReadRecords
 
 ## RESTful API Description
@@ -76,7 +76,7 @@ The following data is returned in XML format by the service.
 | ReadTimestampUs    | integer          | ReadTimestampUs is the read time stamp         |
 | ReadSize           | unsigned integer | ReadSize is the read object size               |
 
-If you failed to send request to get approval, you will get error response body in [XML](./common/error.md#sp-error-response-parameter).
+If you failed to send request to get approval, you will get error response body in [XML](./sp_response.md#sp-error-response).
 
 ## Response Syntax
 

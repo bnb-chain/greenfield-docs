@@ -1,7 +1,7 @@
 ---
 title: Get Approval
-order: 1
 ---
+
 # GetApproval
 
 ## RESTful API Description
@@ -77,7 +77,9 @@ X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [
 | 2     | Visibility type is private.     |
 | 3     | Visibility type is inherit.     |
 
-**Note** If the bucket visibility is inherit, it's finally set to private. If the object Visibility is inherit, it's the same as bucket.
+:::caution
+If the bucket visibility is inherit, it's finally set to private. If the object Visibility is inherit, it's the same as bucket.
+:::
 
 ## HTTP Request Parameter
 
@@ -120,7 +122,7 @@ The response returns the following HTTP headers.
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-If you failed to send request to get approval, you will get error response body in [XML](./common/error.md#sp-error-response-parameter).
+If you failed to send request to get approval, you will get error response body in [XML](./sp_response.md#sp-error-response).
 
 ## Response Syntax
 

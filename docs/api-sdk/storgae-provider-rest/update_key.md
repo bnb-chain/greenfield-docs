@@ -1,7 +1,7 @@
 ---
 title: Update User Account Key
-order: 9
 ---
+
 # UpdateKey 
 
 ## RESTful API Description
@@ -9,8 +9,6 @@ order: 9
 This API is used to update the current user account key record.
 
 See [off-chain authentication specification](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/auth.html)
-
-
 
 ## HTTP Request Format
 
@@ -32,12 +30,15 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 | Authorization              | string | yes      | see [Authorization Header](#authorization-header)                                                                                                                                                           |
 
 ### Authorization Header
+
 The Authorization Header could be composed of 3 parts.
 
 #### Auth type
+
 Update_key API expects `PersonalSign ECDSA-secp256k1` as [authtication type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers.html#authentication-type) and [encryption algorithm type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers.html#encryption-algorithm-type) in HTTP Authorization header.
 
 #### SignedMsg
+
 Application needs to popup wallet to let users sign for a text, which includes user's `EdDSA public key`, `Expiration Time`, `nonce value` for SPs and other related information, so that useres can understand what they sign for.
 
 The text message to be signed by users can be formalized by following template:
@@ -76,10 +77,14 @@ Resources:
 ```
 
 #### Signature
+
 The Signature is calcuated by wallet after users sign with above `SignedMsg` in their wallet.
 e.g. `0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b`
+
 #### Example
+
 Below is an example:
+
 ```HTTP
 Authorization: PersonalSign ECDSA-secp256k1,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
 ```
@@ -91,12 +96,14 @@ Authorization: PersonalSign ECDSA-secp256k1,SignedMsg=https://greenfield.dapp.cc
 The request does not have a path parameter.
 
 ### Query Parameter
+
 The request does not have a query parameter.
 ### Request Body
 
 The request does not have a request body.
 
 ## Request Syntax
+
 ```HTTP
 POST /auth/update_key HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
@@ -108,14 +115,13 @@ X-Gnfd-App-Reg-Expiry-Date: ExpiryDate
 Authorization: AuthorizationString
 ```
 
-
 ### Response Header
+
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
-
 
 ## HTTP Response Parameter
 
@@ -129,9 +135,8 @@ The following data is returned in JSON format by the service.
 | ------------- | ------- | ---------------------------------------------------------- |
 | Result        | boolean | indicate if the user public key successfully updated in SP |
 
-
-
 ## Response Syntax
+
 ```HTTP
 HTTP/1.1 200
 Content-Type: application/json
@@ -139,11 +144,12 @@ Content-Type: application/json
 JSON Body
 ```
 
-
 ## Examples
 
 ### Example 1: Update key for a new combination of user address and app domain
+
 #### request
+
 ```HTTP
 POST /auth/update_key HTTP/1.1
 Host: gf-stagenet-sp-e.bk.nodereal.cc
@@ -156,6 +162,7 @@ Authorization: PersonalSign ECDSA-secp256k1,SignedMsg=https://greenfield.dapp.cc
 ```
 
 #### response
+
 ```json
 {
     "Result": true

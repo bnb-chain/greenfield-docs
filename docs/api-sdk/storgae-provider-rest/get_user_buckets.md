@@ -1,7 +1,7 @@
 ---
 title: Get User Buckets
-order: 6
 ---
+
 # GetUserBuckets
 
 ## RESTful API Description
@@ -60,12 +60,11 @@ The response returns the following HTTP headers.
 |-------------------------|----------|----------------------------------------------------|
 | buckets                 | array    | buckets defines the information of the bucket list |
 
-
 ### Response Body
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-If you failed to send request, you will get error response body in [XML](./common/error.md#sp-error-response-parameter).
+If you failed to send request, you will get error response body in [XML](./sp_response.md#sp-error-response).
 
 ## Response Syntax
 

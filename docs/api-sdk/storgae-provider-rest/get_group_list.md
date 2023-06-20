@@ -1,7 +1,7 @@
 ---
 title: List Groups By Name And Prefix
-order: 8
 ---
+
 # ListGroupsByNameAndPrefix
 
 ## RESTful API Description
@@ -67,12 +67,11 @@ The response returns the following HTTP headers.
 | groups        | array    | groups defines the information of the group list  |
 | count         | array    | count defines the total groups amount             |
 
-
 ### Response Body
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-If you failed to send request, you will get error response body in [XML](./common/error.md#sp-error-response-parameter).
+If you failed to send request, you will get error response body in [XML](./sp_response.md#sp-error-response).
 
 ## Response Syntax
 

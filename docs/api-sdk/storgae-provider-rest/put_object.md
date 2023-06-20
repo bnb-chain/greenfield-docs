@@ -1,7 +1,7 @@
 ---
 title: Put Object
-order: 2
 ---
+
 # PutObject
 
 ## RESTful API Description
@@ -66,7 +66,7 @@ The response returns the following HTTP headers.
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-If you failed to send request to get approval, you will get error response body in [XML](./common/error.md#sp-error-response-parameter).
+If you failed to send request to get approval, you will get error response body in [XML](./sp_response.md#sp-error-response).
 
 ## Response Syntax
 

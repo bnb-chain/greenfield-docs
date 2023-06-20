@@ -215,6 +215,10 @@ const sidebars = {
         "api-sdk/storgae-provider-rest/list_bucket_read_records",
         "api-sdk/storgae-provider-rest/get_user_buckets",
         "api-sdk/storgae-provider-rest/list_objects_by_bucket",
+        "api-sdk/storgae-provider-rest/get_nonce",
+        "api-sdk/storgae-provider-rest/update_key",
+        "api-sdk/storgae-provider-rest/get_group_list",
+        "api-sdk/storgae-provider-rest/sp_response",
         {
           type:"category",
           label: "Reference",
@@ -223,19 +227,11 @@ const sidebars = {
             "api-sdk/storgae-provider-rest/referenece/gnfd_headers"
           ]
         },
-        {
-          type:"category",
-          label: "Common",
-          items:[
-            "api-sdk/storgae-provider-rest/common/error",
-            "api-sdk/storgae-provider-rest/common/get_approval_header",
-          ]
-        },
       ]
     },
 
     {type: 'doc', id: 'api-sdk/events'},
-    { type:'doc', id:'api-sdk/sdk'}
+    {type:'doc', id:'api-sdk/sdk'}
   ],
 
   faqSidebar:[

@@ -1,11 +1,10 @@
 ---
 title: SP Response
-order: 10
 ---
 
-## SP Response
+# SP Response
 
-If you invoke SP RESTful APIs successfully, you will get a XML represented reponse:
+If you invoke SP RESTful APIs successfully, you will get a XML represented response:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -22,7 +21,9 @@ If you invoke SP RESTful APIs successfully, you will get a XML represented repon
 
 When an error occurs, the header information contains the following:
 
+```shell
 Content-Type: application/xml
+```
 
 An appropriate 3xx, 4xx, or 5xx HTTP status code
 

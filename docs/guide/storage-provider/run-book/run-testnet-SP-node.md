@@ -174,7 +174,7 @@ EnableDualDB = false
 
 `P2PBootstrap` consists of [node_id1@ip1:port1, node_id2@ip1:port2], you can use P2PAntAddress or P2PAddress as `ip:port`.
 
-We recommend you writing db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey and P2PPrivatekey into environment variables for safety.
+We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey and P2PPrivatekey` into environment variables for safety.
 
 :::
 
@@ -183,7 +183,7 @@ We recommend you writing db User, db password, db address, bucketURL, OperatorPr
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
 ```shell
-# login in mysql
+# login in mysql and create database
 mysql> CREATE DATABASE storage_provider_db;
 mysql> CREATE DATABASE block_syncer;
 mysql> CREATE DATABASE block_syncer_backup;
@@ -264,7 +264,7 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
-:::note
+:::caution
 
 Default voting time is 30 seconds.
 

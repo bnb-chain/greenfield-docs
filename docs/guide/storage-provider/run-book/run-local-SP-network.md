@@ -269,4 +269,4 @@ dd if=/dev/urandom of=./random_file bs=17M count=1
 
 Users can use md5 to compare your generated file and downloaded file whether is the same.
 
-Ok, we just show some basic functions here, you can explore more functions with Greenfield Cmd:
+Ok, we just show some basic functions here, you can explore more functions with [Greenfield Cmd](../../getting-started/interact-with-greenfield.md).

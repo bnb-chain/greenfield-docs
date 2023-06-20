@@ -4,4 +4,4 @@ order: 11
 ---
 # DeleteKey 
 
-To be added soon
+To be added soon.

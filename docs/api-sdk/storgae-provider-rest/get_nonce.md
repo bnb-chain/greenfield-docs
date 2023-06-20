@@ -1,7 +1,7 @@
 ---
 title: Get Nonce
-order: 8
 ---
+
 # GetNonce
 
 ## RESTful API Description
@@ -33,13 +33,15 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 The request does not have a path parameter.
 
 ### Query Parameter
+
 The request does not have a query parameter.
+
 ### Request Body
 
 The request does not have a request body.
 
-
 ## Request Syntax
+
 ```HTTP
 GET /auth/request_nonce HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
@@ -48,6 +50,7 @@ X-Gnfd-App-Domain: AppDomain
 ```
 
 ### Response Header
+
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
@@ -70,6 +73,7 @@ The following data is returned in JSON format by the service.
 | expiry_date        | integer | expire date for the current public key                                                                   |
 
 ## Response Syntax
+
 ```HTTP
 HTTP/1.1 200
 Content-Type: application/json
@@ -77,12 +81,12 @@ Content-Type: application/json
 JSON Body
 ```
 
-
-
 ## Examples
 
 ### Example 1: Get nonce for a new combination of user address and app domain
+
 #### request
+
 ```HTTP
 GET /auth/request_nonce HTTP/1.1
 Host: gnfd-testnet-sp-4.bnbchain.org
@@ -91,6 +95,7 @@ X-Gnfd-App-Domain: https://greenfield.dapp.io
 ```
 
 #### response
+
 ```json
 {
     "current_nonce": 0,
@@ -99,9 +104,11 @@ X-Gnfd-App-Domain: https://greenfield.dapp.io
     "expiry_date": "1683885489612"
 }
 ```
+
 ### Example 2: Get nonce for a existing combination of user address and app domain
 
 #### response
+
 ```json
 {
     "current_nonce": 7,
