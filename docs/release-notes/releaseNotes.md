@@ -8,7 +8,7 @@ order: 7
 
 # Release Notes
 
-## Greenfield v0.2.2 - Testnet reset.
+## Greenfield v0.2.2 - Testnet Maintenance Upgrade Reset.
 
 On June 25th, we reset the Greenfield Testnet and upgrade the Greenfield version to v0.2.2. Here are key changes to note.
 
@@ -16,17 +16,21 @@ On June 25th, we reset the Greenfield Testnet and upgrade the Greenfield version
 
 🔸All account balances will also be reset. However, accounts with a balance under 10 tBNBs can look forward to an airdrop after the reset. For new users, Greenfield will not provide redundant faucets any longer, please get the test BNB from the official faucet [discord channel](https://discord.gg/bnbchain) and use [Dcellar](https://dcellar.io/) to convert it to the BNB on Greenfield.
 
-Greenfield v0.2.2 🎉
+Greenfield v0.2.2 - Maintenance Release🎉
 
 The [Greenfield Blockchain v0.2.2](https://github.com/bnb-chain/greenfield/releases/tag/v0.2.2) and [Storage Provider v0.2.2](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v0.2.2) introduces several enhancement exciting features. Let's take a look at these:
 
-* [#249](https://github.com/bnb-chain/greenfield/pull/249) This feature will support multiple messages in a transaction using `EIP712 `sign approach. Allowing multiple messages will provide a better user experience for dApp users.
-* [#250](https://github.com/bnb-chain/greenfield/pull/250) his feature allows mirroring bucket/object/group by using `id` or `name`. By using name, we can package some messages in a single tx, e.g., `CreateBucket`  `MirrorBucket` in one tx.
-* [#268](https://github.com/bnb-chain/greenfield/pull/268) This feature records the challenge attestation results for the recent challenges.
-* [#276](https://github.com/bnb-chain/greenfield/pull/276) This feature support adding keyManager into txOpt, so that allow large batch of transactions sent by a single client
-
-
 ### Enhancement and Feature List 📝
+* [#249](https://github.com/bnb-chain/greenfield/pull/249) This feature will support multiple messages in a transaction using `EIP712 `sign approach. Allowing multiple messages will provide a better user experience for dApp users.
+* [#250](https://github.com/bnb-chain/greenfield/pull/250) This feature allows mirroring bucket/object/group by using `id` or `name`. By using name, we can package some messages in a single tx, e.g., `CreateBucket`  `MirrorBucket` in one tx.
+* [#268](https://github.com/bnb-chain/greenfield/pull/268) This feature records the challenge attestation results for the recent challenges.
+* [#276](https://github.com/bnb-chain/greenfield/pull/276) This feature support adding keyManager into txOpt, so that allow large batch of transactions sent by a single client.
+* [#502](https://github.com/bnb-chain/greenfield-storage-provider/pull/502) This feature allow SP to use B2 as its underlying storage.
+* [#512](https://github.com/bnb-chain/greenfield-storage-provider/pull/512) This feature enables universal endpoint for private object.
+* [SP Standard Framework](../guide/storage-provider/introduction/standard.md) This document outlines the updated implementation of the SP standard and establishes a clear set of guidelines that encompass the SP API, protocols, and performance indicators. Community developers are able to customize their own SP functions in a flexible manner that adheres to the established standard. 
+
+For other small features, bug fixes, and refactoring, please refer to the changelog in the release.
+
 
 ## Greenfield v0.2.1 - Mekong Testnet reset.
 
