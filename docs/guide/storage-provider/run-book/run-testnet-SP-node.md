@@ -19,9 +19,9 @@ The following lists the recommended hardware requirements:
 :::danger IMPORTANT
 Each storage provider will hold 5 different accounts serving different purposes:
 
-* Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of EditStorageProvider transaction.
-* Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least 1000+ BNB are required for staking.
-* Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of SealObject transaction.
+* Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
+* Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
+* Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens beacuse it's going to keep sending transactions up the chain.
 
@@ -218,7 +218,7 @@ You can execute this command to query on-chain parameters. `./gnfd q sp params -
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
 ```shell
-./build/bin/gnfd tx gov submit-proposal path/to/create_sp.json --from operator --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov submit-proposal path/to/create_sp.json --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 
 # create_sp.json
 $ cat ./create_sp.json
@@ -261,7 +261,7 @@ $ cat ./create_sp.json
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ```shell
-./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from {operator_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 ### 4. Wait voting and check voting result
