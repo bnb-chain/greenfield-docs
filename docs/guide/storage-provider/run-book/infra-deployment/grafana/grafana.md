@@ -1,3 +1,7 @@
+---
+title: Grafana
+---
+
 # grafana-storage-provider-dashboards
 
 ## Description
