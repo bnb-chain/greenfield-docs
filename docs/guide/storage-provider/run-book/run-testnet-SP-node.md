@@ -241,7 +241,7 @@ $ cat ./create_sp.json
     "endpoint": "https://sp0.greenfield.io",
     "deposit":{
       "denom":"BNB",
-      "amount":"10000000000000000000000"
+      "amount":"1000000000000000000000"
     },
     "read_price": "0.060000000000000000",
     "store_price": "0.019000000000000000",
