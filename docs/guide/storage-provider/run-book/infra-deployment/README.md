@@ -11,7 +11,7 @@ Quick Start
 -----------
 
 For detail about what "storage provider" is on application level, please see
-https://greenfield.bnbchain.org/docs/guide/storage-provider/. This document focuses on AWS infra
+https://docs.bnbchain.org/greenfield-docs/docs/guide/storage-provider/introduction/overview. This document focuses on AWS infra
 and K8S deployment level.
 
 
@@ -29,8 +29,8 @@ and K8S deployment level.
 
 
 ## Steps:
-1. [Create AWS resources](aws/)
-2. [Create K8S resources](k8s/)
-4. [Set up monitoring dashboard](grafana/)
+1. [Create AWS resources](aws)
+2. [Create K8S resources](k8s)
+4. [Set up monitoring dashboard](grafana)
 
 
