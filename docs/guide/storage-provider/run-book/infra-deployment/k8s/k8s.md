@@ -1,3 +1,6 @@
+---
+title: K8S Resources
+---
 # Create a SP cluster
 
 Pre-requisite is that AWS resources must first be created. Please see aws section for details.
