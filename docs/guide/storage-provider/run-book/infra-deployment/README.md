@@ -29,8 +29,9 @@ and K8S deployment level.
 
 
 ## Steps:
-1. [Create AWS resources](aws)
-2. [Create K8S resources](k8s)
-4. [Set up monitoring dashboard](grafana)
+1. [Create AWS resources](../infra-deployment/aws/aws-resources.md)
+2. [Create K8S resources](../infra-deployment/k8s/k8s.md)
+4. [Set up monitoring dashboard](../infra-deployment/grafana/grafana.md)
+
 
 
