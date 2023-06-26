@@ -1,11 +1,11 @@
 ---
 id: slashing-params
-title: "SlashingParams"
-description: "SlashingParams queries the parameters of slashing module"
-sidebar_label: "SlashingParams"
+title: "Params queries the parameters of slashing module"
+description: "Params queries the parameters of slashing module"
+sidebar_label: "Params queries the parameters of slashing module"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"SlashingParams","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"params":{"type":"object","properties":{"signed_blocks_window":{"type":"string","format":"int64"},"min_signed_per_window":{"type":"string","format":"byte"},"downtime_jail_duration":{"type":"string"},"slash_fraction_double_sign":{"type":"string","format":"byte"},"slash_fraction_downtime":{"type":"string","format":"byte"}},"description":"Params represents the parameters used for by the slashing module."}},"title":"QueryParamsResponse is the response type for the Query/Params RPC method"}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"description":"Params queries the parameters of slashing module","method":"get","path":"/cosmos/slashing/v1beta1/params","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Params queries the parameters of slashing module","description":{"type":"text/plain"},"url":{"path":["cosmos","slashing","v1beta1","params"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"operationId":"SlashingParams","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"params":{"type":"object","properties":{"signed_blocks_window":{"type":"string","format":"int64"},"min_signed_per_window":{"type":"string","format":"byte"},"downtime_jail_duration":{"type":"string"},"slash_fraction_double_sign":{"type":"string","format":"byte"},"slash_fraction_downtime":{"type":"string","format":"byte"}},"description":"Params represents the parameters used for by the slashing module."}},"title":"QueryParamsResponse is the response type for the Query/Params RPC method"}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"description":"Params queries the parameters of slashing module","method":"get","path":"/cosmos/slashing/v1beta1/params","info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"Params queries the parameters of slashing module","description":{"type":"text/plain"},"url":{"path":["cosmos","slashing","v1beta1","params"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -20,9 +20,11 @@ import SchemaTabs from "@theme/SchemaTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## SlashingParams
+## Params queries the parameters of slashing module
 
-SlashingParams queries the parameters of slashing module
+
+
+Params queries the parameters of slashing module
 
 <div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 
