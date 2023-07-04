@@ -30,13 +30,13 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/bnb-chain/greenfield-docs/blob/master/",
+            "https://github.com/bnb-chain/greenfield-docs/blob/main/",
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem" // Derived from docusaurus-theme-openapi
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/bnb-chain/greenfield-docs/blob/master/",
+          editUrl: "https://github.com/bnb-chain/greenfield-docs/blob/main/",
 
         },
         theme: {
@@ -98,7 +98,7 @@ const config = {
           
           {
             label: "Release",
-            position:"left",
+            position: "left",
             to: "/docs/release-notes/releaseNotes"
           },
          // {to: 'blog', label: 'Changelog', position: 'left'},
@@ -162,12 +162,12 @@ const config = {
                 to: "https://www.bnbchain.org/en/blog/"
               },
               {
-                label:"Youtube",
+                label: "Youtube",
                 to: "https://www.youtube.com/channel/UCG9fZu6D4I83DStktBV0Ryw"
               },
               {
                 label: "GitHub",
-                href: "https://github.com/bnb-chain"
+                href: "https://github.com/bnb-chain/greenfield-docs"
               },
             ]
           }
