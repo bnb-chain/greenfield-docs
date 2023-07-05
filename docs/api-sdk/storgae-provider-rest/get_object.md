@@ -6,20 +6,20 @@ title: Get Object
 
 ## RESTful API Description
 
-This API is used to download an object from Greenfield SP. And it supports both `virutal-hosted-style` and `path-style` requests.
+This API is used to download an object from Greenfield SP. And it supports both `virtual-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
-| Desscription               | Definition                                |
-| -------------------------- | ----------------------------------------- |
-| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path(virutal-hosted-style) | /ObjectName                               |
+| Description                | Definition                                |
+|----------------------------|-------------------------------------------|
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virtual-hosted-style) | /ObjectName                               |
 | Method                     | GET                                       |
 
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                                                                   |
-| ------------------------------------------------------------------ | ------ | -------- | --------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|-----------------------------------------------------------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
 | Range                                                              | string | no       | The Range HTTP request header indicates the part of a document that the server should return. |
 
@@ -49,7 +49,7 @@ Range: Range
 ## HTTP Response Header
 
 | ParameterName     | Type   | Description                            |
-| ----------------- | ------ | -------------------------------------- |
+|-------------------|--------|----------------------------------------|
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp. |
 
 ## HTTP Response Parameter
@@ -71,13 +71,13 @@ Body
 
 ## Examples
 
-The examples given all use virutal-hosted-style.
+The examples given all use virtual-hosted-style.
 
 ### Example 1: Download an object
 
 ```HTTP
 GET /my-image.jpg HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
+Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

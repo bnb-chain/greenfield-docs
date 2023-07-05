@@ -6,14 +6,14 @@ title: Query Bucket Read Quota
 
 ## RESTful API Description
 
-This API is used to query bucket read quota. And it supports both `virutal-hosted-style` and `path-style` requests.
+This API is used to query bucket read quota. And it supports both `virtual-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
 | Desscription               | Definition                                |
-| -------------------------- | ----------------------------------------- |
-| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path(virutal-hosted-style) | /                                         |
+|----------------------------|-------------------------------------------|
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
 
 You should set `BucketName` in url host to determine which bucket do you want to query.
@@ -21,7 +21,7 @@ You should set `BucketName` in url host to determine which bucket do you want to
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -33,7 +33,7 @@ None
 ### Query Parameter
 
 | ParameterName | Type   | Required | Description                                                  |
-| ------------- | ------ | -------- | ------------------------------------------------------------ |
+|---------------|--------|----------|--------------------------------------------------------------|
 | read-quota    | string | yes      | Read quota path                                              |
 | year-month    | string | yes      | YearMonth is used to specify queried month, format "2023-03" |
 
@@ -54,7 +54,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName     | Type   | Description                           |
-| ----------------- | ------ | ------------------------------------- |
+|-------------------|--------|---------------------------------------|
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
 | Content-Type      | string | value is `application/xml`            |
 
@@ -65,7 +65,7 @@ The response returns the following HTTP headers.
 If the request is successful, the service sends back an HTTP 200 response.
 
 | ParameterName       | Type    | Description                                                         |
-| ------------------- | ------- | ------------------------------------------------------------------- |
+|---------------------|---------|---------------------------------------------------------------------|
 | BucketName          | string  | bucket name                                                         |
 | BucketID            | string  | bucket id                                                           |
 | ReadQuotaSize       | integer | ReadQuotaSize is the greenfield chain bucket info's read quota size |
@@ -85,13 +85,13 @@ XML Body
 
 ## Examples
 
-The examples given all use virutal-hosted-style.
+The examples given all use virtual-hosted-style.
 
 ### Example 1: Query a bucket read quota
 
 ```HTTP
 GET /?read-quota&year-month=2023-03 HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-*.bnbchain.org
+Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

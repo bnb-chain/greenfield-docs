@@ -13,7 +13,7 @@ This API is used to sign an approval for creating a bucket action or creating an
 This API only supports path-style requests.
 
 | Desscription     | Definition                        |
-| ---------------- | --------------------------------- |
+|------------------|-----------------------------------|
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org    |
 | Path(path-style) | /greenfield/admin/v1/get-approval |
 | Method           | GET                               |
@@ -21,7 +21,7 @@ This API only supports path-style requests.
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | X-Gnfd-Unsigned-Msg                                                | string | yes      | defines unsigned msg                         |
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
@@ -29,56 +29,56 @@ X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [
 
 ### MsgCreateBucket
 
-| ParameterName     | Type                           | Description                                                                                                                                                                                                         |
-| ----------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Creator           | string                         | Creator is the account address of bucket creator, it is also the bucket owner.                                                                                                                                      |
-| BucketName        | string                         | BucketName is a globally unique name of bucket.                                                                                                                                                                     |
+| ParameterName     | Type                              | Description                                                                                                                                                                                                         |
+|-------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Creator           | string                            | Creator is the account address of bucket creator, it is also the bucket owner.                                                                                                                                      |
+| BucketName        | string                            | BucketName is a globally unique name of bucket.                                                                                                                                                                     |
 | Visibility        | [VisibilityType](#visibilitytype) | visibility means the bucket is private or public. If private, only bucket owner or grantee can read it, otherwise every greenfield user can read it.                                                                |
-| PaymentAddress    | string                         | PaymentAddress is an account address specified by bucket owner to pay the read fee. Default: creator.                                                                                                               |
-| PrimarySpAddress  | string                         | PrimarySpAddress  is the address of primary sp.                                                                                                                                                                     |
+| PaymentAddress    | string                            | PaymentAddress is an account address specified by bucket owner to pay the read fee. Default: creator.                                                                                                               |
+| PrimarySpAddress  | string                            | PrimarySpAddress  is the address of primary sp.                                                                                                                                                                     |
 | PrimarySpApproval | [Approval](#approval)             | PrimarySpApproval is the approval info of the primary SP which indicates that primary sp confirm the user's request.                                                                                                |
-| ChargedReadQuota  | unsigned integer               | ChargedReadQuota defines the read data that users are charged for, measured in bytes. The available read data for each user is the sum of the free read data provided by SP and the ChargeReadQuota specified here. |
+| ChargedReadQuota  | unsigned integer                  | ChargedReadQuota defines the read data that users are charged for, measured in bytes. The available read data for each user is the sum of the free read data provided by SP and the ChargeReadQuota specified here. |
 
 ### MsgCreateObject
 
-| ParameterName              | Type                           | Description                                                                                                                                                  |
-| -------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Creator                    | string                         | Creator is the account address of object uploader.                                                                                                           |
-| BucketName                 | string                         | BucketName is the name of the bucket where the object is stored.                                                                                             |
-| ObjectName                 | string                         | ObjectName is the name of object.                                                                                                                            |
-| PayloadSize                | integer                        | PayloadSize is size of the object's payload.                                                                                                                 |
+| ParameterName              | Type                              | Description                                                                                                                                                  |
+|----------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Creator                    | string                            | Creator is the account address of object uploader.                                                                                                           |
+| BucketName                 | string                            | BucketName is the name of the bucket where the object is stored.                                                                                             |
+| ObjectName                 | string                            | ObjectName is the name of object.                                                                                                                            |
+| PayloadSize                | integer                           | PayloadSize is size of the object's payload.                                                                                                                 |
 | Visibility                 | [VisibilityType](#visibilitytype) | VisibilityType means the object is private or public. If private, only object owner or grantee can access it, otherwise every greenfield user can access it. |
-| ContentType                | string                         | ContentType is a standard MIME type describing the format of the object.                                                                                     |
+| ContentType                | string                            | ContentType is a standard MIME type describing the format of the object.                                                                                     |
 | PrimarySpApproval          | [Approval](#approval)             | PrimarySpApproval is the approval info of the primary SP which indicates that primary sp confirm the user's request.                                         |
-| ExpectChecksums            | byteArray                      | ExpectChecksums is a list of hashes which was generate by redundancy algorithm.                                                                              |
+| ExpectChecksums            | byteArray                         | ExpectChecksums is a list of hashes which was generate by redundancy algorithm.                                                                              |
 | RedundancyType             | [RedundancyType](#redundancytype) | RedundancyType specifies which redundancy type is used.                                                                                                      |
-| ExpectSecondarySpAddresses | stringArray                    | ExpectSecondarySpAddresses is a list of StorageProvider address which is optional.                                                                           |
+| ExpectSecondarySpAddresses | stringArray                       | ExpectSecondarySpAddresses is a list of StorageProvider address which is optional.                                                                           |
 
 ### Approval
 
 | ParameterName | Type      | Description                               |
-| ------------- | --------- | ----------------------------------------- |
+|---------------|-----------|-------------------------------------------|
 | ExpiredHeight | integer   | ExpiredHeight is expired at which height. |
 | Sig           | byteArray | Sig is signature                          |
 
 ### RedundancyType
 
 | Value | Description                      |
-| ----- | -------------------------------- |
+|-------|----------------------------------|
 | 0     | Redundancy type is replica type. |
 | 1     | Redundancy type is ec type.      |
 
 ### VisibilityType
 
 | Value | Description                     |
-| ----- | ------------------------------- |
+|-------|---------------------------------|
 | 0     | Visibility type is unspecified. |
 | 1     | Visibility type is public read. |
 | 2     | Visibility type is private.     |
 | 3     | Visibility type is inherit.     |
 
 :::caution
-If the bucket visibility is inherit, it's finally set to private. If the object Visibility is inherit, it's the same as bucket.
+If the bucket visibility is inherited, it's finally set to private. If the object Visibility is inherited, it's the same as bucket.
 :::
 
 ## HTTP Request Parameter
@@ -90,7 +90,7 @@ The request does not have a path parameter.
 ### Query Parameter
 
 | ParameterName | Type   | Required | Description                                             |
-| ------------- | ------ | -------- | ------------------------------------------------------- |
+|---------------|--------|----------|---------------------------------------------------------|
 | action        | string | yes      | The action of approval:`CreateBucket` or `CreateObject` |
 
 ### Request Body
@@ -112,7 +112,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName                                                       | Type   | Description                           |
-| ------------------------------------------------------------------- | ------ | ------------------------------------- |
+|---------------------------------------------------------------------|--------|---------------------------------------|
 | X-Gnfd-Request-ID                                                   | string | defines trace id, trace request in sp |
 | [X-Gnfd-Signed-Msg](./referenece/gnfd_headers.md#x-gnfd-signed-msg) | string | defines signed msg                    |
 
@@ -142,7 +142,7 @@ The following request sends `CreateBucket` action to get approval.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string
@@ -162,7 +162,7 @@ The following request sends `CreateObject` action to get approval.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateObject HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string
@@ -182,7 +182,7 @@ The following request sends `CreateBucket` action to get approval.
 
 ```HTTP
 GET /greenfield/admin/v1/get-approval?action=CreateBucket HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 X-Gnfd-Unsigned-Msg: unsigned msg string
 Authorization: authorization string

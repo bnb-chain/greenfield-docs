@@ -11,7 +11,7 @@ This API is used to query a list of buckets metadata info by buckets ids. This A
 ## HTTP Request Format
 
 | Description      | Definition                     |
-| ---------------- |--------------------------------|
+|------------------|--------------------------------|
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | POST                           |
@@ -19,7 +19,7 @@ This API is used to query a list of buckets metadata info by buckets ids. This A
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -61,7 +61,7 @@ Content-Length: length
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
+|---------------|--------|-----------------------------|
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
@@ -92,7 +92,7 @@ The examples given all use path-style.
 
 ```HTTP
 POST / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 Content-Type: application/json

@@ -11,7 +11,7 @@ This API is used to query a user's own buckets metadata info. This API only supp
 ## HTTP Request Format
 
 | Description      | Definition                     |
-| ---------------- | ------------------------------ |
+|------------------|--------------------------------|
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
@@ -19,7 +19,7 @@ This API is used to query a user's own buckets metadata info. This API only supp
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 | X-Gnfd-User-Address                                                | string | yes      | The address of user                          |
 
@@ -51,7 +51,7 @@ X-Gnfd-User-Address: Address
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
+|---------------|--------|-----------------------------|
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
@@ -82,7 +82,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 X-Gnfd-User-Address: user address string

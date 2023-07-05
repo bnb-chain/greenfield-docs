@@ -11,7 +11,7 @@ This API is used to query a list of group by given prefix/name/source-type. This
 ## HTTP Request Format
 
 | Description      | Definition                     |
-| ---------------- | ------------------------------ |
+|------------------|--------------------------------|
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
@@ -19,7 +19,7 @@ This API is used to query a list of group by given prefix/name/source-type. This
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -57,7 +57,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
+|---------------|--------|-----------------------------|
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
@@ -89,7 +89,7 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org/?group-query&source-type=SOURCE_TYPE_ORIGIN&limit=10&offset=100&name=e&prefix=t
+Host: gnfd-testnet-sp-1.bnbchain.org/?group-query&source-type=SOURCE_TYPE_ORIGIN&limit=10&offset=100&name=e&prefix=t
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 X-Gnfd-User-Address: user address string

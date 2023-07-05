@@ -6,14 +6,14 @@ title: List Bucket Read Records
 
 ## RESTful API Description
 
-This API is used to list bucket read records. And it supports both `virutal-hosted-style` and `path-style` requests.
+This API is used to list bucket read records. And it supports both `virtual-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
-| Desscription               | Definition                                |
-| -------------------------- | ----------------------------------------- |
-| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path(virutal-hosted-style) | /                                         |
+| Description                | Definition                                |
+|----------------------------|-------------------------------------------|
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
 
 You should set `BucketName` in url host to determine which bucket do you want to query.
@@ -21,7 +21,7 @@ You should set `BucketName` in url host to determine which bucket do you want to
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -32,12 +32,12 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-| ParameterName    | Type    | Required | Description                                                                                        |
-| ---------------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
-| list-read-record | string  | yes      | List read quota path                                                                               |
-| max-records      | integer | yes      | max-records is used to specify the max list number, the biggest number is 1000                     |
-| start-timstamp   | integer | yes      | start-timstamp is used to specify start microsecond timestamp which the time range is [start, end) |
-| end-timestamp    | integer | yes      | EndTimestamp is used to specify end microsecond timestamp which the time range is [start, end)     |
+| ParameterName    | Type    | Required | Description                                                                                         |
+|------------------|---------|----------|-----------------------------------------------------------------------------------------------------|
+| list-read-record | string  | yes      | List read quota path                                                                                |
+| max-records      | integer | yes      | max-records is used to specify the max list number, the biggest number is 1000                      |
+| start-timestamp  | integer | yes      | start-timestamp is used to specify start microsecond timestamp which the time range is [start, end) |
+| end-timestamp    | integer | yes      | EndTimestamp is used to specify end microsecond timestamp which the time range is [start, end)      |
 
 ### Request Body
 
@@ -56,7 +56,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName     | Type   | Description                           |
-| ----------------- | ------ | ------------------------------------- |
+|-------------------|--------|---------------------------------------|
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
 | Content-Type      | string | value is `application/xml`            |
 
@@ -69,7 +69,7 @@ If the request is successful, the service sends back an HTTP 200 response.
 The following data is returned in XML format by the service.
 
 | ParameterName      | Type             | Description                                    |
-| ------------------ | ---------------- | ---------------------------------------------- |
+|--------------------|------------------|------------------------------------------------|
 | ObjectName         | string           | ObjectName is the read object name             |
 | ObjectID           | string           | ObjectID is the read object id                 |
 | ReadAccountAddress | string           | ReadAccountAddress is the read account address |
@@ -89,13 +89,13 @@ XML Body
 
 ## Examples
 
-The examples given all use virutal-hosted-style.
+The examples given all use virtual-hosted-style.
 
 ### Example 1: List bucket read records
 
 ```HTTP
 GET /?list-read-record&max-records=2&start-timstamp=1680520105786&end-timestamp=1680520178958 HTTP/1.1
-Host: myBucket.gnfd.gnfd-testnet-sp-*.bnbchain.org
+Host: myBucket.gnfd.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

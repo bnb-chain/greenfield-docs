@@ -13,7 +13,7 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 ## HTTP Request Format
 
 | Desscription | Definition                     |
-| ------------ | ------------------------------ |
+|--------------|--------------------------------|
 | Host         | gnfd-testnet-sp-*.bnbchain.org |
 | Path         | /auth/update_key               |
 | Method       | POST                           |
@@ -21,7 +21,7 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 ## HTTP Request Header
 
 | ParameterName              | Type   | Required | Description                                                                                                                                                                                                 |
-| -------------------------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------|--------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Origin                     | string | yes      | the origin value , which should be the same as app's domain                                                                                                                                                 |
 | X-Gnfd-App-Domain          | string | yes      | app domain for the account key                                                                                                                                                                              |
 | X-Gnfd-App-Reg-Nonce       | string | yes      | the nonce value which the account key is updated for                                                                                                                                                        |
@@ -78,7 +78,7 @@ Resources:
 
 #### Signature
 
-The Signature is calcuated by wallet after users sign with above `SignedMsg` in their wallet.
+The Signature is calculated by wallet after users sign with above `SignedMsg` in their wallet.
 e.g. `0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b`
 
 #### Example
@@ -120,7 +120,7 @@ Authorization: AuthorizationString
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
+|---------------|--------|-----------------------------|
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
@@ -132,7 +132,7 @@ If the request is successful, the service sends back an HTTP 200 response.
 The following data is returned in JSON format by the service.
 
 | ParameterName | Type    | Description                                                |
-| ------------- | ------- | ---------------------------------------------------------- |
+|---------------|---------|------------------------------------------------------------|
 | Result        | boolean | indicate if the user public key successfully updated in SP |
 
 ## Response Syntax

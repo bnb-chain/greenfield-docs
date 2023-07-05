@@ -6,14 +6,14 @@ title: List Objects By Bucket
 
 ## RESTful API Description
 
-This API is used to query a bucket's all objects metadata info. And it supports both `virutal-hosted-style` and `path-style` requests.
+This API is used to query a bucket's all objects metadata info. And it supports both `virtual-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
 | Description                | Definition                                |
-| -------------------------- | ----------------------------------------- |
-| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path(virutal-hosted-style) | /                                         |
+|----------------------------|-------------------------------------------|
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
 
 You should set `BucketName` in url host to list objects of the bucket.
@@ -21,7 +21,7 @@ You should set `BucketName` in url host to list objects of the bucket.
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                  |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -33,7 +33,7 @@ The request does not have a path parameter.
 ### Query Parameter
 
 | ParameterName      | Type    | Required | Description                                                                                                                                                                |
-| ------------------ | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|--------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | max-keys           | integer | no       | max-keys defines the maximum number of keys returned to the response body, the biggest number is 1000.If not specified, the default value is 50.                           |
 | prefix             | string  | no       | prefix limits the response to keys that begin with the specified prefix                                                                                                    |
 | continuation-token | string  | no       | continuation-token is the token returned from a previous list objects request to indicate where in the list of objects to resume the listing. This is used for pagination. |
@@ -57,13 +57,13 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
+|---------------|--------|-----------------------------|
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
 | ParameterName           | Type    | Description                                                                                                                                                    |
-| ----------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | objects                 | array   | objects defines the list of object                                                                                                                             |
 | key_count               | integer | key_count is the number of keys returned with this request                                                                                                     |
 | max_keys                | integer | max_keys sets the maximum number of keys returned in the response                                                                                              |
@@ -91,13 +91,13 @@ JSON Body
 
 ## Examples
 
-The examples given all use virutal-hosted-style.
+The examples given all use virtual-hosted-style.
 
 ### Example 1: Query a bucket's objects
 
 ```HTTP
 GET / HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-*.bnbchain.org?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/
+Host: myBucket.gnfd-testnet-sp-1.bnbchain.org?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

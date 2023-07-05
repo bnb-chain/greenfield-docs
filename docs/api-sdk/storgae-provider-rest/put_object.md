@@ -6,20 +6,20 @@ title: Put Object
 
 ## RESTful API Description
 
-This API is used to upload an object to Greenfield SP. And it supports both `virutal-hosted-style` and `path-style` requests.
+This API is used to upload an object to Greenfield SP. And it supports both `virtual-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 
 | Desscription               | Definition                                |
-| -------------------------- | ----------------------------------------- |
-| Host(virutal-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path(virutal-hosted-style) | /ObjectName                               |
+|----------------------------|-------------------------------------------|
+| Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
+| Path(virtual-hosted-style) | /ObjectName                               |
 | Method                     | PUT                                       |
 
 ## HTTP Request Header
 
 | ParameterName                                                      | Type   | Required | Description                                                                                        |
-| ------------------------------------------------------------------ | ------ | -------- | -------------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------------|--------|----------|----------------------------------------------------------------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
 | Content-Type                                                       | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
 | Content-Length                                                     | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
@@ -56,7 +56,7 @@ Body
 The response returns the following HTTP headers.
 
 | ParameterName     | Type   | Description                           |
-| ----------------- | ------ | ------------------------------------- |
+|-------------------|--------|---------------------------------------|
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
 | Etag              | string | Entity tag for the uploaded object    |
 
@@ -78,7 +78,7 @@ Etag: Etag
 
 ## Examples
 
-The examples given all use virutal-hosted-style.
+The examples given all use virtual-hosted-style.
 
 ### Example 1: Upload an object
 
