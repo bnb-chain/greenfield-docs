@@ -47,6 +47,12 @@ BNB between these two networks.  [Try it out →](https://dcellar.io)
 - `https://gnfd-testnet-sp-7.bnbchain.org`
 - `https://gnfd-testnet-sp-1.nodereal.io`
 
+### Mirroring addresses (Testnet)
+- Cross-chain address - the cross chain transaction bridge address `0x57b8A375193b2e9c6481f167BaECF1feEf9F7d4B`
+- Group hub address - the smart contract used to interact with group and permissions (also the one that calls callbacks) `0x0Bf7D3Ed3F777D7fB8D65Fb21ba4FBD9F584B579`
+- Group token address (ERC-721) `0x089AFF7964E435eB2C7b296B371078B18E2C9A35`
+- Permission token address (ERC-1155) `0x80Dd11998159cbea4BF79650fCc5Da72Ffb51EFc`
+
 ## Related Projects
 - [Greenfield-Blockchain](https://github.com/bnb-chain/greenfield): official Golang implementation of the Greenfield Blockchain.
 - [Greenfield-Cosmos-sdk](https://github.com/bnb-chain/greenfield-cosmos-sdk) a cosmos-sdk fork for greenfield.
