@@ -5154,7 +5154,8 @@ paths:
         - Query
   /cosmos/auth/v1beta1/accounts/{address}:
     get:
-      summary: Account returns account details based on address.
+      summary: Account
+      description:  Account returns account details based on address.
       operationId: Account
       responses:
         '200':
@@ -9547,7 +9548,7 @@ paths:
         - Query
   /cosmos/bank/v1beta1/supply/by_denom:
     get:
-      summary: Supply of a single coin.
+      summary: SupplyofCoin.
       description: >-
         When called from another module, this query might consume a high amount
         of
