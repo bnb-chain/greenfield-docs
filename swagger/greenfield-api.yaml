@@ -9548,7 +9548,7 @@ paths:
         - Query
   /cosmos/bank/v1beta1/supply/by_denom:
     get:
-      summary: SupplyofCoin.
+      summary: SupplyofCoin
       description: >-
         When called from another module, this query might consume a high amount
         of
@@ -28198,7 +28198,8 @@ paths:
       tags:
         - Service
     post:
-      summary: BroadcastTx broadcast transaction.
+      summary: BroadcastTx
+      description:  BroadcastTx broadcast transaction.
       operationId: BroadcastTx
       responses:
         '200':
