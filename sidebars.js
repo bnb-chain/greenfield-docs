@@ -221,6 +221,9 @@ const sidebars = {
         "api-sdk/storgae-provider-rest/sp_response",
         "api-sdk/storgae-provider-rest/list_objects_by_object_ids",
         "api-sdk/storgae-provider-rest/list_buckets_by_bucket_ids",
+        "api-sdk/storgae-provider-rest/verify_permission",
+        "api-sdk/storgae-provider-rest/get_object_meta",
+        "api-sdk/storgae-provider-rest/get_bucket_meta",
         {
           type:"category",
           label: "Reference",
