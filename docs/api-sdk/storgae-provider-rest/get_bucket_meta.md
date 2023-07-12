@@ -21,7 +21,7 @@ This API is used to get bucket meta by bucket name. And it supports both `virtua
 | ParameterName                                                      | Type   | Required | Description                                                                                   |
 |--------------------------------------------------------------------|--------|----------|-----------------------------------------------------------------------------------------------|
 | [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
-
+<!--TODO:Authorization is no longer needed in the next testnet release-->
 ## HTTP Request Parameter
 
 ### Path Parameter
@@ -143,7 +143,7 @@ The examples given all use virtual-hosted-style.
 
 ```HTTP
 GET /my-image.jpg HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-1.bnbchain.org/bucket-meta
+Host: uvfzo.gnfd-testnet-sp-1.bnbchain.org/bucket-meta
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```
