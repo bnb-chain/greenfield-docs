@@ -58,15 +58,7 @@ VALIDATOR_BLS=$(gnfd keys show validator_bls --keyring-backend test --output jso
 VALIDATOR_NODE_PUB_KEY=$(cat ${CONFIG_PATH}/config/priv_validator_key.json | jq -r '.pub_key.value')
 ```
 
-### 4. Grant gov module to create your validator
-
-`0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2` is the module address of gov.
-
-```bash
-gnfd tx authz grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 delegate --spend-limit 1000000000000000000000BNB --allowed-validators ${VALIDATOR_ADDR} --from ${VALIDATOR_ADDR} --keyring-backend test --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" --yes
-```
-
-### 5. Submit a Create Validator Proposal
+### 4. Submit a Create Validator Proposal
 Replace the values in the following JSON and save it as create_validator_proposal.json:
 
 - `${NODE_NAME}`: A custom human-readable name for this node.
@@ -111,18 +103,18 @@ Replace the values in the following JSON and save it as create_validator_proposa
   }
  ],
  "metadata": "",
- "title": "Create <name> Validator",
- "summary": "create <name> validator",
+ "title": "Create ${NODE_NAME} Validator",
+ "summary": "create ${NODE_NAME} validator",
  "deposit": "1000000000000000000BNB"
 }
 ```
 
-Submit the proposal. Ensure the validator account has enough BNB tokens.
+Run create validator command to submit the proposal. Ensure the validator account has enough BNB tokens.
 ```bash
-gnfd tx gov submit-proposal ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${VALIDATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
+gnfd tx staking create-validator ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${VALIDATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
 ```
 
-### 6. Wait for the voting until the Proposal is passed.
+### 5. Wait for the voting until the Proposal is passed.
 
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved.
 It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, 
@@ -132,7 +124,7 @@ you can verify that the node has become a validator.
 Please ensure that the validator node is running before it is selected.
 :::
 
-### 7. Query all validators
+### 6. Query all validators
 ```bash
 gnfd query staking validators --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
 ```
