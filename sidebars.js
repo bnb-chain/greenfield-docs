@@ -228,8 +228,8 @@ const sidebars = {
           type:"category",
           label: "Reference",
           items:[
-            "api-sdk/storgae-provider-rest/referenece/virtual_hosting_of_buckets",
-            "api-sdk/storgae-provider-rest/referenece/gnfd_headers"
+            "api-sdk/storgae-provider-rest/reference/virtual_hosting_of_buckets",
+            "api-sdk/storgae-provider-rest/reference/gnfd_headers"
           ]
         },
       ]
