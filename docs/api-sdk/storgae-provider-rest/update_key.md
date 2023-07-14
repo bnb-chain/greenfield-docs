@@ -12,11 +12,11 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 
 ## HTTP Request Format
 
-| Desscription | Definition                     |
-|--------------|--------------------------------|
-| Host         | gnfd-testnet-sp-*.bnbchain.org |
-| Path         | /auth/update_key               |
-| Method       | POST                           |
+| Description | Definition                     |
+|-------------|--------------------------------|
+| Host        | gnfd-testnet-sp-*.bnbchain.org |
+| Path        | /auth/update_key               |
+| Method      | POST                           |
 
 ## HTTP Request Header
 
@@ -35,11 +35,11 @@ The Authorization Header could be composed of 3 parts.
 
 #### Auth type
 
-Update_key API expects `PersonalSign ECDSA-secp256k1` as [authtication type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers.html#authentication-type) and [encryption algorithm type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers.html#encryption-algorithm-type) in HTTP Authorization header.
+Update_key API expects `PersonalSign ECDSA-secp256k1` as [authentication type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/reference/gnfd_headers.html#authentication-type) and [encryption algorithm type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/reference/gnfd_headers.html#encryption-algorithm-type) in HTTP Authorization header.
 
 #### SignedMsg
 
-Application needs to popup wallet to let users sign for a text, which includes user's `EdDSA public key`, `Expiration Time`, `nonce value` for SPs and other related information, so that useres can understand what they sign for.
+Application needs to popup wallet to let users sign for a text, which includes user's `EdDSA public key`, `Expiration Time`, `nonce value` for SPs and other related information, so that users can understand what they sign for.
 
 The text message to be signed by users can be formalized by following template:
 

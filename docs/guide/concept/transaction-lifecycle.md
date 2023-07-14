@@ -98,7 +98,7 @@ through several steps, beginning with decoding `Tx`.
 ### Decoding the transactions
 
 When a `Tx` is received by the application from the underlying consensus engine (e.g. Tendermint), it is still in 
-its encoded `[]byte` form and needs to be unmarshaled in order to be processed. Then, 
+its encoded `[]byte` form and needs to be unmarshalled in order to be processed. Then, 
 the `runTx` function is executed in the `runTxModeCheck` mode. This mode runs all checks but 
 exit before executing messages and writing state changes.
 

@@ -20,7 +20,7 @@ This API is used to query a list of buckets metadata info by buckets ids. This A
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 

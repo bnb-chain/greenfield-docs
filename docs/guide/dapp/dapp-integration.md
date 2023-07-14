@@ -332,4 +332,4 @@ Alternatively, you can obtain the contracts directly from the GitHub repository 
    ...
    ```
 
-6. Define other view functions, internal funcions and access control system according to your own needs.
+6. Define other view functions, internal functions and access control system according to your own needs.

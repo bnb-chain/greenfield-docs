@@ -20,11 +20,11 @@ This API is used to upload an object to Greenfield SP. And it supports both `vir
 
 | ParameterName                                                      | Type   | Required | Description                                                                                        |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------------------------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
 | Content-Type                                                       | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
 | Content-Length                                                     | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
 
-`Content-Type` is determined by specific object, such as the content type of an image could be image/jpeg.
+`Content-Type` is determined by specific object, such as the content type of image could be image/jpeg.
 
 ## HTTP Request Parameter
 

@@ -18,9 +18,9 @@ This API is used to Verify the input account’s permission to input items. This
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| ParameterName                                                   | Type   | Required | Description                                  |
+|-----------------------------------------------------------------|--------|----------|----------------------------------------------|
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 <!--TODO:Authorization is no longer needed in the next testnet release-->
 ## HTTP Request Parameter
 

@@ -22,7 +22,7 @@ You should set `BucketName` in url host to determine which bucket do you want to
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 

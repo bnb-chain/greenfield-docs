@@ -27,7 +27,7 @@ export CGO_ENABLED=1
 make build
 ```
 
-If you encoutered the following error messages while compiling greenfield blockchain, you should install `glibc-static` and `libstdc++-static`.
+If you encountered the following error messages while compiling greenfield blockchain, you should install `glibc-static` and `libstdc++-static`.
 
 ```shell
 # command-line-arguments

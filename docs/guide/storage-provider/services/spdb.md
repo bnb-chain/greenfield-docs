@@ -22,7 +22,7 @@ type SPDB interface {
 
 ## JobContext
 
-JobContext records the context of uploading an payload data, it contains two tables: JobTable and ObjectTable.
+JobContext records the context of uploading a payload data, it contains two tables: JobTable and ObjectTable.
 
 `Job` interface as follows:
 

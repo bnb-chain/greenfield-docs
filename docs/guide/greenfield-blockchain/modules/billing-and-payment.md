@@ -396,7 +396,7 @@ message Params {
 |  max_auto_force_settle_num  | uint64 |         100         |
 |          fee_denom          | string |         BNB         |
 
-## Payment moduel keepers
+## Payment module keepers
 
 The payment module keeper provides access to query the parameters,
 payment account owner, storage price and several ways to update the ledger.

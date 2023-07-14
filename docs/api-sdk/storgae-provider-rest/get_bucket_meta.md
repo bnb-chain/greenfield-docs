@@ -18,9 +18,9 @@ This API is used to get bucket meta by bucket name. And it supports both `virtua
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                                                                   |
-|--------------------------------------------------------------------|--------|----------|-----------------------------------------------------------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
+| ParameterName                                                     | Type   | Required | Description                                   |
+|-------------------------------------------------------------------|--------|----------|-----------------------------------------------|
+| [Authorization](./reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request. |
 <!--TODO:Authorization is no longer needed in the next testnet release-->
 ## HTTP Request Parameter
 
@@ -40,8 +40,8 @@ The request does not have a request body.
 ## Request Syntax
 
 ```HTTP
-GET  HTTP/1.1
-Host: BucketName.gnfd-testnet-sp-*.bnbchain.org/?bucket-meta
+GET /?bucket-meta HTTP/1.1
+Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 Authorization: Authorization
 ```
 
@@ -142,8 +142,8 @@ The examples given all use virtual-hosted-style.
 ### Example 1: Get Object Meta
 
 ```HTTP
-GET /my-image.jpg HTTP/1.1
-Host: uvfzo.gnfd-testnet-sp-1.bnbchain.org/bucket-meta
+GET /?bucket-meta HTTP/1.1
+Host: uvfzo.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

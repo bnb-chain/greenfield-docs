@@ -25,7 +25,7 @@ Please use the official BSC testnet faucet and convert it into BNB on Greenfield
 
 ## Bridge
 
-Greenfield Data Network is a seperate blockchain system connected to BNB Smart Chain(BSC),
+Greenfield Data Network is a separate blockchain system connected to BNB Smart Chain(BSC),
 Developers usually need to move assets between Greenfield and BNB Smart Chain(BSC).
 Besides using native bridge SDKs , you can use DCellar as a Bridge WebUI to move your
 BNB between these two networks.  [Try it out →](https://dcellar.io)

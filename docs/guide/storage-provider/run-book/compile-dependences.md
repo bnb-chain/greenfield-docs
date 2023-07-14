@@ -76,7 +76,7 @@ If a user wants to start SP in local mode or testnet mode, you must prepare `SPD
 
 ### SPDB and BSDB
 
-SP uses [SPDB](../services/spdb.md) and [BSDB](../services/bsdb.md) to store some matadata such as object info, object integrity hash, etc. These two DBs now use `RDBMS` to complete corresponding function.
+SP uses [SPDB](../services/spdb.md) and [BSDB](../services/bsdb.md) to store some metadata such as object info, object integrity hash, etc. These two DBs now use `RDBMS` to complete corresponding function.
 
 Users now can use `MySQL` or `MariaDB` to store metadata.The following lists the supported RDBMS:
 
@@ -93,7 +93,7 @@ The following lists the supported data storage systems:
 
 1. [AWS S3](https://aws.amazon.com/s3/): An object storage can be used in production environment.
 2. [MinIO](https://min.io/): An object storage can be used in production environment which is compatible with AWS S3.
-3. [POSIX Filesystem](https://en.wikipedia.org/wiki/POSIX): Local filesystem is used for experiencing the basic features of SP and understanding how SP works. The piece data created by SP cannot be getted within the network and can only be used on a single machine.
+3. [POSIX Filesystem](https://en.wikipedia.org/wiki/POSIX): Local filesystem is used for experiencing the basic features of SP and understanding how SP works. The piece data created by SP cannot be got within the network and can only be used on a single machine.
 
 ### Install Dependencies
 

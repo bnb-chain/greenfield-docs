@@ -22,7 +22,7 @@ You should set `BucketName` in url host to list objects of the bucket.
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 
@@ -96,8 +96,8 @@ The examples given all use virtual-hosted-style.
 ### Example 1: Query a bucket's objects
 
 ```HTTP
-GET / HTTP/1.1
-Host: myBucket.gnfd-testnet-sp-1.bnbchain.org?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/
+GET /?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/ HTTP/1.1
+Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 ```

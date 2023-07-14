@@ -139,7 +139,7 @@ const { simulate, broadcast } = await multiTx([
         ]);
 ```
 
-### Quering Metadata
+### Querying Metadata
 
 ```js
 // get account info

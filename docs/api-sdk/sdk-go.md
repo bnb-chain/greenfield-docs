@@ -339,7 +339,7 @@ You can query the list of SP.
 
 3. Create your bucket
 
-Bucket can be private or public. You can custmize it with options.
+Bucket can be private or public. You can customize it with options.
 
 *   VISIBILITY\_TYPE\_PUBLIC\_READ
 *   VISIBILITY\_TYPE\_PRIVATE

@@ -15,7 +15,7 @@ Authentication type represents which authentication mode the users want to use. 
 
 `PersonalSign` is used for verify wallet personal signature from a certain dapp website, which is not able to access users' `private key` but can interact with users by using wallets.
 
-`OffChainAuth` Once the dapp and user setup the "off chain auth" user account key in SPs (see [details](https://greenfield.bnbchain.org/docsguide/storage-provider/services/auth.html)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
+`OffChainAuth` Once the dapp and user set up the "off chain auth" user account key in SPs (see [details](https://greenfield.bnbchain.org/docsguide/storage-provider/services/auth.html)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
 
 ### Encryption algorithm type
 
@@ -71,7 +71,7 @@ The Greenfield Go SDK includes source code on GitHub that shows how to sign Gree
 
 ### CreateBucket approval
 
-When users send a `CreateBucket approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateBucket approval conatins [7 fields](../get_approval.md#msgcreatebucket). Users should provide the creator address, bucketName and primary SP address. The other fields is optional. Users should verify the content of `CreateBucket approval` request. MsgCreateBucket encodes in `protobuf json` format and converts to lowercase hexadecimal characters.
+When users send a `CreateBucket approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateBucket approval contains [7 fields](../get_approval.md#msgcreatebucket). Users should provide the creator address, bucketName and primary SP address. The other fields is optional. Users should verify the content of `CreateBucket approval` request. MsgCreateBucket encodes in `protobuf json` format and converts to lowercase hexadecimal characters.
 
 ### CreateBucket approval unsigned msg example
 
@@ -111,7 +111,7 @@ X-Gnfd-Unsigned-Msg: 7b226275636b65745f6e616d65223a22676e666431222c2263686172676
 
 ### CreateObject approval
 
-When users send a `CreateObject approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateObject approval conatins [10 fields](../get_approval.md#msgcreateobject). Users should provide the creator address, bucketName, objectName and payload data. The other fields is optional. Users should verify the content of `CreateObject approval` request. MsgCreateObject encodes in protobuf json format and converts to lowercase hexadecimal characters.
+When users send a `CreateObject approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateObject approval contains [10 fields](../get_approval.md#msgcreateobject). Users should provide the creator address, bucketName, objectName and payload data. The other fields is optional. Users should verify the content of `CreateObject approval` request. MsgCreateObject encodes in protobuf json format and converts to lowercase hexadecimal characters.
 
 - [CreateObject](https://github.com/bnb-chain/greenfield-go-sdk/blob/develop/client/api_object.go#L98)
 - [GetCreateObjectApproval](https://github.com/bnb-chain/greenfield-go-sdk/blob/develop/client/api_object.go#L526)

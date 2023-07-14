@@ -20,7 +20,7 @@ This API is used to query a list of group by given prefix/name/source-type. This
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 
@@ -88,8 +88,8 @@ The examples given all use path-style.
 ### Example 1: List Groups By Name And Prefix
 
 ```HTTP
-GET / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org/?group-query&source-type=SOURCE_TYPE_ORIGIN&limit=10&offset=100&name=e&prefix=t
+GET /?group-query&source-type=SOURCE_TYPE_ORIGIN&limit=10&offset=100&name=e&prefix=t HTTP/1.1
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 X-Gnfd-User-Address: user address string

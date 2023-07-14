@@ -20,7 +20,7 @@ This API is used to query a list of objects metadata info by object ids. This AP
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
 
@@ -91,8 +91,8 @@ The examples given all use path-style.
 ### Example 1: a list of objects by object ids
 
 ```HTTP
-POST / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org?objects-query
+POST /?objects-query HTTP/1.1
+Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 Authorization: authorization string
 Content-Type: application/json

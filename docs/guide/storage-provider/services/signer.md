@@ -50,7 +50,7 @@ message Approval {
 
 ## MsgCreateObject
 
-Before the client creates a object, it needs to send the MsgCreateObject to the primary SP to obtain approval. If the SP
+Before the client creates an object, it needs to send the MsgCreateObject to the primary SP to obtain approval. If the SP
 is willing to serve the bucket, it will sign it by ApprovalPrivateKey, and the client broadcasts the message signed by
 the SP's ApprovalPrivateKey to the chain. SP fills the ExpiredHeight of PrimarySpApproval.
 
@@ -135,7 +135,7 @@ message MsgSealObject {
 
 ## GetApprovalRequest
 
-Primary SP sends GetApprovalRequest to other SPs, asking if they are willing to serve as obeject's secondary SP through 
+Primary SP sends GetApprovalRequest to other SPs, asking if they are willing to serve as object's secondary SP through 
 the p2p protocol.
 
 ```protobuf

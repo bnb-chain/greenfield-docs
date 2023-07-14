@@ -20,7 +20,7 @@ This API is used to query a user's own buckets metadata info. This API only supp
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](./referenece/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 | X-Gnfd-User-Address                                                | string | yes      | The address of user                          |
 
 ## HTTP Request Parameter

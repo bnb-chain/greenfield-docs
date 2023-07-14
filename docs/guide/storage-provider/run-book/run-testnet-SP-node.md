@@ -23,7 +23,7 @@ Each storage provider will hold 5 different accounts serving different purposes:
 * Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
-* GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens beacuse it's going to keep sending transactions up the chain.
+* GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
 
 You can use the below command to generate this five accounts:
 
