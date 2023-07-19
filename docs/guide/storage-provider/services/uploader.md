@@ -61,3 +61,7 @@ message PutObjectRequest {
   bytes payload = 2;
 }
 ```
+
+## Multipart Upload
+
+Please note that **Multipart Upload**, which allows a single object to be uploaded as a collection of parts rather than as one single part, is not yet supported but will be implemented in the future.
