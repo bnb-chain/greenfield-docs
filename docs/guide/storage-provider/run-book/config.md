@@ -60,6 +60,7 @@ FundingPrivateKey = ''
 SealPrivateKey = ''
 ApprovalPrivateKey = ''
 GcPrivateKey = ''
+BlsPrivateKey = ''
 
 [Endpoint]
 ApproverEndpoint = ''

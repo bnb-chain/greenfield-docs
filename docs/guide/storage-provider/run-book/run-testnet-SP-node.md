@@ -17,15 +17,16 @@ The following lists the recommended hardware requirements:
 * 5 Greenfield accounts with enough BNB tokens.
 
 :::danger IMPORTANT
-Each storage provider will hold 5 different accounts serving different purposes:
+Each storage provider will hold 6 different accounts serving different purposes:
 
 * Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
 * Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
+* Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
 
-You can use the below command to generate this five accounts:
+You can use the below command to generate this 6 accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
@@ -33,6 +34,7 @@ You can use the below command to generate this five accounts:
 ./build/bin/gnfd keys add seal --keyring-backend os
 ./build/bin/gnfd keys add approval --keyring-backend os
 ./build/bin/gnfd keys add gc --keyring-backend os
+./build/bin/gnfd keys add bls --keyring-backend os --algo eth_bls
 ```
 
 and then export the private key to prepare for SP deployment:
@@ -43,10 +45,21 @@ and then export the private key to prepare for SP deployment:
 ./build/bin/gnfd keys export seal --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export approval --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export gc --unarmored-hex --unsafe --keyring-backend os
+./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-Please keep these five private keys safe!
+Please keep these six private keys safe!
 
+Also, obtain bls public key, bls proof to fill in the proposal of creating Storage Provider
+
+bls_pub_key: 
+```shell
+./build/bin/gnfd keys show bls --keyring-backend os --output json | jq -r '.pubkey_hex' 
+```
+bls_proof:
+```shell
+./build/bin/gnfd keys sign "${bls_pub_key}"   --from bls --keyring-backend os
+```
 :::
 
 ## Create Storage Provider
@@ -112,6 +125,7 @@ FundingPrivateKey = '${funding_private_key}'
 SealPrivateKey = '${seal_private_key}'
 ApprovalPrivateKey = '${approval_private_key}'
 GcPrivateKey = '${gc_private_key}'
+BlsPrivateKey = '${bls_private_key}'
 
 [Endpoint]
 ApproverEndpoint = 'manager:9333'
@@ -174,7 +188,7 @@ EnableDualDB = false
 
 `P2PBootstrap` consists of [node_id1@ip1:port1, node_id2@ip1:port2], you can use P2PAntAddress or P2PAddress as `ip:port`.
 
-We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey and P2PPrivatekey` into environment variables for safety.
+We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey, BlsPrivateKey and P2PPrivatekey` into environment variables for safety.
 
 :::
 
@@ -246,7 +260,9 @@ $ cat ./create_sp.json
     "read_price": "0.060000000000000000",
     "store_price": "0.019000000000000000",
     "free_read_quota": 10000,
-    "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2"
+    "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
+    "bls_key": "{bls_pub_key}",
+    "bls_proof": "{bls_proof}"
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
