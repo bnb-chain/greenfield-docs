@@ -84,24 +84,10 @@ type ObjectStorage interface {
     ListAllObjects(ctx context.Context, prefix, marker string) (<-chan Object, error)
 }
 ```
-### MinIO
-
-When using `minio` as your `Storage`, please set `IAMType` to `AKSK` in your config file. 
-We also recommend writing the following as environment variables:
-```go
- // MinioRegion defines env variable name for minio region
- MinioRegion = "MINIO_REGION"
- // MinioAccessKey defines env variable name for minio access key
- MinioAccessKey = "MINIO_ACCESS_KEY"
- // MinioSecretKey defines env variable name for minio secret key
- MinioSecretKey = "MINIO_SECRET_KEY"
- // MinioSessionToken defines env variable name for minio session token
- MinioSessionToken = "MINIO_SESSION_TOKEN"
-```
 
 ### Outlook
 
-PieceStore provides some fundamental functions: wrapped API interfaces, sharding and compatible with multi object storage. However, there are more functions to be added in the future. 
+PieceStore provides some fundamental functions: wrapped API interfaces, sharding and compatible with multi object storage. However, there are more functions to be added in the future.
 
 1. Data Cache
 
