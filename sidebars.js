@@ -150,7 +150,10 @@ const sidebars = {
             "guide/storage-provider/run-book/compile-dependences",
             "guide/storage-provider/run-book/run-local-SP-network",
             "guide/storage-provider/run-book/run-testnet-SP-node",
-            "guide/storage-provider/run-book/run-mainnet-SP-node"
+            "guide/storage-provider/run-book/run-mainnet-SP-node",
+            "guide/storage-provider/run-book/piece-store",
+            "guide/storage-provider/run-book/config",
+            "guide/storage-provider/run-book/common-issues"
           ]
         }
       ]

@@ -142,6 +142,10 @@ gnfd-cmd bucket create gnfd://testbucket
 
 The command supports `--primarySP` flag to select the storage provider on which you want to create a bucket. The content of the flag should be the operator address of the storage provider. If this value is not set, the first SP in the storage provider list will be selected as the upload target by default.
 
+```shell
+gnfd-cmd bucket create gnfd://testbucket  --primarySP {sp-address}
+```
+
 The user can update the bucket meta by the `bucket update` command. It supports updating bucket visibility, charged quota, or payment address.
 
 ```shell
