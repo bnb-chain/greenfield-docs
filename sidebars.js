@@ -158,17 +158,6 @@ const sidebars = {
         }
       ]
     },
-    // {
-    //   type: "category",
-    //   label: "Build on BNB Greenfield", //Remove 
-    //   collapsible: true,
-    //   collapsed: true,
-    //   items:[
-    //     'api-sdk/blockchain-rest',
-    //     {type:'doc', label:'Storage API', id:'api-sdk/storgae-provider-rest/get_approval'},
-    //     'api-sdk/sdks'
-    //   ]
-    // },
     {
       type: "category",
       label: "Tutorials",
