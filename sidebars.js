@@ -55,7 +55,6 @@ const sidebars = {
         "guide/concept/transaction-lifecycle",
         "guide/concept/data-storage",
         "guide/concept/gas-fees",
-        "guide/introduction/token-economics",
       ],
     },
     {
