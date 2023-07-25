@@ -35,7 +35,6 @@ const sidebars = {
         "guide/getting-started/overview",
         "guide/getting-started/wallet-onfiguration",
         "guide/getting-started/resources",
-        //"guide/getting-started/network-faucets",
         "guide/getting-started/get-test-bnb",
         //"guide/getting-started/interact-with-greenfield",
         "guide/introduction/ecosystem",
@@ -159,7 +158,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Tutorials",
+      label: "Building Smart Contract Dapp",
       collapsible: true,
       collapsed: true,
       link: {type:'doc', id:'guide/dapp/overview'},
@@ -170,6 +169,15 @@ const sidebars = {
         "guide/dapp/permisson-control",
         "guide/dapp/contract-list",
         "guide/dapp/showcases"
+      ]
+    },
+    {
+      type: "category",
+      label: "Building Native Dapp",
+      collapsible: true,
+      collapsed: true,
+      link: {type:'doc', id:'guide/native-app/overview'},
+      items:[
       ]
     },
     {type:'doc', label:'FAQs', id:'faq/greenfield-faqs'},
