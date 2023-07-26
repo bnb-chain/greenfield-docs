@@ -26,22 +26,21 @@ A user can query and interact with the `challenge` module using the CLI.
 The `query` commands allow users to query `challenge` state.
 
 ```sh
-gnfd query challenge --help
+./build/bin/gnfd query challenge --help
 ```
 
 #### latest-attested-challenges  
 
-
 The `latest-attested-challenges` command allows users to query the latest challenges that have been attested by the user.
 
 ```sh
-gnfd query challenge latest-attested-challenges [flags]
+./build/bin/gnfd query challenge latest-attested-challenges [flags]
 ```
 
 Example:
 
 ```sh
-./build/bin/gnfd query challenge latest-attested-challenges --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433
+./build/bin/gnfd query challenge latest-attested-challenges --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 Example Output:
@@ -53,18 +52,18 @@ Example Output:
    result: CHALLENGE_SUCCEED
 ```
 
-#### inturn-attest-submitter
+#### inturn-attestation-submitter
 
-The `inturn-attest-submitter` command allows users to query the off-chain challenger service that is currently in charge of attesting.   
+The `inturn-attestation-submitter` command allows users to query the off-chain challenger service that is currently in charge of attesting.   
 
 ```sh
-gnfd query inturn-attest-submitter [flags]
+./build/bin/gnfd query inturn-attestation-submitter [flags]
 ```
 
 Example:
 
 ```sh
-./build/bin/gnfd query challenge inturn-attestation-submitter --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433
+./build/bin/gnfd query challenge inturn-attestation-submitter --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 Example Output:
@@ -81,13 +80,33 @@ submit_interval:
 The `params` command allows users to query the current settings for the challenge module.  
 
 ```sh
-gnfd query challenge params [flags] 
+./build/bin/gnfd query challenge params [flags] 
 ```
 
 Example:
 
 ```sh
-gnfd query challenge params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433
+./build/bin/gnfd query challenge params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+```
+
+Example Output:
+
+```yml
+params:
+  attestation_inturn_interval: "120"
+  attestation_kept_count: "300"
+  challenge_count_per_block: "1"
+  challenge_keep_alive_period: "300"
+  heartbeat_interval: "1000"
+  reward_submitter_ratio: "0.001000000000000000"
+  reward_submitter_threshold: "1000000000000000"
+  reward_validator_ratio: "0.900000000000000000"
+  slash_amount_max: "1000000000000000000"
+  slash_amount_min: "10000000000000000"
+  slash_amount_size_rate: "0.008500000000000000"
+  slash_cooling_off_period: "300"
+  sp_slash_counting_window: "0"
+  sp_slash_max_amount: "0"
 ```
 
 ### Transactions
@@ -95,7 +114,7 @@ gnfd query challenge params --node https://gnfd-testnet-fullnode-tendermint-us.b
 The `tx` commands allow users to interact with the `challenge` module.
 
 ```sh
-gnfd tx challenge [command] --help
+./build/bin/gnfd tx challenge [command] --help
 ```
 
 #### submit
@@ -103,26 +122,27 @@ gnfd tx challenge [command] --help
 The `submit` command allows users to submit a challenge for an object stored by any storage provider.
 
 ```sh
-gnfd tx challenge submit [sp-operator-address] [bucket-name] [object-name] [random-index] [segment-index] [flags]
+./build/bin/gnfd tx challenge submit [sp-operator-address] [bucket-name] [object-name] [random-index] [segment-index] [flags]
 ```
 
 Example:
 
 ```sh
-./build/bin/gnfd tx challenge submit 0x950E2FBD285BC42E30EA69A8C1AB17EEDC70C447 ch69bd3t tq true 0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433 -b block --from validator0
+./build/bin/gnfd tx challenge submit 0x950E2FBD285BC42E30EA69A8C1AB17EEDC70C447 ch69bd3t tq true 0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 -b block --from validator0
 ```
+
+The result of the challenge can be queried using the `AttestedChallenge` method through [GRPC swagger](https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/openapi).
 
 #### attest
 
-The `attest` command allows users to send an attestation for a challenge.
+The `attest` command allows relayers to send an attestation for a challenge.
 
 ```sh
-gnfd tx challenge attest [challenge-id] [object-id] [sp-operator-address] [vote-result] [challenger-address] [vote-validator-set] [vote-agg-signature] [flags]
+./build/bin/gnfd tx challenge attest [challenge-id] [object-id] [sp-operator-address] [vote-result] [challenger-address] [vote-validator-set] [vote-agg-signature] [flags]
 ```
 
 Example:
 
 ```sh
-./build/bin/gnfd tx challenge attest 205895 21 0x950e2FbD285bc42E30eA69A8C1Ab17eEDC70C447 1 ""  1,0,0,0 a955a414bf982f5a67883c97cbec88ab06dfcdce255ee36e927c4c4fd416f74d39a2c812a3ffb8bac37c2269a589973810799fefe1d5ea8ecd6a4158165b85bd6f24339320eb1c85aa5f4e908c97a966865962928272474d11092031f48c9e7c --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:433 -b block --from validator0
+./build/bin/gnfd tx challenge attest 205895 21 0x950e2FbD285bc42E30eA69A8C1Ab17eEDC70C447 1 ""  1,0,0,0 a955a414bf982f5a67883c97cbec88ab06dfcdce255ee36e927c4c4fd416f74d39a2c812a3ffb8bac37c2269a589973810799fefe1d5ea8ecd6a4158165b85bd6f24339320eb1c85aa5f4e908c97a966865962928272474d11092031f48c9e7c --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 -b block --from validator0
 ```
-
