@@ -13,16 +13,17 @@ This API is used to upload an object to Greenfield SP. And it supports both `vir
 | Desscription               | Definition                                |
 |----------------------------|-------------------------------------------|
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
-| Path(virtual-hosted-style) | /ObjectName                               |
+| Path(path-style)           | /ObjectName                               |
 | Method                     | PUT                                       |
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                                                                        |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------------------------------------------------------------|
+| ParameterName                                                   | Type   | Required | Description                                                                                        |
+|-----------------------------------------------------------------|--------|----------|----------------------------------------------------------------------------------------------------|
 | [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
-| Content-Type                                                       | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
-| Content-Length                                                     | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
+| Content-Type                                                    | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
+| Content-Length                                                  | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
+| ParameterName                                                      | Type   | Required | Description                                                                                        |
 
 `Content-Type` is determined by specific object, such as the content type of image could be image/jpeg.
 

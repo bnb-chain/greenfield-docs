@@ -1,4 +1,9 @@
-# Resumable Upload
+# Resumable Upload & Resumable Download
+
+* Resumable Upload is a feature that allows files to be uploaded in multiple parts, enabling the upload process to be resumed from where it left off in case of interruptions or failures. This is particularly useful for large files or situations where network connectivity may be unreliable.
+* Resumable Download is a common download method in greenfield, which allows users to pause or interrupt the download process and resume it later. When a user requests to download a large file, it is often divided into multiple fixed-size chunks, and the download process uses the HTTP Range request header to specify the starting and ending positions for the download. If the user pauses or interrupts the download, the next request can resume the download from the last position by sending a request with an appropriate Range field, without having to re-download the entire file.
+
+## Resumable Upload
 
 Resumable upload refers to the process of uploading a file in multiple parts, where each chunk is uploaded separately.This allows the upload to be resumed from where it left off in case of interruptions or failures, rather than starting the entire upload process from the beginning.
 
@@ -6,7 +11,7 @@ During resumable upload, if an error occurs during the `PutObject` operation, th
 
 ### Upload Process Overview
 
-![resumable-upload-overview](../../../static/asset/12-Resumable-Upload.jpg)
+![resumable-upload-overview](../../../static/asset/12-Resumable-Upload.png)
 
 1. Start the initial `PutObject` operation to upload the object.
 2. If an error occurs during the upload, such as a network interruption or server error, the upload process is interrupted.
@@ -57,13 +62,13 @@ The `FGetObjectResumable` function in the S3 Client API allows you to perform re
 ### Download Process Overview
 
 1. Start the initial `FGetObjectResumable` function to download the file.
-2. During the download process, the function retrieves segments of the file from the server-side and appends them to an `object.tmp` file.
+2. During the download process, the function retrieves segments of the file from the server-side and appends them to an `object_{operatoraddress}{getrange}.tmp` file.
 3. If an error occurs during the download, such as a network interruption or server error, the download process is interrupted.
-4. When resuming the download, the subsequent `FGetObjectResumable` function first checks if the `object.tmp` file exists.
-5. If the `object.tmp` file exists, the function verifies the checksum to ensure the integrity of the partially downloaded file.
-6. If the `object.tmp` file does not exist or the checksum is invalid, the function starts a fresh download of the object from the server.
-7. The download process continues from the last offset, and appending the segments to the `object.tmp` file.
-8. Once the download is complete, the `object.tmp` file can be renamed or processed as needed.
+4. When resuming the download, the subsequent `FGetObjectResumable` function first checks if the `object_{operatoraddress}{getrange}.tmp` file exists.
+5. If the `object_{operatoraddress}{getrange}.tmp` file exists, the function verifies the checksum to ensure the integrity of the partially downloaded file.
+6. If the `object_{operatoraddress}{getrange}.tmp` file does not exist or the checksum is invalid, the function starts a fresh download of the object from the server.
+7. The download process continues from the last offset, and appending the segments to the `object_{operatoraddress}{getrange}.tmp` file.
+8. Once the download is complete, the `object_{operatoraddress}{getrange}.tmp` file can be renamed or processed as needed.
 
 ### Usage Example
 
@@ -73,7 +78,7 @@ err = s.Client.FGetObjectResumable(
     bucketName,
     objectName,
     newFile,
-    types.GetObjectOption{},
+    types.GetObjectOptions{},
 )
 ```
 

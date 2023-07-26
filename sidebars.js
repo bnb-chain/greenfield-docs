@@ -178,6 +178,7 @@ const sidebars = {
       collapsed: true,
       link: {type:'doc', id:'guide/native-app/overview'},
       items:[
+        "guide/native-app/resumable-upload",
       ]
     },
     {type:'doc', label:'Contribute', id:'contribute'},
@@ -230,6 +231,7 @@ const sidebars = {
       items:[
           "api/storgae-provider-rest/get_approval",
           "api/storgae-provider-rest/put_object",
+          "api-sdk/storgae-provider-rest/resumable_put_object",
           "api/storgae-provider-rest/get_object",
           "api/storgae-provider-rest/query_bucket_read_quota",
           "api/storgae-provider-rest/list_bucket_read_records",
