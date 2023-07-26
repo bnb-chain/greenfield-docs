@@ -20,10 +20,6 @@ You should set `BucketName` in url host to list objects of the bucket.
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
-
 ## HTTP Request Parameter
 
 ### Path Parameter
@@ -32,13 +28,13 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-| ParameterName      | Type    | Required | Description                                                                                                                                                                |
-|--------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| max-keys           | integer | no       | max-keys defines the maximum number of keys returned to the response body, the biggest number is 1000.If not specified, the default value is 50.                           |
-| prefix             | string  | no       | prefix limits the response to keys that begin with the specified prefix                                                                                                    |
-| continuation-token | string  | no       | continuation-token is the token returned from a previous list objects request to indicate where in the list of objects to resume the listing. This is used for pagination. |
-| start-after        | string  | no       | start-after defines the starting object name for the listing of objects                                                                                                    |
-| delimiter          | string  | no       | delimiter is a character you use to group keys, currently only '/' is supported                                                                                            |
+| ParameterName      | Type    | Required | Description                                                                                                                                                                  |
+|--------------------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| max-keys           | integer | no       | max-keys defines the maximum number of keys returned to the response body, the biggest number is 1000.If not specified, the default value is 50.                             |
+| prefix             | string  | no       | prefix limits the response to keys that begin with the specified prefix                                                                                                      |
+| continuation-token | string  | no       | continuation-token is the token returned from a previous list objects request to indicate where in the list of objects to resume the listing. This is used for pagination.   |
+| start-after        | string  | no       | start-after defines the starting object name for the listing of objects                                                                                                      |
+| delimiter          | string  | no       | delimiter is a character you use to group keys, currently only '/' is supported.If the parameter is not passed, it will return the data that has not been removed by default.|
 
 ### Request Body
 
@@ -49,7 +45,6 @@ The request does not have a request body.
 ```HTTP
 GET / HTTP/1.1
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
-Authorization: Authorization
 ```
 
 ## HTTP Response Header
@@ -96,10 +91,9 @@ The examples given all use virtual-hosted-style.
 ### Example 1: Query a bucket's objects
 
 ```HTTP
-GET /?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/ HTTP/1.1
+GET /?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/&include-removed=false HTTP/1.1
 Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
-Authorization: authorization string
 ```
 
 ### Sample Response: Query a bucket's objects
