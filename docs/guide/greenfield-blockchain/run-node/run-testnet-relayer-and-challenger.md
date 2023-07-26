@@ -174,6 +174,8 @@ Run docker:
 docker run -it -v /your/data/path:/greenfield-relayer -e CONFIG_TYPE="local" -e CONFIG_FILE_PATH=/your/config/file/path/in/container -d greenfield-relayer
 ```
 
+Or you can deploy the greenfield relayer application using Helm Chart V3. Please refer to [relayer-readme](https://github.com/bnb-chain/greenfield/blob/master/deployment/helm/relayer-readme.md).
+
 ## Challenger
 
 ### Deployment
@@ -294,3 +296,5 @@ Run docker:
 ```shell script
 docker run -it -v /your/data/path:/greenfield-challenger -e CONFIG_TYPE="local" -e CONFIG_FILE_PATH=/your/config/file/path/in/container -d greenfield-challenger
 ```
+
+Or you can deploy the greenfield challenger application using Helm Chart V3. Please refer to [challenger-readme](https://github.com/bnb-chain/greenfield/blob/master/deployment/helm/challenger-readme.md).
