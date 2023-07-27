@@ -55,6 +55,7 @@ VALIDATOR_ADDR=$(gnfd keys show validator -a --keyring-backend test)
 RELAYER_ADDR=$(gnfd keys show validator_relayer -a --keyring-backend test)
 CHALLENGER_ADDR=$(gnfd keys show validator_challenger -a --keyring-backend test)
 VALIDATOR_BLS=$(gnfd keys show validator_bls --keyring-backend test --output json | jq -r '.pubkey_hex')
+VALIDATOR_BLS_PROOF==$(gnfd keys sign ${VALIDATOR_BLS} --keyring-backend test --from validator_bls)
 VALIDATOR_NODE_PUB_KEY=$(cat ${CONFIG_PATH}/config/priv_validator_key.json | jq -r '.pub_key.value')
 ```
 
@@ -65,6 +66,7 @@ Replace the values in the following JSON and save it as create_validator_proposa
 - `${VALIDATOR_NODE_PUB_KEY}`: The consensus key generated in step 1 (stored in ${HOME}/.gnfd/config/priv_validator_key.json by default).
 - `${VALIDATOR_ADDR}`: The operator address created in step 2.
 - `${VALIDATOR_BLS}`: The BLS key created in step 2.
+- `${VALIDATOR_BLS_PROOF}`: The BLS proof created in step2.
 - `${RELAYER_ADDR}`: The relayer address created in step 2.
 - `${CHALLENGER_ADDR}`: The challenger address created in step 2.
 
@@ -99,7 +101,8 @@ Replace the values in the following JSON and save it as create_validator_proposa
    "from": "0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
    "relayer_address": "${RELAYER_ADDR}",
    "challenger_address": "${CHALLENGER_ADDR}",
-   "bls_key": "${VALIDATOR_BLS}"
+   "bls_key": "${VALIDATOR_BLS}", 
+   "bls_proof": "${VALIDATOR_BLS_PROOF}"
   }
  ],
  "metadata": "",
