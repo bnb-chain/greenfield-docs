@@ -210,7 +210,7 @@ const sidebars = {
             "guide/greenfield-blockchain/cli/governance",
             "guide/greenfield-blockchain/cli/payment",
             "guide/greenfield-blockchain/cli/validator-staking",
-            "guide/greenfield-blockchain/cli/challenge",
+            "guide/greenfield-blockchain/cli/challenge"
           ]
         },
         require("./docs/greenfield-api/sidebar.js"),      
