@@ -110,7 +110,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             "create_time": "1683537260",
             "update_at": "41806",
             "update_time": "1683538508",
-            "removed": true
+            "removed": false
         },
         {
             "group": {
@@ -140,7 +140,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             "create_time": "1683777092",
             "update_at": "144235",
             "update_time": "1683777108",
-            "removed": true
+            "removed": false
         },
         {
             "group": {
@@ -155,7 +155,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             "create_time": "1683777092",
             "update_at": "144235",
             "update_time": "1683777108",
-            "removed": true
+            "removed": false
         },
         {
             "group": {
@@ -170,7 +170,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             "create_time": "1683777092",
             "update_at": "144235",
             "update_time": "1683777108",
-            "removed": true
+            "removed": false
         }
     ],
     "count": "5"
