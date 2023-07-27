@@ -91,6 +91,7 @@ const sidebars = {
             "guide/greenfield-blockchain/run-node/run-local-network",
             "guide/greenfield-blockchain/run-node/run-mainnet-node",
             "guide/greenfield-blockchain/run-node/run-testnet-node",
+            "guide/greenfield-blockchain/run-node/run-testnet-relayer-and-challenger",
             "guide/greenfield-blockchain/run-node/become-testnet-validator",
           ]
         }

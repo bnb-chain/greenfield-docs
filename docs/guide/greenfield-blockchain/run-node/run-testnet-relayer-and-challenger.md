@@ -1,17 +1,30 @@
 ---
 title: Run Testnet Relayer and Challenger
-order: 6
+order: 5
 ---
 
-# Run Relayer and Challenger on Testnet
+# Run Testnet Relayer and Challenger
 
 ## Relayer
+
+### Preparation
+
+Get the greenfield-relayer app by running the following command in your terminal:
+
+```bash
+git clone --branch "$(curl -s https://api.github.com/repos/bnb-chain/greenfield-relayer/releases/latest  | jq -r '.tag_name')" https://github.com/bnb-chain/greenfield-relayer.git
+cd greenfield-relayer
+```
 
 ### Deployment
 
 #### Config
 
-Modify `config.json` file in config folder. Or, you can create a new one and specify the path by `--config-path` flag when start the relayer.
+Modify `config/config.json`. Or, you can create a new one and specify the config path by `--config-path` flag when start the relayer.
+
+:::info
+See [testnet values](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-testnet-values/values.yaml#L4). Reference for a complete testnet config file
+:::
 
 1. Set your relayer private key and bls private key imported method (via file or aws secret), deployment environment and gas limit.
 
@@ -84,7 +97,8 @@ Modify `config.json` file in config folder. Or, you can create a new one and spe
 
 4. Config your database settings. We Support mysql or sqlite.
 
-    example: use mysql
+    example:  
+    use mysql
     ```
     "db_config": {
       "dialect": "mysql",
@@ -178,9 +192,24 @@ Or you can deploy the greenfield relayer application using Helm Chart V3. Please
 
 ## Challenger
 
+### Preparation
+
+Get the greenfield-challenger app by running the following command in your terminal:
+
+```bash
+git clone --branch "$(curl -s https://api.github.com/repos/bnb-chain/greenfield-challenger/releases/latest  | jq -r '.tag_name')" https://github.com/bnb-chain/greenfield-challenger.git
+cd greenfield-challenger
+```
+
 ### Deployment
 
 #### Config
+
+Modify `config/config.json`. Or, you can create a new one and specify the config path by `--config-path` flag when start the challenger.
+
+:::info
+See [testnet values](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-challenger-testnet-values/values.yaml#L4). Reference for a complete testnet config file
+:::
 
 1. Set your private key import method (via file or aws secret), deployment environment and gas limit.
 
