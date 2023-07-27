@@ -1,7 +1,8 @@
 ---
 title: Become Testnet Validator
-order: 5
+order: 6
 ---
+
 # Become Testnet Validator
 
 ## Minimum Requirements

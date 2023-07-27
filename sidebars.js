@@ -91,6 +91,7 @@ const sidebars = {
             "guide/greenfield-blockchain/run-node/run-local-network",
             "guide/greenfield-blockchain/run-node/run-mainnet-node",
             "guide/greenfield-blockchain/run-node/run-testnet-node",
+            "guide/greenfield-blockchain/run-node/run-testnet-relayer-and-challenger",
             "guide/greenfield-blockchain/run-node/become-testnet-validator",
           ]
         }
@@ -210,6 +211,7 @@ const sidebars = {
             "guide/greenfield-blockchain/cli/governance",
             "guide/greenfield-blockchain/cli/payment",
             "guide/greenfield-blockchain/cli/validator-staking",
+            "guide/greenfield-blockchain/cli/challenge"
           ]
         },
         require("./docs/greenfield-api/sidebar.js"),      
