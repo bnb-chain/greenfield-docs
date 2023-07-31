@@ -44,8 +44,16 @@ To ensure that the on-chain permission check can be completed within a constant 
 The storage module keeps state of the following primary objects:
 
 * BucketInfo
-* ObjectInfo
+
+https://github.com/bnb-chain/greenfield/blob/v0.2.3/proto/greenfield/storage/types.proto#L14C1-L41C2
+
+* ObjectInfo:
+
+https://github.com/bnb-chain/greenfield/blob/v0.2.3/proto/greenfield/storage/types.proto#L54C4-L87
+
 * GroupInfo
+
+https://github.com/bnb-chain/greenfield/blob/v0.2.3/proto/greenfield/storage/types.proto#L89-L104
 
 The primary objects are intended to be stored and accessed mainly using the auto-incremented sequence `ID`. 
 However, additional indices are also maintained for each primary object to ensure compatibility with the S3 object storage.

@@ -82,11 +82,3 @@ The user can use Resource-Based Policy to grant permissions to other accounts. A
 - A policy associate to a object/group can only allow to operator the object/group.
 
 In the reousrce-based policy, the user can use wildcard characters Greenfield Resource Names(GRNS) and other values to grant permission to a subset of objects. For Example, the user can only allow the grantee to access to the objects that begin with a common prefix or end with a given extension, such as `.html`.
-
-### Greenfield Resource Namme
-
-GRN define a standard ResourceName format, full name: GreenFieldResourceName. valid format:
-
-- bucket: "grn:b::bucketName"
-- object: "grn:o::bucketName/objectName"
-- group: "grn:g:ownerAddress:groupName"
