@@ -199,9 +199,7 @@ List all the objects under the same bucket
 	}
 ```
 
-
-Apart from the basic data queries shown above, there are many more features. Please see the[JSON-RPC API Reference](https://docs.bnbchain.org/greenfield-docs/docs/api-sdk/endpoints)for all Greenfield API definitions.
-
+Apart from the basic data queries shown above, there are many more features. Please see the[JSON-RPC API Reference](https://docs.bnbchain.org/greenfield-docs/docs/api/endpoints)for all Greenfield API definitions.
 
 
 ### Transactions
@@ -358,7 +356,7 @@ Bucket can be private or public. You can customize it with options.
 	opts := types.CreateBucketOptions{Visibility: visibility, ChargedQuota: chargedQuota}
 ```
 
-To understand how does `quota` work, read [this](https://docs.bnbchain.org/greenfield-docs/docs/guide/concept/billing-payment#storage-service-fee).
+To understand how does `quota` work, read [this](https://docs.bnbchain.org/greenfield-docs/docs/guide/core-concept/billing-payment#storage-service-fee).
 
 
 

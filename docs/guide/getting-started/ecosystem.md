@@ -78,8 +78,8 @@ continuously improve their services to avoid penalties and stay in the network.
 `Challenge Verifier` can only be operated by `Greenfield validators` right now, and will open to public in the future.
 
 ## How to Participate in the Ecosystem
-- [Become A Validator](../greenfield-blockchain/cli/validator-staking.md): `validators` secure the Greenfield by validating and relaying transactions,
+- [Become A Validator](../../api/blockchain-cli/validator-staking.md): `validators` secure the Greenfield by validating and relaying transactions,
   proposing, verifying and finalizing blocks.
-- [Become A Storage Provider](../greenfield-blockchain/cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid
+- [Become A Storage Provider](../../api/blockchain-cli/storage-provider.md): SPs store the objects' real data, i.e. the payload data. and get paid
   by providing storage services.
-- [Control Your Data](../greenfield-blockchain/cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.
+- [Control Your Data](../../api/blockchain-cli/storage.md): store and manage your data in a decentralized way, control and own it all by yourself.

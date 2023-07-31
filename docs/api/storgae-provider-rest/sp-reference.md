@@ -1,7 +1,4 @@
----
-title: Greenfield SP RESTful APIs Headers
-order: 2
----
+# Greenfield SP RESTful APIs
 
 ## Authorization header
 
@@ -71,7 +68,7 @@ The Greenfield Go SDK includes source code on GitHub that shows how to sign Gree
 
 ### CreateBucket approval
 
-When users send a `CreateBucket approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateBucket approval contains [7 fields](../get_approval.md#msgcreatebucket). Users should provide the creator address, bucketName and primary SP address. The other fields is optional. Users should verify the content of `CreateBucket approval` request. MsgCreateBucket encodes in `protobuf json` format and converts to lowercase hexadecimal characters.
+When users send a `CreateBucket approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateBucket approval contains [7 fields](./get_approval.md#msgcreatebucket). Users should provide the creator address, bucketName and primary SP address. The other fields is optional. Users should verify the content of `CreateBucket approval` request. MsgCreateBucket encodes in `protobuf json` format and converts to lowercase hexadecimal characters.
 
 ### CreateBucket approval unsigned msg example
 
@@ -111,7 +108,7 @@ X-Gnfd-Unsigned-Msg: 7b226275636b65745f6e616d65223a22676e666431222c2263686172676
 
 ### CreateObject approval
 
-When users send a `CreateObject approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateObject approval contains [10 fields](../get_approval.md#msgcreateobject). Users should provide the creator address, bucketName, objectName and payload data. The other fields is optional. Users should verify the content of `CreateObject approval` request. MsgCreateObject encodes in protobuf json format and converts to lowercase hexadecimal characters.
+When users send a `CreateObject approval` request, the request data is encoded in X-Gnfd-Unsigned-Msg header. CreateObject approval contains [10 fields](./get_approval.md#msgcreateobject). Users should provide the creator address, bucketName, objectName and payload data. The other fields is optional. Users should verify the content of `CreateObject approval` request. MsgCreateObject encodes in protobuf json format and converts to lowercase hexadecimal characters.
 
 - [CreateObject](https://github.com/bnb-chain/greenfield-go-sdk/blob/develop/client/api_object.go#L98)
 - [GetCreateObjectApproval](https://github.com/bnb-chain/greenfield-go-sdk/blob/develop/client/api_object.go#L526)
@@ -198,4 +195,34 @@ X-Gnfd-Signed-Msg: 7b226275636b65745f6e616d65223a22676e666431222c22636f6e74656e7
     "redundancy_type": "REDUNDANCY_EC_TYPE",
     "visibility": "VISIBILITY_TYPE_PRIVATE"
 }
+```
+
+## Virtual-hosted-style requests
+
+Greenfield SP supports both virtual-hosted-style and path-style URI. It's like AWS S3 so you can easily use Greenfield SP RESTful APIs.
+
+In a virtual-hosted–style URI, the bucket name is part of the domain name in the URL. Greenfield SP virtual-hosted–style URLs use the following format:
+
+```shell
+https://BucketName.gnfd-testnet-sp-*.bnbchain.org/key-name
+```
+
+In this example, `EXAMPLE-BUCKET` is the bucket name and `sp.pdf` is the key name:
+
+```shell
+https://EXAMPLE-BUCKET.gnfd-testnet-sp-*.bnbchain.org/sp.pdf
+```
+
+## Path-style requests
+
+In Greenfield SP, path-style URLs use the following format:
+
+```shell
+https://gnfd-testnet-sp-*.bnbchain.org/bucket-name/key-name
+```
+
+For example, if you create a bucket named `EXAMPLE-BUCKET`, and you want to access the `sp.pdf` object in that bucket, you can use the following path-style URL:
+
+```shell
+https://gnfd-testnet-sp-*.bnbchain.org/EXAMPLE-BUCKET/sp.pdf
 ```

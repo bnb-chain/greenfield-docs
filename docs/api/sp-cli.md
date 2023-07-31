@@ -1,11 +1,8 @@
 ---
-title: Storage Command Line
-dir:
-  order: 2
-order: 1
+title: Storage Provider Command Line Interface
 ---
 
-# Storage Command-Line Interface
+# Storage Provider Command Line Interface
 
 There is no set way to create a CLI, but Greenfield Storage Provider typically use the [urfave cli library v2](https://github.com/urfave/cli).
 Building a CLI with urfave cli entails defining commands, arguments, and flags. Commands understand the

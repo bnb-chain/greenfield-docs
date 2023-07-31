@@ -15,13 +15,13 @@ The transaction will be referred to as `Tx`.
 ### Transaction Creation
 
 There are various ways to create transactions. 
-While the command-line is a straightforward method to interact with an application, transactions can also be generated through a [gRPC or REST interface](../../api-sdk/blockchain-rest.md) or another entry point specified by the application developer. 
+While the command-line is a straightforward method to interact with an application, transactions can also be generated through a [gRPC or REST interface](../../api/blockchain-rest.md) or another entry point specified by the application developer. 
 The interaction between the user and the application varies based on the web interface or wallet they use. 
 For example, users can create `Tx` through platforms like [Lunie.io](https://lunie.io/#/) and sign them using a Ledger Nano S.
 
 #### Transaction Creation via Command Line
 One of the main application interfaces is the command-line interface. The transaction `Tx` can be created by the user 
-inputting a command in the following format from the [command-line](../greenfield-blockchain/cli/README.md), providing the type of transaction 
+inputting a command in the following format from the [command-line](../../api/blockchain-cli/README.md), providing the type of transaction 
 in `[command]`, arguments in `[args]`, and configurations such as gas prices in `[flags]`:
 
 ```bash
@@ -36,7 +36,7 @@ the transaction is originating from. For example, if the transaction is sending 
 
 ##### Gas and Fees
 
-Additionally, there are several [flags](../greenfield-blockchain/cli/README.md) users can use to indicate how much they are willing to pay in [fees](gas-fees.md):
+Additionally, there are several [flags](../../api/blockchain-cli/README.md) users can use to indicate how much they are willing to pay in [fees](gas-fees.md):
 
 * `--gas` refers to how much [gas](gas-fees.md). Different from other cosmos blockchain where gas represents computational 
 resources, on greenfield blockchain, the gas of a transaction is predefined. It is suggested to be estimated by providing `auto` 
@@ -157,24 +157,15 @@ passes all checks at this stage, it is still possible to be found invalid later 
 
 Consensus occurs in **rounds**, during which validator nodes agree on which transactions to accept.
 Each round begins with a proposer creating a block of the most
-recent transactions and ends with [**validators**](../introduction/ecosystem.md#validators), 
-special full-nodes with voting power responsible
-for consensus, agreeing to accept the block or go with a `nil` block instead. Validator nodes
-execute the consensus algorithm, the [Tendermint BFT](https://docs.tendermint.com/master/spec/consensus/consensus.html#terms),
-confirming the transactions using ABCI requests to the application, in order to come to this agreement.
+recent transactions and ends with [**validators**](../getting-started/ecosystem.md#validators), special full-nodes with voting power responsible
+for consensus, agreeing to accept the block or go with a `nil` block instead. Validator nodes execute the consensus algorithm, the [Tendermint BFT](https://docs.tendermint.com/master/spec/consensus/consensus.html#terms), confirming the transactions using ABCI requests to the application, in order to come to this agreement.
 
-The first step of consensus is the **block proposal**. One proposer amongst the validators is chosen
-by the consensus algorithm to create and propose a block - in order for a `Tx` to be included, it
-must be in this proposer's mempool.
+The first step of consensus is the **block proposal**. One proposer amongst the validators is chosen by the consensus algorithm to create and propose a block - in order for a `Tx` to be included, it must be in this proposer's mempool.
 
 ## State Changes
 
-The next step of the consensus is to execute the transactions to fully validate them. All full-nodes
-that receive a block proposal from the correct proposer execute the transactions by calling the ABCI functions
-`BeginBlock`, `DeliverTx` for each transaction,
-and `EndBlock`. While each full-node runs everything
-locally, this process yields a single, unambiguous result, since the messages' state transitions are deterministic and transactions are
-explicitly ordered in the block proposal.
+The next step of the consensus is to execute the transactions to fully validate them. All full-nodes that receive a block proposal from the correct proposer execute the transactions by calling the ABCI functions
+`BeginBlock`, `DeliverTx` for each transaction, and `EndBlock`. While each full-node runs everything locally, this process yields a single, unambiguous result, since the messages' state transitions are deterministic and transactions are explicitly ordered in the block proposal.
 
 ```text
 		-----------------------

@@ -35,7 +35,7 @@ The Authorization Header could be composed of 3 parts.
 
 #### Auth type
 
-Update_key API expects `PersonalSign ECDSA-secp256k1` as [authentication type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/reference/gnfd_headers.html#authentication-type) and [encryption algorithm type](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/reference/gnfd_headers.html#encryption-algorithm-type) in HTTP Authorization header.
+Update_key API expects `PersonalSign ECDSA-secp256k1` as [authentication type](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/sp-reference.html#authentication-type) and [encryption algorithm type](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/sp-reference.html#encryption-algorithm-type) in HTTP Authorization header.
 
 #### SignedMsg
 

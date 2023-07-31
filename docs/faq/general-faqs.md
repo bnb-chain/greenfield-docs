@@ -13,12 +13,12 @@ You can acquire BNB in multiple ways:
 
 ### What is the utility of BNB on Greenfield?
 
-BNB is used as staking token, gas token, storage service fee token, governance token. Refer to [token economics](../guide/concept/gas-fees.md)
+BNB is used as staking token, gas token, storage service fee token, governance token. Refer to [token economics](../guide/core-concept/gas-fees.md)
 for more details.
 
 ### Does Greenfield support smart contract?
 
-The Greenfield blockchain does not support smart contract, but the native cross chain between BSC and Greenfield bring programmability to the ecosystem. More tech details is explained [here](../guide/concept/programmability.md), you can start integrating smart contract with Greenfield following the [tutorial](../guide/dapp/quick-start.md).
+The Greenfield blockchain does not support smart contract, but the native cross chain between BSC and Greenfield bring programmability to the ecosystem. More tech details is explained [here](../guide/core-concept/programmability.md), you can start integrating smart contract with Greenfield following the [tutorial](../guide/dapp/quick-start.md).
 
 ### What consensus algorithm does Greenfield run on?
 

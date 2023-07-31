@@ -20,7 +20,7 @@ This API is used to get bucket meta by bucket name. And it supports both `virtua
 
 | ParameterName                                                     | Type   | Required | Description                                   |
 |-------------------------------------------------------------------|--------|----------|-----------------------------------------------|
-| [Authorization](./reference/gnfd_headers.md#authorization-header) | string | yes      | The authorization string of the HTTP request. |
+| [Authorization](../storgae-provider-rest/sp-reference.md#authorization-header) | string | yes      | The authorization string of the HTTP request. |
 <!--TODO:Authorization is no longer needed in the next testnet release-->
 ## HTTP Request Parameter
 

@@ -308,6 +308,6 @@ gnfd tx sp edit-storage-provider [sp-address] [flags]
 
 Users can use Greenfield Cmd or DCellar to operate in Testnet:
 
-* Greenfield Cmd: [docs](../../getting-started/interact-with-greenfield.md), [repo](https://github.com/bnb-chain/greenfield-cmd)
+* Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 
 * DCellar: [website](https://dcellar.io/)

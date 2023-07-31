@@ -34,10 +34,9 @@ const sidebars = {
       items:[
         "guide/getting-started/overview",
         "guide/getting-started/wallet-onfiguration",
-        "guide/getting-started/resources",
+        "guide/getting-started/network-info",
         "guide/getting-started/get-test-bnb",
-        //"guide/getting-started/interact-with-greenfield",
-        "guide/introduction/ecosystem",
+        "guide/getting-started/ecosystem",
       ],
     },
     {
@@ -46,14 +45,14 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items:[
-        "guide/concept/accounts",
-        "guide/concept/billing-payment",
-        "guide/concept/simple-storage-svc-model",
-        "guide/concept/programmability",
-        "guide/concept/data-availability",
-        "guide/concept/transaction-lifecycle",
-        "guide/concept/data-storage",
-        "guide/concept/gas-fees",
+        "guide/core-concept/accounts",
+        "guide/core-concept/billing-payment",
+        "guide/core-concept/simple-storage-svc-model",
+        "guide/core-concept/programmability",
+        "guide/core-concept/data-availability",
+        "guide/core-concept/transaction-lifecycle",
+        "guide/core-concept/data-storage",
+        "guide/core-concept/gas-fees",
       ],
     },
     {
@@ -181,28 +180,27 @@ const sidebars = {
       items:[
       ]
     },
-    // {type:'doc', label:'FAQs', id:'faq/greenfield-faqs'},
     {type:'doc', label:'Contribute', id:'contribute'},
   ],
 
   apiReferenceSidebar:[
-    {type: 'doc', label:'RPC Endpoints', id: 'api-sdk/endpoints'},
+    {type: 'doc', label:'RPC Endpoints', id: 'api/endpoints'},
     {
       type: "category",
       label: "Blockchain Command Line",
-      link: {type: 'doc', id:'guide/greenfield-blockchain/cli/README'},
+      link: {type: 'doc', id:'api/blockchain-cli/README'},
       collapsible: true,
       collapsed: true,
       items:[
-        "guide/greenfield-blockchain/cli/key-management",
-        "guide/greenfield-blockchain/cli/bank",
-        "guide/greenfield-blockchain/cli/storage",
-        "guide/greenfield-blockchain/cli/storage-provider",
-        "guide/greenfield-blockchain/cli/bridge",
-        "guide/greenfield-blockchain/cli/governance",
-        "guide/greenfield-blockchain/cli/payment",
-        "guide/greenfield-blockchain/cli/validator-staking",
-        "guide/greenfield-blockchain/cli/challenge"
+        "api/blockchain-cli/key-management",
+        "api/blockchain-cli/bank",
+        "api/blockchain-cli/storage",
+        "api/blockchain-cli/storage-provider",
+        "api/blockchain-cli/bridge",
+        "api/blockchain-cli/governance",
+        "api/blockchain-cli/payment",
+        "api/blockchain-cli/validator-staking",
+        "api/blockchain-cli/challenge"
       ]
     },
     {
@@ -210,7 +208,7 @@ const sidebars = {
       label: "Blockchain API",
       link: {
         type: 'doc',
-        id: 'api-sdk/blockchain-rest',
+        id: 'api/blockchain-rest',
       },
       // @ts-ignore
       items: [
@@ -220,49 +218,49 @@ const sidebars = {
       
     },
     {
-      type: 'doc', label:'Storage Command Line', id: 'guide/storage-provider/cli/cli',
+      type: 'doc', label:'Storage Command Line', id: 'api/sp-cli',
     },
     {
       type:"category",
       label: "Storage Provider API",
       link: {
         type: 'doc',
-        id: 'api-sdk/storgae-provider-rest/reference/sp-reference',
+        id: 'api/storgae-provider-rest/sp-reference',
       },
       items:[
-            "api-sdk/storgae-provider-rest/get_approval",
-          "api-sdk/storgae-provider-rest/put_object",
-          "api-sdk/storgae-provider-rest/get_object",
-          "api-sdk/storgae-provider-rest/query_bucket_read_quota",
-          "api-sdk/storgae-provider-rest/list_bucket_read_records",
-          "api-sdk/storgae-provider-rest/get_user_buckets",
-          "api-sdk/storgae-provider-rest/list_objects_by_bucket",
-          "api-sdk/storgae-provider-rest/get_nonce",
-          "api-sdk/storgae-provider-rest/update_key",
-          "api-sdk/storgae-provider-rest/get_group_list",
-          "api-sdk/storgae-provider-rest/sp_response",
-          "api-sdk/storgae-provider-rest/list_objects_by_object_ids",
-          "api-sdk/storgae-provider-rest/list_buckets_by_bucket_ids",
-          "api-sdk/storgae-provider-rest/verify_permission",
-          "api-sdk/storgae-provider-rest/get_object_meta",
-          "api-sdk/storgae-provider-rest/get_bucket_meta",
+          "api/storgae-provider-rest/get_approval",
+          "api/storgae-provider-rest/put_object",
+          "api/storgae-provider-rest/get_object",
+          "api/storgae-provider-rest/query_bucket_read_quota",
+          "api/storgae-provider-rest/list_bucket_read_records",
+          "api/storgae-provider-rest/get_user_buckets",
+          "api/storgae-provider-rest/list_objects_by_bucket",
+          "api/storgae-provider-rest/get_nonce",
+          "api/storgae-provider-rest/update_key",
+          "api/storgae-provider-rest/get_group_list",
+          "api/storgae-provider-rest/sp_response",
+          "api/storgae-provider-rest/list_objects_by_object_ids",
+          "api/storgae-provider-rest/list_buckets_by_bucket_ids",
+          "api/storgae-provider-rest/verify_permission",
+          "api/storgae-provider-rest/get_object_meta",
+          "api/storgae-provider-rest/get_bucket_meta",
           
       ]        
     },
 
-    {type: 'doc', id: 'api-sdk/events'},
+    {type: 'doc', id: 'api/events'},
 
     {
       type: "category",
       label: "SDKs",
       link: {
         type: 'doc',
-        id: 'api-sdk/sdks',
+        id: 'sdks/sdks',
       },
       items:[
-        "api-sdk/sdk-go",
-        "api-sdk/sdk-js",
-        "api-sdk/key-management"
+        "sdks/sdk-go",
+        "sdks/sdk-js",
+        "sdks/key-management"
       ],
     },
   ],

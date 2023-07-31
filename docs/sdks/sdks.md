@@ -9,8 +9,8 @@ pagination_prev: null
 Below is the list of Official SDKs for BNB Greenfield in different languages. 
 
 ## Official SDKs
-* [Go SDK](sdk-go)
-* [Javascript SDK](sdk-js)
+* [Go SDK](sdk-go.md)
+* [Javascript SDK](sdk-js.md)
 
 
 
