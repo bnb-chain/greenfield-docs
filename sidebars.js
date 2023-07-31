@@ -181,12 +181,30 @@ const sidebars = {
       items:[
       ]
     },
-    {type:'doc', label:'FAQs', id:'faq/greenfield-faqs'},
+    // {type:'doc', label:'FAQs', id:'faq/greenfield-faqs'},
     {type:'doc', label:'Contribute', id:'contribute'},
   ],
 
   apiReferenceSidebar:[
     {type: 'doc', label:'RPC Endpoints', id: 'api-sdk/endpoints'},
+    {
+      type: "category",
+      label: "Blockchain Command Line",
+      link: {type: 'doc', id:'guide/greenfield-blockchain/cli/README'},
+      collapsible: true,
+      collapsed: true,
+      items:[
+        "guide/greenfield-blockchain/cli/key-management",
+        "guide/greenfield-blockchain/cli/bank",
+        "guide/greenfield-blockchain/cli/storage",
+        "guide/greenfield-blockchain/cli/storage-provider",
+        "guide/greenfield-blockchain/cli/bridge",
+        "guide/greenfield-blockchain/cli/governance",
+        "guide/greenfield-blockchain/cli/payment",
+        "guide/greenfield-blockchain/cli/validator-staking",
+        "guide/greenfield-blockchain/cli/challenge"
+      ]
+    },
     {
       type: "category",
       label: "Blockchain API",
@@ -196,40 +214,22 @@ const sidebars = {
       },
       // @ts-ignore
       items: [
-        {
-          type: "category",
-          label: "Command Line",
-          link: {type: 'doc', id:'guide/greenfield-blockchain/cli/README'},
-          collapsible: true,
-          collapsed: true,
-          items:[
-            "guide/greenfield-blockchain/cli/key-management",
-            "guide/greenfield-blockchain/cli/bank",
-            "guide/greenfield-blockchain/cli/storage",
-            "guide/greenfield-blockchain/cli/storage-provider",
-            "guide/greenfield-blockchain/cli/bridge",
-            "guide/greenfield-blockchain/cli/governance",
-            "guide/greenfield-blockchain/cli/payment",
-            "guide/greenfield-blockchain/cli/validator-staking",
-            "guide/greenfield-blockchain/cli/challenge"
-          ]
-        },
+        
         require("./docs/greenfield-api/sidebar.js"),      
     ]
       
     },
     {
+      type: 'doc', label:'Storage Command Line', id: 'guide/storage-provider/cli/cli',
+    },
+    {
       type:"category",
       label: "Storage Provider API",
+      link: {
+        type: 'doc',
+        id: 'api-sdk/storgae-provider-rest/reference/sp-reference',
+      },
       items:[
-        {
-          type: 'doc', id: 'guide/storage-provider/cli/cli',
-        },
-        {
-          type:"category",
-          label: "API Endpoints",
-          collapsed: true,
-          items:[
             "api-sdk/storgae-provider-rest/get_approval",
           "api-sdk/storgae-provider-rest/put_object",
           "api-sdk/storgae-provider-rest/get_object",
@@ -246,17 +246,8 @@ const sidebars = {
           "api-sdk/storgae-provider-rest/verify_permission",
           "api-sdk/storgae-provider-rest/get_object_meta",
           "api-sdk/storgae-provider-rest/get_bucket_meta",
-          ]
-        },
-        {
-          type:"category",
-          label: "Reference",
-          items:[
-            "api-sdk/storgae-provider-rest/reference/virtual_hosting_of_buckets",
-            "api-sdk/storgae-provider-rest/reference/gnfd_headers"
-          ]
-        },
-      ]
+          
+      ]        
     },
 
     {type: 'doc', id: 'api-sdk/events'},

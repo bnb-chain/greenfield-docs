@@ -82,7 +82,7 @@ const config = {
           },
           {
             //type: 'dropdown',
-            label: "API Reference",
+            label: "API & SDK",
             position: "left",
             to: "/docs/api-sdk/endpoints",
           },

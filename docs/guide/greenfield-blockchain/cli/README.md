@@ -1,15 +1,14 @@
 ---
-title: Command Line
+title: Blockchain Command Line
 index: true
 dir:
   order: 4
 ---
 
-# Command-Line Interface
+# Blockchain Command-Line Interface
 
 :::info
-Since Greenfield Command Line interface is derived from Cosmos, The majority of the content in this page is copied from the 
-[Cosmos SDK](https://docs.cosmos.network/main/core/cli).
+Since Greenfield Command Line interface is derived from Cosmos, The majority of the content in this page is copied from the [Cosmos SDK](https://docs.cosmos.network/main/core/cli).
 :::
 
 There is no set way to create a CLI, but Greenfield typically use the [Cobra Library](https://github.com/spf13/cobra). 
