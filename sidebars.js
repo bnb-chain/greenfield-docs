@@ -179,6 +179,7 @@ const sidebars = {
       collapsed: true,
       link: {type:'doc', id:'guide/native-app/overview'},
       items:[
+        "guide/native-app/batch-upload"
       ]
     },
     {type:'doc', label:'FAQs', id:'faq/greenfield-faqs'},
