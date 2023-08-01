@@ -11,7 +11,7 @@ This API is used to query bucket read quota. And it supports both `virtual-hoste
 ## HTTP Request Format
 
 | Description                | Definition                                |
-|----------------------------|-------------------------------------------|
+| -------------------------- | ----------------------------------------- |
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
 | Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
@@ -20,8 +20,8 @@ You should set `BucketName` in url host to determine which bucket do you want to
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
+| ParameterName                                                            | Type   | Required | Description                                  |
+| ------------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
 | [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -33,7 +33,7 @@ None
 ### Query Parameter
 
 | ParameterName | Type   | Required | Description                                                  |
-|---------------|--------|----------|--------------------------------------------------------------|
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
 | read-quota    | string | yes      | Read quota path                                              |
 | year-month    | string | yes      | YearMonth is used to specify queried month, format "2023-03" |
 
@@ -54,7 +54,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName     | Type   | Description                           |
-|-------------------|--------|---------------------------------------|
+| ----------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
 | Content-Type      | string | value is `application/xml`            |
 
@@ -65,7 +65,7 @@ The response returns the following HTTP headers.
 If the request is successful, the service sends back an HTTP 200 response.
 
 | ParameterName       | Type    | Description                                                         |
-|---------------------|---------|---------------------------------------------------------------------|
+| ------------------- | ------- | ------------------------------------------------------------------- |
 | BucketName          | string  | bucket name                                                         |
 | BucketID            | string  | bucket id                                                           |
 | ReadQuotaSize       | integer | ReadQuotaSize is the greenfield chain bucket info's read quota size |

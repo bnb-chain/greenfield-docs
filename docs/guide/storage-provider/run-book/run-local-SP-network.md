@@ -42,13 +42,13 @@ make: *** [build] Error 1
 
 ```shell
 # 1 validator and 7 storage providers
-bash ./deployment/localup/localup.sh all 1 7
+bash ./deployment/localup/localup.sh all 1 8
 ```
 
 3. Export the keys of sps
 
 ```shell
-bash ./deployment/localup/localup.sh export_sps 1 7
+bash ./deployment/localup/localup.sh export_sps 1 8
 
 # result example
 # {
@@ -72,7 +72,7 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 These JSON data will be used for setup local SP network, so you'd better save it as a json file:
 
 ```shell
-bash ./deployment/localup/localup.sh export_sps 1 7 > sp.json
+bash ./deployment/localup/localup.sh export_sps 1 8 > sp.json
 ```
 
 ## Setup local SP network
