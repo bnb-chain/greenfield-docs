@@ -10,7 +10,7 @@ order: 7
 
 ## Greenfield v0.2.3 - Testnet Maintenance Upgrade Reset.
 
-On August 3rf, we reset the Greenfield Testnet and upgrade the Greenfield version to v0.2.3. Here are key changes to note.
+On August 3rd, we reset the Greenfield Testnet and upgrade the Greenfield version to [v0.2.3](https://github.com/bnb-chain/greenfield/tree/v0.2.3). Here are key changes to note.
 
 **Greenfield Blockchain Changelog**
 
