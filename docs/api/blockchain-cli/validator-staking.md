@@ -490,8 +490,8 @@ The content of create-validator.json:
       "details":""
     },
     "commission":{
-      "rate":"0.100000000000000000",
-      "max_rate":"0.200000000000000000",
+      "rate":"0.070000000000000000",
+      "max_rate":"1.000000000000000000",
       "max_change_rate":"0.010000000000000000"
     },
     "min_self_delegation":"1000000000000000000000",
@@ -507,7 +507,9 @@ The content of create-validator.json:
     },
     "from":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
     "relayer_address":"0xBefD69cb71403DF7BA20310FB216e1Fb7bAC6321",
-    "relayer_blskey":"ac1e598ae0ccbeeaafa31bc6faefa85c2ae3138699cac79169cd718f1a38445201454ec092a86f200e08a15266bdc600"
+    "challenger_address":"0xc6C51ae1d83257B833Fe64413cf3d30F2F624ae7",
+    "bls_key":"ac1e598ae0ccbeeaafa31bc6faefa85c2ae3138699cac79169cd718f1a38445201454ec092a86f200e08a15266bdc600",
+    "bls_proof":"88faf4af49c73ff6647465e8791ad861e5da080157beadaab415a0b09bb431514810e30500ac0806fc7eefbf39b545e6161ef40f9e68a196382ed0b0f1bdde6507a94b03347b12f620feed99990d50c3c3e01b906b553c5cce79fb37cf09e4c6"
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
