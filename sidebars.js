@@ -158,26 +158,40 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Building Smart Contract Dapp",
+      label: "Tutorials",
       collapsible: true,
       collapsed: true,
-      link: {type:'doc', id:'guide/dapp/overview'},
+      link: {type:'doc', id:'guide/tutorials/overview'},
       items:[
-        "guide/dapp/quick-start",
-        "guide/dapp/primitive-interface",
-        "guide/dapp/dapp-integration",
-        "guide/dapp/permisson-control",
-        "guide/dapp/contract-list",
-        "guide/dapp/showcases"
-      ]
-    },
-    {
-      type: "category",
-      label: "Building Native Dapp",
-      collapsible: true,
-      collapsed: true,
-      link: {type:'doc', id:'guide/native-app/overview'},
-      items:[
+        {
+          type: "category",
+          label: "Building Smart Contract dApps",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'guide/tutorials/dapp/overview'},
+          items:[
+            "guide/tutorials/dapp/overview",
+            "guide/tutorials/dapp/quick-start",
+            "guide/tutorials/dapp/primitive-interface",
+            "guide/tutorials/dapp/dapp-integration",
+            "guide/tutorials/dapp/permission-control",
+            "guide/tutorials/dapp/contract-list",
+            "guide/tutorials/dapp/showcases"
+          ]
+        },
+        {
+          type: "category",
+          label: "Building Native dApps",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'guide/tutorials/native-dapp/overview'},
+          items:[
+            "guide/tutorials/native-dapp/overview",
+            "guide/tutorials/native-dapp/file-management-cli/overview",
+            "guide/tutorials/native-dapp/hosting-websites-cli/overview",
+            "guide/tutorials/native-dapp/file-management-sdk/overview",
+          ]
+        },
       ]
     },
     {type:'doc', label:'Contribute', id:'contribute'},
