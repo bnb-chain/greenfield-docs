@@ -20,7 +20,7 @@ This API is used to upload an object to Greenfield SP. And it supports both `vir
 
 | ParameterName                                                      | Type   | Required | Description                                                                                        |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------------------------------------------------------------|
-| [Authorization](../storgae-provider-rest/sp-reference.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
+| [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
 | Content-Type                                                       | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
 | Content-Length                                                     | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
 

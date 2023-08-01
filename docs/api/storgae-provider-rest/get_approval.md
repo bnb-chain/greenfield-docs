@@ -20,12 +20,12 @@ This API only supports path-style requests.
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| X-Gnfd-Unsigned-Msg                                                | string | yes      | defines unsigned msg                         |
-| [Authorization](../storgae-provider-rest/sp-reference.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
+| ParameterName                                                            | Type   | Required | Description                                  |
+|--------------------------------------------------------------------------|--------|----------|----------------------------------------------|
+| X-Gnfd-Unsigned-Msg                                                      | string | yes      | defines unsigned msg                         |
+| [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
-X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [MsgCreateObject](#msgcreateobject). You can read [Greenfield headers](../storgae-provider-rest/sp-reference.md) to know how to marshal and unmarshal them.
+X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [MsgCreateObject](#msgcreateobject). You can read [Greenfield headers](../storgae-provider-rest/README.md) to know how to marshal and unmarshal them.
 
 ### MsgCreateBucket
 
@@ -111,10 +111,10 @@ Authorization: Authorization
 
 The response returns the following HTTP headers.
 
-| ParameterName                                                       | Type   | Description                           |
-|---------------------------------------------------------------------|--------|---------------------------------------|
-| X-Gnfd-Request-ID                                                   | string | defines trace id, trace request in sp |
-| [X-Gnfd-Signed-Msg](../storgae-provider-rest/sp-reference.md#x-gnfd-signed-msg) | string | defines signed msg                    |
+| ParameterName                                                             | Type   | Description                           |
+|---------------------------------------------------------------------------|--------|---------------------------------------|
+| X-Gnfd-Request-ID                                                         | string | defines trace id, trace request in sp |
+| [X-Gnfd-Signed-Msg](../storgae-provider-rest/README.md#x-gnfd-signed-msg) | string | defines signed msg                    |
 
 ## HTTP Response Parameter
 
