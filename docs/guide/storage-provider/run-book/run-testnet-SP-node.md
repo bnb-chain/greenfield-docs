@@ -318,3 +318,32 @@ Users can use Greenfield Cmd or DCellar to operate in Testnet:
 * Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 
 * DCellar: [website](https://dcellar.io/)
+
+### Support both path-style and virtual-style routers in https certificates
+TBD
+### Cross Region Configuration
+When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.  
+See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+
+If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
+
+![CORS ERROR](../../../../static/asset/405-cors-error.png)
+
+Most people run their SP services behind the nginx or other similar reverse proxies. Usually the CORS settings should be configured in those reverse proxies.
+
+We recommend SP with reverse proxy can return the following headers:
+
+```
+access-control-allow-headers: *
+access-control-allow-methods: *
+access-control-allow-origin: *
+access-control-expose-headers: *
+```
+
+After you finish the configuration, you can verify if it works in DCellar.  
+1. Go to https://dcellar.io
+2. Press F12 to launch web developer tools and go to "Network" tab.
+3. Connect your wallet
+4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
+![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
+
