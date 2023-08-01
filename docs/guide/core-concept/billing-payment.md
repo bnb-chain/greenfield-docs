@@ -36,7 +36,7 @@ For storage fee, it will be not streamed to storage providers directly. It will 
 - Global Virtual Group's virtual funding address for all secondary sp's **object storage fee**
 - Validator tax pool for extra tax fee (e.g. 1%), which will be used for rewarding data availability challenge submitters.
 
-When storage providers want to ge their income, they can withdraw from Global Virtual Group Family and Global Virtual Group 
+When storage providers want to get their income, they can withdraw from Global Virtual Group Family and Global Virtual Group 
 they are in.
 The validator tax pool cannot be controlled via any private key, and is used for challenge reward.
 
