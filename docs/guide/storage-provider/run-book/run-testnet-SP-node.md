@@ -243,8 +243,12 @@ $ cat ./create_sp.json
 ```
 
 :::note
-You can get the minium deposit tokens by quering on-chain parameters. `./gnfd q sp params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
+You can get the mininum deposit tokens by quering on-chain parameters. 
 
+`./gnfd q sp params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
+:::
+
+:::note
 You can get the gov account by the above command
 
 ```shell
@@ -252,7 +256,24 @@ curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/aut
 ```
 :::
 
-### 2. Wait voting and check voting result
+:::note
+You can get the mininum deposit for proposal by the above command. Please make sure that the initial deposit is greater than min_deposit when submitting the proposal.
+```shell
+curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/gov/v1/params/deposit" -H  "accept: application/json"
+```
+:::
+
+### 2. deposit tokens to the proposal
+
+You can skip this step if  the initial deposit amount is greater than the min deposit required by the proposal.
+
+Each proposal needs to deposit enough tokens to enter the voting phase.
+
+```shell
+./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+```
+
+### 3. Wait voting and check voting result
 
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
