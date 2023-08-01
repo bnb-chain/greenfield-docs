@@ -179,6 +179,7 @@ const sidebars = {
       link: {type:'doc', id:'guide/native-app/overview'},
       items:[
         "guide/native-app/resumable-upload",
+        "guide/native-app/batch-upload"
       ]
     },
     {type:'doc', label:'Contribute', id:'contribute'},
@@ -213,7 +214,7 @@ const sidebars = {
       },
       // @ts-ignore
       items: [
-        
+
         require("./docs/greenfield-api/sidebar.js"),      
     ]
       
@@ -246,8 +247,8 @@ const sidebars = {
           "api/storgae-provider-rest/verify_permission",
           "api/storgae-provider-rest/get_object_meta",
           "api/storgae-provider-rest/get_bucket_meta",
-          
-      ]        
+
+      ]
     },
 
     {type: 'doc', id: 'api/events'},
