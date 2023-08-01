@@ -9,18 +9,20 @@ order: 3
 - **Tendermint RPC:**
 
   - `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org`
-  - `https://gnfd-testnet-fullnode-tendermint-us.nodereal.io`
+  - `https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org`
+
+- **Open API:**
+  - `https://greenfield.bnbchain.org/openapi`
 
 ### Greenfield Storage Provider (Testnet)
 
-- `https://gnfd-testnet-sp-1.bnbchain.org`
-- `https://gnfd-testnet-sp-2.bnbchain.org`
-- `https://gnfd-testnet-sp-3.bnbchain.org`
-- `https://gnfd-testnet-sp-4.bnbchain.org`
-- `https://gnfd-testnet-sp-5.bnbchain.org`
-- `https://gnfd-testnet-sp-6.bnbchain.org`
-- `https://gnfd-testnet-sp-7.bnbchain.org`
-- `https://gnfd-testnet-sp-1.nodereal.io`
+- `https://gnfd-testnet-sp1.bnbchain.org`
+- `https://gnfd-testnet-sp2.bnbchain.org`
+- `https://gnfd-testnet-sp3.bnbchain.org`
+- `https://gnfd-testnet-sp4.bnbchain.org`
+- `https://gnfd-testnet-sp1.nodereal.io`
+- `https://gnfd-testnet-sp2.nodereal.io`
+- `https://gnfd-testnet-sp3.nodereal.io`
 
 ### BSC (Testnet chain-id 97)
 
