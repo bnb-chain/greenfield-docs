@@ -18,7 +18,7 @@ Write once, run on every storage service.
 
 ## Overview
 
-The core function of PieceStore module is to be compatible with multiple object storage or KV storage such as S3, GCS, Azure Blob, Minio, Ceph, IPFS, DiskFile, Memory, etc. Different SP can use different object storage without caring about the underlying implementation.
+The core function of PieceStore module is to be compatible with multiple object storage or KV storage such as S3, GCS, Azure Blob, MinIO, Ceph, IPFS, DiskFile, Memory, etc. Different SP can use different object storage without caring about the underlying implementation.
 
 ![SP-piece-store-arch](../../../../static/asset/11-SP-Piecestore-Arch.jpg)
 
@@ -61,7 +61,7 @@ The common interface is as follows:
 
 ```go
 // ObjectStorage is a common interface that must be implemented if some users want to use an object
-// storage (such as S3, Azure Blob, Minio, OSS, COS, etc)
+// storage (such as S3, Azure Blob, MinIO, OSS, COS, etc)
 type ObjectStorage interface {
     // String the description of an object storage
     String() string

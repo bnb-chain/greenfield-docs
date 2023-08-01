@@ -17,15 +17,16 @@ The following lists the recommended hardware requirements:
 * 5 Greenfield accounts with enough BNB tokens.
 
 :::danger IMPORTANT
-Each storage provider will hold 5 different accounts serving different purposes:
+Each storage provider will hold 6 different accounts serving different purposes:
 
 * Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
 * Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
+* Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
 
-You can use the below command to generate this five accounts:
+You can use the below command to generate this six accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
@@ -33,6 +34,7 @@ You can use the below command to generate this five accounts:
 ./build/bin/gnfd keys add seal --keyring-backend os
 ./build/bin/gnfd keys add approval --keyring-backend os
 ./build/bin/gnfd keys add gc --keyring-backend os
+./build/bin/gnfd keys add bls --keyring-backend os --algo eth_bls
 ```
 
 and then export the private key to prepare for SP deployment:
@@ -43,10 +45,21 @@ and then export the private key to prepare for SP deployment:
 ./build/bin/gnfd keys export seal --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export approval --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export gc --unarmored-hex --unsafe --keyring-backend os
+./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-Please keep these five private keys safe!
+Please keep these six private keys safe!
 
+Also, obtain bls public key, bls proof to fill in the proposal of creating Storage Provider
+
+bls_pub_key: 
+```shell
+./build/bin/gnfd keys show bls --keyring-backend os --output json | jq -r '.pubkey_hex' 
+```
+bls_proof:
+```shell
+./build/bin/gnfd keys sign "${bls_pub_key}"   --from bls --keyring-backend os
+```
 :::
 
 ## Create Storage Provider
@@ -112,6 +125,7 @@ FundingPrivateKey = '${funding_private_key}'
 SealPrivateKey = '${seal_private_key}'
 ApprovalPrivateKey = '${approval_private_key}'
 GcPrivateKey = '${gc_private_key}'
+BlsPrivateKey = '${bls_private_key}'
 
 [Endpoint]
 ApproverEndpoint = 'manager:9333'
@@ -155,7 +169,7 @@ BsDBSwitchCheckIntervalSec = 30
 
 [BlockSyncer]
 Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree']
-Dsn = ""
+Dsn = "user:passwd*@tcp(localhost:3306)/block_syncer?parseTime=true&multiStatements=true&loc=Local"
 DsnSwitched = ''
 RecreateTables = false
 Workers = 50
@@ -174,7 +188,9 @@ EnableDualDB = false
 
 `P2PBootstrap` consists of [node_id1@ip1:port1, node_id2@ip1:port2], you can use P2PAntAddress or P2PAddress as `ip:port`.
 
-We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey and P2PPrivatekey` into environment variables for safety.
+`BlockSyncer.Dsn` the user name and password need to be replaced, but this value can also be set in the environment variable BLOCK_SYNCER_DSN, which the code reads first as a configuration
+
+We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey, BlsPrivateKey and P2PPrivatekey` into environment variables for safety.
 
 :::
 
@@ -182,11 +198,16 @@ We recommend you writing `db User, db password, db address, bucketURL, OperatorP
 
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
+block_syncer and block_syncer_backup require the utf8mb4_unicode_ci encoding format
+
 ```shell
 # login in mysql and create database
+# the default encoding for the database should be utf8mb4_unicode_ci
 mysql> CREATE DATABASE storage_provider_db;
 mysql> CREATE DATABASE block_syncer;
 mysql> CREATE DATABASE block_syncer_backup;
+# Check the database encoding format
+mysql> show create database block_syncer;
 ```
 
 ### 4. Run SP
@@ -230,9 +251,11 @@ $ cat ./create_sp.json
       "amount":"1000000000000000000000"
     },
     "read_price": "0.108",
-    "store_price": "0.016",
-    "free_read_quota": 1073741824,
-    "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2"
+    "store_price": "0.016"",
+    "free_read_quota": 10000,
+    "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
+    "bls_key": "{bls_pub_key}",
+    "bls_proof": "{bls_proof}"
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
@@ -317,6 +340,35 @@ gnfd tx sp edit-storage-provider [sp-address] [flags]
 
 Users can use Greenfield Cmd or DCellar to operate in Testnet:
 
-* Greenfield Cmd: [docs](../../getting-started/interact-with-greenfield.md), [repo](https://github.com/bnb-chain/greenfield-cmd)
+* Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 
 * DCellar: [website](https://dcellar.io/)
+
+### Support both path-style and virtual-style routers in https certificates
+TBD
+### Cross Region Configuration
+When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.  
+See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+
+If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
+
+![CORS ERROR](../../../../static/asset/405-cors-error.png)
+
+Most people run their SP services behind the nginx or other similar reverse proxies. Usually the CORS settings should be configured in those reverse proxies.
+
+We recommend SP with reverse proxy can return the following headers:
+
+```
+access-control-allow-headers: *
+access-control-allow-methods: *
+access-control-allow-origin: *
+access-control-expose-headers: *
+```
+
+After you finish the configuration, you can verify if it works in DCellar.  
+1. Go to https://dcellar.io
+2. Press F12 to launch web developer tools and go to "Network" tab.
+3. Connect your wallet
+4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
+![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
+

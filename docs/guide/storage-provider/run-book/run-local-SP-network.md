@@ -42,13 +42,13 @@ make: *** [build] Error 1
 
 ```shell
 # 1 validator and 7 storage providers
-bash ./deployment/localup/localup.sh all 1 7
+bash ./deployment/localup/localup.sh all 1 8
 ```
 
 3. Export the keys of sps
 
 ```shell
-bash ./deployment/localup/localup.sh export_sps 1 7
+bash ./deployment/localup/localup.sh export_sps 1 8
 
 # result example
 # {
@@ -63,6 +63,7 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 #     "SealPrivateKey": "aacd6b834627fdbc5de2bfdb1db31be0ea810a941854787653814c8040a9dd39",
 #     "ApprovalPrivateKey": "32108ed1a47c0af965824f84ac2162c029f347eec6d0988e642330b0ac264c85",
 #     "GcPrivateKey": "2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d"
+#     "BlsPrivateKey": "6f349866f18413abb1a78cab947933459042044649686f354e941a646b9ed6e7"
 #   }
 #   ...
 # }
@@ -71,7 +72,7 @@ bash ./deployment/localup/localup.sh export_sps 1 7
 These JSON data will be used for setup local SP network, so you'd better save it as a json file:
 
 ```shell
-bash ./deployment/localup/localup.sh export_sps 1 7 > sp.json
+bash ./deployment/localup/localup.sh export_sps 1 8 > sp.json
 ```
 
 ## Setup local SP network
@@ -127,6 +128,7 @@ FUNDING_PRIVATE_KEY="bd9d9e7823cd2dc7bc20f1b6676c3025cdda6cf5a8df9b04597fdff42c2
 SEAL_PRIVATE_KEY="aacd6b834627fdbc5de2bfdb1db31be0ea810a941854787653814c8040a9dd39"       # SealPrivKey is generated in setup local Greenfield blockchain step 3.
 APPROVAL_PRIVATE_KEY="32108ed1a47c0af965824f84ac2162c029f347eec6d0988e642330b0ac264c85"   # ApprovalPrivKey is generated in setup local Greenfield blockchain step 3.
 GC_PRIVATE_KEY="2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d"         # GcPrivateKey is generated in setup local Greenfield blockchain step 3.
+BLS_PRIVATE_KEY="6f349866f18413abb1a78cab947933459042044649686f354e941a646b9ed6e7"        # BlsPrivateKey is generated in setup local Greenfield blockchain step 3.
 ```
 
 4. Start Seven SPs
@@ -186,10 +188,10 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
 
 ## Operate With SP
 
-If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and DownloadObject. Detailed info about Greenfield Cmd can be found [here](../../getting-started/interact-with-greenfield.md).
+If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and DownloadObject. Detailed info about Greenfield Cmd can be found [here](https://github.com/bnb-chain/greenfield-cmd).
 
 :::tip
-We strongly recommend you reading [Greenfield Cmd](../../getting-started/interact-with-greenfield.md). It will help you explore the functions of Greenfield blockchain and SP.
+We strongly recommend you reading [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd). It will help you explore the functions of Greenfield blockchain and SP.
 :::
 
 Next, We provide you a hand by hand tutorial to operate with chain and SP.
@@ -269,4 +271,4 @@ dd if=/dev/urandom of=./random_file bs=17M count=1
 
 Users can use md5 to compare your generated file and downloaded file whether is the same.
 
-Ok, we just show some basic functions here, you can explore more functions with [Greenfield Cmd](../../getting-started/interact-with-greenfield.md).
+Ok, we just show some basic functions here, you can explore more functions with [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd).
