@@ -53,13 +53,15 @@ We also do not need to manually delete LVGs, as they are always removed automati
 
 ### SP Exit Workflow
 
-Below are the key workflow of SP exit
+Below are the key steps in the Storage Provider (SP) exit process:
 
-- The Storage Provider (SP1), initiates the exit process by submitting a StorageProviderExit transaction to the blockchain.
-- The SP1 or its successor SP must then repeatedly call SwapOut to remove itself from all Global Virtual Groups (GVGs).
-- For the primary SP, the swap-out process occurs at the family level to ensure there are no conflicts with other SPs within the GVG.
-- For secondary SPs, the swap-out happens at the GVG level and must also avoid conflicts with the primary SP.
-- Once the SP1 has successfully completed the swap-out process from all GVGs, it can submit a CompleteStorageProviderExit transaction to retrieve the staked tokens.
+1. The Storage Provider (SP1) initiates the exit process by submitting a StorageProviderExit transaction to the blockchain.
+2. Subsequently, SP1 or its successor SP must repeatedly call SwapOut to remove itself from all Global Virtual Groups (GVGs).
+3. For the primary SP, the swap-out process occurs at the family level, ensuring there are no conflicts with other SPs within the GVG.
+4. For secondary SPs, the swap-out happens at the GVG level and must also avoid conflicts with the primary SP.
+5. Once SP1 successfully completes the swap-out process from all GVGs, it can submit a CompleteStorageProviderExit transaction to retrieve the staked tokens.
+
+This orderly exit process ensures a smooth transition of responsibilities and resources while preserving the integrity of the network and the staked tokens associated with the exiting SP.
 
 
 ### Bucket Migration Workflow
@@ -83,7 +85,7 @@ Below are the key workflow of Bucket Migration:
 The virtial group module contains the following parameters,
 they can be updated with governance.
 
-```
+```protobuf
 // Params defines the parameters for the module.
 message Params {
   option (gogoproto.equal) = true;

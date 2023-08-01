@@ -52,6 +52,7 @@ const sidebars = {
         "guide/concept/programmability",
         "guide/concept/data-availability",
         "guide/concept/transaction-lifecycle",
+        "guide/concept/storage-provider-lifecycle",
         "guide/concept/data-storage",
         "guide/concept/gas-fees",
       ],
