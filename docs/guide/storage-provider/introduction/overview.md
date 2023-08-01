@@ -16,7 +16,7 @@ services for users and dApps to operate data on Greenfield.
 
 ## How the Greenfield Storage Providers works
 
-SPs need to register themselves first by depositing on the Greenfield blockchain 
+SPs need to register themselves first by depositing on the Greenfield blockchain
 as their "Service Stake". Greenfield validators will go through a dedicated
 governance procedure to vote for the SPs of their election. When the SPs join and
 leave the network, they have to follow a series of actions to ensure data redundancy
