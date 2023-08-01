@@ -119,7 +119,7 @@ Replace the values in the following JSON and save it as create_validator_proposa
 }
 ```
 
-Ensure the all the account in the proposal has enough BNB tokens.
+Submit the proposal. Ensure the validator account has enough BNB tokens.
 ```bash
 
 gnfd tx gov submit-proposal ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${VALIDATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
