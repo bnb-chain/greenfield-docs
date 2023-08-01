@@ -5,8 +5,7 @@ order: 5
 
 # Simple Storage Service
 
-Greenfield Simple Storage Service offers developers comparable API primitives and storage models to the AWS S3 cloud storage which 
-is most utilized in Web2. 
+Greenfield Simple Storage Service offers developers comparable API primitives and storage models to the AWS S3 cloud storage which is most utilized in Web2. 
 
 ## Features
 

@@ -48,7 +48,7 @@ const sidebars = {
       items:[
         "guide/concept/accounts",
         "guide/concept/billing-payment",
-        "guide/concept/simple-storage-svc-model",
+        "guide/concept/simple-storage-service",
         "guide/concept/programmability",
         "guide/concept/data-availability",
         "guide/concept/transaction-lifecycle",
@@ -77,6 +77,7 @@ const sidebars = {
             "guide/greenfield-blockchain/modules/consensus-and-staking",
             "guide/greenfield-blockchain/modules/governance",
             "guide/greenfield-blockchain/modules/data-availability-challenge",
+            "guide/greenfield-blockchain/modules/virtual-group",
             "guide/greenfield-blockchain/modules/world-state",
           ]
         },

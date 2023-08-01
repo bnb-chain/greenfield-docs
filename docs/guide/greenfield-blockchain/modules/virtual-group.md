@@ -1,5 +1,5 @@
 ---
-title: Virtual Group Module
+title: Virtual Group
 order: 9
 ---
 
@@ -21,7 +21,7 @@ Local Virtual Group(LVG): Each bucket maintains a mapping from the local group I
 
 Local virtual groups are linked to their corresponding buckets, and each object needs to store the ID information of the local virtual group. Each local virtual group must correspond to one and only one global virtual group.
 
-![VirtualGroup Overview](../../../../static/asset/12-Greenfield-VirtualGroup.png))
+![VirtualGroup Overview](../../../../static/asset/12-Greenfield-VirtualGroup.png)
 
 In order to avoid all the data of a primary SP being transferred to one SP within a short period of time, we introduce the concept of "family". 
 
