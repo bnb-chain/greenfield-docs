@@ -11,18 +11,18 @@ This API is used to upload an object to Greenfield SP. And it supports both `vir
 ## HTTP Request Format
 
 | Desscription               | Definition                                |
-|----------------------------|-------------------------------------------|
+| -------------------------- | ----------------------------------------- |
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style)           | /ObjectName                               |
 | Method                     | POST                                      |
 
 ## HTTP Request Header
 
-| ParameterName                                   | Type   | Required | Description                                                                                                                  |
-|-------------------------------------------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------|
-| [Authorization](README.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                                                 |
-| Content-Type                                    | string | no       | The Content-Type representation header is used to indicate the original media type of the resource                           |
-| Content-Length                                  | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient.                           |
+| ParameterName                                   | Type   | Required | Description                                                                                        |
+| ----------------------------------------------- | ------ | -------- | -------------------------------------------------------------------------------------------------- |
+| [Authorization](README.md#authorization-header) | string | yes      | The authorization string of the HTTP request                                                       |
+| Content-Type                                    | string | no       | The Content-Type representation header is used to indicate the original media type of the resource |
+| Content-Length                                  | string | no       | The Content-Length header indicates the size of the message body, in bytes, sent to the recipient. |
 
 `Content-Type` is determined by specific object, such as the content type of image could be image/jpeg.
 
@@ -34,11 +34,10 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-| ParameterName                                                   | Type   | Required | Description                                                                                                                  |
-|-----------------------------------------------------------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------|
-| offset                                                          | long   | no       | The offset of the chunk in the entire file, if the breakpoint is resumed, you can use the query interface to get the offset. |
-| complete                                                        | string | no       | True if the last piece, not false.                                                                                           |
-
+| ParameterName | Type   | Required | Description                                                                                                                  |
+| ------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| offset        | long   | no       | The offset of the chunk in the entire file, if the breakpoint is resumed, you can use the query interface to get the offset. |
+| complete      | string | no       | True if the last piece, not false.                                                                                           |
 
 ### Request Body
 
@@ -61,7 +60,7 @@ Content-MD5: ${md5}
 The response returns the following HTTP headers.
 
 | ParameterName     | Type   | Description                           |
-|-------------------|--------|---------------------------------------|
+| ----------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
 | Etag              | string | Entity tag for the uploaded object    |
 

@@ -57,7 +57,7 @@ If you've already executed `make install-tools` command in your shell, but you f
 # error message 1
 buf: command not found
 # you can execute the following command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
-GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.25.0
 
 # error message 2
 Failure: plugin gocosmos: could not find protoc plugin for name gocosmos - please make sure protoc-gen-gocosmos is installed and present on your $PATH

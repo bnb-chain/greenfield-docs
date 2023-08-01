@@ -11,16 +11,16 @@ This API is used to query a user's own buckets metadata info. This API only supp
 ## HTTP Request Format
 
 | Description      | Definition                     |
-|------------------|--------------------------------|
+| ---------------- | ------------------------------ |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| X-Gnfd-User-Address                                                | string | yes      | The address of user                          |
+| ParameterName       | Type   | Required | Description         |
+| ------------------- | ------ | -------- | ------------------- |
+| X-Gnfd-User-Address | string | yes      | The address of user |
 
 ## HTTP Request Parameter
 
@@ -30,9 +30,8 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-
 | ParameterName   | Type    | Required | Description                                                                                                                                                                                       |
-|-----------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | include-removed | boolean | no       | include-removed determines whether to include buckets that have been marked as removed in the list. If the parameter is not passed, it will return the data that has not been removed by default. |
 
 ### Request Body
@@ -52,14 +51,14 @@ X-Gnfd-User-Address: Address
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
-| ParameterName           | Type     | Description                                        |
-|-------------------------|----------|----------------------------------------------------|
-| buckets                 | array    | buckets defines the information of the bucket list |
+| ParameterName | Type  | Description                                        |
+| ------------- | ----- | -------------------------------------------------- |
+| buckets       | array | buckets defines the information of the bucket list |
 
 ### Response Body
 

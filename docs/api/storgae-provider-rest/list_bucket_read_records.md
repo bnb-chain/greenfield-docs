@@ -11,7 +11,7 @@ This API is used to list bucket read records. And it supports both `virtual-host
 ## HTTP Request Format
 
 | Description                | Definition                                |
-|----------------------------|-------------------------------------------|
+| -------------------------- | ----------------------------------------- |
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
 | Path(virtual-hosted-style) | /                                         |
 | Method                     | GET                                       |
@@ -20,8 +20,8 @@ You should set `BucketName` in url host to determine which bucket do you want to
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
+| ParameterName                                                            | Type   | Required | Description                                  |
+| ------------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
 | [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
 ## HTTP Request Parameter
@@ -33,7 +33,7 @@ The request does not have a path parameter.
 ### Query Parameter
 
 | ParameterName    | Type    | Required | Description                                                                                         |
-|------------------|---------|----------|-----------------------------------------------------------------------------------------------------|
+| ---------------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
 | list-read-record | string  | yes      | List read quota path                                                                                |
 | max-records      | integer | yes      | max-records is used to specify the max list number, the biggest number is 1000                      |
 | start-timestamp  | integer | yes      | start-timestamp is used to specify start microsecond timestamp which the time range is [start, end) |
@@ -56,7 +56,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName     | Type   | Description                           |
-|-------------------|--------|---------------------------------------|
+| ----------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp |
 | Content-Type      | string | value is `application/xml`            |
 
@@ -69,7 +69,7 @@ If the request is successful, the service sends back an HTTP 200 response.
 The following data is returned in XML format by the service.
 
 | ParameterName      | Type             | Description                                    |
-|--------------------|------------------|------------------------------------------------|
+| ------------------ | ---------------- | ---------------------------------------------- |
 | ObjectName         | string           | ObjectName is the read object name             |
 | ObjectID           | string           | ObjectID is the read object id                 |
 | ReadAccountAddress | string           | ReadAccountAddress is the read account address |

@@ -11,17 +11,17 @@ This API is used to download an object from Greenfield SP. And it supports both 
 ## HTTP Request Format
 
 | Description                | Definition                                |
-|----------------------------|-------------------------------------------|
+| -------------------------- | ----------------------------------------- |
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
 | Path(virtual-hosted-style) | /ObjectName                               |
 | Method                     | GET                                       |
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                                                                   |
-|--------------------------------------------------------------------|--------|----------|-----------------------------------------------------------------------------------------------|
+| ParameterName                                                            | Type   | Required | Description                                                                                   |
+| ------------------------------------------------------------------------ | ------ | -------- | --------------------------------------------------------------------------------------------- |
 | [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
-| Range                                                              | string | no       | The Range HTTP request header indicates the part of a document that the server should return. |
+| Range                                                                    | string | no       | The Range HTTP request header indicates the part of a document that the server should return. |
 
 ## HTTP Request Parameter
 
@@ -49,7 +49,7 @@ Range: Range
 ## HTTP Response Header
 
 | ParameterName     | Type   | Description                            |
-|-------------------|--------|----------------------------------------|
+| ----------------- | ------ | -------------------------------------- |
 | X-Gnfd-Request-ID | string | defines trace id, trace request in sp. |
 
 ## HTTP Response Parameter
