@@ -265,7 +265,7 @@ curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/gov
 
 ### 2. deposit tokens to the proposal
 
-You can skip this step if  the initial deposit amount is greater than the min deposit required by the proposal.
+You can skip this step if the initial deposit amount is greater than the min deposit required by the proposal.
 
 Each proposal needs to deposit enough tokens to enter the voting phase.
 

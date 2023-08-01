@@ -43,6 +43,8 @@ When the SPs join or leave the network, they have to follow a series of actions 
 users; otherwise, their "Service Stake" will be fined. This is achieved through the data availability challenge and
 validator governance votes.
 
+For more information, please see [SP exit](../modules/virtual-group.md#sp-exit-workflow)
+
 ### Reputation
 
 We'll introduce a reputation system for storage provider to evaluate the quality of service of SP.

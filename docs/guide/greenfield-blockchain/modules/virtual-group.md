@@ -7,9 +7,9 @@ order: 9
 
 ## Abstract
 
-We propose the adoption of Virtual Group as a means to disentangle the interdependency between Bucket/Object and SP. By doing so, we mitigate the need for an extensive volume of transactions to be transmitted for the purpose of modifying the on-chain BucketInfo and ObjectInfo during SP exits and bucket migrations.
+We propose the adoption of Virtual Groups as a solution to untangle the interdependency between Buckets/Objects and Storage Providers (SPs). This approach effectively reduces the need for a large number of transactions to be transmitted when modifying the on-chain BucketInfo and ObjectInfo during SP exits and bucket migrations.
 
-A VirtualGroup consists of a primary storage provider and several secondary storage providers. Each object is associated with a virtual group, limiting the range of secondary storage providers for storing object replica data. The number of storage providers in each virtual group is determined by the redundancy policy. E.g If our redundancy policy specifies a full replica and a 4+2 erasure coding (EC) replica tree, so every virtual group should have one primary sp and six secondary sp.
+A Virtual Group comprises a primary storage provider and several secondary storage providers. Each object is associated with a specific virtual group, which restricts the range of secondary storage providers responsible for storing object replica data. The number of storage providers in each virtual group is determined by the redundancy policy. For example, if our redundancy policy specifies a full replica and a 4+2 erasure coding (EC) replica, every virtual group should consist of one primary SP and six secondary SPs.
 
 ### Terminology
 
