@@ -5,11 +5,12 @@ order: 3
 
 # Billing and Payment
 
-If you need a remind on the different type of fees, we invite you to the [following page](../../core-concept/billing-payment.md).
+If you need a reminder on the different type of fees, we invite you to
+the [following page](../../concept/billing-payment.md).
 
 The fees are paid on Greenfield in the style of
-`Stream` from users to the SPs at a constant rate. The fees are charged
-every second as they are used.
+`Stream` from users to Global Virtual Groups and Global Virtual Group Families at a constant rate.
+The fees are charged every second as they are used.
 
 ## Concepts and Formulas
 
@@ -24,9 +25,9 @@ elapses.
 ### Terminology
 
 - **Payment Module:** This module is a special ledger system designed
- to manage billing and payments on the Greenfield blockchain. 
- Funds will be deposited or charged into it from users' balance or 
- payment accounts via the Payment Module;
+  to manage billing and payments on the Greenfield blockchain.
+  Funds will be deposited or charged into it from users' balance or
+  payment accounts via the Payment Module;
 
 - **Stream Account**: The Payment Module has its own ledger for
   billing management. Users can deposit and withdraw funds into
@@ -58,7 +59,7 @@ elapses.
 
 - **Receiver**: The stream account on the receiving end of one or more payment streams.
 
-- **CRUD Timestamp**: The timestamp that indicates when a user 
+- **CRUD Timestamp**: The timestamp that indicates when a user
   creates, updates, or deletes a payment stream;
 
 - **Delta Balance**: The amount of the stream account's balance that has
@@ -90,7 +91,7 @@ deposit, several fields will be recorded for this stream account:
 
 *<span style={{color:'#CD5C5C'}}>Current Balance</span> = <span style={{color:'#6495ED'}}>Static Balance</span> + <span style={{color:'#556B2F'}}>Delta Balance</span>*
 
-*<span style={{color:'#FFDEAD'}}>Buffer Balance</span> = - Netflow Rate \* pre-configed ReserveTime if Netflow Rate is negative*
+*<span style={{color:'#FFDEAD'}}>Buffer Balance</span> = - Netflow Rate \* pre-configured ReserveTime if Netflow Rate is negative*
 
 ![funds-flow](../../../../static/asset/04-Funds-Flow.jpg)
 
@@ -122,8 +123,8 @@ payment module will be settled.
 
 ### Deposit and Withdrawal
 
-All users (including SPs) can deposit and withdraw BNB in the payment
-module. The `StaticBalance` in the `StreamPayment` data struct will be
+All users can deposit and withdraw BNB in the payment
+module. The `StaticBalance` in the `StreamRecord` data struct will be
 "settled" first: the `CRUDTimeStamp` will be updated and `StaticBalance`
 will be netted with `DeltaBalance`. Then the deposit and withdrawal number
 will try to add/reduce the `StaticBalance` in the record. If the static
@@ -145,9 +146,10 @@ from their address accounts into the stream accounts (including users'
 default stream account and created payment accounts), the funds first go
 from the users' address accounts to a system account maintained by the
 Payment Module, although the fund size and other payment parameters will
-be recorded on the users' stream account, i.e. the `StreamPayment` record,
+be recorded on the users' stream account, i.e. the `StreamRecord` record,
 in the Payment Module ledger. When the payment is settled, the funds
-will go from the system account to SPs' address accounts according to
+will go from the system account to Global Virtual Groups' or Global Virtual
+Group Families' virtual funding addresses according to
 their in-flow calculation.
 
 Every time users do the actions below, their `StreamRecord` will
@@ -155,7 +157,8 @@ be updated:
 
 - Creating an object will create new streams to the SPs;
 
-- Deleting an object will delete associated streams to the SPs;
+- Deleting an object will delete associated streams to the Global Virtual Groups
+  and Global Virtual Group Family;
 
 - Adjusting the read quota will
   create/delete/update the associated streams.
@@ -166,9 +169,9 @@ If a user doesn't deposit for a long time, his previous deposit may be
 all used up for the stored objects. Greenfield has a forced settlement
 mechanism to ensure enough funds are secured for further service fees.
 
-There are two configurations, `ReserveTime` and `ForcedSettleTime`. 
+There are two configurations, `ReserveTime` and `ForcedSettleTime`.
 
-Let's take an example where the `ReserveTime` is 7 days and the `ForcedSettleTime` is 1 day. 
+Let's take an example where the `ReserveTime` is 7 days and the `ForcedSettleTime` is 1 day.
 If a user wants to store an object at the price of
 approximately $0.1 per month($0.00000004/second), he must reserve fees
 for 7 days in the buffer balance, which is `$0.00000004 * 7 * 86400 =
@@ -225,7 +228,12 @@ on-chain list to trace the timestamps for the potential forced
 settlement. The list will be checked by the end of every block
 processing. When the block time passes the forced settlement timestamp,
 the settlement of the associated stream accounts will be triggered
-automatically.
+automatically. There is another parameter `MaxAutoSettleFlowCount` controls
+how many outflows (not `StreamRecord`) will be force settled in a block.
+
+For example, when `MaxAutoSettleFlowCount` is 10, and a `StreamRecord` has 15
+outflows, it will take 2 blocks to totally force settle the record, and in the
+first block, the account will be marked as "frozen".
 
 ### Payment Account
 
@@ -269,7 +277,14 @@ speed for all objects under this account will be downgraded.
 
 If someone deposits BNB tokens into a frozen account and the static balance is
 enough for reserved fees, the account will be resumed automatically. The
-stream pay will be recovered from the backup.
+stream pay will be recovered from the backup. Usually, when user deposits to his
+payment account, the payment account will be "active" quickly. However, if there
+are many outflows associated to the payment account, the payment account will be
+queued for resume and handled in the following blocks. There is a parameter
+`MaxAutoResumeFlowCount` designed for this. For example, when `MaxAutoResumeFlowCount`
+is 10, if a user wants to resume a payment account with 5 outflows, the payment account
+will be "active" immediately, and if a user wants to resume a payment account with 15
+outflow, it will take two blocks and finally the payment account will be "active".
 
 During the `OutOfBalance` period, no objects can be associated with this
 payment account again, which results in no object can be created under
@@ -283,33 +298,37 @@ is resumed.
 
 The storage fee prices are determined by the SPs who supply the storage service.
 The cost of the SPs are composed of 3 parts:
+
 - The primary SP will store the whole object file;
 - The secondary SPs will store part of the object file as a replica;
 - The primary SP will supply all the download requests of the object.
 
 There are 3 different on-chain prices:
+
 - Primary SP Store Price;
 - Primary SP Read Price;
 - Secondary SP Store Price.
 
 Every SP can set their own store price and read price via on-chain transactions.
-While the secondary SP store price is calculated by averaging all SPs' store price.
+While the secondary SP store price is calculated as the median all SPs' store price.
 
 The unit of price is a decimal, which indicates wei BNB per byte per second.
 E.g. the price is 0.027, means approximately $0.022 / GB / Month.
-(`0.027 * (30 * 86400) * (1024 * 1024 * 1024) * 300 / 10 ** 18 ≈ 0.022`, assume the BNB price is 300 USD) 
+(`0.027 * (30 * 86400) * (1024 * 1024 * 1024) * 300 / 10 ** 18 ≈ 0.022`, assume the BNB price is 300 USD)
 
 The storage fees are calculated and charged in bucket level.
 The store price and read price is up to the SP of bucket.
 The secondary store price is stored in the chain state and the same for all buckets.
-The total size of all objects and per secondary SP served size in a bucket will be recorded in the bucket metadata.
-The charge size will be used instead of the real size, e.g. files under 1KB will be charged as 1KB to cover the cost. 
+The total size of all objects and per Global Virtual Group served size in a bucket will be recorded in the bucket
+metadata.
+The charge size will be used instead of the real size, e.g. files under 1KB will be charged as 1KB to cover the cost.
 The payment bill will be calculated by the size statistics and prices, and it will be charged from
-the stream account specified in the bucket to the SPs.
+the stream account specified in the bucket to the Global Virtual Groups and Global Virtual Group family.
 
 ## Payment States
 
 The payment module keeps state of the following primary objects:
+
 - The stream payment ledger;
 - The payment accounts and total account created by users;
 - An AutoSettleRecord list to keep track of the auto-settle timestamp of the stream accounts.
@@ -317,9 +336,11 @@ The payment module keeps state of the following primary objects:
 In addition, the payment module keeps the following indexes to manage the aforementioned state:
 
 - StreamRecord Index. `address -> StreamRecord`;
+- OutFlow Index. `address -> OutFlow`;
 - PaymentAccount Index. `address -> PaymentAccount`;
 - PaymentAccountCount Index. `address -> PaymentAccountCount`;
 - AutoSettleRecord Index. `settle-timestamp | address -> 0`.
+- AutoResumeRecord Index. `resume-timestamp | address -> 0`.
 
 ```
 message StreamRecord {
@@ -347,7 +368,22 @@ message StreamRecord {
   ];
   int32 status = 7;
   int64 settleTimestamp = 8;
-  repeated OutFlow outFlows = 9 [(gogoproto.nullable) = false];
+  uint64 out_flow_count = 9;
+  string frozen_netflow_rate = 10 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false
+  ];
+}
+
+message OutFlow {
+  string to_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string rate = 2 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false
+  ];
+  int32 status = 3;
 }
 
 message PaymentAccount {
@@ -365,26 +401,45 @@ message AutoSettleRecord {
   int64 timestamp = 1;
   string addr = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
+
+message AutoResumeRecord {
+  int64 timestamp = 1;
+  string addr = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
 ```
 
-## Payment module parameters
+## Payment Module Parameters
 
 The payment module contains the following parameters,
-they can be updated with governance.
+they can be updated with governance. The `VersionedParams` will keep track of
+all versions of `ReserveTime` and `ValidatorTaxRate`.
 
 ```
 message Params {
-  // Time duration which the buffer balance need to be reserved for NetOutFlow e.g. 6 month
-  uint64 reserve_time = 1 [(gogoproto.moretags) = "yaml:\"reserve_time\""];
+  VersionedParams versioned_params = 1 [(gogoproto.nullable) = false];
   // The maximum number of payment accounts that can be created by one user
   uint64 payment_account_count_limit = 2 [(gogoproto.moretags) = "yaml:\"payment_account_count_limit\""];
   // Time duration threshold of forced settlement.
   // If dynamic balance is less than NetOutFlowRate * forcedSettleTime, the account can be forced settled.
   uint64 forced_settle_time = 3 [(gogoproto.moretags) = "yaml:\"forced_settle_time\""];
-  // the maximum number of accounts that will be forced settled in one block
-  uint64 max_auto_force_settle_num = 4 [(gogoproto.moretags) = "yaml:\"max_auto_force_settle_num\""];
+  // the maximum number of flows that will be auto forced settled in one block
+  uint64 max_auto_settle_flow_count = 4 [(gogoproto.moretags) = "yaml:\"max_auto_settle_flow_count\""];
+  // the maximum number of flows that will be auto resumed in one block
+  uint64 max_auto_resume_flow_count = 5 [(gogoproto.moretags) = "yaml:\"max_auto_resume_flow_count\""];
   // The denom of fee charged in payment module
-  string fee_denom = 5 [(gogoproto.moretags) = "yaml:\"fee_denom\""];
+  string fee_denom = 6 [(gogoproto.moretags) = "yaml:\"fee_denom\""];
+}
+
+// VersionedParams defines the parameters with multiple versions, each version is stored with different timestamp.
+message VersionedParams {
+  // Time duration which the buffer balance need to be reserved for NetOutFlow e.g. 6 month
+  uint64 reserve_time = 1 [(gogoproto.moretags) = "yaml:\"reserve_time\""];
+  // The tax rate to pay for validators in storage payment. The default value is 1%(0.01)
+  string validator_tax_rate = 2 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec",
+    (gogoproto.nullable) = false
+  ];
 }
 ```
 
@@ -393,10 +448,11 @@ message Params {
 |        reserve_time         | uint64 | 15552000 (180 days) |
 | payment_account_count_limit | uint64 |         200         |
 |     forced_settle_time      | uint64 |   604800 (7 days)   |
-|  max_auto_force_settle_num  | uint64 |         100         |
+| max_auto_settle_flow_count  | uint64 |         100         |
+| max_auto_resume_flow_count  | uint64 |         100         |
 |          fee_denom          | string |         BNB         |
 
-## Payment module keepers
+## Payment Module Keepers
 
 The payment module keeper provides access to query the parameters,
 payment account owner, storage price and several ways to update the ledger.
@@ -485,3 +541,86 @@ message MsgDisableRefund {
   string addr = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }
 ```
+
+## Related Storage Key Workflows
+
+### Create Bucket
+
+When creating object, the **data package** can be defined by the bucket owner.
+If the **data package** is not zero, there will be two outflows created for the payment account.
+
+- the outflow going to Global Virtual Group Family will be created for read fee
+- the outflow going to validator tax pool will be created for extra validator tax fee
+
+### Update Bucket
+
+The bucket owner can update the **data package** of his bucket, e.g., increasing the read quota.
+Then the outflow will be updated to reflect the new quota.
+
+- the outflow which goes to Global Virtual Group Family will be updated
+- the outflow which goes to validator tax pool will be updated
+
+The bucket owner can also assign new payment account to his bucket. In such case,
+
+- old payment account's outflow which goes to the Global Virtual Group Family will be decreased or removed
+- old payment account's outflow which goes to validator tax pool will be decreased or removed
+- new payment accounts' outflow going to Global Virtual Group Family will be created for read fee
+- new payment accounts' outflow going to validator tax pool will be created for extra validator tax fee
+
+Be noted, if read fee or store fee has been changed (e.g., the primary sp updated its read fee), during updating bucket,
+it will also recalculate the store fee for all objects in the bucket. After updating bucket,
+the bucket need to pay using the new price for both **object storage fee** and **data package fee**.
+
+### Delete Bucket
+
+When deleting a bucket, there should be no object in it. The related outflows will be updated,
+
+- the outflow which goes to the Global Virtual Group Family will be decreased or removed
+- the outflow which goes to validator tax pool will be decreased or removed
+
+### Create Object
+
+When creating an object which is not empty, there will be not outflow change for the bucket's payment account.
+However, some amount of BNB will be locked to make sure the payment account has enough BNB for storing the object
+for at least `ReserveTime` long.
+
+The locked fee is calculated as below:
+
+```
+	primaryRate = PrimaryStorePrice * ChargeSize
+	secondaryRate = SecondaryStorePrice * ChargeSize * SecondaySPNumber
+	validatorTaxRate = ValidatorTaxRate * (primaryRate + secondaryRate)
+
+	total := primaryRate + secondaryRate + validatorTaxRate
+```
+
+The `ChargeSize` is calculated from the object's payload size, if the payload size is less than 128k then `ChargeSize`
+is
+128k, otherwise `ChargeSize` is equal to payload size.
+
+When creating an object which is empty, it will be sealed directly.
+
+### Seal Object
+
+When sealing object, the locked fee will be moved from lock balance to buffer balance and the following outflows will be
+created for the payment account.
+
+- the outflow going to Global Virtual Group Family will be created for primary store fee
+- the outflow going to Global Virtual Group will be created for secondary store fee
+- the outflow going to validator tax pool will be created for extra validator tax fee
+
+Be noted, if read fee or store fee has been changed (e.g., the primary sp updated its read fee), during sealing object,
+it will also recalculate the read fee and the store fee for all objects in the bucket. After sealing object,
+the bucket need to pay using the new price for both **object storage fee** and **data package fee**.
+
+### Delete Object
+
+When deleting an object, the following outflows will be updated.
+
+- the outflow which goes to Global Virtual Group Family will be decreased or removed
+- the outflow which goes to Global Virtual Group will be decreased or removed
+- the outflow which goes to validator tax pool will be decreased or removed
+
+Be noted, when deleting an object, if it is stored less than `ReserveTime`, it still needs to pay for
+storing `ReserveTime`
+and the unpaid fee will be transferred to Global Virtual Group Family, Global Virtual Group, and validator tax pool.
