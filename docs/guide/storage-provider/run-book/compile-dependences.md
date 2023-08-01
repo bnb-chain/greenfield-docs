@@ -10,7 +10,7 @@ Compilation dependencies:
 - [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.20+`.
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
 - [protoc-gen-gocosmos](https://github.com/cosmos/gogoproto): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
-- [mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
+- [mockgen](https://github.com/uber-go/mock): A mocking framework for the Go programming language that is used in unit test.
 - [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should install jq according to your operating system.
 
 ```shell
@@ -65,7 +65,7 @@ Failure: plugin gocosmos: could not find protoc plugin for name gocosmos - pleas
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/cosmos/gogoproto/protoc-gen-gocosmos@latest
 
 # if you want to execute unit test of sp, you should execute the following command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
-GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
+GO111MODULE=on GOBIN=/usr/local/go/bin go install go.uber.org/mock/mockgen@latest
 ```
 
 Above error messages are due to users don't set go env correctly. More info users can search `GOROOT`, `GOPATH` and `GOBIN`.
