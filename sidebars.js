@@ -146,6 +146,7 @@ const sidebars = {
           collapsed: true,
           items:[
             "guide/storage-provider/run-book/compile-dependences",
+            "guide/getting-started/resources",
             "guide/storage-provider/run-book/run-local-SP-network",
             "guide/storage-provider/run-book/run-testnet-SP-node",
             "guide/storage-provider/run-book/run-mainnet-SP-node",
