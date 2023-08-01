@@ -231,7 +231,7 @@ const sidebars = {
       items:[
           "api/storgae-provider-rest/get_approval",
           "api/storgae-provider-rest/put_object",
-          "api-sdk/storgae-provider-rest/resumable_put_object",
+          "api/storgae-provider-rest/resumable_put_object",
           "api/storgae-provider-rest/get_object",
           "api/storgae-provider-rest/query_bucket_read_quota",
           "api/storgae-provider-rest/list_bucket_read_records",
