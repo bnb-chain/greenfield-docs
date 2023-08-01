@@ -128,7 +128,15 @@ The `submit` command allows users to submit a challenge for an object stored by 
 Example:
 
 ```sh
-./build/bin/gnfd tx challenge submit 0x950E2FBD285BC42E30EA69A8C1AB17EEDC70C447 ch69bd3t tq true 0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 -b block --from yourWalletName
+./build/bin/gnfd tx challenge submit 0x950E2FBD285BC42E30EA69A8C1AB17EEDC70C447 ch69bd3t tq true 0 --keyring-backend test --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 -b sync --from yourWalletName
 ```
 
-The result of the challenge can be queried using the `AttestedChallenge` method through [GRPC swagger](https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/openapi).q
+After the tx submitted, you can find the challenge id in `greenfield.challenge.EventStartChallenge` event by accessing https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443/tx?hash=0x_prefixed_tx_hash.
+
+Usually the challenge will be handled within minutes, and the result of the challenge can be queried using the following command. 
+However, be noted, the result is not kept forever, and only the latest `attestation_kept_count` challenge results will be kept.
+```shell
+ ./gnfd query challenge latest-attested-challenges --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
+```
+
+The result of the challenge can be queried using the `AttestedChallenge`, `LatestAttestedChallenges` methods through [GRPC swagger](https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/openapi).

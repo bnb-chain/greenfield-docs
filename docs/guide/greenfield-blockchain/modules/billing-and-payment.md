@@ -591,7 +591,8 @@ The locked fee is calculated as below:
 	secondaryRate = SecondaryStorePrice * ChargeSize * SecondaySPNumber
 	validatorTaxRate = ValidatorTaxRate * (primaryRate + secondaryRate)
 
-	total := primaryRate + secondaryRate + validatorTaxRate
+	totalRate = primaryRate + secondaryRate + validatorTaxRate
+	lockAmount = totalRate * ReserveTime
 ```
 
 The `ChargeSize` is calculated from the object's payload size, if the payload size is less than 128k then `ChargeSize`
