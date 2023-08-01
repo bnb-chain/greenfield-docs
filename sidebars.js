@@ -225,7 +225,7 @@ const sidebars = {
       label: "Storage Provider API",
       link: {
         type: 'doc',
-        id: 'api/storgae-provider-rest/sp-reference',
+        id: 'api/storgae-provider-rest/README',
       },
       items:[
           "api/storgae-provider-rest/get_approval",
