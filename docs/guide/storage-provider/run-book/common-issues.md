@@ -109,11 +109,11 @@ P2PPingPeriod = 0
 `P2PAntAddress` is your load balance address. If you don't have a load balance address, you should have a public IP and use it in `P2PAddress`.
 `P2PBootstrap` consists of `[node_id1@ip1:port1, node_id2@ip1:port2]`, you can use `P2PAntAddress` or `P2PAddress` as `ip:port`. Public node is: `16Uiu2HAkvgrSt4oUNZ8rWe2qpimLDajyqD6Ca7LV7n9FkzzPNDQh@k8s-gftestne-p2pexter-bc25ac70bc-a31e9596d87054c3.elb.us-east-1.amazonaws.com:9933`
 
-## Minio Authentication Issue
+## MinIO Authentication Issue
 
 ### Description
 
-Cannot config Minio as storage
+Cannot config MinIO as storage
 
 ```shell
 {"t":"2023-07-17T18:05:40.245+0800","l":"debug","caller":"storage/object_storage.go:15","msg":"created minio storage at endpoint http://172.17.0.2:9000/hashquark"}
@@ -130,4 +130,4 @@ This is a Minio authentication
 
 ### Solution
 
-You can refer [here](./piece-store.md#minio).
+You can refer [here](./piece-store.md#minio) to learn how to use MinIO.
