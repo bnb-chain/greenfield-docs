@@ -81,3 +81,24 @@ The user can use Resource-Based Policy to grant permissions to other accounts. A
 - A policy associate to a object/group can only allow to operator the object/group.
 
 In the reousrce-based policy, the user can use wildcard characters Greenfield Resource Names(GRNS) and other values to grant permission to a subset of objects. For Example, the user can only allow the grantee to access to the objects that begin with a common prefix or end with a given extension, such as `.html`.
+
+
+## Life Cycle
+To store your data in Greenfield, the user should work with resources known as buckets and objects. A bucket is a container for objects, and an object is a file along with any metadata that describes that file.
+
+To store an object in Greenfield, the user creates a bucket and then uploads the object to that bucket. Once the object is in the bucket, it can be opened, downloaded, and moved. When the user no longer needs an object or a bucket, they can clean up their resources.
+
+### Bucket
+
+- Create: Users send `CreateBucket` transactions to the blockchain, and the corresponding metadata will be created on the chain.
+- Update: Users can modify Bucket-related metadata, such as payment accounts and quotas, by sending the `UpdateBucketInfo` transaction to the blockchain.
+- Delete: Users send `DeleteBucket` transactions to the blockchain to delete the bucket, but they need to ensure that all objects in the bucket have been deleted.
+
+### Object
+
+* Create: Users send `CreateObject` transactions to the blockchain, and the corresponding metadata will be created on the chain. The object is in the Created state.
+* CancelCreate: Users send `CancelCreateObject` transactions to the blockchain to cancel the object, and the corresponding metadata will be deleted on the chain.
+* Update: Users can modify Object-related metadata, such as visibility, by sending the `UpdateObjectInfo` transaction to the blockchain.
+* Put: Users can use the `PutObject RESTful API` to interact with the SP and upload data to the primary SP.
+* Seal: After the PrimarySP and secondary SPs store user data, the PrimarySP will send a `SealObject` transaction to the blockchain, and the status of the object will be updated to Sealed, indicating that the object has been successfully uploaded and can be accessed externally.
+* RejectSeal: The PrimarySP can reject sealing the object for any reason by sending `RejectSealObject` transactions to the blockchain, and the corresponding metadata will be deleted on the chain.
