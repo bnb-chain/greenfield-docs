@@ -20,7 +20,6 @@ This API is used to query a user's own buckets metadata info. This API only supp
 
 | ParameterName                                                      | Type   | Required | Description                                  |
 |--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](../storgae-provider-rest/sp-reference.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 | X-Gnfd-User-Address                                                | string | yes      | The address of user                          |
 
 ## HTTP Request Parameter
@@ -31,7 +30,10 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-The request does not have a query parameter.
+
+| ParameterName   | Type    | Required | Description                                                                                                                                                                                       |
+|-----------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| include-removed | boolean | no       | include-removed determines whether to include buckets that have been marked as removed in the list. If the parameter is not passed, it will return the data that has not been removed by default. |
 
 ### Request Body
 
@@ -42,7 +44,6 @@ The request does not have a request body.
 ```HTTP
 GET / HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org
-Authorization: Authorization
 X-Gnfd-User-Address: Address
 ```
 
@@ -82,9 +83,8 @@ The examples given all use path-style.
 
 ```HTTP
 GET / HTTP/1.1
-Host: gnfd-testnet-sp-1.bnbchain.org
+Host: gnfd-testnet-sp-1.bnbchain.org?include-removed=false
 Date: Fri, 31 March 2023 17:32:00 GMT
-Authorization: authorization string
 X-Gnfd-User-Address: user address string
 ```
 

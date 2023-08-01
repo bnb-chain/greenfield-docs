@@ -18,10 +18,6 @@ This API is used to query a list of objects metadata info by object ids. This AP
 
 ## HTTP Request Header
 
-| ParameterName                                                      | Type   | Required | Description                                  |
-|--------------------------------------------------------------------|--------|----------|----------------------------------------------|
-| [Authorization](../storgae-provider-rest/sp-reference.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
-
 ## HTTP Request Parameter
 
 ### Path Parameter
@@ -48,7 +44,6 @@ The request does not have a path parameter.
 POST / HTTP/1.1
 Host: gnfd-testnet-sp-*.bnbchain.org?objects-query
 Date: Fri, 31 March 2023 17:32:00 GMT
-Authorization: authorization string
 Content-Type: application/json
 Content-Length: length
 {
@@ -94,7 +89,6 @@ The examples given all use path-style.
 POST /?objects-query HTTP/1.1
 Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
-Authorization: authorization string
 Content-Type: application/json
 Content-Length: length
 {

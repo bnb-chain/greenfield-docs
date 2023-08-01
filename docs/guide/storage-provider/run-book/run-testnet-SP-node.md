@@ -155,7 +155,7 @@ BsDBSwitchCheckIntervalSec = 30
 
 [BlockSyncer]
 Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree']
-Dsn = ""
+Dsn = "user:passwd*@tcp(localhost:3306)/block_syncer?parseTime=true&multiStatements=true&loc=Local"
 DsnSwitched = ''
 RecreateTables = false
 Workers = 50
@@ -174,6 +174,8 @@ EnableDualDB = false
 
 `P2PBootstrap` consists of [node_id1@ip1:port1, node_id2@ip1:port2], you can use P2PAntAddress or P2PAddress as `ip:port`.
 
+`BlockSyncer.Dsn` the user name and password need to be replaced, but this value can also be set in the environment variable BLOCK_SYNCER_DSN, which the code reads first as a configuration
+
 We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey and P2PPrivatekey` into environment variables for safety.
 
 :::
@@ -182,11 +184,16 @@ We recommend you writing `db User, db password, db address, bucketURL, OperatorP
 
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
+block_syncer and block_syncer_backup require the utf8mb4_unicode_ci encoding format
+
 ```shell
 # login in mysql and create database
+# the default encoding for the database should be utf8mb4_unicode_ci
 mysql> CREATE DATABASE storage_provider_db;
 mysql> CREATE DATABASE block_syncer;
 mysql> CREATE DATABASE block_syncer_backup;
+# Check the database encoding format
+mysql> show create database block_syncer;
 ```
 
 ### 4. Run SP

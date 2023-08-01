@@ -18,11 +18,6 @@ This API is used to get object meta by object and bucket name. And it supports b
 
 ## HTTP Request Header
 
-| ParameterName                                                   | Type   | Required | Description                                   |
-|-----------------------------------------------------------------|--------|----------|-----------------------------------------------|
-| [Authorization](../storgae-provider-rest/sp-reference.md#authorization-header) | string | yes      | The authorization string of the HTTP request. |
-<!--TODO:Authorization is no longer needed in the next testnet release-->
-
 ## HTTP Request Parameter
 
 ### Path Parameter
@@ -47,7 +42,6 @@ The request does not have a request body.
 ```HTTP
 GET /ObjectName?object-meta HTTP/1.1
 Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
-Authorization: Authorization
 ```
 
 ## HTTP Response Header
@@ -138,7 +132,6 @@ The examples given all use virtual-hosted-style.
 GET /j0qplcrkab?object-meta HTTP/1.1
 Host: uvfzo.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
-Authorization: authorization string
 ```
 
 ### Sample Response: Get Object Meta successfully
