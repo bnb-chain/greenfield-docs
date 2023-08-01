@@ -14,7 +14,6 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
 
-
   guideSidebar:[
     {
       type: "category",
@@ -24,8 +23,7 @@ const sidebars = {
       collapsed: true,
       items:[
         "guide/introduction/overview",
-        "guide/introduction/ecosystem",
-        "guide/introduction/token-economics",
+        "guide/introduction/why-greenfield",
       ],
     },
     {
@@ -36,9 +34,9 @@ const sidebars = {
       items:[
         "guide/getting-started/overview",
         "guide/getting-started/wallet-onfiguration",
-        "guide/getting-started/network-faucets",
+        "guide/getting-started/network-info",
         "guide/getting-started/get-test-bnb",
-        "guide/getting-started/interact-with-greenfield",
+        "guide/getting-started/ecosystem",
       ],
     },
     {
@@ -47,15 +45,14 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items:[
-        "guide/concept/accounts",
-        "guide/concept/key-management",
-        "guide/concept/gas-fees",
-        "guide/concept/billing-payment",
-        "guide/concept/simple-storage-svc-model",
-        "guide/concept/programmability",
-        "guide/concept/data-availability",
-        "guide/concept/transaction-lifecycle",
-        "guide/concept/data-storage",
+        "guide/core-concept/accounts",
+        "guide/core-concept/billing-payment",
+        "guide/core-concept/simple-storage-svc-model",
+        "guide/core-concept/programmability",
+        "guide/core-concept/data-availability",
+        "guide/core-concept/transaction-lifecycle",
+        "guide/core-concept/data-storage",
+        "guide/core-concept/gas-fees",
       ],
     },
     {
@@ -82,23 +79,7 @@ const sidebars = {
             "guide/greenfield-blockchain/modules/world-state",
           ]
         },
-        {
-          type: "category",
-          label: "Command Line",
-          link: {type: 'doc', id:'guide/greenfield-blockchain/cli/README'},
-          collapsible: true,
-          collapsed: true,
-          items:[
-            "guide/greenfield-blockchain/cli/key-management",
-            "guide/greenfield-blockchain/cli/bank",
-            "guide/greenfield-blockchain/cli/storage",
-            "guide/greenfield-blockchain/cli/storage-provider",
-            "guide/greenfield-blockchain/cli/bridge",
-            "guide/greenfield-blockchain/cli/governance",
-            "guide/greenfield-blockchain/cli/payment",
-            "guide/greenfield-blockchain/cli/validator-staking",
-          ]
-        },
+        
         {
           type: "category",
           label: "Run Node",
@@ -109,6 +90,7 @@ const sidebars = {
             "guide/greenfield-blockchain/run-node/run-local-network",
             "guide/greenfield-blockchain/run-node/run-mainnet-node",
             "guide/greenfield-blockchain/run-node/run-testnet-node",
+            "guide/greenfield-blockchain/run-node/run-testnet-relayer-and-challenger",
             "guide/greenfield-blockchain/run-node/become-testnet-validator",
           ]
         }
@@ -156,30 +138,31 @@ const sidebars = {
             "guide/storage-provider/services/stopserving",
           ]
         },
-        {
-          type: 'doc', id: 'guide/storage-provider/cli/cli',
-        },
+        
         {
           type: "category",
-          label: "Run Book",
+          label: "Run Node",
           collapsible: true,
           collapsed: true,
           items:[
             "guide/storage-provider/run-book/compile-dependences",
             "guide/storage-provider/run-book/run-local-SP-network",
             "guide/storage-provider/run-book/run-testnet-SP-node",
-            "guide/storage-provider/run-book/run-mainnet-SP-node"
+            "guide/storage-provider/run-book/run-mainnet-SP-node",
+            "guide/storage-provider/run-book/piece-store",
+            "guide/storage-provider/run-book/config",
+            "guide/storage-provider/run-book/common-issues"
           ]
         }
       ]
     },
     {
       type: "category",
-      label: "Build Dapps",
+      label: "Building Smart Contract Dapp",
       collapsible: true,
       collapsed: true,
+      link: {type:'doc', id:'guide/dapp/overview'},
       items:[
-        "guide/dapp/overview",
         "guide/dapp/quick-start",
         "guide/dapp/primitive-interface",
         "guide/dapp/dapp-integration",
@@ -189,56 +172,111 @@ const sidebars = {
       ]
     },
     {
-      type: 'doc', id:'guide/resources'
-    }
+      type: "category",
+      label: "Building Native Dapp",
+      collapsible: true,
+      collapsed: true,
+      link: {type:'doc', id:'guide/native-app/overview'},
+      items:[
+      ]
+    },
+    {type:'doc', label:'Contribute', id:'contribute'},
   ],
 
   apiReferenceSidebar:[
-    {type: 'doc', id: 'api-sdk/endpoints'},
+    {type: 'doc', label:'RPC Endpoints', id: 'api/endpoints'},
+    {
+      type: "category",
+      label: "Blockchain Command Line",
+      link: {type: 'doc', id:'api/blockchain-cli/README'},
+      collapsible: true,
+      collapsed: true,
+      items:[
+        "api/blockchain-cli/key-management",
+        "api/blockchain-cli/bank",
+        "api/blockchain-cli/storage",
+        "api/blockchain-cli/storage-provider",
+        "api/blockchain-cli/bridge",
+        "api/blockchain-cli/governance",
+        "api/blockchain-cli/payment",
+        "api/blockchain-cli/validator-staking",
+        "api/blockchain-cli/challenge"
+      ]
+    },
     {
       type: "category",
       label: "Blockchain API",
       link: {
         type: 'doc',
-        id: 'api-sdk/blockchain-rest',
+        id: 'api/blockchain-rest',
       },
       // @ts-ignore
-      items: require("./docs/greenfield-api/sidebar.js"),
+      items: [
+        
+        require("./docs/greenfield-api/sidebar.js"),      
+    ]
+      
+    },
+    {
+      type: 'doc', label:'Storage Command Line', id: 'api/sp-cli',
     },
     {
       type:"category",
       label: "Storage Provider API",
+      link: {
+        type: 'doc',
+        id: 'api/storgae-provider-rest/README',
+      },
       items:[
-        "api-sdk/storgae-provider-rest/get_approval",
-        "api-sdk/storgae-provider-rest/put_object",
-        "api-sdk/storgae-provider-rest/get_object",
-        "api-sdk/storgae-provider-rest/query_bucket_read_quota",
-        "api-sdk/storgae-provider-rest/list_bucket_read_records",
-        "api-sdk/storgae-provider-rest/get_user_buckets",
-        "api-sdk/storgae-provider-rest/list_objects_by_bucket",
-        "api-sdk/storgae-provider-rest/get_nonce",
-        "api-sdk/storgae-provider-rest/update_key",
-        "api-sdk/storgae-provider-rest/get_group_list",
-        "api-sdk/storgae-provider-rest/sp_response",
-        "api-sdk/storgae-provider-rest/list_objects_by_object_ids",
-        "api-sdk/storgae-provider-rest/list_buckets_by_bucket_ids",
-        {
-          type:"category",
-          label: "Reference",
-          items:[
-            "api-sdk/storgae-provider-rest/referenece/virtual_hosting_of_buckets",
-            "api-sdk/storgae-provider-rest/referenece/gnfd_headers"
-          ]
-        },
-      ]
+          "api/storgae-provider-rest/get_approval",
+          "api/storgae-provider-rest/put_object",
+          "api/storgae-provider-rest/get_object",
+          "api/storgae-provider-rest/query_bucket_read_quota",
+          "api/storgae-provider-rest/list_bucket_read_records",
+          "api/storgae-provider-rest/get_user_buckets",
+          "api/storgae-provider-rest/list_objects_by_bucket",
+          "api/storgae-provider-rest/get_nonce",
+          "api/storgae-provider-rest/update_key",
+          "api/storgae-provider-rest/get_group_list",
+          "api/storgae-provider-rest/sp_response",
+          "api/storgae-provider-rest/list_objects_by_object_ids",
+          "api/storgae-provider-rest/list_buckets_by_bucket_ids",
+          "api/storgae-provider-rest/verify_permission",
+          "api/storgae-provider-rest/get_object_meta",
+          "api/storgae-provider-rest/get_bucket_meta",
+          
+      ]        
     },
 
-    {type: 'doc', id: 'api-sdk/events'},
-    {type:'doc', id:'api-sdk/sdk'}
+    {type: 'doc', id: 'api/events'},
+
+    {
+      type: "category",
+      label: "SDKs",
+      link: {
+        type: 'doc',
+        id: 'sdks/sdks',
+      },
+      items:[
+        "sdks/sdk-go",
+        "sdks/sdk-js",
+        "sdks/key-management"
+      ],
+    },
   ],
 
   faqSidebar:[
-    {type: 'doc', id: 'faq/greenfield-faqs'},
+    {
+      type:"category", 
+      label: "FAQs",
+      link: {type: 'doc', id: 'faq/greenfield-faqs'},
+      collapsible: true,
+      collapsed: true,
+      items:[
+        {type: 'doc', id: 'faq/general-faqs'},
+        {type: 'doc', id: 'faq/mirroring-faqs'},
+      ]
+    },
   ],
 
   releaseNotesSidebar:[

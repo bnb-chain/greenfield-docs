@@ -1,11 +1,11 @@
 ---
 id: annual-provisions
-title: "Annual Provisions"
+title: "AnnualProvisions"
 description: "AnnualProvisions current minting annual provisions value."
 sidebar_label: "AnnualProvisions"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"AnnualProvisions","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"annual_provisions":{"type":"string","format":"byte","description":"annual_provisions is the current minting annual provisions value."}},"description":"QueryAnnualProvisionsResponse is the response type for the\nQuery/AnnualProvisions RPC method."}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"description":"AnnualProvisions current minting annual provisions value.","method":"get","path":"/cosmos/mint/v1beta1/annual_provisions","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"AnnualProvisions current minting annual provisions value.","description":{"type":"text/plain"},"url":{"path":["cosmos","mint","v1beta1","annual_provisions"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"description":"AnnualProvisions current minting annual provisions value.","operationId":"AnnualProvisions","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"annual_provisions":{"type":"string","format":"byte","description":"annual_provisions is the current minting annual provisions value."}},"description":"QueryAnnualProvisionsResponse is the response type for the\nQuery/AnnualProvisions RPC method."}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"tags":["Query"],"method":"get","path":"/cosmos/mint/v1beta1/annual_provisions","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"AnnualProvisions","description":{"content":"AnnualProvisions current minting annual provisions value.","type":"text/plain"},"url":{"path":["cosmos","mint","v1beta1","annual_provisions"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -20,7 +20,9 @@ import SchemaTabs from "@theme/SchemaTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## AnnualProvisions 
+## AnnualProvisions
+
+
 
 AnnualProvisions current minting annual provisions value.
 

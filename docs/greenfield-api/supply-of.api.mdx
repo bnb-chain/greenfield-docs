@@ -1,11 +1,11 @@
 ---
 id: supply-of
-title: "SupplyOf"
-description: "SupplyOf queries the supply of a single coin."
-sidebar_label: "SupplyOf"
+title: "SupplyofCoin"
+description: "When called from another module, this query might consume a high amount of"
+sidebar_label: "SupplyofCoin"
 hide_title: true
 hide_table_of_contents: true
-api: {"operationId":"SupplyOf","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"amount":{"type":"object","properties":{"denom":{"type":"string"},"amount":{"type":"string"}},"description":"Coin defines a token with a denomination and an amount.\n\nNOTE: The amount field is an Int which implements the custom method\nsignatures required by gogoproto."}},"description":"QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method."}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"denom","description":"denom is the coin denom to query balances for.","in":"query","required":false,"schema":{"type":"string"}}],"tags":["Query"],"description":"SupplyOf queries the supply of a single coin.","method":"get","path":"/cosmos/bank/v1beta1/supply/by_denom","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"SupplyOf queries the supply of a single coin.","description":{"type":"text/plain"},"url":{"path":["cosmos","bank","v1beta1","supply","by_denom"],"host":["{{baseUrl}}"],"query":[{"disabled":false,"description":{"content":"denom is the coin denom to query balances for.","type":"text/plain"},"key":"denom","value":""}],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
+api: {"description":"When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.","operationId":"SupplyOf","responses":{"200":{"description":"A successful response.","content":{"*/*":{"schema":{"type":"object","properties":{"amount":{"type":"object","properties":{"denom":{"type":"string"},"amount":{"type":"string"}},"description":"Coin defines a token with a denomination and an amount.\n\nNOTE: The amount field is an Int which implements the custom method\nsignatures required by gogoproto."}},"description":"QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method."}}}},"default":{"description":"An unexpected error response.","content":{"*/*":{"schema":{"type":"object","properties":{"error":{"type":"string"},"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"type_url":{"type":"string"},"value":{"type":"string","format":"byte"}}}}}}}}}},"parameters":[{"name":"denom","description":"denom is the coin denom to query balances for.","in":"query","required":false,"schema":{"type":"string"}}],"tags":["Query"],"method":"get","path":"/cosmos/bank/v1beta1/supply/by_denom","servers":[{"url":"https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"}],"info":{"title":"Greenfield - gRPC Gateway docs","description":"A REST interface for state queries","version":"1.0.0"},"postman":{"name":"SupplyofCoin","description":{"content":"When called from another module, this query might consume a high amount of\ngas if the pagination field is incorrectly set.","type":"text/plain"},"url":{"path":["cosmos","bank","v1beta1","supply","by_denom"],"host":["{{baseUrl}}"],"query":[{"disabled":false,"description":{"content":"denom is the coin denom to query balances for.","type":"text/plain"},"key":"denom","value":""}],"variable":[]},"header":[{"key":"Accept","value":"*/*"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: docs/greenfield-api/greenfield-grpc-gateway-docs
 custom_edit_url: null
@@ -20,9 +20,12 @@ import SchemaTabs from "@theme/SchemaTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## SupplyOf 
+## SupplyofCoin
 
-SupplyOf queries the supply of a single coin.
+
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.
 
 <details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Query Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"denom","description":"denom is the coin denom to query balances for.","in":"query","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 

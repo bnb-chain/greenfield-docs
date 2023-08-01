@@ -64,7 +64,7 @@ It is used to verify wallet personal signature from a certain dApp website.
 * OffChainAuth
 It is used for some dApps and users to store the “off chain auth” account key in SPs. Users can communicate with the SP without explicit signature for most interactions.
 
-For more information please refer to [here](https://docs.bnbchain.org/greenfield-docs/docs/api-sdk/storgae-provider-rest/referenece/gnfd_headers).
+For more information please refer to [here](https://docs.bnbchain.org/greenfield-docs/docs/api/storgae-provider-rest/reference/sp-reference).
 
 ## P2P Protocol
 

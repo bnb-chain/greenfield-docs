@@ -18,7 +18,7 @@ Write once, run on every storage service.
 
 ## Overview
 
-The core function of PieceStore module is to be compatible with multiple object storage or KV storage such as S3, GCS, Azure Blob, Minio, Ceph, IPFS, DiskFile, Memory, etc. Different SP can use different object storage without caring about the underlying implementation.
+The core function of PieceStore module is to be compatible with multiple object storage or KV storage such as S3, GCS, Azure Blob, MinIO, Ceph, IPFS, DiskFile, Memory, etc. Different SP can use different object storage without caring about the underlying implementation.
 
 ![SP-piece-store-arch](../../../../static/asset/11-SP-Piecestore-Arch.jpg)
 
@@ -50,18 +50,18 @@ In the future, upper-layer services could visit PieceStore through HTTP, RPC or 
 
 PieceStore provides sharding function for data high availability. PieceStore uses `fnv` algorithm to shard piece data. If users want to use data sharding, you can configure `Shards = a(a is a number which 2 <= a <= 256)` in config.toml.
 
-**Note** The current implementation of sharding can only be used for multiple buckets in one region. The support of multi-region would be added in the future which will be more higher availability.
+**Note** The current implementation of sharding can only be used for multiple buckets in one region. The support of multi-region would be added in the future which will be higher availability.
 
 ### Compatibile With Multi Object Storage
 
-PieceStore is vendor-agnostic, so it will be compatibile with multi object storage. Now SP supports based storage such as `S3, MinIO, DiskFile and Memory`.
-Recommend using S3 or MinIO in production environment and [the releated config document is here](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/store/piecestore/README.md). Users can experience PieceStore in local by DiskFile or Memory.
+PieceStore is vendor-agnostic, so it will be compatible with multi object storage. Now SP supports based storage such as `S3, MinIO, DiskFile and Memory`.
+Recommend using S3 or MinIO in production environment and [the related config document is here](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/store/piecestore/README.md). Users can experience PieceStore in local by DiskFile or Memory.
 
 The common interface is as follows:
 
 ```go
 // ObjectStorage is a common interface that must be implemented if some users want to use an object
-// storage (such as S3, Azure Blob, Minio, OSS, COS, etc)
+// storage (such as S3, Azure Blob, MinIO, OSS, COS, etc)
 type ObjectStorage interface {
     // String the description of an object storage
     String() string
@@ -87,11 +87,11 @@ type ObjectStorage interface {
 
 ### Outlook
 
-PieceStore provides some fundamental functions: wrapped API interfaces, sharding and compatibile with multi object storage. However, there are more functions to be added in the future. 
+PieceStore provides some fundamental functions: wrapped API interfaces, sharding and compatible with multi object storage. However, there are more functions to be added in the future.
 
 1. Data Cache
 
-PieceStore is combined with object storage, cache is an important component for interacting efficiently between the local client and remote services. Read and write data can be loaded into cache in advance or asynchronously. Using caching technology can significantly reduce the latency of storag operations and increase data throughput compared to interact with remote services directly.
+PieceStore is combined with object storage, cache is an important component for interacting efficiently between the local client and remote services. Read and write data can be loaded into cache in advance or asynchronously. Using caching technology can significantly reduce the latency of storage operations and increase data throughput compared to interact with remote services directly.
 
 2. GC Module
 

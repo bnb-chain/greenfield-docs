@@ -46,6 +46,8 @@ This integration between Greenfield Blockchain and BNB Smart Chain allows for gr
 when it comes to accessing and manipulating data, ultimately leading to a more streamlined and efficient 
 data management process.
 
+More details are discussed in [Mirroring FAQ](../../faq/mirroring-faqs.md).
+
 ## Resource Operating Primitives
 
 A number of cross-chain primitives have been defined on BSC to enable developers to manage greenfield resources on the 

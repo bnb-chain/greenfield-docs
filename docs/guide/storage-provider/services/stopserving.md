@@ -6,7 +6,7 @@ order: 15
 Stop Serving is the background service running in primary SP, which is used to actively
 delete buckets stored by it.
 
-**It only runs in tesnet environment for remove historical data, and it will NOT run in mainnet.** 
+**It only runs in testnet environment for remove historical data, and it will NOT run in mainnet.** 
 
 ![Stop-Serving-Workflow](../../../../static/asset/502-Stop-Serving-Workflow.png)
 

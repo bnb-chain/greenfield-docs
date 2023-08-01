@@ -15,7 +15,7 @@ BNB Greenfield is an innovative blockchain and storage platform that seeks to un
 
 ### How to Run Locally
 
-Clone the reository and run the following commands.
+Clone the repository and run the following commands.
 
 ### Installing Dependencies
 

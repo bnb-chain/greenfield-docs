@@ -192,5 +192,5 @@ message MsgDeposit {
 
 This message is expected to fail if:
 
-* The storage provider doesn't existed;
+* The storage provider doesn't exist;
 * The tokens that are deposited do not belong to the denomination that is specified as the deposit denomination of the SP module.

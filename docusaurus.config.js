@@ -37,7 +37,6 @@ const config = {
         blog: {
           showReadingTime: true,
           editUrl: "https://github.com/bnb-chain/greenfield-docs/blob/main/",
-
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
@@ -68,14 +67,6 @@ const config = {
   
         // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
         externalUrlRegex: 'https://docs.bnbchain.org/',
-  
-        // Optional: Algolia search parameters
-        //searchParameters: {},
-  
-        // Optional: path for search page that enabled by default (`false` to disable it)
-      //  searchPagePath: 'search',
-  
-        //... other Algolia params
       },
       navbar: {
         title: "BNB Greenfield",
@@ -91,17 +82,16 @@ const config = {
           },
           {
             //type: 'dropdown',
-            label: "API Reference",
+            label: "API & SDK",
             position: "left",
-            to: "/docs/api-sdk/endpoints",
+            to: "/docs/api/endpoints",
           },
           
           {
-            label: "Release",
-            position: "left",
+            label: "Releases",
+            position:"left",
             to: "/docs/release-notes/releaseNotes"
           },
-         // {to: 'blog', label: 'Changelog', position: 'left'},
           {
             label: "FAQs",
             position: "left",
@@ -114,67 +104,6 @@ const config = {
             'aria-label': 'GitHub repository',
           },
         ]
-      },
-      footer: {
-        /*style: "dark",
-        logo: {
-          alt: 'BNB Chain Logo',
-          src: 'img/logo.svg',
-          width: 160,
-          height: 51,
-        },
-        links: [
-          {
-            title:"Learn",
-            items:[              
-              { 
-                label: "Whitepaper",
-                to: "https://github.com/bnb-chain/greenfield-whitepaper"
-              },
-              { 
-                label: "Official Website",
-                to: "http://greenfield.bnbchain.org/"
-              },
-            ]
-          },
-          {
-            title: "Community",
-            items: [
-              {
-                label: "Discord",
-                href: "https://discord.com/invite/QRTQvfhADQ"
-              },
-              {
-                label: "Twitter",
-                href: "https://twitter.com/BNBChain"
-              },
-              {
-                label: 'Telegram',
-                href: 'http://t.me/bnbchain',              
-              }
-            ]
-          },
-          {
-            title: "More",
-            items: [
-              {
-                label: "Blog",
-                to: "https://www.bnbchain.org/en/blog/"
-              },
-              {
-                label: "Youtube",
-                to: "https://www.youtube.com/channel/UCG9fZu6D4I83DStktBV0Ryw"
-              },
-              {
-                label: "GitHub",
-                href: "https://github.com/bnb-chain/greenfield-docs"
-              },
-            ]
-          }
-        ],
-        
-        copyright: `Copyright © ${new Date().getFullYear()} BNB Chain`
-      */
       },
       prism: {
         theme: lightCodeTheme,

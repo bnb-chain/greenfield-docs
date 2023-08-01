@@ -6,7 +6,7 @@ order: 1
 
 ## What is the Greenfield Blockchain
 
-The **Greenfield blockchain** plays a pivotal role in the [Greenfield ecosystem](../introduction/ecosystem.md). 
+The **Greenfield blockchain** plays a pivotal role in the [Greenfield ecosystem](../getting-started/ecosystem.md). 
 It forms the core of the platform and is constructed on the **Cosmos/Tendermint** infrastructure. 
 Within the Greenfield blockchain, there are two categories of states that exist **on-chain**: 
 - Accounts and their BNB balance ledger.
@@ -73,5 +73,5 @@ The validators of the Greenfield Blockchain are integral to the network's securi
 
 ## Get Started with Greenfield Blockchain
 - [Quick start with Greenfield Blockchain](run-node/interact-node.md)
-- [Learn more about the ecosystem players of Greenfield](../introduction/ecosystem.md)
+- [Learn more about the ecosystem players of Greenfield](../getting-started/ecosystem.md)
 - [Learn more about the module design of Greenfield Blockchain](modules/storage-module.md)
