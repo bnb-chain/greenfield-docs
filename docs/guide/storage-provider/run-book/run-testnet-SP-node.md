@@ -26,7 +26,7 @@ Each storage provider will hold 6 different accounts serving different purposes:
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
 * Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
 
-You can use the below command to generate this 6 accounts:
+You can use the below command to generate this six accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
@@ -169,7 +169,7 @@ BsDBSwitchCheckIntervalSec = 30
 
 [BlockSyncer]
 Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree']
-Dsn = ""
+Dsn = "user:passwd*@tcp(localhost:3306)/block_syncer?parseTime=true&multiStatements=true&loc=Local"
 DsnSwitched = ''
 RecreateTables = false
 Workers = 50
@@ -188,6 +188,8 @@ EnableDualDB = false
 
 `P2PBootstrap` consists of [node_id1@ip1:port1, node_id2@ip1:port2], you can use P2PAntAddress or P2PAddress as `ip:port`.
 
+`BlockSyncer.Dsn` the user name and password need to be replaced, but this value can also be set in the environment variable BLOCK_SYNCER_DSN, which the code reads first as a configuration
+
 We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey, BlsPrivateKey and P2PPrivatekey` into environment variables for safety.
 
 :::
@@ -196,11 +198,16 @@ We recommend you writing `db User, db password, db address, bucketURL, OperatorP
 
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
+block_syncer and block_syncer_backup require the utf8mb4_unicode_ci encoding format
+
 ```shell
 # login in mysql and create database
+# the default encoding for the database should be utf8mb4_unicode_ci
 mysql> CREATE DATABASE storage_provider_db;
 mysql> CREATE DATABASE block_syncer;
 mysql> CREATE DATABASE block_syncer_backup;
+# Check the database encoding format
+mysql> show create database block_syncer;
 ```
 
 ### 4. Run SP
@@ -324,6 +331,35 @@ gnfd tx sp edit-storage-provider [sp-address] [flags]
 
 Users can use Greenfield Cmd or DCellar to operate in Testnet:
 
-* Greenfield Cmd: [docs](../../getting-started/interact-with-greenfield.md), [repo](https://github.com/bnb-chain/greenfield-cmd)
+* Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 
 * DCellar: [website](https://dcellar.io/)
+
+### Support both path-style and virtual-style routers in https certificates
+TBD
+### Cross Region Configuration
+When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.  
+See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+
+If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
+
+![CORS ERROR](../../../../static/asset/405-cors-error.png)
+
+Most people run their SP services behind the nginx or other similar reverse proxies. Usually the CORS settings should be configured in those reverse proxies.
+
+We recommend SP with reverse proxy can return the following headers:
+
+```
+access-control-allow-headers: *
+access-control-allow-methods: *
+access-control-allow-origin: *
+access-control-expose-headers: *
+```
+
+After you finish the configuration, you can verify if it works in DCellar.  
+1. Go to https://dcellar.io
+2. Press F12 to launch web developer tools and go to "Network" tab.
+3. Connect your wallet
+4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
+![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
+

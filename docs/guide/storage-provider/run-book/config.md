@@ -1,3 +1,8 @@
+---
+title: SP Config
+order: 6
+---
+
 # SP Config
 
 This section gives you a complete config of SP.

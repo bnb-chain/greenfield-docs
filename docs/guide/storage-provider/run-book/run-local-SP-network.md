@@ -188,10 +188,10 @@ Usage: deployment/localup/localup.sh [option...] {help|generate|reset|start|stop
 
 ## Operate With SP
 
-If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and DownloadObject. Detailed info about Greenfield Cmd can be found [here](../../getting-started/interact-with-greenfield.md).
+If you have already started Greenfield blockchain and Greenfield SP successfully in local, you can use Greenfield Cmd to operate with SP such as CreateBucket, PutObject and DownloadObject. Detailed info about Greenfield Cmd can be found [here](https://github.com/bnb-chain/greenfield-cmd).
 
 :::tip
-We strongly recommend you reading [Greenfield Cmd](../../getting-started/interact-with-greenfield.md). It will help you explore the functions of Greenfield blockchain and SP.
+We strongly recommend you reading [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd). It will help you explore the functions of Greenfield blockchain and SP.
 :::
 
 Next, We provide you a hand by hand tutorial to operate with chain and SP.
@@ -271,4 +271,4 @@ dd if=/dev/urandom of=./random_file bs=17M count=1
 
 Users can use md5 to compare your generated file and downloaded file whether is the same.
 
-Ok, we just show some basic functions here, you can explore more functions with [Greenfield Cmd](../../getting-started/interact-with-greenfield.md).
+Ok, we just show some basic functions here, you can explore more functions with [Greenfield Cmd](https://github.com/bnb-chain/greenfield-cmd).

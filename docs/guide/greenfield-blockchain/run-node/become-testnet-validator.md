@@ -1,10 +1,12 @@
 ---
 title: Become Testnet Validator
-order: 5
+order: 6
 ---
+
 # Become Testnet Validator
 
 ## Minimum Requirements
+
 - Number of BNB to be staked: `1000BNB`
 - Hardware Requirements:  Desktop or laptop hardware running recent versions of Mac OS X, or Linux.
 - CPU: 4 cores
@@ -23,7 +25,7 @@ Follow the instructions [here to set up a full node](./run-testnet-node.md).
 
 :::note
 The `keyring-backend` supports multiple storage backends, some of which may not be available on all operating systems.
-See more details [here](../../concept/key-management.md).
+See more details [here](../../../sdks/key-management.md).
 :::
 
 ```bash
@@ -67,6 +69,7 @@ gnfd tx authz grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 delegate --spend-
 ```
 
 ### 5. Submit a Create Validator Proposal
+
 Replace the values in the following JSON and save it as create_validator_proposal.json:
 
 - `${NODE_NAME}`: A custom human-readable name for this node.
