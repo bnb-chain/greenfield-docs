@@ -1,9 +1,62 @@
 ---
-title: Auth
-order: 15
+title: Authenticator
 ---
 
-# Greenfield Storage Provider Off-Chain Authentication
+# Authenticator
+
+Authenticator module is used to verify users authentication. Each request arrived to SP gateway requires authentication. SP uses authentication to know who you are.
+
+We currently abstract SP as the GfSp framework, which provides users with customizable capabilities to meet their specific requirements. Authenticator module provides an abstract interface, which is called `Authenticator`, as follows:
+
+```go
+// Authenticator is an abstract interface to verify users authentication.
+type Authenticator interface {
+    Modular
+    // VerifyAuthentication verifies the operator authentication.
+    VerifyAuthentication(ctx context.Context, auth AuthOpType, account, bucket, object string) (bool, error)
+    // GetAuthNonce get the auth nonce for which the dApp or client can generate EDDSA key pairs.
+    GetAuthNonce(ctx context.Context, account string, domain string) (*spdb.OffChainAuthKey, error)
+    // UpdateUserPublicKey updates the user public key once the dApp or client generates the EDDSA key pairs.
+    UpdateUserPublicKey(ctx context.Context, account string, domain string, currentNonce int32, nonce int32,
+        userPublicKey string, expiryDate int64) (bool, error)
+    // VerifyOffChainSignature verifies the signature signed by user's EDDSA private key.
+    VerifyOffChainSignature(ctx context.Context, account string, domain string, offChainSig string, realMsgToSign string) (bool, error)
+}
+
+// AuthOpType defines the operator type used to authentication verification.
+type AuthOpType int32
+
+const (
+    // AuthOpTypeUnKnown defines the default value of AuthOpType
+    AuthOpTypeUnKnown AuthOpType = iota
+    // AuthOpAskCreateBucketApproval defines the AskCreateBucketApproval operator
+    AuthOpAskCreateBucketApproval
+    // AuthOpAskMigrateBucketApproval defines the AskMigrateBucketApproval operator
+    AuthOpAskMigrateBucketApproval
+    // AuthOpAskCreateObjectApproval defines the AskCreateObjectApproval operator
+    AuthOpAskCreateObjectApproval
+    // AuthOpTypeGetChallengePieceInfo defines the GetChallengePieceInfo operator
+    AuthOpTypeGetChallengePieceInfo
+    // AuthOpTypePutObject defines the PutObject operator
+    AuthOpTypePutObject
+    // AuthOpTypeGetObject defines the GetObject operator
+    AuthOpTypeGetObject
+    // AuthOpTypeGetUploadingState defines the GetUploadingState operator
+    AuthOpTypeGetUploadingState
+    // AuthOpTypeGetBucketQuota defines the GetBucketQuota operator
+    AuthOpTypeGetBucketQuota
+    // AuthOpTypeListBucketReadRecord defines the ListBucketReadRecord operator
+    AuthOpTypeListBucketReadRecord
+    // AuthOpTypeGetRecoveryPiece defines the GetRecoveryPiece operator
+    AuthOpTypeGetRecoveryPiece
+)
+```
+
+Authenticator interface inherits [Modular interface](./common/lifecycle_modular.md#modular-interface), so Authenticator module can be managed by lifecycle and resource manager.
+
+You can overwrite `VerifyAuthentication` to implement your own authentication mode by different AuthOpType. This is the most basic authentication.
+
+## Greenfield Storage Provider Off-Chain Authentication
 
 ## Abstract
 
@@ -38,6 +91,7 @@ curl --location 'https://${SP_API_ADDRESS}/auth/request_nonce' \
 ```
 
 The response is:
+
 ```json
 {
     "current_nonce": 0,
@@ -70,7 +124,6 @@ We denote the new string as `M`
 
 For each combination of user address and app domain, the SP backend maintains a key nonce `n`. It starts from 0 and increments by 1 after each successful account key update.
 
-
 To register an account public key into a certain SP, you can invoke [SP API "update\_key"](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/auth/update_key.html).
 
 Here is an example. Suppose that
@@ -81,8 +134,6 @@ Here is an example. Suppose that
 4. The **SP operator address** is `0x70d1983A9A76C8d5d80c4cC13A801dc570890819`
 5. The **EdDSA\_public\_K** is `4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083`
 6. The **expiry time** for this `EdDSA_public_K` is `2023-04-28T16:25:24Z`. The expiry time indicates the expiry time of this `EdDSA_public_K` , which should be a future time and within **7 days.**
-
-
 
 The app will put above information into a text message:
 
@@ -97,8 +148,6 @@ and request user to sign and get the signature`S2`:
 ![auth-update-key-metamask](../../../../static/asset/015-Auth-Update-Key-Metamask.png)
 
 Finally, the app invokes [SP API "update\_key"](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/auth/update_key.html) by putting `S2` into http Authorization header. The following is an example:
-
-
 
 ```plain
 curl --location --request POST 'https://${SP_API_ADDRESS}/auth/update_key' \
@@ -134,8 +183,8 @@ curl --location 'https://${SP_API_ADDRESS}/${bucket_name}/${object_name}' \
 --header 'X-Gnfd-User-Address: 0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0' \
 --header 'X-Gnfd-App-Domain: https://greenfield_app1.domain.com' 
 ```
-By including the signed message and signature in the Authorization header, the app can authenticate the request with the SP servers. The SP servers can then verify the signature using the EdDSA_public_K registered in Step 2.
 
+By including the signed message and signature in the Authorization header, the app can authenticate the request with the SP servers. The SP servers can then verify the signature using the EdDSA_public_K registered in Step 2.
 
 ### Step 4 - Manage EdDSA key pairs
 
@@ -146,18 +195,17 @@ To delete a user's registered EdDSA account public key in an SP, apps can invoke
 
 ### Auth API Specification
 
-See [SP Auth Rest API Doc](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/auth) 
+See [SP Auth Rest API Doc](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/auth)
 
 ## Rational
 
 ## Security Considerations
 
 ### Preventing replay attacks
+
 To prevent replay attacks, which are man-in-the-middle attacks in which an attacker is able to capture the user's signature and resend it to establish a new session for themselves, the following measures should be taken:
 
-
-*   A new `nonce` should be selected each time when EdDSA keys are generated. This ensures that each generated key pair is unique and cannot be replayed.
-
-*   When using EdDSA_private_K to sign a request, a recent timestamp as the expiry date must be included. This ensures that the signed message is only valid for a limited time and cannot be reused in a replay attack.
+* A new `nonce` should be selected each time when EdDSA keys are generated. This ensures that each generated key pair is unique and cannot be replayed.
+* When using EdDSA_private_K to sign a request, a recent timestamp as the expiry date must be included. This ensures that the signed message is only valid for a limited time and cannot be reused in a replay attack.
 
 By implementing these measures, the app can minimize the risk of replay attacks and ensure the security of the user's data and interactions with the SP servers.
