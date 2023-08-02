@@ -1,3 +1,8 @@
+---
+title: Resumable Upload/Download
+order: 2
+---
+
 # Resumable Upload & Resumable Download
 
 * Resumable Upload is a feature that allows files to be uploaded in multiple parts, enabling the upload process to be resumed from where it left off in case of interruptions or failures. This is particularly useful for large files or situations where network connectivity may be unreliable.
@@ -11,7 +16,7 @@ During resumable upload, if an error occurs during the `PutObject` operation, th
 
 ### Upload Process Overview
 
-![resumable-upload-overview](../../../static/asset/12-Resumable-Upload.png)
+![resumable-upload-overview](../../../../../static/asset/12-Resumable-Upload.png)
 
 1. Start the initial `PutObject` operation to upload the object.
 2. If an error occurs during the upload, such as a network interruption or server error, the upload process is interrupted.

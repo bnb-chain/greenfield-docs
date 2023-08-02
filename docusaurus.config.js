@@ -93,6 +93,11 @@ const config = {
             to: "/docs/release-notes/releaseNotes"
           },
           {
+            label: "Tutorials",
+            position: "left",
+            to: "/docs/guide/tutorials/overview"
+          },
+          {
             label: "FAQs",
             position: "left",
             to: "/docs/faq/greenfield-faqs"

@@ -1,5 +1,5 @@
 ---
-title: Hosting Websites with CLI
+title: Hosting a Website
 order: 1
 ---
 

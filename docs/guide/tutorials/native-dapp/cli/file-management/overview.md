@@ -1,5 +1,5 @@
 ---
-title: File Management with CLI
+title: Basic File Management
 order: 1
 ---
 
