@@ -47,10 +47,11 @@ const sidebars = {
       items:[
         "guide/core-concept/accounts",
         "guide/core-concept/billing-payment",
-        "guide/core-concept/simple-storage-svc-model",
         "guide/core-concept/programmability",
+        "guide/concept/simple-storage-service",
         "guide/core-concept/data-availability",
         "guide/core-concept/transaction-lifecycle",
+        "guide/concept/storage-provider-lifecycle",
         "guide/core-concept/data-storage",
         "guide/core-concept/gas-fees",
       ],
@@ -76,6 +77,7 @@ const sidebars = {
             "guide/greenfield-blockchain/modules/consensus-and-staking",
             "guide/greenfield-blockchain/modules/governance",
             "guide/greenfield-blockchain/modules/data-availability-challenge",
+            "guide/greenfield-blockchain/modules/virtual-group",
             "guide/greenfield-blockchain/modules/world-state",
           ]
         },
