@@ -229,6 +229,14 @@ $ cat ./create_sp.json
 }
 ```
 
+#### Understanding the parameters
+
+* `endpoint` is URL of your gateway
+* `read_price` and `store_price` unit is `wei/bytes/s`
+* `free_read_quota` unit is *Bytes*
+* `creator` is the address of `gov module`
+* `metadata` is optional
+
 ### 3. Deposit BNB to proposal
 
 Each proposal needs to have enough tokens deposited to enter the voting stage.
@@ -239,7 +247,7 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 
 ### 4. Wait voting and check voting result
 
-After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
+After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last **7 days** on mainnet while **1 day** on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
 :::caution
 
