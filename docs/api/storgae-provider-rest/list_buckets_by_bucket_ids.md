@@ -11,7 +11,7 @@ This API is used to query a list of buckets metadata info by buckets ids. This A
 ## HTTP Request Format
 
 | Description      | Definition                     |
-|------------------|--------------------------------|
+| ---------------- | ------------------------------ |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | POST                           |
@@ -26,17 +26,15 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-
 | ParameterName | Type   | Description                                                                             |
-|---------------|--------|-----------------------------------------------------------------------------------------|
+| ------------- | ------ | --------------------------------------------------------------------------------------- |
 | buckets-query | string | buckets-query is only used for routing location, and it does not need to pass any value |
-
 
 ### Request Body
 
-| ParameterName | Type     | Description                                 |
-|---------------|----------|---------------------------------------------|
-| ids           | array    | ids defines defines the IDs of the buckets  |
+| ParameterName | Type  | Description                                |
+| ------------- | ----- | ------------------------------------------ |
+| ids           | array | ids defines defines the IDs of the buckets |
 
 ## Request Syntax
 
@@ -56,15 +54,14 @@ Content-Length: length
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
-| ParameterName           | Type     | Description                                        |
-|-------------------------|----------|----------------------------------------------------|
-| buckets                 | array    | buckets defines the information of the bucket list |
-
+| ParameterName | Type  | Description                                        |
+| ------------- | ----- | -------------------------------------------------- |
+| buckets       | array | buckets defines the information of the bucket list |
 
 ### Response Body
 

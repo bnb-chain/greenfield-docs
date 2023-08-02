@@ -47,10 +47,11 @@ const sidebars = {
       items:[
         "guide/core-concept/accounts",
         "guide/core-concept/billing-payment",
-        "guide/core-concept/simple-storage-svc-model",
         "guide/core-concept/programmability",
+        "guide/core-concept/simple-storage-service",
         "guide/core-concept/data-availability",
         "guide/core-concept/transaction-lifecycle",
+        "guide/core-concept/storage-provider-lifecycle",
         "guide/core-concept/data-storage",
         "guide/core-concept/gas-fees",
       ],
@@ -76,6 +77,7 @@ const sidebars = {
             "guide/greenfield-blockchain/modules/consensus-and-staking",
             "guide/greenfield-blockchain/modules/governance",
             "guide/greenfield-blockchain/modules/data-availability-challenge",
+            "guide/greenfield-blockchain/modules/virtual-group",
             "guide/greenfield-blockchain/modules/world-state",
           ]
         },
@@ -104,38 +106,37 @@ const sidebars = {
       items:[
         {
           type: "category",
-          label: "Introduction",
+          label: "Overview",
           collapsible: true,
           collapsed: true,
           items:[
             "guide/storage-provider/introduction/overview",
-            "guide/storage-provider/introduction/architecture",
+            "guide/storage-provider/introduction/workflow",
             "guide/storage-provider/introduction/standard",
           ]
         },
         {
           type: "category",
-          label: "Services",
+          label: "Modules",
           collapsible: true,
           collapsed: true,
           items:[
-            "guide/storage-provider/services/manager",
-            "guide/storage-provider/services/p2p",
-            "guide/storage-provider/services/spdb",
-            "guide/storage-provider/services/piece-store",
-            "guide/storage-provider/services/signer",
-            "guide/storage-provider/services/gateway",
-            "guide/storage-provider/services/uploader",
-            "guide/storage-provider/services/receiver",
-            "guide/storage-provider/services/downloader",
-            "guide/storage-provider/services/challenge",
-            "guide/storage-provider/services/gc",
-            "guide/storage-provider/services/tasknode",
-            "guide/storage-provider/services/bsdb",
-            "guide/storage-provider/services/metadata",
-            "guide/storage-provider/services/blocksyncer",
-            "guide/storage-provider/services/auth",
-            "guide/storage-provider/services/stopserving",
+            "guide/storage-provider/modules/gateway",
+            "guide/storage-provider/modules/approver",
+            "guide/storage-provider/modules/authenticator",
+            "guide/storage-provider/modules/uploader",
+            "guide/storage-provider/modules/downloader",
+            "guide/storage-provider/modules/signer",
+            "guide/storage-provider/modules/manager",
+            "guide/storage-provider/modules/taskexecutor",
+            "guide/storage-provider/modules/receiver",
+            "guide/storage-provider/modules/metadata",
+            "guide/storage-provider/modules/blocksyncer",
+            "guide/storage-provider/modules/spdb",
+            "guide/storage-provider/modules/piece-store",
+            "guide/storage-provider/modules/redundancy",
+            "guide/storage-provider/modules/bsdb",
+            "guide/storage-provider/modules/p2p",
           ]
         },
         
@@ -154,44 +155,6 @@ const sidebars = {
             "guide/storage-provider/run-book/common-issues"
           ]
         }
-      ]
-    },
-    {
-      type: "category",
-      label: "Tutorials",
-      collapsible: true,
-      collapsed: true,
-      link: {type:'doc', id:'guide/tutorials/overview'},
-      items:[
-        {
-          type: "category",
-          label: "Building Smart Contract dApps",
-          collapsible: true,
-          collapsed: true,
-          link: {type:'doc', id:'guide/tutorials/dapp/overview'},
-          items:[
-            "guide/tutorials/dapp/overview",
-            "guide/tutorials/dapp/quick-start",
-            "guide/tutorials/dapp/primitive-interface",
-            "guide/tutorials/dapp/dapp-integration",
-            "guide/tutorials/dapp/permission-control",
-            "guide/tutorials/dapp/contract-list",
-            "guide/tutorials/dapp/showcases"
-          ]
-        },
-        {
-          type: "category",
-          label: "Building Native dApps",
-          collapsible: true,
-          collapsed: true,
-          link: {type:'doc', id:'guide/tutorials/native-dapp/overview'},
-          items:[
-            "guide/tutorials/native-dapp/overview",
-            "guide/tutorials/native-dapp/file-management-cli/overview",
-            "guide/tutorials/native-dapp/hosting-websites-cli/overview",
-            "guide/tutorials/native-dapp/file-management-sdk/overview",
-          ]
-        },
       ]
     },
     {type:'doc', label:'Contribute', id:'contribute'},
@@ -226,7 +189,7 @@ const sidebars = {
       },
       // @ts-ignore
       items: [
-        
+
         require("./docs/greenfield-api/sidebar.js"),      
     ]
       
@@ -244,6 +207,7 @@ const sidebars = {
       items:[
           "api/storgae-provider-rest/get_approval",
           "api/storgae-provider-rest/put_object",
+          "api/storgae-provider-rest/resumable_put_object",
           "api/storgae-provider-rest/get_object",
           "api/storgae-provider-rest/query_bucket_read_quota",
           "api/storgae-provider-rest/list_bucket_read_records",
@@ -258,8 +222,8 @@ const sidebars = {
           "api/storgae-provider-rest/verify_permission",
           "api/storgae-provider-rest/get_object_meta",
           "api/storgae-provider-rest/get_bucket_meta",
-          
-      ]        
+
+      ]
     },
 
     {type: 'doc', id: 'api/events'},
@@ -276,6 +240,65 @@ const sidebars = {
         "sdks/sdk-js",
         "sdks/key-management"
       ],
+    },
+  ],
+
+  tutorialsSidebar: [
+    {
+      type: "category",
+      label: "Tutorials",
+      collapsible: true,
+      collapsed: true,
+      link: {type:'doc', id:'guide/tutorials/overview'},
+      items:[
+        {
+          type: "category",
+          label: "Building Smart Contract dApps",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'guide/tutorials/dapp/overview'},
+          items:[
+            "guide/tutorials/dapp/overview",
+            "guide/tutorials/dapp/quick-start",
+            "guide/tutorials/dapp/primitive-interface",
+            "guide/tutorials/dapp/dapp-integration",
+            "guide/tutorials/dapp/permission-control",
+            "guide/tutorials/dapp/contract-list",
+            "guide/tutorials/dapp/showcases"
+          ]
+        },
+        {
+          type: "category",
+          label: "Building Native dApps",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'guide/tutorials/native-dapp/overview'},
+          items:[
+            "guide/tutorials/native-dapp/overview",
+            {
+              type: "category",
+              label: "CLI",
+              collapsible: true,
+              collapsed: true,
+              items:[
+                "guide/tutorials/native-dapp/cli/file-management/overview",
+                "guide/tutorials/native-dapp/cli/hosting-websites/overview",
+              ]
+            },
+            {
+              type: "category",
+              label: "SDK",
+              collapsible: true,
+              collapsed: true,
+              items:[
+                "guide/tutorials/native-dapp/sdk/file-management/overview",
+                "guide/tutorials/native-dapp/sdk/resumable-upload",
+                "guide/tutorials/native-dapp/sdk/batch-upload"
+              ]
+            },
+          ]
+        }
+      ]
     },
   ],
 

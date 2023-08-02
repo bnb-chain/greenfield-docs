@@ -11,7 +11,7 @@ This API is used to query a list of group by given prefix/name/source-type. This
 ## HTTP Request Format
 
 | Description      | Definition                     |
-|------------------|--------------------------------|
+| ---------------- | ------------------------------ |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | GET                            |
@@ -26,15 +26,14 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-
-| ParameterName   | Type      | Required | Description                                                                                                                                                                                                                                |
-|-----------------|-----------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| group-query     | string    | yes      | group-query is only used for routing location, and it does not need to pass any value                                                                                                                                                      |
-| name            | string    | yes      | name defines the name to be searched in the group records                                                                                                                                                                                  |
-| prefix          | string    | yes      | prefix the prefix of the group name,    if you search with 'app%coin', the system will return groups that start with 'app' and have 'coin' anywhere in the rest of the string, like 'applicationcoin', 'app_bitcoin', 'app123coinabc', etc |
-| source-type     | string    | no       | source-type must in SOURCE_TYPE_ORIGIN SOURCE_TYPE_BSC_CROSS_CHAIN SOURCE_TYPE_MIRROR_PENDING                                                                                                                                              |
-| limit           | integer   | no       | limit defines the maximum number of results that should be returned in response, default 50 and maximum 1000                                                                                                                               |
-| offset          | integer   | no       | offset defines the position in the list from where to start returning results, default 0 and maximum 100000                                                                                                                                |
+| ParameterName | Type    | Required | Description                                                                                                                                                                                                                                |
+| ------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| group-query   | string  | yes      | group-query is only used for routing location, and it does not need to pass any value                                                                                                                                                      |
+| name          | string  | yes      | name defines the name to be searched in the group records                                                                                                                                                                                  |
+| prefix        | string  | yes      | prefix the prefix of the group name,    if you search with 'app%coin', the system will return groups that start with 'app' and have 'coin' anywhere in the rest of the string, like 'applicationcoin', 'app_bitcoin', 'app123coinabc', etc |
+| source-type   | string  | no       | source-type must in SOURCE_TYPE_ORIGIN SOURCE_TYPE_BSC_CROSS_CHAIN SOURCE_TYPE_MIRROR_PENDING                                                                                                                                              |
+| limit         | integer | no       | limit defines the maximum number of results that should be returned in response, default 50 and maximum 1000                                                                                                                               |
+| offset        | integer | no       | offset defines the position in the list from where to start returning results, default 0 and maximum 100000                                                                                                                                |
 
 ### Request Body
 
@@ -52,15 +51,15 @@ Host: gnfd-testnet-sp-*.bnbchain.org
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
-| ParameterName | Type     | Description                                       |
-|---------------|----------|---------------------------------------------------|
-| groups        | array    | groups defines the information of the group list  |
-| count         | array    | count defines the total groups amount             |
+| ParameterName | Type  | Description                                      |
+| ------------- | ----- | ------------------------------------------------ |
+| groups        | array | groups defines the information of the group list |
+| count         | array | count defines the total groups amount            |
 
 ### Response Body
 

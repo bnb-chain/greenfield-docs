@@ -13,7 +13,7 @@ This API is used to sign an approval for creating a bucket action or creating an
 This API only supports path-style requests.
 
 | Description      | Definition                        |
-|------------------|-----------------------------------|
+| ---------------- | --------------------------------- |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org    |
 | Path(path-style) | /greenfield/admin/v1/get-approval |
 | Method           | GET                               |
@@ -21,7 +21,7 @@ This API only supports path-style requests.
 ## HTTP Request Header
 
 | ParameterName                                                            | Type   | Required | Description                                  |
-|--------------------------------------------------------------------------|--------|----------|----------------------------------------------|
+| ------------------------------------------------------------------------ | ------ | -------- | -------------------------------------------- |
 | X-Gnfd-Unsigned-Msg                                                      | string | yes      | defines unsigned msg                         |
 | [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
@@ -30,7 +30,7 @@ X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [
 ### MsgCreateBucket
 
 | ParameterName     | Type                              | Description                                                                                                                                                                                                         |
-|-------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Creator           | string                            | Creator is the account address of bucket creator, it is also the bucket owner.                                                                                                                                      |
 | BucketName        | string                            | BucketName is a globally unique name of bucket.                                                                                                                                                                     |
 | Visibility        | [VisibilityType](#visibilitytype) | visibility means the bucket is private or public. If private, only bucket owner or grantee can read it, otherwise every greenfield user can read it.                                                                |
@@ -42,7 +42,7 @@ X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [
 ### MsgCreateObject
 
 | ParameterName              | Type                              | Description                                                                                                                                                  |
-|----------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Creator                    | string                            | Creator is the account address of object uploader.                                                                                                           |
 | BucketName                 | string                            | BucketName is the name of the bucket where the object is stored.                                                                                             |
 | ObjectName                 | string                            | ObjectName is the name of object.                                                                                                                            |
@@ -57,21 +57,21 @@ X-Gnfd-Unsigned-Msg header consists of [MsgCreateBucket](#msgcreatebucket) and [
 ### Approval
 
 | ParameterName | Type      | Description                               |
-|---------------|-----------|-------------------------------------------|
+| ------------- | --------- | ----------------------------------------- |
 | ExpiredHeight | integer   | ExpiredHeight is expired at which height. |
 | Sig           | byteArray | Sig is signature                          |
 
 ### RedundancyType
 
 | Value | Description                      |
-|-------|----------------------------------|
+| ----- | -------------------------------- |
 | 0     | Redundancy type is replica type. |
 | 1     | Redundancy type is ec type.      |
 
 ### VisibilityType
 
 | Value | Description                     |
-|-------|---------------------------------|
+| ----- | ------------------------------- |
 | 0     | Visibility type is unspecified. |
 | 1     | Visibility type is public read. |
 | 2     | Visibility type is private.     |
@@ -90,7 +90,7 @@ The request does not have a path parameter.
 ### Query Parameter
 
 | ParameterName | Type   | Required | Description                                             |
-|---------------|--------|----------|---------------------------------------------------------|
+| ------------- | ------ | -------- | ------------------------------------------------------- |
 | action        | string | yes      | The action of approval:`CreateBucket` or `CreateObject` |
 
 ### Request Body
@@ -112,7 +112,7 @@ Authorization: Authorization
 The response returns the following HTTP headers.
 
 | ParameterName                                                             | Type   | Description                           |
-|---------------------------------------------------------------------------|--------|---------------------------------------|
+| ------------------------------------------------------------------------- | ------ | ------------------------------------- |
 | X-Gnfd-Request-ID                                                         | string | defines trace id, trace request in sp |
 | [X-Gnfd-Signed-Msg](../storgae-provider-rest/README.md#x-gnfd-signed-msg) | string | defines signed msg                    |
 

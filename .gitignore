@@ -15,8 +15,13 @@
 .env.test.local
 .env.production.local
 .idea/
-.yarn/
 
+# Yarn
+.yarn/
+yarn.lock
+.yarnrc.yml
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -10,11 +10,11 @@ This API is used to Verify the input account’s permission to input items. This
 
 ## HTTP Request Format
 
-| Description      | Definition                             |
-|------------------|----------------------------------------|
-| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org         |
-| Path(path-style) | /permission/:operator/:bucket/:action  |
-| Method           | GET                                    |
+| Description      | Definition                            |
+| ---------------- | ------------------------------------- |
+| Host(path-style) | gnfd-testnet-sp-*.bnbchain.org        |
+| Path(path-style) | /permission/:operator/:bucket/:action |
+| Method           | GET                                   |
 
 ## HTTP Request Header
 
@@ -22,19 +22,17 @@ This API is used to Verify the input account’s permission to input items. This
 
 ### Path Parameter
 
-
 | ParameterName | Type              | Required | Description                                                                 |
-|---------------|-------------------|----------|-----------------------------------------------------------------------------|
+| ------------- | ----------------- | -------- | --------------------------------------------------------------------------- |
 | operator      | string            | yes      | operator defines the address of operator                                    |
 | bucket        | string            | yes      | bucket defines the name of bucket                                           |
 | action        | [Action](#action) | yes      | action defines the operations you can execute in greenfield storage network |
 
 ### Query Parameter
 
-
-| ParameterName | Type      | Required | Description                       |
-|---------------|-----------|----------|-----------------------------------|
-| object        | string    | no       | object defines the name of object |
+| ParameterName | Type   | Required | Description                       |
+| ------------- | ------ | -------- | --------------------------------- |
+| object        | string | no       | object defines the name of object |
 
 ### Request Body
 
@@ -52,27 +50,27 @@ Host: gnfd-testnet-sp-*.bnbchain.org/permission/:operator/:bucket/:action?object
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
 | ParameterName | Type              | Description                                                                                                         |
-|---------------|-------------------|---------------------------------------------------------------------------------------------------------------------|
+| ------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
 | effect        | [Effect](#effect) | effect defines the effect of the operation permission, include EFFECT_UNSPECIFIED(0)/EFFECT_ALLOW(1)/EFFECT_DENY(2) |
 
 ### Effect
 
-| Value | Description         |
-|-------|---------------------|
-| 0     | EFFECT_UNSPECIFIED  |
-| 1     | EFFECT_ALLOW        |
-| 2     | EFFECT_DENY         |
+| Value | Description        |
+| ----- | ------------------ |
+| 0     | EFFECT_UNSPECIFIED |
+| 1     | EFFECT_ALLOW       |
+| 2     | EFFECT_DENY        |
 
 ### Action
 
 | Value | Description                |
-|-------|----------------------------|
+| ----- | -------------------------- |
 | 0     | ACTION_UNSPECIFIED         |
 | 1     | ACTION_UPDATE_BUCKET_INFO  |
 | 2     | ACTION_DELETE_BUCKET       |

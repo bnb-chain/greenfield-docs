@@ -17,15 +17,16 @@ The following lists the recommended hardware requirements:
 * 5 Greenfield accounts with enough BNB tokens.
 
 :::danger IMPORTANT
-Each storage provider will hold 5 different accounts serving different purposes:
+Each storage provider will hold 6 different accounts serving different purposes:
 
 * Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
 * Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
+* Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
 
-You can use the below command to generate this five accounts:
+You can use the below command to generate this six accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
@@ -33,6 +34,7 @@ You can use the below command to generate this five accounts:
 ./build/bin/gnfd keys add seal --keyring-backend os
 ./build/bin/gnfd keys add approval --keyring-backend os
 ./build/bin/gnfd keys add gc --keyring-backend os
+./build/bin/gnfd keys add bls --keyring-backend os --algo eth_bls
 ```
 
 and then export the private key to prepare for SP deployment:
@@ -43,10 +45,21 @@ and then export the private key to prepare for SP deployment:
 ./build/bin/gnfd keys export seal --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export approval --unarmored-hex --unsafe --keyring-backend os
 ./build/bin/gnfd keys export gc --unarmored-hex --unsafe --keyring-backend os
+./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-Please keep these five private keys safe!
+Please keep these six private keys safe!
 
+Also, obtain bls public key, bls proof to fill in the proposal of creating Storage Provider
+
+bls_pub_key: 
+```shell
+./build/bin/gnfd keys show bls --keyring-backend os --output json | jq -r '.pubkey_hex' 
+```
+bls_proof:
+```shell
+./build/bin/gnfd keys sign "${bls_pub_key}"   --from bls --keyring-backend os
+```
 :::
 
 ## Create Storage Provider
@@ -112,6 +125,7 @@ FundingPrivateKey = '${funding_private_key}'
 SealPrivateKey = '${seal_private_key}'
 ApprovalPrivateKey = '${approval_private_key}'
 GcPrivateKey = '${gc_private_key}'
+BlsPrivateKey = '${bls_private_key}'
 
 [Endpoint]
 ApproverEndpoint = 'manager:9333'
@@ -176,7 +190,7 @@ EnableDualDB = false
 
 `BlockSyncer.Dsn` the user name and password need to be replaced, but this value can also be set in the environment variable BLOCK_SYNCER_DSN, which the code reads first as a configuration
 
-We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey and P2PPrivatekey` into environment variables for safety.
+We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey, BlsPrivateKey and P2PPrivatekey` into environment variables for safety.
 
 :::
 
@@ -205,27 +219,13 @@ mysql> show create database block_syncer;
 
 ## Add Storage Provider to Greenfield testnet
 
-### 1. Authorization
-
-Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
-
-```shell
-./build/bin/gnfd keys show operator --keyring-backend os 
-./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000000000000000000000BNB --SPAddress {operator_address} --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
-```
-
-The above command requires the funding account of the SP to send the transaction to allow the gov module to have permission to deduct tokens from the funding account of SP which is specified by the operator address.
-
-:::note
-You can execute this command to query on-chain parameters. `./gnfd q sp params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
-:::
-
-### 2. submit-proposal
+### 1. create storage provider
 
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
 ```shell
-./build/bin/gnfd tx gov submit-proposal path/to/create_sp.json --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+
+./build/bin/gnfd tx sp create-storage-provider path/to/create_storage_provider.json --from funding  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 
 # create_sp.json
 $ cat ./create_sp.json
@@ -250,28 +250,53 @@ $ cat ./create_sp.json
       "denom":"BNB",
       "amount":"1000000000000000000000"
     },
-    "read_price": "0.060000000000000000",
-    "store_price": "0.019000000000000000",
+    "read_price": "0.108",
+    "store_price": "0.016"",
     "free_read_quota": 10000,
-    "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2"
+    "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
+    "bls_key": "{bls_pub_key}",
+    "bls_proof": "{bls_proof}"
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
-  "title": "Create <name> Validator",
-  "summary": "create <name> validator",
+  "title": "Create <name> Storage Provider",
+  "summary": "create <name> Storage Provider",
   "deposit": "1000000000000000000BNB"
 }
 ```
 
-### 3. deposit tokens to the proposal
+:::note
+You can get the mininum deposit tokens by quering on-chain parameters. 
 
-Each proposal needs to have enough tokens deposited to enter the voting stage.
+`./gnfd q sp params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
+:::
+
+:::note
+You can get the gov account by the above command
+
+```shell
+curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/auth/v1beta1/module_accounts/gov" -H  "accept: application/json"
+```
+:::
+
+:::note
+You can get the mininum deposit for proposal by the above command. Please make sure that the initial deposit is greater than min_deposit when submitting the proposal.
+```shell
+curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/gov/v1/params/deposit" -H  "accept: application/json"
+```
+:::
+
+### 2. deposit tokens to the proposal
+
+You can skip this step if the initial deposit amount is greater than the min deposit required by the proposal.
+
+Each proposal needs to deposit enough tokens to enter the voting phase.
 
 ```shell
 ./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
-### 4. Wait voting and check voting result
+### 3. Wait voting and check voting result
 
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
@@ -318,3 +343,32 @@ Users can use Greenfield Cmd or DCellar to operate in Testnet:
 * Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 
 * DCellar: [website](https://dcellar.io/)
+
+### Support both path-style and virtual-style routers in https certificates
+TBD
+### Cross Region Configuration
+When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.  
+See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+
+If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
+
+![CORS ERROR](../../../../static/asset/405-cors-error.png)
+
+Most people run their SP services behind the nginx or other similar reverse proxies. Usually the CORS settings should be configured in those reverse proxies.
+
+We recommend SP with reverse proxy can return the following headers:
+
+```
+access-control-allow-headers: *
+access-control-allow-methods: *
+access-control-allow-origin: *
+access-control-expose-headers: *
+```
+
+After you finish the configuration, you can verify if it works in DCellar.  
+1. Go to https://dcellar.io
+2. Press F12 to launch web developer tools and go to "Network" tab.
+3. Connect your wallet
+4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
+![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
+

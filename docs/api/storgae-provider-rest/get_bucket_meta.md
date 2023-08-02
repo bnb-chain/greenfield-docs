@@ -11,7 +11,7 @@ This API is used to get bucket meta by bucket name. And it supports both `virtua
 ## HTTP Request Format
 
 | Description                | Definition                                |
-|----------------------------|-------------------------------------------|
+| -------------------------- | ----------------------------------------- |
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
 | Path(virtual-hosted-style) |                                           |
 | Method                     | GET                                       |
@@ -24,9 +24,8 @@ This API is used to get bucket meta by bucket name. And it supports both `virtua
 
 ### Query Parameter
 
-
 | ParameterName | Type   | Description                                                                           |
-|---------------|--------|---------------------------------------------------------------------------------------|
+| ------------- | ------ | ------------------------------------------------------------------------------------- |
 | bucket-meta   | string | bucket-meta is only used for routing location, and it does not need to pass any value |
 
 ### Request Body
@@ -43,21 +42,20 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ## HTTP Response Header
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
 | ParameterName | Type                          | Description                                                         |
-|---------------|-------------------------------|---------------------------------------------------------------------|
+| ------------- | ----------------------------- | ------------------------------------------------------------------- |
 | bucket        | [Bucket](#bucket)             | bucket defines the bucket meta                                      |
 | stream_record | [StreamRecord](#streamrecord) | stream_record defines the stream payment record of a stream account |
-
 
 ### Bucket
 
 | ParameterName    | Type                              | Description                                                                                             |
-|------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------|
+| ---------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | Owner            | string                            | Owner is the object owner                                                                               |
 | BucketName       | string                            | BucketName is the name of the bucket                                                                    |
 | Visibility       | [VisibilityType](#visibilitytype) | Visibility defines the highest permissions for bucket. When an bucket is public, everyone can access it |
@@ -72,7 +70,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ### StreamRecord
 
 | ParameterName     | Type                                        | Description                                                                                                             |
-|-------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| ----------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | Account           | string                                      | Account is the account address                                                                                          |
 | CrudTimestamp     | int64                                       | CrudTimestamp defines latest update timestamp of the stream record                                                      |
 | NetflowRate       | big.Int                                     | NetflowRate defines the per-second rate that an account's balance is changing.                                          |
@@ -87,21 +85,21 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ### BucketStatus
 
 | Value | Description                   |
-|-------|-------------------------------|
+| ----- | ----------------------------- |
 | 0     | bucket status is created      |
 | 1     | bucket status is discontinued |
 
 ### StreamAccountStatus
 
 | Value | Description                                                                |
-|-------|----------------------------------------------------------------------------|
+| ----- | -------------------------------------------------------------------------- |
 | 0     | STREAM_ACCOUNT_STATUS_ACTIVE defines the active status of a stream account |
 | 1     | STREAM_ACCOUNT_STATUS_FROZEN defines the frozen status of a stream account |
 
 ### VisibilityType
 
 | Value | Description                    |
-|-------|--------------------------------|
+| ----- | ------------------------------ |
 | 0     | Visibility type is unspecified |
 | 1     | Visibility type is public read |
 | 2     | Visibility type is private     |
@@ -110,7 +108,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ### SourceType
 
 | Value | Description                 |
-|-------|-----------------------------|
+| ----- | --------------------------- |
 | 0     | SOURCE_TYPE_ORIGIN          |
 | 1     | SOURCE_TYPE_BSC_CROSS_CHAIN |
 | 2     | SOURCE_TYPE_MIRROR_PENDING  |
