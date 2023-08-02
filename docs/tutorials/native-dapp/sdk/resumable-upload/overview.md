@@ -16,7 +16,7 @@ During resumable upload, if an error occurs during the `PutObject` operation, th
 
 ### Upload Process Overview
 
-![resumable-upload-overview](../../../../../static/asset/12-Resumable-Upload.png)
+![resumable-upload-overview](12-Resumable-Upload.png)
 
 1. Start the initial `PutObject` operation to upload the object.
 2. If an error occurs during the upload, such as a network interruption or server error, the upload process is interrupted.

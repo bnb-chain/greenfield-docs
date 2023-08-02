@@ -10,11 +10,11 @@ In the following sections, we will delve deeper into each native application, pr
 
 ## CLI
 
-* [Basic File Management](/docs/guide/tutorials/native-dapp/cli/file-management/overview)
-* [Hosting Websites](/docs/guide/tutorials/native-dapp/cli/hosting-websites/overview)
+* [Basic File Management](/docs/tutorials/native-dapp/cli/file-management/overview)
+* [Hosting a Website](/docs/tutorials/native-dapp/cli/hosting-websites/overview)
 
 ## SDK
 
-* [Basic File Management](/docs/guide/tutorials/native-dapp/sdk/file-management/overview)
-* [Resumable Upload & Download](/docs/guide/tutorials/native-dapp/sdk/resumable-upload)
-* [Batch operations](/docs/guide/tutorials/native-dapp/sdk/batch-upload)
+* [Basic File Management](/docs/tutorials/native-dapp/sdk/file-management/overview)
+* [Resumable Upload & Download](/docs/tutorials/native-dapp/sdk/resumable-upload/overview)
+* [Batch operations](/docs/tutorials/native-dapp/sdk/batch-upload)

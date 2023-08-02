@@ -14,7 +14,7 @@ In this section, we will introduce the two main methods for developing dApps on 
 ## Developing with smart contracts on BSC
 One of the primary methods for building dApps with BNB Greenfield is by deploying smart contracts to the BSC. Smart contracts are self-executing programs that facilitate and enforce the execution of agreements without the need for intermediaries.
 
-In this section, we will guide you through the process of creating, deploying, and interacting with smart contracts on BSC using popular development frameworks like Solidity and Truffle. You can find detailed tutorials and examples for developing dApps using smart contracts in the [Building Smart Contract dApps](/docs/guide/tutorials/dapp/overview) section.
+In this section, we will guide you through the process of creating, deploying, and interacting with smart contracts on BSC using popular development frameworks like Solidity and Truffle. You can find detailed tutorials and examples for developing dApps using smart contracts in the [Building Smart Contract dApps](/docs/tutorials/dapp/overview) section.
 
 ## Interacting with BNB Greenfield through SDK and CLI
 BNB Greenfield offers two native application options for interacting with the platform without involving the development of smart contracts:
@@ -27,4 +27,4 @@ The Command Line Interface (CLI) is another native application provided by BNB G
 
 In the following sections, we will delve deeper into each native application, providing step-by-step guides, code snippets, and best practices to empower you to create powerful and innovative dApps without the need for smart contract development.
 
-You can find more information and detailed instructions in the [Building Native dApps](/docs/guide/tutorials/native-dapp/overview) section.
+You can find more information and detailed instructions in the [Building Native dApps](/docs/tutorials/native-dapp/overview) section.

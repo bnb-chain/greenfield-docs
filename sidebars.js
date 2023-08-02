@@ -249,22 +249,22 @@ const sidebars = {
       label: "Tutorials",
       collapsible: true,
       collapsed: true,
-      link: {type:'doc', id:'guide/tutorials/overview'},
+      link: {type:'doc', id:'tutorials/overview'},
       items:[
         {
           type: "category",
           label: "Building Smart Contract dApps",
           collapsible: true,
           collapsed: true,
-          link: {type:'doc', id:'guide/tutorials/dapp/overview'},
+          link: {type:'doc', id:'tutorials/dapp/overview'},
           items:[
-            "guide/tutorials/dapp/overview",
-            "guide/tutorials/dapp/quick-start",
-            "guide/tutorials/dapp/primitive-interface",
-            "guide/tutorials/dapp/dapp-integration",
-            "guide/tutorials/dapp/permission-control",
-            "guide/tutorials/dapp/contract-list",
-            "guide/tutorials/dapp/showcases"
+            "tutorials/dapp/overview",
+            "tutorials/dapp/quick-start",
+            "tutorials/dapp/primitive-interface",
+            "tutorials/dapp/dapp-integration",
+            "tutorials/dapp/permission-control",
+            "tutorials/dapp/contract-list",
+            "tutorials/dapp/showcases"
           ]
         },
         {
@@ -272,17 +272,17 @@ const sidebars = {
           label: "Building Native dApps",
           collapsible: true,
           collapsed: true,
-          link: {type:'doc', id:'guide/tutorials/native-dapp/overview'},
+          link: {type:'doc', id:'tutorials/native-dapp/overview'},
           items:[
-            "guide/tutorials/native-dapp/overview",
+            "tutorials/native-dapp/overview",
             {
               type: "category",
               label: "CLI",
               collapsible: true,
               collapsed: true,
               items:[
-                "guide/tutorials/native-dapp/cli/file-management/overview",
-                "guide/tutorials/native-dapp/cli/hosting-websites/overview",
+                "tutorials/native-dapp/cli/file-management/overview",
+                "tutorials/native-dapp/cli/hosting-websites/overview",
               ]
             },
             {
@@ -291,9 +291,9 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items:[
-                "guide/tutorials/native-dapp/sdk/file-management/overview",
-                "guide/tutorials/native-dapp/sdk/resumable-upload",
-                "guide/tutorials/native-dapp/sdk/batch-upload"
+                "tutorials/native-dapp/sdk/file-management/overview",
+                "tutorials/native-dapp/sdk/resumable-upload/overview",
+                "tutorials/native-dapp/sdk/batch-upload"
               ]
             },
           ]
