@@ -8,7 +8,7 @@ order: 2
 In `Greenfield`, uploading an object to a bucket is a two-stage process. First, a transaction including the object metadata 
 needs to be broadcasted to the Greenfield Chain and confirmed. After confirmation, PUT the object to a Greenfield Storage 
 Provider. In the first stage, every transaction needs to be signed by the primary key(also known as `account`, refer to
-[accounts](../concept/accounts.md) for more details). And if you are accessing `Greenfield` via front-end app and connecting
+[accounts](../core-concept/accounts.md) for more details). And if you are accessing `Greenfield` via front-end app and connecting
 wallet like Metamask(or other compatible wallets), you will be asked for approval to sign the transaction.
 
 For people who may have encountered the need to upload large amounts of objets, while uploading objects to `Greenfield` individually 
