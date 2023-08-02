@@ -4,7 +4,9 @@ order: 3
 ---
 This guide helps you to set up a Storage Provider and add it to Greenfield testnet.
 
-## Recommended Prerequisites
+## Prerequisites
+
+### Recommended Hardware
 
 The following lists the recommended hardware requirements:
 
@@ -17,7 +19,9 @@ The following lists the recommended hardware requirements:
 * 5 Greenfield accounts with enough BNB tokens.
 
 :::danger IMPORTANT
-Each storage provider will hold 6 different accounts serving different purposes:
+Each storage provider will hold 6 different accounts serving different purposes
+
+### Wallet Preparation
 
 * Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
 * Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
@@ -62,6 +66,58 @@ bls_proof:
 ```
 :::
 
+### Databbase Configuration
+
+You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
+
+block_syncer and block_syncer_backup require the `utf8mb4_unicode_ci` encoding format
+
+```shell
+# login in mysql and create database
+# the default encoding for the database should be utf8mb4_unicode_ci
+mysql> CREATE DATABASE storage_provider_db;
+mysql> CREATE DATABASE block_syncer;
+mysql> CREATE DATABASE block_syncer_backup;
+# Check the database encoding format
+mysql> show create database block_syncer;
+```
+
+### PieceStore Configuration
+
+Please follow this [doc](./piece-store) to config your PieceStore.
+
+### Gateway Configuration
+
+#### 1. Support both path-style and virtual-style routers in https certificates
+
+#### 2. Cross Region Configuration
+When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.
+See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+
+If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
+
+![CORS ERROR](../../../../static/asset/405-cors-error.png)
+
+Most people run their SP services behind the nginx or other similar reverse proxies. Usually the CORS settings should be configured in those reverse proxies.
+
+We recommend SP with reverse proxy can return the following headers:
+
+```
+access-control-allow-headers: *
+access-control-allow-methods: *
+access-control-allow-origin: *
+access-control-expose-headers: *
+```
+
+After you finish the configuration, you can verify if it works in DCellar.
+1. Go to https://dcellar.io
+2. Press F12 to launch web developer tools and go to "Network" tab.
+3. Connect your wallet
+4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
+![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
+
+
+
 ## Create Storage Provider
 
 ### 1. Compile SP
@@ -81,143 +137,37 @@ cd greenfield-storage-provider/build
 
 #### Write config
 
-```toml
-Server = []
-GRPCAddress = '0.0.0.0:9333'
+You can learn about how to write your `config.toml` file [here](./config)
 
-[SpDB]
-User = '${db_user}'
-Passwd = '${db_password}'
-Address = '${db_address}'
-Database = 'storage_provider_db'
+It's recommended to deploy Kubernetes cluser following this [guide](https://github.com/bnb-chain/greenfield-sp-deployment/blob/main/docs/README.md). The corresonding config file is [here](https://github.com/bnb-chain/greenfield-sp-deployment/blob/main/docs/k8s/aws/config.toml).
 
-[BsDB]
-User = '${db_user}'
-Passwd = '${db_password}'
-Address = '${db_address}'
-Database = 'block_syncer'
 
-[BsDBBackup]
-User = '${db_user}'
-Passwd = '${db_password}'
-Address = '${db_address}'
-Database = 'block_syncer_backup'
-
-[PieceStore]
-Shards = 0
-
-[PieceStore.Store]
-Storage = 's3'
-BucketURL = '${bucket_url}'
-MaxRetries = 5
-MinRetryDelay = 0
-TLSInsecureSkipVerify = false
-IAMType = 'SA'
-
-[Chain]
-ChainID = '${chain_id}'
-ChainAddress = ['${chain_address}']
-
-[SpAccount]
-SpOperatorAddress = '${sp_operator_address}'
-OperatorPrivateKey = '${operator_private_key}'
-FundingPrivateKey = '${funding_private_key}'
-SealPrivateKey = '${seal_private_key}'
-ApprovalPrivateKey = '${approval_private_key}'
-GcPrivateKey = '${gc_private_key}'
-BlsPrivateKey = '${bls_private_key}'
-
-[Endpoint]
-ApproverEndpoint = 'manager:9333'
-ManagerEndpoint = 'manager:9333'
-DownloaderEndpoint = 'downloader:9333'
-ReceiverEndpoint = 'receiver:9333'
-MetadataEndpoint = 'metadata:9333'
-UploaderEndpoint = 'uploader:9333'
-P2PEndpoint = 'p2p:9333'
-SignerEndpoint = 'signer:9333'
-AuthenticatorEndpoint = 'localhost:9333'
-
-[Gateway]
-DomainName = '${sp_domain_name}'
-HTTPAddress = '0.0.0.0:9033'
-
-[P2P]
-# p2p node msg Secp256k1 encryption key, it is different from other SP's addresses
-P2PPrivateKey = '${p2p_private_key}'
-P2PAddress = '0.0.0.0:9933'
-P2PAntAddress = '${load_balance_doamin:port}'
-P2PBootstrap = ['node_id@load_balance_doamin:port'] # p2p node's bootstrap node, format: [node_id1@ip1:port1, node_id2@ip1:port2]
-P2PPingPeriod = 0
-
-[Parallel]
-DiscontinueBucketEnabled = true
-DiscontinueBucketKeepAliveDays = 2
-
-[Monitor]
-DisableMetrics = false
-DisablePProf = false
-MetricsHTTPAddress = '0.0.0.0:24367'
-PProfHTTPAddress = '0.0.0.0:24368'
-
-[Rcmgr]
-DisableRcmgr = false
-
-[Metadata]
-IsMasterDB = true
-BsDBSwitchCheckIntervalSec = 30
-
-[BlockSyncer]
-Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree']
-Dsn = "user:passwd*@tcp(localhost:3306)/block_syncer?parseTime=true&multiStatements=true&loc=Local"
-DsnSwitched = ''
-RecreateTables = false
-Workers = 50
-EnableDualDB = false
-```
-
-:::info About SP Testnet Config
-
-`ChainID` of testnet is `greenfield_5600-1`.
-
-`ChainAddress` of testnet you can use `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`. Moreover, you can run your own fullnode and use its address.
-
-`P2PPrivateKey` and `node_id` is generated by `./gnfd-sp p2p.create.key -n 1`.
-
-`P2PAntAddress` is your load balance address. If you don't have a load balance address, you should have a public IP and use it in `P2PAddress`.
-
-`P2PBootstrap` consists of [node_id1@ip1:port1, node_id2@ip1:port2], you can use P2PAntAddress or P2PAddress as `ip:port`.
-
-`BlockSyncer.Dsn` the user name and password need to be replaced, but this value can also be set in the environment variable BLOCK_SYNCER_DSN, which the code reads first as a configuration
-
-We recommend you writing `db User, db password, db address, bucketURL, OperatorPrivateKey, FundingPrivateKey, SealPrivateKey, ApprovalPrivateKey, GcPrivateKey, BlsPrivateKey and P2PPrivatekey` into environment variables for safety.
-
-:::
-
-### 3. Create Database
-
-You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
-
-block_syncer and block_syncer_backup require the utf8mb4_unicode_ci encoding format
-
-```shell
-# login in mysql and create database
-# the default encoding for the database should be utf8mb4_unicode_ci
-mysql> CREATE DATABASE storage_provider_db;
-mysql> CREATE DATABASE block_syncer;
-mysql> CREATE DATABASE block_syncer_backup;
-# Check the database encoding format
-mysql> show create database block_syncer;
-```
-
-### 4. Run SP
+### 3. Run SP
 
 ```shell
 # start sp
 ./gnfd-sp --config ${config_file_path}
 ```
+### 4. Deploy Dashboard
+
+You can prepare your monitoring dashboard following [this guide](./infra-deployment/grafana/grafana.md)
+
 
 ## Add Storage Provider to Greenfield testnet
+
+Greenfield Blockchain valdiators are responsible for selecting storage providers. For each on-chain proposal to add new storage provider, there are deposit period for depositing BNB and voting period for validators to make votes. Once the proposal passes, new SP can join the network afterwards.
+
+You can query the governance parameters [here](https://docs.bnbchain.org/greenfield-docs/docs/greenfield-api/gov-v-1-params)
+
+
+### Fee Table
+
+| Transaction Type             | Fee         |
+| ---------------------------- | ----------- |
+| Submit Storage Provider Proposal  | 1 BNB      |
+| Storage Provider Proposal Deposit | 0.00003 BNB |
+| Edit Storage Provider     |  0.1BNB       |
+
 
 ### 1. Authorization
 
@@ -234,7 +184,7 @@ The above command requires the funding account of the SP to send the transaction
 You can execute this command to query on-chain parameters. `./gnfd q sp params --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
 :::
 
-### 2. submit-proposal
+### 2. Submit-proposal
 
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
@@ -279,7 +229,7 @@ $ cat ./create_sp.json
 }
 ```
 
-### 3. deposit tokens to the proposal
+### 3. Deposit BNB to proposal
 
 Each proposal needs to have enough tokens deposited to enter the voting stage.
 
@@ -292,8 +242,6 @@ Each proposal needs to have enough tokens deposited to enter the voting stage.
 After submitting the proposal successfully, you must wait for the voting to be completed and the proposal to be approved. It will last 7days on mainnet while 1 day on testnet. Once it has passed and is executed successfully, you can verify that the storage provider has been joined.
 
 :::caution
-
-Default voting time is 30 seconds.
 
 Please ensure that the storage provider service is running before it has been joined.
 
@@ -311,7 +259,8 @@ Alternatively, you can check the proposal to know about its execution status.
 ./build/bin/gnfd query gov proposal {proposal_id} --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
-### Deposit
+## Storage Provider Operations
+### Deposit collateral
 
 This command is used for the SP to supplement collateral, because if the service status of the SP is not good during operation, it will be slashed by users, resulting in the deduction of its deposit tokens.
 
@@ -327,39 +276,23 @@ This command is used to edit the information of the SP, including endpoint, desc
 gnfd tx sp edit-storage-provider [sp-address] [flags]
 ```
 
-## Operate with Greenfield Testnet
+## Verify Functions
 
-Users can use Greenfield Cmd or DCellar to operate in Testnet:
+### Storage Provider Standard Test
+
+It's required for all SP to run this [standard test](https://github.com/bnb-chain/greenfield-sp-standard-test  ) to make sure your SP is running as expected.
+
+### Tools
+
+SP can use Greenfield Cmd or DCellar to verify SP functions in Testnet:
 
 * Greenfield Cmd: [repo](https://github.com/bnb-chain/greenfield-cmd)
 
 * DCellar: [website](https://dcellar.io/)
 
-### Support both path-style and virtual-style routers in https certificates
-TBD
-### Cross Region Configuration
-When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.  
-See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
+## Trouble shooting
 
-If CORS is not configured properly, you may find the DCellar (or any other web applications which mean to interact with your SP) will report CORS errors, similar to below:
+If you meet issues, please read [this doc](./common-issues).
 
-![CORS ERROR](../../../../static/asset/405-cors-error.png)
 
-Most people run their SP services behind the nginx or other similar reverse proxies. Usually the CORS settings should be configured in those reverse proxies.
-
-We recommend SP with reverse proxy can return the following headers:
-
-```
-access-control-allow-headers: *
-access-control-allow-methods: *
-access-control-allow-origin: *
-access-control-expose-headers: *
-```
-
-After you finish the configuration, you can verify if it works in DCellar.  
-1. Go to https://dcellar.io
-2. Press F12 to launch web developer tools and go to "Network" tab.
-3. Connect your wallet
-4. Find the "OPTIONS" request to your SP and check its status and response headers. If you see a similar result to the following screenshot, it means your CORS configuration is correct.
-![CORRECT_CORS](../../../../static/asset/406-correct-cors.png)
 
