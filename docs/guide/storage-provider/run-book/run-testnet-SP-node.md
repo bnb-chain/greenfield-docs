@@ -189,7 +189,8 @@ You can execute this command to query on-chain parameters. `./gnfd q sp params -
 The SP needs to initiate an on-chain proposal that specifies the Msg information to be automatically executed after the vote is approved. In this case, the Msg is `MsgCreateStorageProvider`. It's worth noting that the deposit tokens needs to be greater than the minimum deposit tokens specified on the chain.
 
 ```shell
-./build/bin/gnfd tx gov submit-proposal path/to/create_sp.json --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
+
+./build/bin/gnfd tx sp create-storage-provider path/to/create_storage_provider.json --from funding  --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 
 # create_sp.json
 $ cat ./create_sp.json
@@ -214,8 +215,8 @@ $ cat ./create_sp.json
       "denom":"BNB",
       "amount":"1000000000000000000000"
     },
-    "read_price": "0.060000000000000000",
-    "store_price": "0.019000000000000000",
+    "read_price": "0.108",
+    "store_price": "0.016"",
     "free_read_quota": 10000,
     "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
     "bls_key": "{bls_pub_key}",
@@ -223,23 +224,40 @@ $ cat ./create_sp.json
   }
 ],
   "metadata": "4pIMOgIGx1vZGU=",
-  "title": "Create <name> Validator",
-  "summary": "create <name> validator",
+  "title": "Create <name> Storage Provider",
+  "summary": "create <name> Storage Provider",
   "deposit": "1000000000000000000BNB"
 }
 ```
 
 #### Understanding the parameters
 
+:::note
+You can get the gov module address by this command
+
+```shell
+curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/auth/v1beta1/module_accounts/gov" -H  "accept: application/json"
+```
+:::
+
 * `endpoint` is URL of your gateway
 * `read_price` and `store_price` unit is `wei/bytes/s`
 * `free_read_quota` unit is *Bytes*
-* `creator` is the address of `gov module`
+* `creator` is the address of `gov module` 
 * `metadata` is optional
 
 ### 3. Deposit BNB to proposal
 
-Each proposal needs to have enough tokens deposited to enter the voting stage.
+:::note
+You can get the mininum deposit for proposal by the above command. Please make sure that the initial deposit is greater than `min_deposit` when submitting the proposal.
+```shell
+curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/gov/v1/params/deposit" -H  "accept: application/json"
+```
+:::
+
+You can skip this step if the initial deposit amount is greater than the min deposit required by the proposal.
+
+Each proposal needs to deposit enough tokens to enter the voting phase.
 
 ```shell
 ./build/bin/gnfd tx gov deposit {proposal_id} 1BNB --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
