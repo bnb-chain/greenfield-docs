@@ -48,10 +48,10 @@ const sidebars = {
         "guide/core-concept/accounts",
         "guide/core-concept/billing-payment",
         "guide/core-concept/programmability",
-        "guide/concept/simple-storage-service",
+        "guide/core-concept/simple-storage-service",
         "guide/core-concept/data-availability",
         "guide/core-concept/transaction-lifecycle",
-        "guide/concept/storage-provider-lifecycle",
+        "guide/core-concept/storage-provider-lifecycle",
         "guide/core-concept/data-storage",
         "guide/core-concept/gas-fees",
       ],
@@ -157,32 +157,6 @@ const sidebars = {
         }
       ]
     },
-    {
-      type: "category",
-      label: "Building Smart Contract Dapp",
-      collapsible: true,
-      collapsed: true,
-      link: {type:'doc', id:'guide/dapp/overview'},
-      items:[
-        "guide/dapp/quick-start",
-        "guide/dapp/primitive-interface",
-        "guide/dapp/dapp-integration",
-        "guide/dapp/permisson-control",
-        "guide/dapp/contract-list",
-        "guide/dapp/showcases"
-      ]
-    },
-    {
-      type: "category",
-      label: "Building Native Dapp",
-      collapsible: true,
-      collapsed: true,
-      link: {type:'doc', id:'guide/native-app/overview'},
-      items:[
-        "guide/native-app/resumable-upload",
-        "guide/native-app/batch-upload"
-      ]
-    },
     {type:'doc', label:'Contribute', id:'contribute'},
   ],
 
@@ -266,6 +240,65 @@ const sidebars = {
         "sdks/sdk-js",
         "sdks/key-management"
       ],
+    },
+  ],
+
+  tutorialsSidebar: [
+    {
+      type: "category",
+      label: "Tutorials",
+      collapsible: true,
+      collapsed: true,
+      link: {type:'doc', id:'tutorials/overview'},
+      items:[
+        {
+          type: "category",
+          label: "Building Smart Contract dApps",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'tutorials/dapp/overview'},
+          items:[
+            "tutorials/dapp/overview",
+            "tutorials/dapp/quick-start",
+            "tutorials/dapp/primitive-interface",
+            "tutorials/dapp/dapp-integration",
+            "tutorials/dapp/permission-control",
+            "tutorials/dapp/contract-list",
+            "tutorials/dapp/showcases"
+          ]
+        },
+        {
+          type: "category",
+          label: "Building Native dApps",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'tutorials/native-dapp/overview'},
+          items:[
+            "tutorials/native-dapp/overview",
+            {
+              type: "category",
+              label: "CLI",
+              collapsible: true,
+              collapsed: true,
+              items:[
+                "tutorials/native-dapp/cli/file-management/overview",
+                "tutorials/native-dapp/cli/hosting-websites/overview",
+              ]
+            },
+            {
+              type: "category",
+              label: "SDK",
+              collapsible: true,
+              collapsed: true,
+              items:[
+                "tutorials/native-dapp/sdk/file-management/overview",
+                "tutorials/native-dapp/sdk/resumable-upload/overview",
+                "tutorials/native-dapp/sdk/batch-upload"
+              ]
+            },
+          ]
+        }
+      ]
     },
   ],
 

@@ -1,5 +1,5 @@
 ---
-title: Batch operation in Greenfield
+title: Batch operations
 order: 2
 ---
 
