@@ -45,10 +45,6 @@ validator governance votes.
 
 For more information, please see [SP exit](../modules/virtual-group.md#sp-exit-workflow)
 
-### Reputation
-
-We'll introduce a reputation system for storage provider to evaluate the quality of service of SP.
-
 ## State
 
 ### StorageProvider
@@ -56,10 +52,7 @@ We'll introduce a reputation system for storage provider to evaluate the quality
 The storage provider can be in one of these several statuses:
 
 * `STATUS_IN_SERVICE`: The SP is in service. it can serve user's Create/Upload/Download request.
-* `STATUS_IN_JAILED`: The SP has been slashed many times, and its deposit tokens is insufficient.
 * `STATUS_GRACEFUL_EXITING`: The SP is exiting gracefully. All the object stored in it will be shifted to another sp.
-* `STATUS_OUT_OF_SERVICE`: The SP is out of service. it can be a short-lived service unavailable. Users are unable
-  to store or get payload data on it.
 
 The storage providers metadata should be primarily stored and accessed by the `OperatorAddr`, an EIP712 account address
 for the operator of the storage provider. Three additional indices are maintained per storage provider metadata in
@@ -73,30 +66,34 @@ order to fulfill required lookups for SealObject/Deposit/Slash/GetApproval.
 Each storage provider's state is stored in a `StorageProvider` struct.
 
 ```protobuf
+// StorageProvider defines the meta info of storage provider
 message StorageProvider {
-  option (gogoproto.equal) = false;
-  option (gogoproto.goproto_stringer) = false;
-
-  // operator_address defines the address of the sp's operator; It also is the unique index key of sp.
-  string operator_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // fund_address define the account address of the storage provider for deposit, remuneration.
-  string funding_address = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // seal_address define the account address of the storage provider for sealObject
-  string seal_address = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // approval_address define the account address of the storage provider for ack CreateBucket/Object.
-  string approval_address = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // total_deposit define the deposit token
-  string total_deposit = 5 [
+  // // id is the identifier of the storage provider, used in virtual group
+  uint32 id = 1;
+  // operator_address defines the account address of the storage provider's operator; It also is the unique index key of sp.
+  string operator_address = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // funding_address defines one of the storage provider's accounts which is used to deposit and reward.
+  string funding_address = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // seal_address defines one of the storage provider's accounts which is used to SealObject
+  string seal_address = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // approval_address defines one of the storage provider's accounts which is used to approve use's createBucket/createObject request
+  string approval_address = 5 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // gc_address defines one of the storage provider's accounts which is used for gc purpose.
+  string gc_address = 6 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // total_deposit defines the number of tokens deposited by this storage provider for staking.
+  string total_deposit = 7 [
     (cosmos_proto.scalar) = "cosmos.Int",
     (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
     (gogoproto.nullable) = false
   ];
-  // status is the status of sp, which can be (in_service/read_only_service/graceful_exiting/out_of_service)
-  Status status = 6;
-  // endpoint is the service address of the storage provider
-  string endpoint = 7;
-  // description defines the description terms for the validator.
-  Description description = 8 [(gogoproto.nullable) = false];
+  // status defines the current service status of this storage provider
+  Status status = 8;
+  // endpoint define the storage provider's network service address
+  string endpoint = 9;
+  // description defines the description terms for the storage provider.
+  Description description = 10 [(gogoproto.nullable) = false];
+  // bls_key defines the bls pub key of the Storage provider for sealing object and completing migration
+  bytes bls_key = 11;
 }
 ```
 
