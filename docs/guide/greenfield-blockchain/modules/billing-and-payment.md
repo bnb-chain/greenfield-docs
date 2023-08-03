@@ -5,7 +5,7 @@ order: 3
 
 # Billing and Payment
 
-If you need a remind on the different type of fees, we invite you to the [following page](../../concept/billing-payment.md).
+If you need a remind on the different type of fees, we invite you to the [following page](../../core-concept/billing-payment.md).
 
 The fees are paid on Greenfield in the style of
 `Stream` from users to the SPs at a constant rate. The fees are charged
