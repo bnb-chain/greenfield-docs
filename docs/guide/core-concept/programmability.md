@@ -72,4 +72,4 @@ More details are discussed in [Cross Chain Module design](../greenfield-blockcha
 ## Get Started with building dapp
 
 - [Learn more about the cross-chain mechanism](../greenfield-blockchain/modules/cross-chain.md)
-- [Start building dapps with Greenfield](../dapp/quick-start.md)
+- [Start building dapps with Greenfield](../../tutorials/dapp/quick-start.md)
