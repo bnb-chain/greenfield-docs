@@ -18,7 +18,7 @@ the default path is a directory called ".gnfd-cmd" under the home directory of t
 When running commands that interact with the greenfield, if there is no config/config.toml file under the path and the commands runs without "--config" flag, the tool will generate the config/config.toml file automatically which is consistent with the testnet configuration under the path.
 
 Below is an example of the config file. The rpcAddr and chainId should be consistent with the Greenfield network.
-For Greenfield Testnet, you can refer to [Greenfield Testnet RPC Endpoints](https://greenfield.bnbchain.org/docs/guide/resources.html#rpc-endpoints).
+For Greenfield Testnet, you can refer to [Greenfield Testnet RPC Endpoints] (../../api/endpoints.md).
 The rpcAddr indicates the Tendermint RPC address with the port info.
 
 ```

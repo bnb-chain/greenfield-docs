@@ -23,7 +23,7 @@ In the case of BNB Greenfield, the decentralized network of storage providers co
 To start, create a separate bucket for your website on BNB Greenfield using the following command: 
 
 ```bash
-./gnfd-cmd bucket createstorage make-bucket gnfd://my-plato-website
+./gnfd-cmd bucket create gnfd://my-plato-website
 ```
 
 Make a note of the primary service provider (SP) address, as it may be required later. 

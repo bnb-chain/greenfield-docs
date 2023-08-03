@@ -19,27 +19,32 @@ We will also cover how to interact with the CLI tool, choose storage providers, 
 ## Setting Up the Environment
 ### Installation
 
+[Greenfield Command](https://github.com/bnb-chain/greenfield-cmd) is a powerful command line to interact with Greenfield.
 To begin, you will need to install the BNB Greenfield command line tool follow the instruction from CLI github page.
 
-After installing, a basic configuration file is required for the CLI to work with the Greenfield testnet. Each CLI command should run with "-c filePath" to load the config file, and the config should be in toml format. The default config file is "config.toml".
+When running commands that interact with the greenfield, if there is no config/config.toml file under the path and the commands runs without "--config" flag, the tool will generate the config/config.toml file automatically which is consistent with the testnet configuration under the path.
 
-Config file example will set up the necessary RPC address, chain id, and the name of the keychain password file:
+Config file example will set up the necessary RPC address and chain id:
 
 ```
 rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
 chainId = "greenfield_5600-1"
-passwordFile = "password.txt"
-```
-### Setting Up Identity and Generating Keystore File
-To set up your identity on the local machine and generate a keystore file, you will need to create two files: key.txt and password.txt. These files will hold the identity private key and keystroke password, respectively.
-
-To obtain your private key from Metamask, follow the instructions in this guide. While the password doesn’t have any restriction on the length or complexity, it’s better to follow generally recommended principles. Both the private key and the password should be stored plainly in the appropriate files. Once you have the files ready, run the following command:
-
-```
-gnfd-cmd keystore generate --privKeyFile key.txt --password password.txt key.json
 ```
 
-This will create a keystore file and store it in key.json and will be picked up by the CLI for commands that require identity and payment. After generating the keystore file, make sure to delete the key.txt file with the private key inside.
+### Impport Account and Generating Keystore
+To set up your identity on the local machine and generate a keystore file, you will need to create the private file which will hold the identity private key. You can export your private key from MetaMask and write it into a local file as plaintext (You can select "Account Details" from the dropdown menu of MetaMask. Click on the "Export Private Key" button at the bottom of the page.
+Once you have the files ready, run the following command "account import [keyfile]" :
+
+```
+// import key and generate a keystore file
+// key.txt indicates the private key file
+gnfd-cmd account import key.txt
+```
+
+The terminal will prompt user to enter the password information. Users can also specify the password file path by using the "--passwordfile". While the password doesn’t have any restriction on the length or complexity,
+it’s better to follow generally recommended principles.
+
+This command will create a keystore file and store it in the path "keystore/key.json" under the home directory of the system or the directory set by "-home" and will be picked up by the CLI for commands that require identity and payment. After generating the keystore file, make sure to delete the key.txt file with the private key inside.
 
 ## Interacting with BNB Greenfield
 BNB Greenfield is built on a distributed architecture where storage providers play a crucial role. The network consists of multiple storage providers that offer their resources to store and retrieve data from users. When using BNB Greenfield, users have the flexibility to choose which storage providers to utilize based on several factors, including price, terms and conditions, and network performance.
@@ -72,7 +77,7 @@ sp[7]: operator-address:0xEE380501A7fAA03CadBDF981B865064F824bC3EC, endpoint:htt
 The price for each storage provider can be checked using the operator address, for example:
 
 ```
-./gnfd-cmd sp get-price --spAddress 0x169321fC04A12c16D0DaF30BBfD0c805D0223803
+./gnfd-cmd sp get-price 0x169321fC04A12c16D0DaF30BBfD0c805D0223803
 ```
 
 The response will retrieve the price for reading the data, as well as for storing the data per second.
