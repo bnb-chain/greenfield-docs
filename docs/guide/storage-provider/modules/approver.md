@@ -1,6 +1,6 @@
 # Approver
 
-Approver module is used to handle approval requests including `CreateBucketApproval`, `MigrateBucketApproval` and `CreateObjectApproval`. The workflow of Approver users can refer [GetApproval](../workflow/workflow.md#get-approval). We currently abstract SP as the GfSp framework, which provides users with customizable capabilities to meet their specific requirements. Approver module provides an abstract interface, which is called `Approver`, as follows:
+Approver module is used to handle approval requests including `CreateBucketApproval`, `MigrateBucketApproval` and `CreateObjectApproval`. The workflow of Approver users can refer [GetApproval](../introduction/workflow.md#get-approval). We currently abstract SP as the GfSp framework, which provides users with customizable capabilities to meet their specific requirements. Approver module provides an abstract interface, which is called `Approver`, as follows:
 
 Approver is an abstract interface to handle ask approval requests.
 

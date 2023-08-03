@@ -31,13 +31,12 @@ Get familiar with the Greenfield Blockchain and explore its main modules.
 
 ## Explore the Storage Provider
 - [An overview about Storage Provider](./storage-provider/introduction/overview.md)
-- [Architecture of Storage Provider](./storage-provider/introduction/architecture.md)
 
 ## Building Dapps on Greenfield
 
 Start building dapps to create value based on the data assets and its related economy.
-- [An overview about programmability on Greenfield](./dapp/overview.md)
-- [Start building with SDK](./dapp/quick-start.md)
+- [An overview about programmability on Greenfield](../tutorials/dapp/overview.md)
+- [Start building with SDK](../tutorials/dapp/quick-start.md)
 
 ## Help & Support 
 Check out the Greenfield Developer Discord for technical support. (pending...)

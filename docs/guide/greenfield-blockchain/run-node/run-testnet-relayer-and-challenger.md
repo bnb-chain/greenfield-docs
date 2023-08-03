@@ -54,7 +54,7 @@ Please refer to the example [testnet configure](https://github.com/bnb-chain/bnb
     ```
 
 2. Config crossChain and greenfield light client smart contracts addresses, others can keep default value, refer to this 
-   [page](../../dapp/contract-list.md) to get the address.
+   [page](../../../tutorials/dapp/contract-list.md) to get the address.
     ```
     "relay_config": {
         ... 

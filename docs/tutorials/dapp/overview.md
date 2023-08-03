@@ -9,7 +9,7 @@ order: 1
 
 #### Pre-requisite Readings
 
-* [Native cross chain communication protocol](../greenfield-blockchain/modules/cross-chain.md)
+* [Native cross chain communication protocol](../../guide/greenfield-blockchain/modules/cross-chain.md)
 
 :::
 
@@ -75,7 +75,7 @@ BSC directly, without the need for intermediaries.
 - change group members on BSC
 - mirror group from Greenfield to BSC
 
-Users can also approve smart contracts to operate the aforementioned resources instead, check the [design](permisson-control.md) for more details.
+Users can also approve smart contracts to operate the aforementioned resources instead, check the [design](permission-control.md) for more details.
 
 Greenfield's cross-chain programming capability is based on these minimum resource operation interface. 
 Dapp smart contracts can flexibly combine and call these cross-chain interfaces to achieve more complex application logic.
@@ -92,7 +92,7 @@ which includes several sample codes of different paradigms.
 
 - [Quick Start](quick-start.md): editing permission through BSC smart contract.
 - [Primitives Interface](primitive-interface.md): lean more about the primitives interfaces.
-- [Permission Control](permisson-control.md): learn more about the permission control.
+- [Permission Control](permission-control.md): learn more about the permission control.
 - [Smart Contract Integration](dapp-integration.md): learn more about how to integrate with smart contracts.
 - [Showcases](showcases.md): learn more about the showcases.
 
