@@ -46,6 +46,7 @@ const sidebars = {
       collapsed: true,
       items:[
         "guide/core-concept/accounts",
+        "guide/core-concept/key-management",
         "guide/core-concept/billing-payment",
         "guide/core-concept/simple-storage-svc-model",
         "guide/core-concept/programmability",
@@ -259,8 +260,7 @@ const sidebars = {
       },
       items:[
         "sdks/sdk-go",
-        "sdks/sdk-js",
-        "sdks/key-management"
+        "sdks/sdk-js"
       ],
     },
   ],

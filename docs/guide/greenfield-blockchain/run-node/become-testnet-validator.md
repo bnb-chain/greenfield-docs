@@ -25,7 +25,7 @@ Follow the instructions [here to set up a full node](./run-testnet-node.md).
 
 :::note
 The `keyring-backend` supports multiple storage backends, some of which may not be available on all operating systems.
-See more details [here](../../../sdks/key-management.md).
+See more details [here](../../core-concept/key-management.md).
 :::
 
 ```bash
