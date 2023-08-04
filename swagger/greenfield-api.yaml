@@ -56,7 +56,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Bridge
   /greenfield/challenge/attested_challenge:
     get:
       summary: AttestedChallenge
@@ -115,7 +116,8 @@ paths:
           required: false
           type: string
           format: uint64
-
+      tags:
+        - Challenge
   /greenfield/challenge/inturn_attestation_submitter:
     get:
       summary: InturnAttestationSubmitter
@@ -166,7 +168,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Challenge
   /greenfield/challenge/latest_attested_challenges:
     get:
       summary: LatestAttestedChallenges
@@ -220,7 +223,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Challenge
   /greenfield/challenge/params:
     get:
       summary: ChallengeParams
@@ -332,7 +336,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Challenge
   /greenfield/payment/auto_settle_record:
     get:
       summary: AutoSettleRecordAll
@@ -474,7 +479,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Payment
   /greenfield/payment/dynamic_balance/{account}:
     get:
       summary: DynamicBalance
@@ -599,7 +605,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Payment
   /greenfield/payment/get_payment_accounts_by_owner/{owner}:
     get:
       summary: GetPaymentAccountsByOwner
@@ -642,7 +649,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Payment
   /greenfield/payment/out_flows/{account}:
     get:
       summary: OutFlows
@@ -708,7 +716,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Payment
   /greenfield/payment/params:
     get:
       summary: PaymentParams
@@ -795,7 +804,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Payment
   /greenfield/payment/params/{timestamp}:
     get:
       summary: ParamsByTimestamp
@@ -889,7 +899,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - Payment
   /greenfield/payment/payment_account:
     get:
       summary: PaymentAccountAll
@@ -1023,7 +1034,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Payment
   /greenfield/payment/payment_account/{addr}:
     get:
       summary: PaymentAccount
@@ -1075,7 +1087,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Payment
   /greenfield/payment/payment_account_count:
     get:
       summary: PaymentAccountCountAll
@@ -1209,7 +1222,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Payment
   /greenfield/payment/payment_account_count/{owner}:
     get:
       summary: PaymentAccountCount
@@ -1261,7 +1275,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Payment
   /greenfield/payment/stream_record:
     get:
       summary: StreamRecordAll
@@ -1450,7 +1465,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Payment
   /greenfield/payment/stream_record/{account}:
     get:
       summary: StreamRecord
@@ -1554,7 +1570,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Payment
   /greenfield/sp/get_secondary_sp_store_price_by_time/{timestamp}:
     get:
       summary: QueryGetSecondarySpStorePriceByTime
@@ -1610,7 +1627,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - StorageProvider
   /greenfield/sp/get_sp_storage_price_by_time/{sp_addr}/{timestamp}:
     get:
       summary: QueryGetSpStoragePriceByTime
@@ -1680,7 +1698,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - StorageProvider
   /greenfield/sp/params:
     get:
       summary: SpParams
@@ -1734,7 +1753,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - StorageProvider
   /greenfield/sp/storage_provider_by_operator_address:
     get:
       summary: StorageProviderByOperatorAddress
@@ -1865,7 +1885,8 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - StorageProvider
   /greenfield/storage_provider/{id}:
     get:
       summary: StorageProvider
@@ -1997,7 +2018,8 @@ paths:
           required: true
           type: integer
           format: int64
-
+      tags:
+        - StorageProvider
   /greenfield/storage_providers:
     get:
       summary: StorageProviders
@@ -2201,7 +2223,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - StorageProvider
   /greenfield/storage/head_bucket/{bucket_name}:
     get:
       summary: HeadBucket
@@ -2310,7 +2333,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_bucket_by_id/{bucket_id}:
     get:
       summary: HeadBucketById
@@ -2419,7 +2443,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_bucket_extra/{bucket_name}:
     get:
       summary: HeadBucketExtra
@@ -2522,7 +2547,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_bucket_nft/{token_id}:
     get:
       summary: HeadBucketNFT
@@ -2586,7 +2612,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_group/{group_owner}/{group_name}:
     get:
       summary: HeadGroup
@@ -2656,7 +2683,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_group_member:
     get:
       summary: HeadGroupMember
@@ -2717,7 +2745,8 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_group_nft/{token_id}:
     get:
       summary: HeadGroupNFT
@@ -2781,7 +2810,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_object/{bucket_name}/{object_name}:
     get:
       summary: HeadObject
@@ -2968,7 +2998,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_object_by_id/{object_id}:
     get:
       summary: HeadObjectById
@@ -3151,7 +3182,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/head_object_nft/{token_id}:
     get:
       summary: HeadObjectNFT
@@ -3215,7 +3247,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/is_price_changed/{bucket_name}:
     get:
       summary: QueryIsPriceChanged
@@ -3272,7 +3305,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/list_buckets:
     get:
       summary: ListBuckets
@@ -3463,7 +3497,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Storage
   /greenfield/storage/list_group/{group_owner}:
     get:
       summary: ListGroup
@@ -3615,7 +3650,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Storage
   /greenfield/storage/list_objects/{bucket_name}:
     get:
       summary: ListObjects
@@ -3831,7 +3867,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Storage
   /greenfield/storage/list_objects_by_bucket_id/{bucket_id}:
     get:
       summary: ListObjectsByBucketId
@@ -4047,7 +4084,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Storage
   /greenfield/storage/lock_fee:
     get:
       summary: QueryLockFee
@@ -4101,7 +4139,8 @@ paths:
           required: false
           type: string
           format: uint64
-
+      tags:
+        - Storage
   /greenfield/storage/params:
     get:
       summary: StorageParams
@@ -4244,7 +4283,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Storage
   /greenfield/storage/params/{timestamp}:
     get:
       summary: QueryParamsByTimestamp
@@ -4394,7 +4434,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - Storage
   /greenfield/storage/policy_by_id/{policy_id}:
     get:
       summary: QueryPolicyById
@@ -4588,7 +4629,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/policy_for_account/{resource}/{principal_address}:
     get:
       summary: QueryPolicyForAccount
@@ -4786,7 +4828,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/policy_for_group/{resource}/{principal_group_id}:
     get:
       summary: QueryPolicyForGroup
@@ -4984,7 +5027,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Storage
   /greenfield/storage/verify_permission/{operator}/{bucket_name}/{action_type}:
     get:
       summary: VerifyPermission
@@ -5060,7 +5104,8 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - Storage
   /greenfield/virtualgroup/available_global_virtual_group_families:
     get:
       summary: AvailableGlobalVirtualGroupFamilies
@@ -5110,7 +5155,8 @@ paths:
             type: integer
             format: int64
           collectionFormat: multi
-
+      tags:
+        - Query
   /greenfield/virtualgroup/global_virtual_group:
     get:
       summary: GlobalVirtualGroup
@@ -5203,7 +5249,8 @@ paths:
           required: false
           type: integer
           format: int64
-
+      tags:
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group_by_family_id:
     get:
       summary: GlobalVirtualGroupByFamilyID
@@ -5299,7 +5346,8 @@ paths:
           required: false
           type: integer
           format: int64
-
+      tags:
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group_families:
     get:
       summary: GlobalVirtualGroupFamilies
@@ -5450,7 +5498,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group_family:
     get:
       summary: GlobalVirtualGroupFamily
@@ -5520,7 +5569,8 @@ paths:
           required: false
           type: integer
           format: int64
-
+      tags:
+        - VirtualGroup
   /greenfield/virtualgroup/params:
     get:
       summary: VirtualGroupParams
@@ -5581,7 +5631,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - VirtualGroup
   /cosmos/auth/v1beta1/account_info/{address}:
     get:
       summary: AccountInfo
@@ -5989,7 +6040,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Auth
   /cosmos/auth/v1beta1/accounts:
     get:
       summary: Accounts
@@ -6468,7 +6520,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Auth
   /cosmos/auth/v1beta1/accounts/{address}:
     get:
       summary: Account
@@ -6859,7 +6912,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Auth
   /cosmos/auth/v1beta1/address_by_id/{id}:
     get:
       summary: AccountAddressByID
@@ -7092,7 +7146,8 @@ paths:
           required: false
           type: string
           format: uint64
-
+      tags:
+        - Auth
   /cosmos/auth/v1beta1/module_accounts:
     get:
       summary: ModuleAccounts
@@ -7486,7 +7541,8 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Auth
   /cosmos/auth/v1beta1/module_accounts/{name}:
     get:
       summary: ModuleAccountByName
@@ -7876,7 +7932,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Auth
   /cosmos/auth/v1beta1/params:
     get:
       summary: AuthParams
@@ -8104,7 +8161,8 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Auth
   /cosmos/authz/v1beta1/grants:
     get:
       summary: Grants
@@ -8608,7 +8666,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Auth
   /cosmos/authz/v1beta1/grants/grantee/{grantee}:
     get:
       summary: GranteeGrants
@@ -9097,7 +9156,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Query
   /cosmos/authz/v1beta1/grants/granter/{granter}:
     get:
       summary: GranterGrants
@@ -9586,7 +9646,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Auth
   /cosmos/bank/v1beta1/balances/{address}:
     get:
       summary: AllBalances
@@ -9729,7 +9790,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/balances/{address}/by_denom:
     get:
       summary: Balance
@@ -9792,7 +9854,8 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/denom_owners/{denom}:
     get:
       summary: DenomOwners
@@ -9962,7 +10025,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/denoms_metadata:
     get:
       summary: DenomsMetadata
@@ -10173,7 +10237,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/denoms_metadata/{denom}:
     get:
       summary: DenomMetadata
@@ -10307,7 +10372,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/params:
     get:
       summary: BankParams
@@ -10376,7 +10442,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/send_enabled:
     get:
       summary: SendEnabled
@@ -10438,10 +10505,7 @@ paths:
                       was set, its value is undefined otherwise
             description: >-
               QuerySendEnabledResponse defines the RPC response of a SendEnable
-              query.
-
-
-              Since: cosmos-sdk 0.47
+              query. Since: cosmos-sdk 0.47
         default:
           description: An unexpected error response.
           schema:
@@ -10531,22 +10595,16 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/spendable_balances/{address}:
     get:
       summary: SpendableBalances
       description: >-
         SpendableBalances queries the spendable balance of all coins for a
-        single
-
-        account.
+        single account.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
-
-
-        Since: cosmos-sdk 0.46
+        of gas if the pagination field is incorrectly set. Since: cosmos-sdk 0.46
       operationId: SpendableBalances
       responses:
         '200':
@@ -10661,12 +10719,8 @@ paths:
         - name: pagination.count_total
           description: >-
             count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
+            include a count of the total number of items available for pagination in
+            UIs. count_total is only respected when offset is used. It is ignored
             when key
 
             is set.
@@ -10683,22 +10737,15 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/spendable_balances/{address}/by_denom:
     get:
       summary: SpendableBalanceByDenom
       description: >-
         SpendableBalanceByDenom queries the spendable balance of a single denom
-        for
-
-        a single account.
-        When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
-
-
-        Since: cosmos-sdk 0.47
+        for a single account. When called from another module, this query might consume a high amount
+        of gas if the pagination field is incorrectly set.
       operationId: SpendableBalanceByDenom
       responses:
         '200':
@@ -10762,16 +10809,15 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/supply:
     get:
       summary: TotalSupply
       description: >-
         TotalSupply queries the total supply of all coins.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: TotalSupply
       responses:
         '200':
@@ -10789,13 +10835,8 @@ paths:
                     amount:
                       type: string
                   description: >-
-                    Coin defines a token with a denomination and an amount.
-
-
-                    NOTE: The amount field is an Int which implements the custom
-                    method
-
-                    signatures required by gogoproto.
+                    Coin defines a token with a denomination and an amount. NOTE: The amount field is an Int which implements the custom
+                    method signatures required by gogoproto.
                 title: supply is the supply of the coins
               pagination:
                 description: |-
@@ -10858,12 +10899,8 @@ paths:
           format: byte
         - name: pagination.offset
           description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
+            offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key
+            should be set.
           in: query
           required: false
           type: string
@@ -10871,9 +10908,7 @@ paths:
         - name: pagination.limit
           description: >-
             limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
+            page. If left empty it will default to a value to be set by each app.
           in: query
           required: false
           type: string
@@ -10881,15 +10916,9 @@ paths:
         - name: pagination.count_total
           description: >-
             count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
+            include a count of the total number of items available for pagination in
+            UIs. count_total is only respected when offset is used. It is ignored
+            when key is set.
           in: query
           required: false
           type: boolean
@@ -10897,22 +10926,18 @@ paths:
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
-
-
-            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Bank
   /cosmos/bank/v1beta1/supply/by_denom:
     get:
       summary: supply of a single coin.
       description: >-
         SupplyOf queries the supply of a single coin.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: SupplyOf
       responses:
         '200':
@@ -10928,13 +10953,8 @@ paths:
                   amount:
                     type: string
                 description: >-
-                  Coin defines a token with a denomination and an amount.
-
-
-                  NOTE: The amount field is an Int which implements the custom
-                  method
-
-                  signatures required by gogoproto.
+                  Coin defines a token with a denomination and an amount. NOTE: The amount field is an Int which implements the custom
+                  method signatures required by gogoproto.
             description: >-
               QuerySupplyOfResponse is the response type for the Query/SupplyOf
               RPC method.
@@ -10966,18 +10986,15 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - Bank
   /cosmos/base/tendermint/v1beta1/abci_query:
     get:
       summary: ABCIQuery
       description: >-
         ABCIQuery defines a query handler that supports ABCI queries directly to
-        the
-
-        application, bypassing Tendermint completely. The ABCI query must
-        contain
-
-        a valid and supported path, including app, custom, p2p, and store.
+        the application, bypassing Tendermint completely. The ABCI query must
+        contain a valid and supported path, including app, custom, p2p, and store.
       operationId: ABCIQuery
       responses:
         '200':
@@ -11019,21 +11036,11 @@ paths:
                           format: byte
                       description: >-
                         ProofOp defines an operation used for calculating Merkle
-                        root. The data could
-
-                        be arbitrary format, providing necessary data for
-                        example neighbouring node
-
-                        hash.
-
-
-                        Note: This type is a duplicate of the ProofOp proto type
+                        root. The data could be arbitrary format, providing necessary data for
+                        example neighbouring node hash. Note: This type is a duplicate of the ProofOp proto type
                         defined in Tendermint.
                 description: >-
-                  ProofOps is Merkle proof defined by the list of ProofOps.
-
-
-                  Note: This type is a duplicate of the ProofOps proto type
+                  ProofOps is Merkle proof defined by the list of ProofOps. Note: This type is a duplicate of the ProofOps proto type
                   defined in Tendermint.
               height:
                 type: string
@@ -11042,13 +11049,8 @@ paths:
                 type: string
             description: >-
               ABCIQueryResponse defines the response structure for the ABCIQuery
-              gRPC query.
-
-
-              Note: This type is a duplicate of the ResponseQuery proto type
-              defined in
-
-              Tendermint.
+              gRPC query. Note: This type is a duplicate of the ResponseQuery proto type
+              defined in Tendermint.
         default:
           description: An unexpected error response.
           schema:
@@ -11070,23 +11072,10 @@ paths:
                       type: string
                       description: >-
                         A URL/resource name that uniquely identifies the type of
-                        the serialized
-
-                        protocol buffer message. This string must contain at
-                        least
-
-                        one "/" character. The last segment of the URL's path
-                        must represent
-
-                        the fully qualified name of the type (as in
-
-                        `path/google.protobuf.Duration`). The name should be in
-                        a canonical form
-
-                        (e.g., leading "." is not accepted).
-
-
-                        In practice, teams usually precompile into the binary
+                        the serialized protocol buffer message. This string must contain at
+                        least one "/" character. The last segment of the URL's path
+                        must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in
+                        a canonical form (e.g., leading "." is not accepted). In practice, teams usually precompile into the binary
                         all types that they
 
                         expect it to use in the context of Any. However, for
@@ -11262,7 +11251,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Base
   /cosmos/base/tendermint/v1beta1/blocks/latest:
     get:
       summary: GetLatestBlock
@@ -12576,7 +12566,8 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Base
   /cosmos/base/tendermint/v1beta1/blocks/{height}:
     get:
       summary: GetBlockByHeight
@@ -13896,7 +13887,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - Base
   /cosmos/base/tendermint/v1beta1/node_info:
     get:
       summary: GetNodeInfo
@@ -14174,7 +14166,8 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Base
   /cosmos/base/tendermint/v1beta1/syncing:
     get:
       summary: GetSyncing
@@ -14385,7 +14378,8 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Base
   /cosmos/base/tendermint/v1beta1/validatorsets/latest:
     get:
       summary: GetLatestValidatorSet
@@ -14869,7 +14863,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Base
   /cosmos/base/tendermint/v1beta1/validatorsets/{height}:
     get:
       summary: GetValidatorSetByHeight
@@ -15358,7 +15353,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Base
   /cosmos/crosschain/v1/cross_chain_package:
     get:
       summary: CrossChainPackage
@@ -15412,7 +15408,8 @@ paths:
           required: false
           type: string
           format: uint64
-
+      tags:
+        - CrossChain
   /cosmos/crosschain/v1/params:
     get:
       summary: CrosschainParams
@@ -15458,7 +15455,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - CrossChain
   /cosmos/crosschain/v1/receive_sequence:
     get:
       summary: ReceiveSequence
@@ -15506,7 +15504,8 @@ paths:
           required: false
           type: integer
           format: int64
-
+      tags:
+        - CrossChain
   /cosmos/crosschain/v1/send_sequence:
     get:
       summary: SendSequence
@@ -15554,7 +15553,8 @@ paths:
           required: false
           type: integer
           format: int64
-
+      tags:
+        - CrossChain
   /cosmos/distribution/v1beta1/community_pool:
     get:
       summary: CommunityPool
@@ -15612,7 +15612,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards:
     get:
       summary: DelegationTotalRewards
@@ -15705,7 +15706,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}:
     get:
       summary: DelegationRewards
@@ -15772,7 +15774,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/validators:
     get:
       summary: DelegatorValidators
@@ -15822,7 +15825,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address:
     get:
       summary: DelegatorWithdrawAddress
@@ -15868,7 +15872,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/params:
     get:
       summary: DistributionParams
@@ -15927,7 +15932,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/validators/{validator_address}:
     get:
       summary: ValidatorDistributionInfo
@@ -16013,7 +16019,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/validators/{validator_address}/commission:
     get:
       summary: ValidatorCommission
@@ -16078,7 +16085,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards:
     get:
       summary: ValidatorOutstandingRewards
@@ -16150,7 +16158,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Distribution
   /cosmos/distribution/v1beta1/validators/{validator_address}/slashes:
     get:
       summary: ValidatorSlashes
@@ -16305,7 +16314,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Distribution
   /cosmos/evidence/v1beta1/evidence:
     get:
       summary: AllEvidence
@@ -16775,7 +16785,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Evidence
   /cosmos/evidence/v1beta1/evidence/{hash}:
     get:
       summary: Evidence
@@ -17177,7 +17188,8 @@ paths:
           required: false
           type: string
           format: byte
-
+      tags:
+        - Evidence
   /cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}:
     get:
       summary: Allowance
@@ -17488,7 +17500,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - FeeGrant
   /cosmos/feegrant/v1beta1/allowances/{grantee}:
     get:
       summary: Allowances
@@ -17866,7 +17879,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - FeeGrant
   /cosmos/feegrant/v1beta1/issued/{granter}:
     get:
       summary: AllowancesByGranter
@@ -18247,7 +18261,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - FeeGrant
   /cosmos/gashub/v1beta1/msg_gas_params:
     get:
       summary: MsgGasParams
@@ -18449,7 +18464,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Gas
   /cosmos/gashub/v1beta1/params:
     get:
       summary: GashubParams
@@ -18500,7 +18516,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Gas
   /cosmos/gov/v1/params/{params_type}:
     get:
       summary: GovV1Params
@@ -18850,7 +18867,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Governance
   /cosmos/gov/v1/proposals:
     get:
       summary: GovV1Proposal
@@ -19468,7 +19486,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Governance
   /cosmos/gov/v1/proposals/{proposal_id}:
     get:
       summary: GovV1Proposal
@@ -19975,7 +19994,8 @@ paths:
           required: true
           type: string
           format: uint64
-
+      tags:
+        - Governance
   /cosmos/gov/v1/proposals/{proposal_id}/deposits:
     get:
       summary: GovV1Deposit
@@ -20305,7 +20325,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Governance
   /cosmos/gov/v1/proposals/{proposal_id}/deposits/{depositor}:
     get:
       summary: GovV1Deposit
@@ -20563,7 +20584,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Governance
   /cosmos/gov/v1/proposals/{proposal_id}/tally:
     get:
       summary: GovV1TallyResult
@@ -20799,7 +20821,8 @@ paths:
           required: true
           type: string
           format: uint64
-
+      tags:
+        - Governance
   /cosmos/gov/v1/proposals/{proposal_id}/votes:
     get:
       summary: GovV1Votes
@@ -21139,7 +21162,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Query
   /cosmos/gov/v1/proposals/{proposal_id}/votes/{voter}:
     get:
       summary: GovV1Vote
@@ -21406,7 +21430,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Governance
   /cosmos/mint/v1beta1/annual_provisions:
     get:
       summary: AnnualProvisions
@@ -21449,7 +21474,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Mint
   /cosmos/mint/v1beta1/inflation:
     get:
       summary: Inflation
@@ -21492,7 +21518,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Mint
   /cosmos/mint/v1beta1/params:
     get:
       summary: MintParams
@@ -21552,7 +21579,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Mint
   /cosmos/oracle/v1/inturn_relayer:
     get:
       summary: InturnRelayer
@@ -21605,7 +21633,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Oracle
   /cosmos/oracle/v1/params:
     get:
       summary: OracleParams
@@ -21662,7 +21691,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Oracle
   /cosmos/slashing/v1beta1/params:
     get:
       summary: SlashingParams
@@ -21719,7 +21749,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Slashing
   /cosmos/slashing/v1beta1/signing_infos:
     get:
       summary: SigningInfos
@@ -21896,7 +21927,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Slashing
   /cosmos/slashing/v1beta1/signing_infos/{cons_address}:
     get:
       summary: SigningInfo
@@ -21994,7 +22026,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Slashing
   /cosmos/staking/v1beta1/delegations/{delegator_addr}:
     get:
       summary: DelegatorDelegations
@@ -22343,7 +22376,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations:
     get:
       summary: Redelegations
@@ -22787,7 +22821,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations:
     get:
       summary: DelegatorUnbondingDelegations
@@ -23150,7 +23185,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators:
     get:
       summary: StakingDelegatorValidators
@@ -23802,7 +23838,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}:
     get:
       summary: DelegatorValidator
@@ -24374,7 +24411,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/historical_info/{height}:
     get:
       summary: HistoricalInfo
@@ -25030,7 +25068,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/params:
     get:
       summary: StakingParams
@@ -25275,12 +25314,13 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/pool:
     get:
-      summary: Pool
+      summary: PoolInfo
       description: Pool queries the pool info.
-      operationId: Pool
+      operationId: PoolInfo
       responses:
         '200':
           description: A successful response.
@@ -25490,7 +25530,8 @@ paths:
                           "@type": "type.googleapis.com/google.protobuf.Duration",
                           "value": "1.212s"
                         }
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/validators:
     get:
       summary: Validators
@@ -26141,7 +26182,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/validators/{validator_addr}:
     get:
       summary: Validator
@@ -26706,7 +26748,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/validators/{validator_addr}/delegations:
     get:
       summary: ValidatorDelegations
@@ -27052,7 +27095,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}:
     get:
       summary: Delegation
@@ -27320,7 +27364,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation:
     get:
       summary: UnbondingDelegation
@@ -27601,7 +27646,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Staking
   /cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations:
     get:
       summary: ValidatorUnbondingDelegations
@@ -27963,7 +28009,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Staking
   /cosmos/tx/v1beta1/decode:
     post:
       summary: TxDecode
@@ -28184,7 +28231,8 @@ paths:
               RPC method.
 
               Since: cosmos-sdk 0.47
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/decode/amino:
     post:
       summary: TxDecodeAmino
@@ -28418,7 +28466,8 @@ paths:
 
 
               Since: cosmos-sdk 0.47
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/encode:
     post:
       summary: TxEncodeTxEncode
@@ -28639,7 +28688,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/cosmos.tx.v1beta1.TxEncodeRequest'
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/encode/amino:
     post:
       summary: TxEncodeAmino
@@ -28873,7 +28923,8 @@ paths:
 
 
               Since: cosmos-sdk 0.47
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/simulate:
     post:
       summary: Simulate
@@ -29352,7 +29403,8 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/cosmos.tx.v1beta1.SimulateRequest'
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/txs:
     get:
       summary: GetTxsEvent
@@ -29653,7 +29705,8 @@ paths:
           required: false
           type: string
           format: uint64
-
+      tags:
+        - Transaction
     post:
       summary: BroadcastTx
       description: BroadcastTx broadcast transaction.
@@ -30222,7 +30275,8 @@ paths:
               Service.BroadcastTxRequest
 
               RPC method.
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/txs/block/{height}:
     get:
       summary: GetBlockWithTxs
@@ -30490,7 +30544,8 @@ paths:
           in: query
           required: false
           type: boolean
-
+      tags:
+        - Transaction
   /cosmos/tx/v1beta1/txs/{hash}:
     get:
       summary: GetTx
@@ -30702,7 +30757,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Transaction
   /cosmos/upgrade/v1beta1/applied_plan/{name}:
     get:
       summary: AppliedPlan
@@ -30751,7 +30807,8 @@ paths:
           in: path
           required: true
           type: string
-
+      tags:
+        - Upgrade
   /cosmos/upgrade/v1beta1/current_plan:
     get:
       summary: CurrentPlan
@@ -30835,7 +30892,8 @@ paths:
                     value:
                       type: string
                       format: byte
-
+      tags:
+        - Upgrade
   /cosmos/upgrade/v1beta1/module_versions:
     get:
       summary: ModuleVersions
@@ -30868,12 +30926,7 @@ paths:
                   versions.
             description: >-
               QueryModuleVersionsResponse is the response type for the
-              Query/ModuleVersions
-
-              RPC method.
-
-
-              Since: cosmos-sdk 0.43
+              Query/ModuleVersions RPC method.
         default:
           description: An unexpected error response.
           schema:
@@ -30905,7 +30958,8 @@ paths:
           in: query
           required: false
           type: string
-
+      tags:
+        - Upgrade
   /cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}:
     get:
       summary: UpgradedConsensusState
@@ -30968,7 +31022,8 @@ paths:
           required: true
           type: string
           format: int64
-
+      tags:
+        - Upgrade
 definitions:
   google.protobuf.Any:
     type: object
