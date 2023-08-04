@@ -97,6 +97,34 @@ Please follow this [doc](./piece-store) to config your PieceStore.
 
 #### 1. Support both path-style and virtual-style routers in https certificates
 
+You need certificates for SP's exposed gateway service domain name and wildcard subdomain name of it, say you exposed your SP's gateway service on https://my-sp1.testnet.dummy-sp.io, then you need SSL certificates for both `my-sp1.testnet.dummy-sp.io` and `*.my-sp1.testnet.dummy-sp.io`.
+For instance, if you reqeust AWS ACM certificate, you could request with this:
+![SP AWS ACM CERT](../../../../static/asset/407-SP-AWS-ACM-Cert.jpg)
+
+Also, route all traffic from both `my-sp1.testnet.dummy-sp.io` and `*.my-sp1.testnet.dummy-sp.io` to gateway service, for instance, if you use nginx for ingress control, then you'll need to configure rules look like the following:
+```yaml
+rules:
+  - host: my-sp1.testnet.dummy-sp.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: gateway # where your SP gateway service is internally, such a k8s service.
+            port:
+              number: 9033
+        path: /
+        pathType: ImplementationSpecific
+  - host: '*.my-sp1.testnet.dummy-sp.io'
+    http:
+      paths:
+      - backend:
+          service:
+            name: gateway # the same with the above one.
+            port:
+              number: 9033
+        path: /
+        pathType: ImplementationSpecific
+```
 #### 2. Cross Region Configuration
 When working with web applications (e.g. DCellar),  SPs need to allow cross region requests.
 See : https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors
