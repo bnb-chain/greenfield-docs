@@ -25,9 +25,9 @@ Greenfield Storage Provider
     /____/\__/\____/_/   \__,_/\__, /\___/  / .___/_/   \____/|___/_/\__,_/\___/_/
     /____/       /_/
 
-Version : v0.0.5
+Version : v0.2.3
 Branch  : master
-Commit  : e67cceea015bba338084e7328724800fd40ba594
+Commit  : 399e72bc698bdb143b995d92d460550bcb41b283
 Build   : go1.20.1 darwin amd64 2023-04-05 21:28
 ```
 
@@ -49,6 +49,19 @@ $ ./gnfd-sp list
 Create Secp256k1 key pairs for encrypting p2p protocol msg and identifying p2p node
 ```bash
 $ ./gnfd-sp p2p.create.key
+```
+
+Update the free quota meta of the SP on greenfield.
+```bash
+$ ./gnfd-sp update.quota
+```
+
+Recover object or the segment piece data if the primarySP or the secondary SP has lost the data. Users need to set the bucket name by "-b" flag and the object name by "-o" flag
+```bash
+// recover the object data
+$ ./gnfd-sp   recover.object 
+// recover a segment or EC piece data
+$ ./gnfd-sp   recover.piece 
 ```
 
 ## Global Options

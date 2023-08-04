@@ -1,8 +1,27 @@
-module.exports = [
-    {
+module.exports = [{
         "type": "doc",
         "id": "greenfield-api/bridge-params",
         "label": "BridgeParams",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/attested-challenge",
+        "label": "AttestedChallenge",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/inturn-attestation-submitter",
+        "label": "InturnAttestationSubmitter",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/latest-attested-challenges",
+        "label": "LatestAttestedChallenges",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/challenge-params",
+        "label": "ChallengeParams",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -21,8 +40,18 @@ module.exports = [
         "className": "api-method get"
     }, {
         "type": "doc",
+        "id": "greenfield-api/out-flows",
+        "label": "OutFlows",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
         "id": "greenfield-api/payment-params",
         "label": "PaymentParams",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/params-by-timestamp",
+        "label": "ParamsByTimestamp",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -57,27 +86,32 @@ module.exports = [
     }, {
         "type": "doc",
         "id": "greenfield-api/query-get-secondary-sp-store-price-by-time",
-        "label": "Get Secondary SP Store Price By Time",
+        "label": "QueryGetSecondarySpStorePriceByTime",
         "className": "api-method get"
     }, {
         "type": "doc",
         "id": "greenfield-api/query-get-sp-storage-price-by-time",
-        "label": "GetSpStoragePriceByTime",
+        "label": "QueryGetSpStoragePriceByTime",
         "className": "api-method get"
     }, {
         "type": "doc",
         "id": "greenfield-api/sp-params",
-        "label": "SP Parameters",
+        "label": "SpParams",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/storage-provider-by-operator-address",
+        "label": "StorageProviderByOperatorAddress",
         "className": "api-method get"
     }, {
         "type": "doc",
         "id": "greenfield-api/storage-provider",
-        "label": "QueryStorageProvider",
+        "label": "StorageProvider",
         "className": "api-method get"
     }, {
         "type": "doc",
         "id": "greenfield-api/storage-providers",
-        "label": "QueryStorageProviderList",
+        "label": "StorageProviders",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -88,6 +122,11 @@ module.exports = [
         "type": "doc",
         "id": "greenfield-api/head-bucket-by-id",
         "label": "HeadBucketById",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/head-bucket-extra",
+        "label": "HeadBucketExtra",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -126,6 +165,11 @@ module.exports = [
         "className": "api-method get"
     }, {
         "type": "doc",
+        "id": "greenfield-api/query-is-price-changed",
+        "label": "QueryIsPriceChanged",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
         "id": "greenfield-api/list-buckets",
         "label": "ListBuckets",
         "className": "api-method get"
@@ -146,8 +190,13 @@ module.exports = [
         "className": "api-method get"
     }, {
         "type": "doc",
+        "id": "greenfield-api/query-lock-fee",
+        "label": "QueryLockFee",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
         "id": "greenfield-api/storage-params",
-        "label": "QueryParameters",
+        "label": "StorageParams",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -173,6 +222,36 @@ module.exports = [
         "type": "doc",
         "id": "greenfield-api/verify-permission",
         "label": "VerifyPermission",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/available-global-virtual-group-families",
+        "label": "AvailableGlobalVirtualGroupFamilies",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/global-virtual-group",
+        "label": "GlobalVirtualGroup",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/global-virtual-group-by-family-id",
+        "label": "GlobalVirtualGroupByFamilyID",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/global-virtual-group-families",
+        "label": "GlobalVirtualGroupFamilies",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/global-virtual-group-family",
+        "label": "GlobalVirtualGroupFamily",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/virtual-group-params",
+        "label": "VirtualGroupParams",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -277,7 +356,42 @@ module.exports = [
     }, {
         "type": "doc",
         "id": "greenfield-api/supply-of",
-        "label": "SupplyofCoin",
+        "label": "supply of a single coin.",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/abci-query",
+        "label": "ABCIQuery",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/get-latest-block",
+        "label": "GetLatestBlock",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/get-block-by-height",
+        "label": "GetBlockByHeight",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/get-node-info",
+        "label": "GetNodeInfo",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/get-syncing",
+        "label": "GetSyncing",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/get-latest-validator-set",
+        "label": "GetLatestValidatorSet",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/get-validator-set-by-height",
+        "label": "GetValidatorSetByHeight",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -482,7 +596,7 @@ module.exports = [
     }, {
         "type": "doc",
         "id": "greenfield-api/staking-delegator-validators",
-        "label": "DelegatorValidators",
+        "label": "StakingDelegatorValidators",
         "className": "api-method get"
     }, {
         "type": "doc",
@@ -536,62 +650,6 @@ module.exports = [
         "className": "api-method get"
     }, {
         "type": "doc",
-        "id": "greenfield-api/applied-plan",
-        "label": "AppliedPlan",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/current-plan",
-        "label": "CurrentPlan",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/module-versions",
-        "label": "ModuleVersions",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/upgraded-consensus-state",
-        "label": "UpgradedConsensusState",
-        "className": "api-method get"
-    },
-    {
-        "type": "doc",
-        "id": "greenfield-api/abci-query",
-        "label": "ABCIQuery",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/get-latest-block",
-        "label": "GetLatestBlock",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/get-block-by-height",
-        "label": "GetBlockByHeight",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/get-node-info",
-        "label": "GetNodeInfo",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/get-syncing",
-        "label": "GetSyncing",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/get-latest-validator-set",
-        "label": "GetLatestValidatorSet",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
-        "id": "greenfield-api/get-validator-set-by-height",
-        "label": "GetValidatorSetByHeight",
-        "className": "api-method get"
-    }, {
-        "type": "doc",
         "id": "greenfield-api/tx-decode",
         "label": "TxDecode",
         "className": "api-method post"
@@ -603,7 +661,7 @@ module.exports = [
     }, {
         "type": "doc",
         "id": "greenfield-api/tx-encode",
-        "label": "TxEncode",
+        "label": "TxEncodeTxEncode",
         "className": "api-method post"
     }, {
         "type": "doc",
@@ -635,5 +693,24 @@ module.exports = [
         "id": "greenfield-api/get-tx",
         "label": "GetTx",
         "className": "api-method get"
-    }
-];
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/applied-plan",
+        "label": "AppliedPlan",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/current-plan",
+        "label": "CurrentPlan",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/module-versions",
+        "label": "ModuleVersions",
+        "className": "api-method get"
+    }, {
+        "type": "doc",
+        "id": "greenfield-api/upgraded-consensus-state",
+        "label": "UpgradedConsensusState",
+        "className": "api-method get"
+    }]

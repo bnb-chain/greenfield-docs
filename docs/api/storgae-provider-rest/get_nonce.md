@@ -13,7 +13,7 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 ## HTTP Request Format
 
 | Description | Definition                     |
-|-------------|--------------------------------|
+| ----------- | ------------------------------ |
 | Host        | gnfd-testnet-sp-*.bnbchain.org |
 | Path        | /auth/request_nonce            |
 | Method      | GET                            |
@@ -21,7 +21,7 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 ## HTTP Request Header
 
 | ParameterName       | Type   | Required | Description                               |
-|---------------------|--------|----------|-------------------------------------------|
+| ------------------- | ------ | -------- | ----------------------------------------- |
 | X-Gnfd-User-Address | string | yes      | user address for the account key          |
 | X-Gnfd-App-Domain   | string | yes      | app domain for the account key            |
 | Authorization       | string | no       | no need to pass in any authorization info |
@@ -54,7 +54,7 @@ X-Gnfd-App-Domain: AppDomain
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
@@ -66,7 +66,7 @@ If the request is successful, the service sends back an HTTP 200 response.
 The following data is returned in JSON format by the service.
 
 | ParameterName      | Type    | Description                                                                                              |
-|--------------------|---------|----------------------------------------------------------------------------------------------------------|
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------- |
 | current_nonce      | integer | current nonce for given account address and app domain                                                   |
 | next_nonce         | integer | next nonce for given account address and app domain, which will be used for new account key registration |
 | current_public_key | string  | current public key for given account address and app domain                                              |

@@ -8,6 +8,32 @@ order: 7
 
 # Release Notes
 
+## Greenfield v0.2.3 - Testnet Maintenance Upgrade Reset.
+
+On August 3rd, we reset the Greenfield Testnet and upgrade the Greenfield version to [v0.2.3](https://github.com/bnb-chain/greenfield/tree/v0.2.3). Here are key changes to note.
+
+**Greenfield Blockchain Changelog**
+
+- [#328](https://github.com/bnb-chain/greenfield/pull/328) Significant model adjustments in the latest version. New concepts such as Virtual Group, Family, etc., has been introduced, to make bucket migration and storage provider exit more lightweight and reduces the storage of chain metadata. More details can be found here.
+- [#287](https://github.com/bnb-chain/greenfield/pull/287), [#288](https://github.com/bnb-chain/greenfield/pull/288), [#315](https://github.com/bnb-chain/greenfield/pull/315) Improvement in payment module. A new algorithm to get the secondary SP price is introduced to avoid unfair competition; Changing the frequency of reading quota is limited to avoid some issues with charging; More payment APIs are available for frontend use.
+- [#323](https://github.com/bnb-chain/greenfield/pull/323) A chain-based reconciliation module was introduced to ensure global security at the level of funds.
+- [#328](https://github.com/bnb-chain/greenfield/pull/328) More lightweight object-sealing transactions are achieved by introducing the BLS signature mechanism.
+- [#368](https://github.com/bnb-chain/greenfield/pull/368) In order to reduce the losses caused by software instability during the initial SP run, the amount of BNB slashed by the storage provider will be strictly limited within a certain period of time.
+- [#346](https://github.com/bnb-chain/greenfield/pull/346),[ #292](https://github.com/bnb-chain/greenfield/pull/292) SDK enhancement. The ordinary RPC requests can be sent via websocket through the Gnfd full node, even if a complex balancer is used, the request always being serviced by the same full node; Custom http client with different settings is allowed to initialize a client;
+- [#290](https://github.com/bnb-chain/greenfield/pull/290) The encoding format of cross-chain communication has been changed from RLP to ABI in order to save on gas usage.
+- [#370](https://github.com/bnb-chain/greenfield/pull/370), [#326](https://github.com/bnb-chain/greenfield/pull/326), [#312](https://github.com/bnb-chain/greenfield/pull/312), [#279](https://github.com/bnb-chain/greenfield/pull/279) Security enhancement, such as preventing replay attacks and rogue key attacks in BLS signatures, calculation accuracy errors, etc.
+
+**Greenfield Storage Provider changelog**
+
+- [#480](https://github.com/bnb-chain/greenfield-storage-provider/pull/480) Support resumable upload for big files. The resumable upload can bring these advantages for big files, including a: Quick recovery from any network issues, b: Pause and resume object uploads.
+- [#638](https://github.com/bnb-chain/greenfield-storage-provider/pull/638) Support data recovery. Including a: recovering segments data when downloading object finds the wrong data, b: supporting recovery in client, c: recovery segment (for primary SP) or EC piece (for secondary SP) if challenge misses the data d: cmd "recovery.object" to recovery lost object for the primary SP or secondary SP.
+- [#681](https://github.com/bnb-chain/greenfield-storage-provider/pull/681), [#735](https://github.com/bnb-chain/greenfield-storage-provider/pull/735), [#797](https://github.com/bnb-chain/greenfield-storage-provider/pull/797) Support using Alicloud OSS as the underlying storage of SP.
+- [#699](https://github.com/bnb-chain/greenfield-storage-provider/pull/699) Support sharding of large-capacity data tables to provide stronger service capabilities.
+- [#795](https://github.com/bnb-chain/greenfield-storage-provider/pull/795) Significant model adjustments in the latest version. New concepts such as Virtual Group, Family, etc., have been introduced. Complete the original process adaptation.
+- [#824](https://github.com/bnb-chain/greenfield-storage-provider/pull/824) Based on the Virtual Group model, it supports Bucket migration and SP exit. Users can complete bucket migration as needed, and SP owners can also complete withdrawal according to actual conditions.
+- [#412](https://github.com/bnb-chain/greenfield-storage-provider/pull/412), [#851](https://github.com/bnb-chain/greenfield-storage-provider/pull/851), [#814](https://github.com/bnb-chain/greenfield-storage-provider/pull/814) Support more powerful metadata query capabilities, such as getting single bucket/object, query SP Info, etc.
+- [#834](https://github.com/bnb-chain/greenfield-storage-provider/pull/834) Remove v2 authorization.
+
 ## Greenfield v0.2.2 - Testnet Maintenance Upgrade Reset.
 
 On June 25th, we reset the Greenfield Testnet and upgrade the Greenfield version to v0.2.2. Here are key changes to note.

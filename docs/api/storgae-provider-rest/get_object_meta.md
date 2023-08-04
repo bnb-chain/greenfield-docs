@@ -11,7 +11,7 @@ This API is used to get object meta by object and bucket name. And it supports b
 ## HTTP Request Format
 
 | Description                | Definition                                |
-|----------------------------|-------------------------------------------|
+| -------------------------- | ----------------------------------------- |
 | Host(virtual-hosted-style) | BucketName.gnfd-testnet-sp-*.bnbchain.org |
 | Path(virtual-hosted-style) | /:object                                  |
 | Method                     | GET                                       |
@@ -23,14 +23,13 @@ This API is used to get object meta by object and bucket name. And it supports b
 ### Path Parameter
 
 | ParameterName | Type   | Description                       |
-|---------------|--------|-----------------------------------|
+| ------------- | ------ | --------------------------------- |
 | object        | string | object defines the name of object |
 
 ### Query Parameter
 
-
 | ParameterName | Type   | Description                                                                           |
-|---------------|--------|---------------------------------------------------------------------------------------|
+| ------------- | ------ | ------------------------------------------------------------------------------------- |
 | object-meta   | string | object-meta is only used for routing location, and it does not need to pass any value |
 
 ### Request Body
@@ -47,20 +46,19 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ## HTTP Response Header
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
 | ParameterName | Type              | Description                    |
-|---------------|-------------------|--------------------------------|
+| ------------- | ----------------- | ------------------------------ |
 | object        | [Object](#object) | object defines the object meta |
-
 
 ### Object
 
 | ParameterName  | Type                              | Description                                                                                                                        |
-|----------------|-----------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| -------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Owner          | string                            | Owner is the object owner                                                                                                          |
 | Creator        | string                            | Creator is the address of the uploader, it always be same as owner address                                                         |
 | BucketName     | string                            | BucketName is the name of the bucket                                                                                               |
@@ -78,14 +76,14 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ### RedundancyType
 
 | Value | Description                     |
-|-------|---------------------------------|
+| ----- | ------------------------------- |
 | 0     | Redundancy type is replica type |
 | 1     | Redundancy type is ec type      |
 
 ### ObjectStatus
 
 | Value | Description                   |
-|-------|-------------------------------|
+| ----- | ----------------------------- |
 | 0     | object status is created      |
 | 1     | object status is sealed       |
 | 2     | object status is discontinued |
@@ -93,7 +91,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ### VisibilityType
 
 | Value | Description                    |
-|-------|--------------------------------|
+| ----- | ------------------------------ |
 | 0     | Visibility type is unspecified |
 | 1     | Visibility type is public read |
 | 2     | Visibility type is private     |
@@ -102,7 +100,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 ### SourceType
 
 | Value | Description                 |
-|-------|-----------------------------|
+| ----- | --------------------------- |
 | 0     | SOURCE_TYPE_ORIGIN          |
 | 1     | SOURCE_TYPE_BSC_CROSS_CHAIN |
 | 2     | SOURCE_TYPE_MIRROR_PENDING  |

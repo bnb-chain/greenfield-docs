@@ -83,7 +83,7 @@ PieceStore now supports the following storage system. If the listed storage syst
 | [Amazon S3](#amazon-s3)                 | `s3`       |
 | [Alibaba Cloud OSS](#alibaba-cloud-oss) | `aliyunfs` |
 | [Backblaze B2](#backblaze-b2)           | `b2`       |
-| [Minio](#minio)                         | `minio`    |
+| [MinIO](#minio)                         | `minio`    |
 | [File](#file)                           | `file`     |
 
 ### Amazon S3
@@ -142,11 +142,11 @@ B2SecretKey = "B2_SECRET_KEY"
 B2SessionToken = "B2_SESSION_TOKEN"
 ```
 
-### Minio
+### MinIO
 
-[MinIO](https://min.io/) is a high-performance, S3 compatible object store. You can visit the official website to learn how to deploy and maintain a minio cluster or you can purchase minio service. If you use minio as the underlying storage, you can set `Storage = minio` in config.toml.
+[MinIO](https://min.io/) is a high-performance, S3 compatible object store. You can visit the official website to learn how to deploy and maintain a MinIO cluster or you can purchase minio service. If you use MinIO as the underlying storage, you can set `Storage = minio` in config.toml.
 
-PieceStore use environment variables of Minio:
+PieceStore use environment variables of MinIO:
 
 ```shell
 // MinioRegion defines env variable name for minio region

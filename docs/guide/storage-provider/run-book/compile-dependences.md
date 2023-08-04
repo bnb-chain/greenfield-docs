@@ -10,7 +10,7 @@ Compilation dependencies:
 - [Golang](https://go.dev/dl): SP is written in Golang, you need to install it. Golang version requires `1.20+`.
 - [Buf](https://buf.build/docs/installation/): A new way of working with Protocol Buffers. SP uses Buf to manage proto files.
 - [protoc-gen-gocosmos](https://github.com/cosmos/gogoproto): Protocol Buffers for Go with Gadgets. SP uses this protobuf compiler to generate pb.go files.
-- [mockgen](https://github.com/golang/mock): A mocking framework for the Go programming language that is used in unit test.
+- [mockgen](https://github.com/uber-go/mock): A mocking framework for the Go programming language that is used in unit test.
 - [jq](https://stedolan.github.io/jq/): Command-line JSON processor. Users should install jq according to your operating system.
 
 ```shell
@@ -57,7 +57,7 @@ If you've already executed `make install-tools` command in your shell, but you f
 # error message 1
 buf: command not found
 # you can execute the following command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
-GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.17.0
+GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/bufbuild/buf/cmd/buf@v1.25.0
 
 # error message 2
 Failure: plugin gocosmos: could not find protoc plugin for name gocosmos - please make sure protoc-gen-gocosmos is installed and present on your $PATH
@@ -65,7 +65,7 @@ Failure: plugin gocosmos: could not find protoc plugin for name gocosmos - pleas
 GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/cosmos/gogoproto/protoc-gen-gocosmos@latest
 
 # if you want to execute unit test of sp, you should execute the following command, assumed that you installed golang in /usr/local/go/bin. Other OS are similar.
-GO111MODULE=on GOBIN=/usr/local/go/bin go install github.com/golang/mock/mockgen@v1.6.0
+GO111MODULE=on GOBIN=/usr/local/go/bin go install go.uber.org/mock/mockgen@latest
 ```
 
 Above error messages are due to users don't set go env correctly. More info users can search `GOROOT`, `GOPATH` and `GOBIN`.
@@ -76,7 +76,7 @@ If a user wants to start SP in local mode or testnet mode, you must prepare `SPD
 
 ### SPDB and BSDB
 
-SP uses [SPDB](../services/spdb.md) and [BSDB](../services/bsdb.md) to store some metadata such as object info, object integrity hash, etc. These two DBs now use `RDBMS` to complete corresponding function.
+SP uses [SPDB](../modules/spdb.md) and [BSDB](../modules/bsdb.md) to store some metadata such as object info, object integrity hash, etc. These two DBs now use `RDBMS` to complete corresponding function.
 
 Users now can use `MySQL` or `MariaDB` to store metadata.The following lists the supported RDBMS:
 
@@ -87,7 +87,7 @@ More types of database such as `PostgreSQL` or NewSQL will be supported in the f
 
 ### PieceStore
 
-Greenfield is a decentralized data storage system which uses object storage as the main data storage system. SP encapsulates data storage as [PieceStore](../services/piece-store.md) which provides common interfaces to be compatible with multiple data storage systems. Therefore, if a user wants to join SP or test the function of SP, you must use a data storage system.
+Greenfield is a decentralized data storage system which uses object storage as the main data storage system. SP encapsulates data storage as [PieceStore](../modules/piece-store.md) which provides common interfaces to be compatible with multiple data storage systems. Therefore, if a user wants to join SP or test the function of SP, you must use a data storage system.
 
 The following lists the supported data storage systems:
 

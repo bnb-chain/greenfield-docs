@@ -83,48 +83,87 @@ documentation.
 
 | Msg Type                                    | Gas Used           | Gas Price | Expected Fee(assuming BNB $300) |
 |---------------------------------------------|--------------------|-----------|---------------------------------|
-| authz.MsgExec                               | 1.20E+03           | 5 gwei    | $0.0018                         |
-| authz.MsgRevoke                             | 1.20E+03           | 5 gwei    | $0.0018                         |
-| bank.MsgSend                                | 1.20E+03           | 5 gwei    | $0.0018                         |
-| distribution.MsgSetWithdrawAddress          | 1.20E+03           | 5 gwei    | $0.0018                         |
-| distribution.MsgWithdrawDelegatorReward     | 1.20E+03           | 5 gwei    | $0.0018                         |
-| distribution.MsgWithdrawValidatorCommission | 1.20E+03           | 5 gwei    | $0.0018                         |
-| feegrant.MsgRevokeAllowance                 | 1.20E+03           | 5 gwei    | $0.0018                         |
-| gov.MsgDeposit                              | 1.20E+03           | 5 gwei    | $0.0018                         |
-| gov.MsgSubmitProposal                       | 2.00E+08           | 5 gwei    | $300                            |
-| gov.MsgVote                                 | 2.00E+07           | 5 gwei    | $30                             |
-| gov.MsgVoteWeighted                         | 2.00E+07           | 5 gwei    | $30                             |
-| oracle.MsgClaim                             | 1.00E+03           | 5 gwei    | $0.0015                         |
-| slashing.MsgUnjail                          | 1.20E+03           | 5 gwei    | $0.0018                         |
-| staking.MsgBeginRedelegate                  | 1.20E+03           | 5 gwei    | $0.0018                         |
-| staking.MsgCancelUnbondingDelegation        | 1.20E+03           | 5 gwei    | $0.0018                         |
-| staking.MsgCreateValidator                  | 2.00E+08           | 5 gwei    | $300                            |
-| staking.MsgDelegate                         | 1.20E+03           | 5 gwei    | $0.0018                         |
-| staking.MsgEditValidator                    | 2.00E+07           | 5 gwei    | $30                             |
-| staking.MsgUndelegate                       | 1.20E+03           | 5 gwei    | $0.0018                         |
-| bridge.MsgTransferOut                       | 1.20E+03           | 5 gwei    | $0.0018                         |
-| sp.MsgDeposit                               | 1.20E+03           | 5 gwei    | $0.0018                         |
-| sp.MsgEditStorageProvider                   | 2.00E+07           | 5 gwei    | $30                             |
-| staking.MsgCreateStorageProvider            | 2.00E+08           | 5 gwei    | $300                            |
-| storage.MsgCopyObject                       | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgDeleteObject                     | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgCreateBucket                     | 2.40E+03           | 5 gwei    | $0.0036                         |
-| storage.MsgCreateGroup                      | 2.40E+03           | 5 gwei    | $0.0036                         |
-| storage.MsgCreateObject                     | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgDeleteBucket                     | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgDeleteGroup                      | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgLeaveGroup                       | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgRejectSealObject                 | 1.20E+04           | 5 gwei    | $0.018                          |
-| storage.MsgSealObject                       | 1.20E+02           | 5 gwei    | $0.00018                        |
-| storage.MsgUpdateGroupMember                | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgCreatePaymentAccount             | 2.00E+05           | 5 gwei    | $0.3                            |
-| storage.MsgPutPolicy                        | 2.40E+03           | 5 gwei    | $0.0036                         |
-| storage.MsgDeletePolicy                     | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgWithdraw                         | 1.20E+03           | 5 gwei    | $0.0018                         |
-| storage.MsgDisableRefund                    | 1.20E+03           | 5 gwei    | $0.0018                         |
-| authz.MsgGrant                              | 8e2 + 8e2 per item | 5 gwei    | $0.0012 per item                |
-| bank.MsgMultiSend                           | 8e2 + 8e2 per item | 5 gwei    | $0.0012 per item                |
-| feegrant.MsgGrantAllowance                  | 8e2 + 8e2 per item | 5 gwei    | $0.0012 per item                |
+| cosmos.auth.v1beta1.MsgUpdateParams        | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.bank.v1beta1.MsgUpdateParams        | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.consensus.v1.MsgUpdateParams        | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.crisis.v1.MsgUpdateParams           | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.crosschain.v1.MsgUpdateParams       | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.crosschain.v1.MsgUpdateChannelPermissions | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.distribution.v1beta1.MsgUpdateParams | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.gashub.v1beta1.MsgUpdateParams      | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.gov.v1.MsgUpdateParams              | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.mint.v1beta1.MsgUpdateParams        | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.oracle.v1.MsgUpdateParams           | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.slashing.v1beta1.MsgUpdateParams    | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.staking.v1beta1.MsgUpdateParams     | 0                  | 5 gwei    | $0.00000000 |
+| greenfield.bridge.MsgUpdateParams          | 0                  | 5 gwei    | $0.00000000 |
+| greenfield.sp.MsgUpdateParams              | 0                  | 5 gwei    | $0.00000000 |
+| greenfield.storage.MsgUpdateParams         | 0                  | 5 gwei    | $0.00000000 |
+| greenfield.payment.MsgUpdateParams         | 0                  | 5 gwei    | $0.00000000 |
+| greenfield.challenge.MsgUpdateParams       | 0                  | 5 gwei    | $0.00000000 |
+| greenfield.permission.MsgUpdateParams      | 0                  | 5 gwei    | $0.00000000 |
+| cosmos.authz.v1beta1.MsgExec               | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.authz.v1beta1.MsgRevoke             | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.bank.v1beta1.MsgSend                | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.distribution.v1beta1.MsgSetWithdrawAddress | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.feegrant.v1beta1.MsgRevokeAllowance | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.gov.v1.MsgDeposit                   | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.gov.v1.MsgSubmitProposal            | 200000000          | 5 gwei    | $300.00000000 |
+| cosmos.gov.v1.MsgVote                      | 20000000           | 5 gwei    | $30.00000000 |
+| cosmos.gov.v1.MsgVoteWeighted              | 20000000           | 5 gwei    | $30.00000000 |
+| cosmos.oracle.v1.MsgClaim                  | 1000               | 5 gwei    | $0.00150000 |
+| cosmos.slashing.v1beta1.MsgUnjail          | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.staking.v1beta1.MsgBeginRedelegate  | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.staking.v1beta1.MsgCancelUnbondingDelegation | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.staking.v1beta1.MsgCreateValidator  | 200000000          | 5 gwei    | $300.00000000 |
+| cosmos.staking.v1beta1.MsgDelegate         | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.staking.v1beta1.MsgEditValidator    | 20000000           | 5 gwei    | $30.00000000 |
+| cosmos.staking.v1beta1.MsgUndelegate       | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.bridge.MsgTransferOut           | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.sp.MsgCreateStorageProvider     | 200000000          | 5 gwei    | $300.00000000 |
+| greenfield.sp.MsgDeposit                   | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.sp.MsgEditStorageProvider       | 20000000           | 5 gwei    | $30.00000000 |
+| greenfield.sp.MsgUpdateSpStoragePrice      | 20000000           | 5 gwei    | $30.00000000 |
+| greenfield.storage.MsgCreateBucket         | 2400               | 5 gwei    | $0.00360000 |
+| greenfield.storage.MsgDeleteBucket         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgMirrorBucket         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgUpdateBucketInfo     | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgCreateObject         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgSealObject           | 120                | 5 gwei    | $0.00018000 |
+| greenfield.storage.MsgMirrorObject         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgRejectSealObject     | 12000              | 5 gwei    | $0.01800000 |
+| greenfield.storage.MsgDeleteObject         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgCopyObject           | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgCancelCreateObject   | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgUpdateObjectInfo     | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgDiscontinueObject    | 2400               | 5 gwei    | $0.00360000 |
+| greenfield.storage.MsgDiscontinueBucket    | 2400               | 5 gwei    | $0.00360000 |
+| greenfield.storage.MsgCreateGroup          | 2400               | 5 gwei    | $0.00360000 |
+| greenfield.storage.MsgDeleteGroup          | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgLeaveGroup           | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgUpdateGroupMember    | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgUpdateGroupExtra     | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgMirrorGroup          | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.storage.MsgPutPolicy            | 2400               | 5 gwei    | $0.00360000 |
+| greenfield.storage.MsgDeletePolicy         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.payment.MsgCreatePaymentAccount | 200000             | 5 gwei    | $0.30000000 |
+| greenfield.payment.MsgDeposit              | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.payment.MsgWithdraw             | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.payment.MsgDisableRefund        | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.challenge.MsgSubmit             | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.challenge.MsgAttest             | 100                | 5 gwei    | $0.00015000 |
+| greenfield.virtualgroup.MsgCreateGlobalVirtualGroup | 1000000            | 5 gwei    | $1.50000000 |
+| greenfield.virtualgroup.MsgDeleteGlobalVirtualGroup | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.virtualgroup.MsgDeposit         | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.virtualgroup.MsgWithdraw        | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.virtualgroup.MsgSettle          | 1200               | 5 gwei    | $0.00180000 |
+| greenfield.virtualgroup.MsgUpdateParams    | 1200               | 5 gwei    | $0.00180000 |
+| cosmos.authz.v1beta1.MsgGrant              | 800 + 800 per item | 5 gwei    | $0.0012 per item |
+| cosmos.bank.v1beta1.MsgMultiSend           | 800 + 800 per item | 5 gwei    | $0.0012 per item |
+| cosmos.feegrant.v1beta1.MsgGrantAllowance  | 800 + 800 per item | 5 gwei    | $0.0012 per item |
+
 
 ## Usage of BNB Token on BNB Greenfield
 

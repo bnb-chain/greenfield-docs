@@ -11,7 +11,7 @@ This API is used to query a list of objects metadata info by object ids. This AP
 ## HTTP Request Format
 
 | Description      | Definition                     |
-|------------------|--------------------------------|
+| ---------------- | ------------------------------ |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
 | Method           | POST                           |
@@ -26,17 +26,15 @@ The request does not have a path parameter.
 
 ### Query Parameter
 
-
-| ParameterName | Type   | Description                                                                              |
-|---------------|--------|------------------------------------------------------------------------------------------|
-| objects-query | string | objects-query is only used for routing location, and it does not need to pass any value  |
-
+| ParameterName | Type   | Description                                                                             |
+| ------------- | ------ | --------------------------------------------------------------------------------------- |
+| objects-query | string | objects-query is only used for routing location, and it does not need to pass any value |
 
 ### Request Body
 
-| ParameterName | Type     | Description                                |
-|---------------|----------|--------------------------------------------|
-| ids           | array    | ids defines defines the IDs of the objects |
+| ParameterName | Type  | Description                                |
+| ------------- | ----- | ------------------------------------------ |
+| ids           | array | ids defines defines the IDs of the objects |
 
 ## Request Syntax
 
@@ -56,14 +54,14 @@ Content-Length: length
 The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
-|---------------|--------|-----------------------------|
+| ------------- | ------ | --------------------------- |
 | Content-Type  | string | value is `application/json` |
 
 ## HTTP Response Parameter
 
-| ParameterName | Type     | Description                                        |
-|---------------|----------|----------------------------------------------------|
-| objects       | array    | objects defines the information of the object list |
+| ParameterName | Type  | Description                                        |
+| ------------- | ----- | -------------------------------------------------- |
+| objects       | array | objects defines the information of the object list |
 
 
 ### Response Body
