@@ -20,6 +20,7 @@ The following lists the recommended hardware requirements:
 
 :::danger IMPORTANT
 Each storage provider will hold 6 different accounts serving different purposes
+:::
 
 ### Wallet Preparation
 
@@ -64,13 +65,13 @@ bls_proof:
 ```shell
 ./build/bin/gnfd keys sign "${bls_pub_key}"   --from bls --keyring-backend os
 ```
-:::
+
 
 ### Databbase Configuration
 
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
-block_syncer and block_syncer_backup require the <font color=red>utf8mb4_unicode_ci encoding</font> format
+block_syncer and block_syncer_backup require the **utf8mb4_unicode_ci encoding** format
 
 ```shell
 # login in mysql and create database
