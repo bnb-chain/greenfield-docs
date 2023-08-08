@@ -5156,7 +5156,7 @@ paths:
             format: int64
           collectionFormat: multi
       tags:
-        - Query
+        - Storage
   /greenfield/virtualgroup/global_virtual_group:
     get:
       summary: GlobalVirtualGroup
@@ -5250,7 +5250,7 @@ paths:
           type: integer
           format: int64
       tags:
-        - VirtualGroup
+        - Storage
   /greenfield/virtualgroup/global_virtual_group_by_family_id:
     get:
       summary: GlobalVirtualGroupByFamilyID
@@ -5347,7 +5347,7 @@ paths:
           type: integer
           format: int64
       tags:
-        - VirtualGroup
+        - Storage
   /greenfield/virtualgroup/global_virtual_group_families:
     get:
       summary: GlobalVirtualGroupFamilies
@@ -5499,7 +5499,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - VirtualGroup
+        - Storage
   /greenfield/virtualgroup/global_virtual_group_family:
     get:
       summary: GlobalVirtualGroupFamily
@@ -5570,7 +5570,7 @@ paths:
           type: integer
           format: int64
       tags:
-        - VirtualGroup
+        - Storage
   /greenfield/virtualgroup/params:
     get:
       summary: VirtualGroupParams
@@ -5632,7 +5632,7 @@ paths:
                       type: string
                       format: byte
       tags:
-        - VirtualGroup
+        - Storage
   /cosmos/auth/v1beta1/account_info/{address}:
     get:
       summary: AccountInfo
@@ -9157,7 +9157,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Auth
   /cosmos/authz/v1beta1/grants/granter/{granter}:
     get:
       summary: GranterGrants
@@ -21163,7 +21163,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - Query
+        - Governance
   /cosmos/gov/v1/proposals/{proposal_id}/votes/{voter}:
     get:
       summary: GovV1Vote
