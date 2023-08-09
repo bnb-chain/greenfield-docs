@@ -87,20 +87,20 @@ Transfer BNB to `Seal address`.
 
 #### Description
 
-After uploading a file, you see an error message:
+After starging SP binary, you see an error message:
 
 ```shell
-{"t":"2023-07-05T10:22:37.365Z","I":"warn","caller":"p2pnode/node.go:223","msg":"failed to get sufficient approvals","task_key":"ReplicatePieceApproval-bucketimage-1-object:OAT.png-id:215241","expect":6,"accepted":0} {"t":"2023-07-05T10:22:37.365Z","I":"error","caller":"p2p/p2p_task.go:39","msg":"failed to get sufficient approvals as secondary sp","task_key":"ReplicatePieceApproval-bucketimage-1-object:OAT.png-id:215241","accept":0,"min":6,"max":6} {"t":"2023-07-05T10:22:37.365Z","I":"error","caller":"gfspapp/p2p_server.go:29","msg":"failed to get replicate piece approval from p2p","task_key":"ReplicatePieceApproval-bucketimage-1-object:OAT.png-id:215241","error":"code_space:rp2pr http_status_code:404 inner_code:70002 description:rinsufficient approvals as secondary spr "} {"t":"2023-07-05T10:22:37.369Z","I":"error","caller":"executor/execute_replicate.go:58","msg":"failed get approvals","task_key":"Replicating-bucketimage-1- object:OAT.png-id:215241","error":"code_space:rp2pr http_status_code:404 inner_code:70002 description:rinsufficient approvals as secondary spr "} {"t":"2023-07-05T10:22:37.376Z","I":"info","caller":"gfspapp/manage_server.go:158","msg":"begin to handle reported task","task_key":"Replicating-bucketimage-1-object:OAT.png-id:215241","task_info":"key[Replicating-bucketimage-1-object:OAT.png-id:215241], type[ReplicatePieceTask], priority[255], limit[memory:25165824 tasks:1 tasks_high_priorityl ], create[1688552547], update[1688552547], timeout[90], retry[1], max_retry[3], runner[127.0.0.1], error[code_space:rp2pr http_status_code:404 inner_code:70002 description:rinsufficient approvals as secondary spr ]"} {"t":"2023-07-05T10:22:37.376Z","I":"error","caller":"manager/manage_task.go:176","msg":"handler error replicate piece task","task_key":"Replicating-bucketimage-1-object:OAT.png-id:215241","task_info":"key[Replicating-bucketimage-1-object:OAT.png-id:215241], type[ReplicatePieceTask], priority[255], limit[memory:25165824 tasks:1 tasks_high_priorityl ], create[1688552547], update[1688552547], timeout[90], retry[1], max_retry[3], runner[127.0.0.1], error[code_space:\"p2py http_status_code:404 inner_code:70002 description:yinsufficient approvals as secondary spr ]","error":"code_space:rp2pr http_status_code:404 inner_code:70002 description:rinsufficient approvals as secondary spr "}
 
+failed to parse address 'k8s-gftestne-p2pexter-bc25ac70bc-a31e9596d87054c3.elb.us-east-1.amazonaws.com:9933' domain
 ```
 
 #### Root Cause
 
-SP is not connected with other SPs in P2P network
+SP is trying to get connected with invalid SP URL in P2P network
 
 #### Solution
 
-check [P2P] setting in `config.toml`:
+Update [P2P] setting in `config.toml`:
 
 ```shell
 [P2P]
@@ -108,12 +108,12 @@ check [P2P] setting in `config.toml`:
 P2PPrivateKey = '${p2p_private_key}'
 P2PAddress = '0.0.0.0:9933'
 P2PAntAddress = '${load_balance_doamin:port}'
-P2PBootstrap = ["16Uiu2HAkvgrSt4oUNZ8rWe2qpimLDajyqD6Ca7LV7n9FkzzPNDQh@k8s-gftestne-p2pexter-bc25ac70bc-a31e9596d87054c3.elb.us-east-1.amazonaws.com:9933"]
+P2PBootstrap = []
 P2PPingPeriod = 0
 ```
 
 `P2PAntAddress` is your load balance address. If you don't have a load balance address, you should have a public IP and use it in `P2PAddress`.
-`P2PBootstrap` consists of `[node_id1@ip1:port1, node_id2@ip1:port2]`, you can use `P2PAntAddress` or `P2PAddress` as `ip:port`. Public nodes URL can bbe found [here](../../../api/endpoints.md)
+`P2PBootstrap` is not used anymore, you can leave this field empty.
 
 ### 5.MinIO Authentication Issue
 
