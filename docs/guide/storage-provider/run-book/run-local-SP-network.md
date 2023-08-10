@@ -5,6 +5,12 @@ order: 2
 This guide helps you to set up a local Greenfield Storage Provider network for testing
 and other development related purposes.
 
+- [Recommended Prerequisites](#recommended-prerequisites)
+- [Quickly setup local Greenfield Blockchain network](#quickly-setup-local-greenfield-blockchain-network)
+- [Setup local SP network](#setup-local-sp-network)
+- [Operate With SP](#operate-with-sp)
+
+
 ## Recommended Prerequisites
 
 The following lists the recommended hardware requirements:
