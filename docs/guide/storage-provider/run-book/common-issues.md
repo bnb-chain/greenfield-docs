@@ -7,14 +7,18 @@ This is a list of solutions to common SP deployment issues
 
 ## On-chain Proposal
 
-### 1. Why is Proposal Rejected?
+### 1. Why send tx failed?
+
+* Reason 1: The gnfd binary doesn't match, you should use the [latest version](https://github.com/bnb-chain/greenfield/releases/latest)
+* Reason 2: The chain ID doesn't match, you should specify the chain ID correctly. For greenfield testnet, you should add `--chain-id "greenfield_5600-1"`
+
+### 2. Why is Proposal Rejected?
 
 If your proposal received less than 2/3 of `yes` votes from validators, your propoosal will be rejected.
 
-### 2. Why is Proposal Failed
+### 3. Why is Proposal Failed
 
-* Reason 1: The proposal initiator address does not have balance of **1k BNB** as deposit
-* Reason 2: The proposal initiator address does not grant gov module to spend 1k BNB, as instructed [here](https://docs.bnbchain.org/greenfield-docs/docs/guide/storage-provider/run-book/run-testnet-SP-node#1-authorization)
+The proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit.
 
 ## SP node issues
 
