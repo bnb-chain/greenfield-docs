@@ -1,8 +1,3 @@
----
-title: Contract Entrypoint
-order: 5
----
-
 # Contract Entrypoint
 
 ## Testnet

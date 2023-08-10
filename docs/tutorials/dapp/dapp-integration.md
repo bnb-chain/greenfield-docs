@@ -1,7 +1,3 @@
----
-title: Contract SDK
-order: 4
----
 # Contract SDK
 
 The [Smart Contract SDK](https://github.com/bnb-chain/greenfield-contracts-sdk),

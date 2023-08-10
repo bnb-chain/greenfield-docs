@@ -86,7 +86,7 @@ const sidebars = {
         
         {
           type: "category",
-          label: "Run Node",
+          label: "Run Storage Provider",
           collapsible: true,
           collapsed: true,
           items:[
@@ -144,7 +144,7 @@ const sidebars = {
         
         {
           type: "category",
-          label: "Run Node",
+          label: "Run Storage Provider",
           collapsible: true,
           collapsed: true,
           items:[
@@ -254,23 +254,19 @@ const sidebars = {
       items:[
         {
           type: "category",
-          label: "Building Smart Contract dApps",
+          label: "Building with Smart Contract",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/dapp/overview'},
           items:[
             "tutorials/dapp/overview",
             "tutorials/dapp/quick-start",
-            "tutorials/dapp/primitive-interface",
-            "tutorials/dapp/dapp-integration",
-            "tutorials/dapp/permission-control",
-            "tutorials/dapp/contract-list",
             "tutorials/dapp/showcases"
           ]
         },
         {
           type: "category",
-          label: "Building Native dApps",
+          label: "Building without Smart Contract",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/native-dapp/overview'},

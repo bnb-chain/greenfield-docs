@@ -1,8 +1,3 @@
----
-title: Permission Control
-order: 4
----
-
 # Permission Control 
 
 ## General Permission Control

@@ -4,7 +4,7 @@ This section will combine all the current and existing workflows of SP to help y
 
 ## Get Approval
 
-Get Approval API includes actions: CreateBucket and CreateObject. To upload an object into SP, you must first send a CreateBucket approval request, which will create a bucket on the Greenfield blockchain. If the request is successful, you can then send a CreateObject approval request. Both of these actions are used to determine whether SP is willing to serve the request. SP may reject users with a bad reputation or specific objects or buckets. SP approves the request by signing a message for the action and responding to the users. By default, SP will serve the request, but it can refuse if it chooses to do so. Each SP can customize its own strategy for accepting or rejecting requests.
+[Get Approval](../../../api/storgae-provider-rest/get_approval) API includes actions: CreateBucket and CreateObject. To upload an object into SP, you must first send a CreateBucket approval request, which will create a bucket on the Greenfield blockchain. If the request is successful, you can then send a CreateObject approval request. Both of these actions are used to determine whether SP is willing to serve the request. SP may reject users with a bad reputation or specific objects or buckets. SP approves the request by signing a message for the action and responding to the users. By default, SP will serve the request, but it can refuse if it chooses to do so. Each SP can customize its own strategy for accepting or rejecting requests.
 
 The flow chart is shown below:
 
@@ -24,11 +24,11 @@ By default, each account can create a maximum of 100 buckets.
 
 If users send multiple CreateBucket or CreateObject approval requests in a short period of time, SP will provide the same results due to an expired blockchain height that is set to prevent repeated requests, such as DDoS attacks.
 
-See request and response details for this API: [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/get_approval.html).
+See request and response details for this API: [GetApproval](../../../api/storgae-provider-rest/get_approval).
 
 ## Upload Object
 
-After successfully sending requests to the GetApproval API and receiving results, you can upload an object to SP. This API involves two steps: first, users manually upload an object to PrimarySP; second, after a successful upload to PrimarySP, the object is automatically replicated to secondarySP to ensure data reliability.
+After successfully sending requests to the [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/get_approval.html) API and receiving results, you can upload an object to SP. This API involves two steps: first, users manually upload an object to PrimarySP; second, after a successful upload to PrimarySP, the object is automatically replicated to secondarySP to ensure data reliability.
 
 Upload to PrimarySP flow chart is shown below:
 
@@ -36,21 +36,21 @@ Upload to PrimarySP flow chart is shown below:
 
 <div style={{textAlign:'center'}}><i>Put Object</i></div>
 
-### Gateway
+### [Gateway](../modules/gateway)
 
 - Gateway receives PutObject requests from client.
 - Gateway verifies the signature of request to ensure that the request has not been tampered with.
 - Gateway invokes Authenticator to check the authorization to ensure the corresponding account has permissions on resources.
 - Dispatches the request to Uploader module.
 
-### Uploader
+### [Uploader](../modules/uploader)
 
 - Uploader accepts object data in a streaming format and divides it into segments based on the `MaxSegmentSize`, which is determined by consensus in the Greenfield chain. The segmented data is then stored in the PieceStore.
 - Uploader creates a JobContext with an initial state of `INIT_UNSPECIFIED`. Upon beginning the upload of segments, the JobContext's state transitions to `UPLOAD_OBJECT_DOING`. Once all segments have been uploaded, the JobContext's state changes to `UPLOAD_OBJECT_DONE`. In the event of any abnormal situations during the upload, the JobContext's state will change to `UPLOAD_OBJECT_ERROR`.
 - After uploading all segments, insert segments data checksums and root checksum into the SP DB.
 - Uploader creates an upload object task for Manager and returns a success message to the client indicating that the put object request is successful.
 
-### TaskExecutor
+### [TaskExecutor](../modules/taskexecutor)
 
 Replicate to SecondarySP flow chart is shown below:
 
@@ -64,19 +64,19 @@ Replicate to SecondarySP flow chart is shown below:
 - Then sends the replicate data groups in streaming to the selected secondary SPs in parallel.
 - The JobContext's secondary SP information is updated once the replication of a secondary SP is completed. The JobContext's state changes from `REPLICATE_OBJECT_DOING` to `REPLICATE_OBJECT_DONE` only after all secondary SPs have completed replication.
 
-### Receiver
+### [Receiver](../modules/receiver)
 
 - Receiver checks whether the SecondarySP approval is self-signed and has timed out. If either of these conditions is true, the system returns a `SIGNATURE_ERROR` to TaskExecutor.
 - Receiver works in secondary SP, receives EC pieces that belong to the same replicate data group, and uploads the EC pieces to the secondary SP PieceStore.
 - Computes the EC pieces integrity checksum, sign the integrity checksum by SP's approval private key, then returns these to TaskExecutor.
 
-### TaskExecutor
+### [TaskExecutor](../modules/taskexecutor)
 
 - Receives the response from secondary SPs' Receiver, and unsigned the signature to compare with the secondary SP's approval public key.
 - Sends the MsgSealObject to the Signer for signing the seal object transaction and broadcasting to the Greenfield chain with the secondary SPs' integrity hash and signature. The state of the JobContext turns to `SIGN_OBJECT_DOING` from `REPLICATE_OBJECT_DONE`. If Signer succeeds to broadcast the SealObjectTX, changes `SEAL_OBJECT_TX_DOING` state immediately into `SIGN_OBJECT_DONE` state.
 - Monitor the execution results of seal object transaction on the Greenfield chain to determine whether the seal is successful. If so, the JobContext state is changed into `SEAL_OBJECT_DONE` state.
 
-See request and response details for this API: [PutObject](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/put_object.html).
+See request and response details for this API: [PutObject](../../../api/storgae-provider-rest/put_object).
 
 ## Download Object
 
@@ -86,7 +86,7 @@ Users can download an object from PrimarySP. The flow chart is shown below:
 
 <div style={{textAlign:'center'}}><i>Get Object</i></div>
 
-### Gateway
+### [Gateway](../modules/gateway)
 
 - Receives the GetObject request from the client.
 - Verifies the signature of request to ensure that the request has not been tampered with.
@@ -94,7 +94,7 @@ Users can download an object from PrimarySP. The flow chart is shown below:
 - Checks the object state and payment account state to ensure the object is sealed and the payment account is active.
 - Dispatches the request to Downloader.
 
-### Downloader
+### [Downloader](../modules/downloader)
 
 - Receives the GetObject request from the Gateway service.
 - Check whether the read traffic exceeds the quota.
@@ -102,7 +102,7 @@ Users can download an object from PrimarySP. The flow chart is shown below:
     * If the quota is sufficient, Downloader inserts read record into the SP traffic-db.
 - Downloader splits the GetObject request into GetPiece requests (which support range reads) to retrieve the corresponding piece payload data. Downloader then streams the object payload data back to the Gateway.
 
-See request and response details for this API: [GetObject](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/get_object.html).
+See request and response details for this API: [GetObject](../../../api/storgae-provider-rest/put_object).
 
 ## QueryMeta
 
@@ -112,7 +112,7 @@ Users maybe want to query some metadata about buckets, objects, bucket read quot
 
 <div style={{textAlign:'center'}}><i>Query Meta</i></div>
 
-### Gateway
+### [Gateway](../modules/gateway)
 
 - Receives the QueryMeta request from the client.
 - Verifies the signature of request to ensure that the request has not been tampered with.
@@ -134,14 +134,14 @@ The flow chart is shown below:
 
 <div style={{textAlign:'center'}}><i>Challenge</i></div>
 
-### Gateway
+### [Gateway](../modules/gateway)
 
 - Receives the Challenge request from the client.
 - Verifies the signature of request to ensure that the request has not been tampered with.
 - Checks the authorization to ensure the corresponding account has permissions on resources.
 - Dispatches the request to Downloader.
 
-### Downloader
+### [Downloader](../modules/downloader)
 
 - Downloader receives the Challenge request from Gateway.
 - Returns all segment data checksums and challenge segment data payload to Gateway.

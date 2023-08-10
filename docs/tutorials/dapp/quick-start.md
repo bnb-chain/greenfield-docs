@@ -1,12 +1,11 @@
 ---
-title: Quick Start
-order: 2
+title: How to develop BSC smart contract for Greenfield
+order: 3
 ---
 
 # Quick Start
 
-In this guide, we will walk you through the process of data permission management using the BSC smart contract as a simple
-showcase of cross chain program-ability of Greenfield.
+In this guide, we will walk you through the process of data permission management using the BSC smart contract as a simple howcase of cross chain program-ability of Greenfield.
 
 ## Prerequisites
 

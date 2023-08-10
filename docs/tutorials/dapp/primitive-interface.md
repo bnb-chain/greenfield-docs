@@ -1,8 +1,3 @@
----
-title: Primitive Interfaces
-order: 3
----
-
 # Primitive Interfaces
 
 This document give a detailed introduction of cross-chain primitives that have been defined on BSC to enable developers to 

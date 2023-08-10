@@ -4,6 +4,30 @@ order: 3
 ---
 This guide helps you to set up a Storage Provider and add it to Greenfield testnet.
 
+- [Prerequisites](#prerequisites)
+  * [Recommended Hardware](#recommended-hardware)
+  * [Wallet Preparation](#wallet-preparation)
+  * [Databbase Configuration](#databbase-configuration)
+  * [PieceStore Configuration](#piecestore-configuration)
+  * [Gateway Configuration](#gateway-configuration)
+- [Create Storage Provider](#create-storage-provider)
+  * [1. Compile SP](#1-compile-sp)
+  * [2. SP Testnet Config](#2-sp-testnet-config)
+  * [3. Run SP](#3-run-sp)
+  * [4. Deploy Dashboard](#4-deploy-dashboard)
+- [Add Storage Provider to Greenfield testnet](#add-storage-provider-to-greenfield-testnet)
+  * [Fee Table](#fee-table)
+  * [1. Authorization](#1-authorization)
+  * [2. Submit-proposal](#2-submit-proposal)
+  * [3. Deposit BNB to proposal](#3-deposit-bnb-to-proposal)
+  * [4. Wait voting and check voting result](#4-wait-voting-and-check-voting-result)
+- [Storage Provider Operations](#storage-provider-operations)
+  * [Deposit collateral](#deposit-collateral)
+  * [EditStorageProvider](#editstorageprovider)
+- [Verify Functions](#verify-functions)
+- [Trouble shooting](#trouble-shooting)
+
+
 ## Prerequisites
 
 ### Recommended Hardware

@@ -1,6 +1,6 @@
 ---
-title: Showcases
-order: 6
+title: Data Marketplace Demo
+order: 2
 ---
 
 # Showcases
