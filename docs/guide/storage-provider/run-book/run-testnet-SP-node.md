@@ -25,11 +25,11 @@ Each storage provider will hold 6 different accounts serving different purposes
 ### Wallet Preparation
 
 * Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
-* Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
+* Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain.
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
-* Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
+* Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited.
 
 You can use the below command to generate this six accounts:
 
@@ -57,9 +57,9 @@ Please keep these six private keys safe!
 
 Also, obtain bls public key, bls proof to fill in the proposal of creating Storage Provider
 
-bls_pub_key: 
+bls_pub_key:
 ```shell
-./build/bin/gnfd keys show bls --keyring-backend os --output json | jq -r '.pubkey_hex' 
+./build/bin/gnfd keys show bls --keyring-backend os --output json | jq -r '.pubkey_hex'
 ```
 bls_proof:
 ```shell
@@ -209,8 +209,8 @@ You can query the governance parameters [here](https://docs.bnbchain.org/greenfi
 Before creating the storage provider, it is necessary to allow the module account of the gov module to deduct the tokens from the funding account specified by the SP, because the addition of CreateStorageProvider requires submitting a proposal to the gov module, and only after enough validators approve can the SP be truly created on the chain and provide services externally. The address of the gov module account is `0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2`.
 
 ```shell
-./build/bin/gnfd keys show operator --keyring-backend os 
-./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000000000000000000000BNB --SPAddress {operator_address} --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443 
+./build/bin/gnfd keys show operator --keyring-backend os
+./build/bin/gnfd tx sp grant 0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2 --spend-limit 1000000000000000000000BNB --SPAddress {operator_address} --from {funding_address} --keyring-backend os --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
 The above command requires the funding account of the SP to send the transaction to allow the gov module to have permission to deduct tokens from the funding account of SP which is specified by the operator address.
@@ -251,7 +251,7 @@ $ cat ./create_sp.json
       "amount":"1000000000000000000000"
     },
     "read_price": "0.108",
-    "store_price": "0.016"",
+    "store_price": "0.016",
     "free_read_quota": 10000,
     "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
     "bls_key": "{bls_pub_key}",
@@ -278,7 +278,7 @@ curl -X GET "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/cosmos/aut
 * `endpoint` is URL of your gateway
 * `read_price` and `store_price` unit is `wei/bytes/s`
 * `free_read_quota` unit is *Bytes*
-* `creator` is the address of `gov module` 
+* `creator` is the address of `gov module`
 * `metadata` is optional
 
 ### 3. Deposit BNB to proposal
