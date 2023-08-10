@@ -31,19 +31,19 @@ Also, make sure you have the following dependencies installed with the latest ve
 Let’s set up a Go project with the necessary dependencies.
 
 Init
-```
+```sh
 $ mkdir ~/hellogreenfield
 $ cd ~/hellogreenfield
 $ go mod init hellogreenfield
 ```
 
 Add SDK Dependencies
-```
+```sh
 $ go get github.com/bnb-chain/greenfield-go-sdk
 ```
 
 Edit go.mod to replace dependencies
-```
+```sh
 replace (
     cosmossdk.io/api => github.com/bnb-chain/greenfield-cosmos-sdk/api v0.0.0-20230425074444-eb5869b05fe9
     cosmossdk.io/math => github.com/bnb-chain/greenfield-cosmos-sdk/math v0.0.0-20230425074444-eb5869b05fe9
@@ -55,48 +55,56 @@ replace (
 )
 ```
 
+Install dependensies
+```sh
+go mod tidy
+```
+
 ### Test a simple function
 Now we’re ready to connect to Greenfield testnet and interact with the storage provider APIs. Let’s write a simple script to query the Greenfield version to verify if everything works as expected.
 
 Create a ```main.go``` file in your project and add the following code.
-```
+```go
 package main
-​
+
 import (
- "context"
- "log"
-​
- "github.com/bnb-chain/greenfield-go-sdk/client"
- "github.com/bnb-chain/greenfield-go-sdk/types"
+  "context"
+  "log"
+
+  "github.com/bnb-chain/greenfield-go-sdk/client"
+  "github.com/bnb-chain/greenfield-go-sdk/types"
 )
-​
+
 const (
- rpcAddr     = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
- chainId     = "greenfield_5600-1"
- privateKey  = ""
+  rpcAddr    = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+  chainId    = "greenfield_5600-1"
+  privateKey = ""
 )
-​
+
 func main() {
- account, err := types.NewAccountFromPrivateKey("test", privateKey)
- if err != nil {
-  log.Fatalf("New account from private key error, %v", err)
- }
- cli, err := client.New(chainId, rpcAddr, client.Option{DefaultAccount: account})
- if err != nil {
+  account, err := types.NewAccountFromPrivateKey("test", privateKey)
+  if err != nil {
+    log.Fatalf("New account from private key error, %v", err)
+  }
+
+  cli, err := client.New(chainId, rpcAddr, client.Option{DefaultAccount: account})
+  if err != nil {
   log.Fatalf("unable to new greenfield client, %v", err)
- }
- ctx := context.Background()
- nodeInfo, versionInfo, err := cli.GetNodeInfo(ctx)
- if err != nil {
-  log.Fatalf("unable to get node info, %v", err)
- }
- log.Printf("nodeInfo moniker: %s, go version: %s", nodeInfo.Moniker, versionInfo.GoVersion)
- height, err := cli.GetLatestBlockHeight(ctx)
- if err != nil {
-  log.Fatalf("unable to get latest block height, %v", err)
- }
-​
- log.Printf("Current block height: %d", height)
+  }
+
+  ctx := context.Background()
+  nodeInfo, versionInfo, err := cli.GetNodeInfo(ctx)
+  if err != nil {
+    log.Fatalf("unable to get node info, %v", err)
+  }
+
+  log.Printf("nodeInfo moniker: %s, go version: %s", nodeInfo.Moniker, versionInfo.GoVersion)
+  height, err := cli.GetLatestBlockHeight(ctx)
+  if err != nil {
+    log.Fatalf("unable to get latest block height, %v", err)
+  }
+
+  log.Printf("Current block height: %d", height)
 }
 ```
 
@@ -116,22 +124,24 @@ In the previous step, we created a ```main.go``` file to demonstrate the basic s
 Get current chain head:
 We can add the following code in main.go to query current head of the chain.
 
+```go
+blockByHeight, err := cli.GetBlockByHeight(ctx, height)
+if err != nil {
+	log.Fatalf("unable to get block by height, %v", err)
+}
+log.Printf("Current block height: %d", blockByHeight.GetHeader())
 ```
-blockByHeight, err := cli.GetBlockByHeight(ctx,height)
- if err != nil {
-  log.Fatalf("unable to get block by height, %v", err)
- }
- log.Printf("Current block height: %d", blockByHeight.GetHeader())
- ```
+
 Get Address balance
 With a given greenfield wallet address, you can query its balance by calling ```GetAccountBalance``` function.
-```
+```go
 balance, err := cli.GetAccountBalance(ctx, account.GetAddress().String())
- if err != nil {
+if err != nil {
   log.Fatalf("unable to get balance, %v", err)
- }
- log.Printf("%s Current balance: %s", account.GetAddress().String(), balance.String())
- ```
+}
+log.Printf("%s Current balance: %s", account.GetAddress().String(), balance.String())
+```
+
 Apart from the basic data queries shown above, there are many more features. Please see the [JSON-RPC API Reference](https://docs.bnbchain.org/greenfield-docs/docs/api-sdk/endpoints) for all Greenfield API definitions.
 
 ## Manage Wallet
@@ -140,18 +150,20 @@ Greenfield wallets hold addresses that you can use to manage objects, sign trans
 2. Create a new file called ```account.go``` in the same project as earlier. This is where we’ll write all out wallet-related code.
 3. In ```account.go``` import modules and initialize your private key or mnemonic phrase.
 
-```
+```go
 //import mnemonic
 account, err := types.NewAccountFromMnemonic("test", mnemonic)
 //import private key
 account, err := types.NewAccountFromPrivateKey("test", privateKey)
 ```
+
 Let’s create a second wallet address so we can test transfers. The new address will be created locally and start with 0 token balance:
-```
+```go
 account2, _, err := types.NewAccount("test2")
 ```
+
 Now, let’s try to transfer tBNB to this new address. Under the hood, this will create a transaction to transfer tBNB from fromAddress to toAddress, sign the transaction using SDK, and send the signed transaction to the Greenfield node.
-```
+```go
 transferTxHash, err := cli.Transfer(ctx, account2.GetAddress().String(), math.NewIntFromUint64(1000000000000000000), types2.TxOption{})
  if err != nil {
   log.Fatalf("unable to send, %v", err)
@@ -164,8 +176,9 @@ transferTxHash, err := cli.Transfer(ctx, account2.GetAddress().String(), math.Ne
 ​
  balance, err = cli.GetAccountBalance(ctx, account2.GetAddress().String())
  ```
+
 Run the code to test the transfer of tBNB:
-```
+```sh
 go run account.go
 ```
 
@@ -208,57 +221,59 @@ tx:
  - FjUNT2dzpQZhCmVTLDGMEy1uR1NaNLeYjvqQiPr2xHM5xxeYP5Mic8CSxZtg3k4WHcAIEnQNcszqBi7fsgETagA=
 txhash: DFC2CE0514FE334B5BCB6BC3EBCCCD7A6E16B4CAEDC4FFDBE3F2FA3B6E548E61
 ```
+
 ## Make a storage deal
 Storing data is one of the most important features of Greenfield. In this section, we’ll walk through the end-to-end process of storing your data on the Greenfield network. We’ll start by importing your data, then make a storage deal with a storage provider, and finally wait for the deal to complete.
 
 ### 1. Create a main file
 Create a ```storage.go``` file in your demo project and add the following boilerplate code:
-```
+```go
 func main() {​
-    // initialize account
-    account, err: = types.NewAccountFromPrivateKey("test", privateKey)
-    log.Println("address info:", account)​
-    if err != nil {
-        log.Fatalf("New account from private key error, %v", err)
-    }
+  // initialize account
+  account, err := types.NewAccountFromPrivateKey("test", privateKey)
+  log.Println("address info:", account)​
+  if err != nil {
+    log.Fatalf("New account from private key error, %v", err)
+  }
 
-    //initialize client
-    cli, err: = client.New(chainId, rpcAddr, client.Option {
-        DefaultAccount: account
-    })
-    if err != nil {
-        log.Fatalf("unable to new greenfield client, %v", err)
-    }
-    ctx: = context.Background()​
-        // 1. choose storage provider
-        ​
-        // 2. Create a bucket
-        ​
-        // 3. Upload your data and set a quota
-        ​
+  //initialize client
+  cli, err := client.New(chainId, rpcAddr, client.Option {DefaultAccount: account})
+  if err != nil {
+    log.Fatalf("unable to new greenfield client, %v", err)
+  }
+
+  ctx := context.Background()​
+
+  // 1. choose storage provider
+  // 2. Create a bucket
+  // 3. Upload your data and set a quota      ​
 }
 ```
+
 ### 2. Choose your own SP
 You can query the list of SP.
-```
+```go
 // get storage providers list
-spLists, err: = cli.ListStorageProviders(ctx, true)
+spLists, err := cli.ListStorageProviders(ctx, true)
 if err != nil {
-        log.Fatalf("fail to list in service sps")
-    }
+  log.Fatalf("fail to list in service sps")
+}
+
 //choose the first sp to be the primary SP
-primarySP: = spLists[0].GetOperatorAddress()
- ```
+primarySP := spLists[0].GetOperatorAddress()
+```
+
 ### 3. Create your bucket
 Bucket can be private or public. You can customize it with options.
 * VISIBILITY_TYPE_PUBLIC_READ
 * VISIBILITY_TYPE_PRIVATE
-```
+```go
 chargedQuota := uint64(100)
 visibility := storageTypes.VISIBILITY_TYPE_PUBLIC_READ
 opts := types.CreateBucketOptions{Visibility: visibility, ChargedQuota: chargedQuota}
 ```
 To understand how does quota work, read this.
+
 ### 4. Upload your object
 Objects can also be private or public.
 Uploading objects is composed of two parts: create and put.
@@ -279,41 +294,46 @@ log.Printf("object: %s has been uploaded to SP\n", objectName)
 ​
 waitObjectSeal(cli, bucketName, objectName)
 ```
+
 The primary SP syncs with secondary SPs to set up the data redundancy, and then it signs a ```Seal``` transaction with the finalized metadata for storage. If the primary SP determines that it doesn't want to store the file due to whatever reason, it can also "SealReject" the request.
+
 ### 5. Object management
+
 #### 5.1 Read object
 You can call ```GetObject``` function to download data.
-```
+```go
 // get object
- reader, info, err := cli.GetObject(ctx, bucketName, objectName, types.GetObjectOptions{})
- handleErr(err, "GetObject")
- log.Printf("get object %s successfully, size %d \n", info.ObjectName, info.Size)
- handleErr(err, "GetObject")
- objectBytes, err := io.ReadAll(reader)
- if !bytes.Equal(objectBytes, buffer.Bytes()) {
+reader, info, err := cli.GetObject(ctx, bucketName, objectName, types.GetObjectOptions{})
+handleErr(err, "GetObject")
+log.Printf("get object %s successfully, size %d \n", info.ObjectName, info.Size)
+handleErr(err, "GetObject")
+objectBytes, err := io.ReadAll(reader)
+if !bytes.Equal(objectBytes, buffer.Bytes()) {
   handleErr(errors.New("download content not same"), "GetObject")
- }
- ```
+}
+```
+
 #### 5.2 Update object visibility
 * You can call ```UpdateBucketVisibility``` to change bucket visibility
 * You can call ```UpdateObjectVisibility``` to change object visibility
 ​​
-```
+```go
 updateBucketTx, err := ccli.UpdateBucketVisibility(s.ClientContext, bucketName,
   storageTypes.VISIBILITY_TYPE_PRIVATE, types.UpdateVisibilityOption{})
  ```
 
 #### 5.3 Delete object
 The function DeleteObject support deleting objects.
-```
+```go
 // delete object
- delTx, err := cli.DeleteObject(ctx, bucketName, objectName, types.DeleteObjectOption{})
- handleErr(err, "DeleteObject")
- _, err = cli.WaitForTx(ctx, delTx)
- if err != nil {
+delTx, err := cli.DeleteObject(ctx, bucketName, objectName, types.DeleteObjectOption{})
+handleErr(err, "DeleteObject")
+_, err = cli.WaitForTx(ctx, delTx)
+if err != nil {
   log.Fatalln("txn fail")
- }
- log.Printf("object: %s has been deleted\n", objectName)
+}
+log.Printf("object: %s has been deleted\n", objectName)
 ```
+
 ## Conclusion
 Congratulations on making it all the way through this tutorial! In this tutorial, we learned the basics of interacting with the Greenfield network using SDK library.
