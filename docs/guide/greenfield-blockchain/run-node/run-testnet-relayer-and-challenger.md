@@ -46,12 +46,20 @@ Please refer to the example [testnet configure](https://github.com/bnb-chain/bnb
         ...
         "private_key": "your_private_key",
         "gas_limit": 4700000,
-        "gas_price": 20000000000,
+        "gas_price": 10000000000,
         ...
         // please change to the current block height of BSC network.
         "start_height": 0,  
       }
     ```
+Note:
+The `private_key` and `bls_private_key` refer to the keys `validator_relayer` and `validator_bls` created in [become-testnet-validator](../run-node/become-testnet-validator.md) step 2.
+Follow the below instruction to export keys. Make sure `private_key` has balance on Greenfield and BSC blockchain before running the relayer, the `bls_private_key` does not need to have balance.
+
+```bash
+validator_relayer=$(gnfd keys export validator_relayer --unarmored-hex --unsafe --keyring-backend test)
+validator_bls=$(gnfd keys export validator_bls --unarmored-hex --unsafe --keyring-backend test)
+```
 
 2. Config crossChain and greenfield light client smart contracts addresses, others can keep default value, refer to this 
    [page](../../../tutorials/dapp/contract-list.md) to get the address.
@@ -69,30 +77,30 @@ Please refer to the example [testnet configure](https://github.com/bnb-chain/bnb
     ```
     "db_config": {
       "dialect": "mysql",
-        "key_type": "local_private_key",
-        "aws_region": "",
-        "aws_secret_name": "",
-        "password": "pass",
-        "username": "root",
-        "url": "/greenfield-relayer?charset=utf8&parseTime=True&loc=Local",
-        "max_idle_conns": 10,
-        "max_open_conns": 100
+      "key_type": "local_private_key",
+      "aws_region": "",
+      "aws_secret_name": "",
+      "password": "pass",
+      "username": "root",
+      "url": "/greenfield-relayer?charset=utf8&parseTime=True&loc=Local",
+      "max_idle_conns": 10,
+      "max_open_conns": 100
     }
     ```
 
     sqlite example:
     ```
-      "db_config": {
-        "dialect": "sqlite3",
-        "key_type": "",
-        "aws_region": "",
-        "aws_secret_name": "",
-        "password": "",
-        "username": "",
-        "url": "greenfield-relayer.db",
-        "max_idle_conns": 10,
-        "max_open_conns": 100
-      },
+    "db_config": {
+      "dialect": "sqlite3",
+      "key_type": "",
+      "aws_region": "",
+      "aws_secret_name": "",
+      "password": "",
+      "username": "",
+      "url": "greenfield-relayer.db",
+      "max_idle_conns": 10,
+      "max_open_conns": 100
+    },
     ```
 
 ### Build
@@ -181,6 +189,15 @@ See [testnet values](https://github.com/bnb-chain/bnb-chain-charts/blob/master/g
         ...
      }
    ```
+   
+Note:
+The `private_key` and `bls_private_key` refer to the keys `validator_challenger` and `validator_bls` created in [become-testnet-validator](../run-node/become-testnet-validator.md) step 2.
+Follow the below instruction to export keys. Make sure `private_key` has balance on Greenfield blockchain before running the challenger, the `bls_private_key` does not need to have balance.
+
+```bash
+validator_challenger=$(gnfd keys export validator_challenger --unarmored-hex --unsafe --keyring-backend test)
+validator_bls=$(gnfd keys export validator_bls --unarmored-hex --unsafe --keyring-backend test)
+```
 
 2. Config your database settings.
 
