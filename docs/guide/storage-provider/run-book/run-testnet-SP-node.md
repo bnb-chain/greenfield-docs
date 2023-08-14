@@ -235,7 +235,7 @@ $ cat ./create_sp.json
       "amount":"1000000000000000000000"
     },
     "read_price": "0.108",
-    "store_price": "0.016"",
+    "store_price": "0.016",
     "free_read_quota": 10000,
     "creator":"0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
     "bls_key": "{bls_pub_key}",
