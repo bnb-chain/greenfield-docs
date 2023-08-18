@@ -24,14 +24,15 @@ Each storage provider will hold 6 different accounts serving different purposes
 
 ### Wallet Preparation
 
-* Operator Account: Used to edit the information of the StorageProvider. Please make sure it have enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` transaction.
+* Operator Account: Used to edit the information of the StorageProvider. Please make sure it has enough BNB to deposit the create storage provider proposal(1 BNB) and pay the gas fee of `EditStorageProvider` and `UpdateStorageProviderStatus` transactions.
 * Funding Account: Used to deposit staking tokens and receive earnings. It is important to ensure that there is enough money in this account, and the user must submit a deposit as a guarantee. At least **1000+** BNB are required for staking. You should use this address to send `CreateValidator` proposal on-chain. 
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
+* Maintenance Account: It is used for SP self-testing while in maintenance mode. Such account for creating bucket and objects will be allowed-listed by Chain while other users' create request would fail.
 * Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
 
-You can use the below command to generate this six accounts:
+You can use the below command to generate these seven accounts:
 
 ```shell
 ./build/bin/gnfd keys add operator --keyring-backend os
@@ -39,10 +40,11 @@ You can use the below command to generate this six accounts:
 ./build/bin/gnfd keys add seal --keyring-backend os
 ./build/bin/gnfd keys add approval --keyring-backend os
 ./build/bin/gnfd keys add gc --keyring-backend os
+./build/bin/gnfd keys add maintenance --keyring-backend os
 ./build/bin/gnfd keys add bls --keyring-backend os --algo eth_bls
 ```
 
-and then export the private key to prepare for SP deployment:
+and then export these private keys to prepare for SP deployment:
 
 ```shell
 ./build/bin/gnfd keys export operator --unarmored-hex --unsafe  --keyring-backend os
@@ -53,7 +55,13 @@ and then export the private key to prepare for SP deployment:
 ./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-Please keep these six private keys safe!
+maintenance account is not needed for SP deployment, you would also need to export it:
+
+```shell
+./build/bin/gnfd keys export maintenance --unarmored-hex --unsafe --keyring-backend os
+```
+
+Please keep these seven private keys safe!
 
 Also, obtain bls public key, bls proof to fill in the proposal of creating Storage Provider
 
@@ -67,7 +75,7 @@ bls_proof:
 ```
 
 
-### Databbase Configuration
+### Database Configuration
 
 You should create three databases: SpDB, BsDB and BsDBBackup, take MySQL as an example, other DB is the same:
 
