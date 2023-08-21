@@ -16,7 +16,7 @@ The following lists the recommended hardware requirements:
 * At least 1 TB disk space for backend storage;
 * 50GB+ SQL database;
 * Piece Store: AWS S3, MinIO(Beta);
-* 5 Greenfield accounts with enough BNB tokens.
+* 6 Greenfield accounts with enough BNB tokens.
 
 :::danger IMPORTANT
 Each storage provider will hold 6 different accounts serving different purposes
@@ -55,7 +55,7 @@ and then export these private keys to prepare for SP deployment:
 ./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-maintenance account is not needed for SP deployment, you would also need to export it:
+maintenance account is not needed for SP deployment, but you would also need to export it for self-testing:
 
 ```shell
 ./build/bin/gnfd keys export maintenance --unarmored-hex --unsafe --keyring-backend os
@@ -182,7 +182,7 @@ cd greenfield-storage-provider/build
 
 You can learn about how to write your `config.toml` file [here](./config)
 
-It's recommended to deploy Kubernetes cluser following this [guide](https://github.com/bnb-chain/greenfield-sp-deployment/blob/main/docs/README.md). The corresonding config file is [here](https://github.com/bnb-chain/greenfield-sp-deployment/blob/main/docs/k8s/aws/config.toml).
+It's recommended to deploy Kubernetes cluster following this [guide](https://github.com/bnb-chain/greenfield-sp-deployment/blob/main/docs/README.md). The corresonding config file is [here](https://github.com/bnb-chain/greenfield-sp-deployment/blob/main/docs/k8s/aws/config.toml).
 
 
 ### 3. Run SP
@@ -198,7 +198,7 @@ You can prepare your monitoring dashboard following [this guide](./infra-deploym
 
 ## Add Storage Provider to Greenfield testnet
 
-Greenfield Blockchain valdiators are responsible for selecting storage providers. For each on-chain proposal to add new storage provider, there are deposit period for depositing BNB and voting period for validators to make votes. Once the proposal passes, new SP can join the network afterwards.
+Greenfield Blockchain validators are responsible for selecting storage providers. For each on-chain proposal to add new storage provider, there are deposit period for depositing BNB and voting period for validators to make votes. Once the proposal passes, new SP can join the network afterwards.
 
 You can query the governance parameters [here](https://docs.bnbchain.org/greenfield-docs/docs/greenfield-api/gov-v-1-params)
 
@@ -237,6 +237,7 @@ $ cat ./create_sp.json
     "seal_address":"{seal_address}",
     "approval_address":"{approval_address}",
     "gc_address":"{gc_address}",
+    "maintenance_address": "{maintenance__address}",
     "endpoint": "https://sp0.greenfield.io",
     "deposit":{
       "denom":"BNB",

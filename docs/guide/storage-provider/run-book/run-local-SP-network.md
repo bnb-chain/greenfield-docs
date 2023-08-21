@@ -58,6 +58,7 @@ bash ./deployment/localup/localup.sh export_sps 1 8
 #     "SealAddress": "0x8e424c6Db42Ad9A5d91b24e20b5f603eC70abbA3",
 #     "ApprovalAddress": "0x7Aa5C8B50696f1D15B3A60d6629f7318c605bb4C",
 #     "GcAddress": "0xfa238a4B262e1dc35c4970A2296A2444B956c9Ca",
+#     "MaintenanceAddress": "0xbE03316B1D7c3FCB69136e47e02442d6Fb3396dB",
 #     "OperatorPrivateKey": "ba6e97958d9c43d1ad54923eba99f8d59f54a0c66c78a5dcbc004c5c3ec72f8c",
 #     "FundingPrivateKey": "bd9d9e7823cd2dc7bc20f1b6676c3025cdda6cf5a8df9b04597fdff42c29af01",
 #     "SealPrivateKey": "aacd6b834627fdbc5de2bfdb1db31be0ea810a941854787653814c8040a9dd39",
