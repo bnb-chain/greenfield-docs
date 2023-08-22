@@ -51,7 +51,7 @@ The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -97,7 +97,7 @@ If you failed to send request, you will get error response body in [XML](./sp_re
 ```HTTP
 HTTP/1.1 200
 
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -116,9 +116,11 @@ Date: Fri, 31 March 2023 17:32:00 GMT
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
 
-{
-    "effect": 2
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<QueryVerifyPermissionResponse>
+    <Effect>2</Effect>
+</QueryVerifyPermissionResponse>
 ```

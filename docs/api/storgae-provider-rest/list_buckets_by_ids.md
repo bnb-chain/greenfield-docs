@@ -1,8 +1,8 @@
 ---
-title: List Buckets By Bucket IDs
+title: List Buckets By IDs
 ---
 
-# ListBucketsByBucketIDs
+# ListBucketsByIDs
 
 ## RESTful API Description
 
@@ -14,7 +14,7 @@ This API is used to query a list of buckets metadata info by buckets ids. This A
 | ---------------- | ------------------------------ |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
-| Method           | POST                           |
+| Method           | GET                            |
 
 ## HTTP Request Header
 
@@ -29,24 +29,14 @@ The request does not have a path parameter.
 | ParameterName | Type   | Description                                                                             |
 | ------------- | ------ | --------------------------------------------------------------------------------------- |
 | buckets-query | string | buckets-query is only used for routing location, and it does not need to pass any value |
-
-### Request Body
-
-| ParameterName | Type  | Description                                |
-| ------------- | ----- | ------------------------------------------ |
-| ids           | array | ids defines defines the IDs of the buckets |
+| ids           | string | ids is a list of bucket ids with an upper limit of 100                                  |
 
 ## Request Syntax
 
 ```HTTP
-POST / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org?buckets-query
+GET / HTTP/1.1
+Host: gnfd-testnet-sp-*.bnbchain.org?buckets-query&ids=1,2
 Date: Fri, 31 March 2023 17:32:00 GMT
-Content-Type: application/json
-Content-Length: length
-{
-    "ids": []
-}
 ```
 
 ## HTTP Response Header
@@ -55,7 +45,7 @@ The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -73,7 +63,7 @@ If you failed to send request, you will get error response body in [XML](./sp_re
 
 ```HTTP
 HTTP/1.1 200
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -83,52 +73,50 @@ The examples given all use path-style.
 ### Example 1: a list of buckets by bucket ids
 
 ```HTTP
-POST / HTTP/1.1
+GET /?buckets-query&ids=1,2,333 HTTP/1.1
 Host: gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
-Content-Type: application/json
-Content-Length: length
-{
-    "ids": [1,2,333]
-}
 ```
 
 ### Sample Response: Query a list of buckets by bucket ids successfully
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
-{
-    "buckets": {
-        "1": null,
-        "2": null,
-        "333": {
-            "bucket_info": {
-                "owner": "0x2a7646d7D73e7D1952DbAD66f063dD532111F6af",
-                "bucket_name": "bg-0521-buc-02-00020-00000",
-                "visibility": 2,
-                "id": "333",
-                "source_type": 0,
-                "create_at": "1685464514",
-                "payment_address": "0x2a7646d7D73e7D1952DbAD66f063dD532111F6af",
-                "primary_sp_address": "0x55f2b3729036567dA574b8640F3eCeDBA590CEE9",
-                "charged_read_quota": "0",
-                "billing_info": {
-                    "price_time": "0",
-                    "total_charge_size": "0",
-                    "secondary_sp_objects_size": []
-                },
-                "bucket_status": 1
-            },
-            "removed": false,
-            "delete_at": "1685730423",
-            "delete_reason": "testnet cleanup",
-            "operator": "0x2a7646d7D73e7D1952DbAD66f063dD532111F6af",
-            "create_tx_hash": "0xbef8ad7f68b89d8bdaff41d195e93df80478a94830fa3f8e31c66435084d1532",
-            "update_tx_hash": "0xd606897a39a94ea0f702f12ce1d17f580bc5653538ff91bb421e6a485b8df2e4",
-            "update_at": "123911",
-            "update_time": "1685644023"
-        }
-    }
-}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<GfSpListBucketsByIDsResponse>
+    <BucketEntry>
+        <Id>1</Id>
+    </BucketEntry>
+    <BucketEntry>
+        <Id>2</Id>
+        <Value>
+            <BucketInfo>
+                <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+                <BucketName>j6it2</BucketName>
+                <Visibility>2</Visibility>
+                <Id>2</Id>
+                <SourceType>0</SourceType>
+                <CreateAt>1692278045</CreateAt>
+                <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+                <GlobalVirtualGroupFamilyId>1</GlobalVirtualGroupFamilyId>
+                <ChargedReadQuota>0</ChargedReadQuota>
+                <BucketStatus>1</BucketStatus>
+            </BucketInfo>
+            <Removed>false</Removed>
+            <DeleteAt>1693055775</DeleteAt>
+            <DeleteReason>testnet cleanup</DeleteReason>
+            <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+            <CreateTxHash>0x8284859bf59b0fbde5a4836b0ffb1449fece0167ccd774782c37e4ed10af9047</CreateTxHash>
+            <UpdateTxHash>0x2a1c313dec9196b07cef8008f0e0e614c804a0c28dc08c9d78648afac1908bce</UpdateTxHash>
+            <UpdateAt>82179</UpdateAt>
+            <UpdateTime>1692450975</UpdateTime>
+        </Value>
+    </BucketEntry>
+    <BucketEntry>
+        <Id>333</Id>
+    </BucketEntry>
+</GfSpListBucketsByIDsResponse>
 ```

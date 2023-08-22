@@ -47,7 +47,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -127,8 +127,8 @@ The examples given all use virtual-hosted-style.
 ### Example 1: Get Object Meta
 
 ```HTTP
-GET /j0qplcrkab?object-meta HTTP/1.1
-Host: uvfzo.gnfd-testnet-sp-1.bnbchain.org
+GET /brwdhocykj?object-meta HTTP/1.1
+Host: rmr9e.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 
@@ -136,49 +136,43 @@ Date: Fri, 31 March 2023 17:32:00 GMT
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
 
-{
-    "object": {
-        "object_info": {
-            "owner": "0xE0523429EA945CeD7bd3B170fd8dBe797778049b",
-            "bucket_name": "uvfzo",
-            "object_name": "j0qplcrkab",
-            "id": "7080",
-            "payload_size": "1048576",
-            "visibility": 3,
-            "content_type": "application/octet-stream",
-            "create_at": "1687942210",
-            "object_status": 1,
-            "redundancy_type": 0,
-            "source_type": 0,
-            "checksums": [
-                "QWEwTdjezECzPmTunWk3RXHGEsehhrmH2aKcvTKK0Mc=",
-                "2R1pDBZiQXzkSFWdq9Vo7klfazjSCmddkAoqOrv3oao=",
-                "2R1pDBZiQXzkSFWdq9Vo7klfazjSCmddkAoqOrv3oao=",
-                "2R1pDBZiQXzkSFWdq9Vo7klfazjSCmddkAoqOrv3oao=",
-                "2R1pDBZiQXzkSFWdq9Vo7klfazjSCmddkAoqOrv3oao=",
-                "2R1pDBZiQXzkSFWdq9Vo7klfazjSCmddkAoqOrv3oao=",
-                "2R1pDBZiQXzkSFWdq9Vo7klfazjSCmddkAoqOrv3oao="
-            ],
-            "secondary_sp_addresses": [
-                "0xf4AB94Cc32544c7b6BEF058BF629d9C8fDFb64c0",
-                "0x7BB727bdA19F4b6EEc21Cf2cC866c60daF8c2282",
-                "0x4F38A24aAcC530c38975057b5a158f85707f701F",
-                "0x66d06FFe266B46C6F0730cC9Ec2fc5B811cdA085",
-                "0xD142052d8C0881FC7485C1270c3510BC442E05DD",
-                "0x55f2b3729036567dA574b8640F3eCeDBA590CEE9"
-            ]
-        },
-        "locked_balance": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "removed": false,
-        "update_at": "0",
-        "delete_at": "0",
-        "delete_reason": "",
-        "operator": "0x527503a291A556DE3befD5e25Fc1F4bA0b0C6e8A",
-        "create_tx_hash": "0x66c59a4c311f34d0b206116f2424af146bdf30108a4cece5a619fc833bab4852",
-        "update_tx_hash": "0x51e459a0b126df31940a271f6d5a7d025bd08628b66b3be1b960246e9b7a19c8",
-        "seal_tx_hash": "0x51e459a0b126df31940a271f6d5a7d025bd08628b66b3be1b960246e9b7a19c8"
-    }
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<GfSpGetObjectMetaResponse>
+    <Object>
+        <ObjectInfo>
+            <Owner>0x79a8BFff674FBD60a2fb2945D634419efb4c7F12</Owner>
+            <Creator>0x79a8BFff674FBD60a2fb2945D634419efb4c7F12</Creator>
+            <BucketName>rmr9e</BucketName>
+            <ObjectName>brwdhocykj</ObjectName>
+            <Id>7</Id>
+            <LocalVirtualGroupId>1</LocalVirtualGroupId>
+            <PayloadSize>268435468</PayloadSize>
+            <Visibility>3</Visibility>
+            <ContentType>application/octet-stream</ContentType>
+            <CreateAt>1692278052</CreateAt>
+            <ObjectStatus>1</ObjectStatus>
+            <RedundancyType>0</RedundancyType>
+            <SourceType>0</SourceType>
+            <Checksums>f803f1a72b179111f3bea2203695d1bacefec4ef546d4cdc90f5c252bcc6f827</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+        </ObjectInfo>
+        <LockedBalance>0x0000000000000000000000000000000000000000000000000000000000000000</LockedBalance>
+        <Removed>false</Removed>
+        <UpdateAt>0</UpdateAt>
+        <DeleteAt>0</DeleteAt>
+        <DeleteReason></DeleteReason>
+        <Operator>0xb79FD3b1c2DaCe732beEd95c8bC2209e05106f69</Operator>
+        <CreateTxHash>0x6106badbda97180c507fd4bc2b39971b1c9a6db2a8d5fda38291de6c6ac968cc</CreateTxHash>
+        <UpdateTxHash>0x6c526780cefb958bf39936510ec16556fe720dd04713f5baf89232b5361bfec2</UpdateTxHash>
+        <SealTxHash>0x6c526780cefb958bf39936510ec16556fe720dd04713f5baf89232b5361bfec2</SealTxHash>
+    </Object>
+</GfSpGetObjectMetaResponse>
 ```

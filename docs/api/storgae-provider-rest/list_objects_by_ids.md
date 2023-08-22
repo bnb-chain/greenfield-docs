@@ -1,8 +1,8 @@
 ---
-title: List Objects By Object IDs
+title: List Objects By IDs
 ---
 
-# ListObjectsByObjectIDs
+# ListObjectsByIDs
 
 ## RESTful API Description
 
@@ -14,7 +14,7 @@ This API is used to query a list of objects metadata info by object ids. This AP
 | ---------------- | ------------------------------ |
 | Host(path-style) | gnfd-testnet-sp-*.bnbchain.org |
 | Path(path-style) | /                              |
-| Method           | POST                           |
+| Method           | GET                            |
 
 ## HTTP Request Header
 
@@ -29,24 +29,16 @@ The request does not have a path parameter.
 | ParameterName | Type   | Description                                                                             |
 | ------------- | ------ | --------------------------------------------------------------------------------------- |
 | objects-query | string | objects-query is only used for routing location, and it does not need to pass any value |
-
-### Request Body
-
-| ParameterName | Type  | Description                                |
-| ------------- | ----- | ------------------------------------------ |
-| ids           | array | ids defines defines the IDs of the objects |
+| ids           | string | ids is a list of object ids with an upper limit of 100                                  |
 
 ## Request Syntax
 
 ```HTTP
-POST / HTTP/1.1
-Host: gnfd-testnet-sp-*.bnbchain.org?objects-query
+GET / HTTP/1.1
+Host: gnfd-testnet-sp-*.bnbchain.org?objects-query&ids=1,2
 Date: Fri, 31 March 2023 17:32:00 GMT
-Content-Type: application/json
+Content-Type: application/xml
 Content-Length: length
-{
-    "ids": []
-}
 ```
 
 ## HTTP Response Header
@@ -55,7 +47,7 @@ The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml` |
 
 ## HTTP Response Parameter
 
@@ -74,7 +66,7 @@ If you failed to send request, you will get error response body in [XML](./sp_re
 
 ```HTTP
 HTTP/1.1 200
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -84,14 +76,8 @@ The examples given all use path-style.
 ### Example 1: a list of objects by object ids
 
 ```HTTP
-POST /?objects-query HTTP/1.1
+GET /?objects-query&ids=1,2,3,4,5,333 HTTP/1.1
 Host: gnfd-testnet-sp-1.bnbchain.org
-Date: Fri, 31 March 2023 17:32:00 GMT
-Content-Type: application/json
-Content-Length: length
-{
-    "ids": [1,2,333]
-}
 ```
 
 ### Sample Response: Query a list of objects by object ids successfully

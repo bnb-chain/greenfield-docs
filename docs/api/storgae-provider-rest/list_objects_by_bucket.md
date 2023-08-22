@@ -53,7 +53,7 @@ The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -81,7 +81,7 @@ If you failed to send request, you will get error response body in [XML](./sp_re
 ```HTTP
 HTTP/1.1 200
 
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -91,7 +91,7 @@ The examples given all use virtual-hosted-style.
 ### Example 1: Query a bucket's objects
 
 ```HTTP
-GET /?max-keys=1&continuation-token=Y2NjYy8=&prefix=aaa/&delimiter=/&include-removed=false HTTP/1.1
+GET /?max-keys=5&continuation-token=Y2NjYy8=&prefix=t3&delimiter=/&include-removed=false HTTP/1.1
 Host: myBucket.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
@@ -100,20 +100,51 @@ Date: Fri, 31 March 2023 17:32:00 GMT
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
 
-{
-    "objects": [],
-    "key_count": "1",
-    "max_keys": "1",
-    "is_truncated": true,
-    "next_continuation_token": "ci8=",
-    "name": "myBucket",
-    "prefix": "aaa/",
-    "delimiter": "/",
-    "common_prefixes": [
-        "cccc/"
-    ],
-    "continuation_token": "Y2NjYy8="
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<GfSpListObjectsByBucketNameResponse>
+    <Objects>
+        <ObjectInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <Creator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Creator>
+            <BucketName>j6it2</BucketName>
+            <ObjectName>t3gge9tjua</ObjectName>
+            <Id>2</Id>
+            <LocalVirtualGroupId>1</LocalVirtualGroupId>
+            <PayloadSize>268435468</PayloadSize>
+            <Visibility>3</Visibility>
+            <ContentType>application/octet-stream</ContentType>
+            <CreateAt>1692278050</CreateAt>
+            <ObjectStatus>1</ObjectStatus>
+            <RedundancyType>0</RedundancyType>
+            <SourceType>0</SourceType>
+            <Checksums>f803f1a72b179111f3bea2203695d1bacefec4ef546d4cdc90f5c252bcc6f827</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+            <Checksums>d7dca9013758e3e20e448eead58d2eb075cfd2af6c8781b650a6dbd1b6e49481</Checksums>
+        </ObjectInfo>
+        <LockedBalance>0x0000000000000000000000000000000000000000000000000000000000000000</LockedBalance>
+        <Removed>false</Removed>
+        <UpdateAt>7921</UpdateAt>
+        <DeleteAt>0</DeleteAt>
+        <DeleteReason></DeleteReason>
+        <Operator>0x22868A6787234AA8E6e2dd0256dEed484215C985</Operator>
+        <CreateTxHash>0x9f49161886abd35ce78638381a0ee07097e445d248b9ae450d2fbdc7abc1b374</CreateTxHash>
+        <UpdateTxHash>0xdeec4af5881bffb9dd03d50010292c6c709636b596800500bf9dfa307bf296b4</UpdateTxHash>
+        <SealTxHash>0xdeec4af5881bffb9dd03d50010292c6c709636b596800500bf9dfa307bf296b4</SealTxHash>
+    </Objects>
+    <KeyCount>1</KeyCount>
+    <MaxKeys>5</MaxKeys>
+    <IsTruncated>false</IsTruncated>
+    <NextContinuationToken></NextContinuationToken>
+    <Name>j6it2</Name>
+    <Prefix>t3</Prefix>
+    <Delimiter>/</Delimiter>
+    <ContinuationToken>Y2NjYy8=</ContinuationToken>
+</GfSpListObjectsByBucketNameResponse>
 ```

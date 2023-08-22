@@ -52,7 +52,7 @@ The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -72,7 +72,7 @@ If you failed to send request, you will get error response body in [XML](./sp_re
 ```HTTP
 HTTP/1.1 200
 
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -92,86 +92,116 @@ X-Gnfd-User-Address: user address string
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
 
-{
-    "groups": [
-        {
-            "group": {
-                "owner": "0x91D7deA99716Cbb247E81F1cfB692009164a967E",
-                "group_name": "test",
-                "source_type": 0,
-                "id": "1",
-                "extra": "\"{\\\"description\\\":\\\"no description\\\",\\\"imageUrl\\\":\\\"www.images.com/image1\\\"}\""
-            },
-            "operator": "0x91D7deA99716Cbb247E81F1cfB692009164a967E",
-            "create_at": "41269",
-            "create_time": "1683537260",
-            "update_at": "41806",
-            "update_time": "1683538508",
-            "removed": false
-        },
-        {
-            "group": {
-                "owner": "0x3560a48bb05A1065Be2988fb5B890f220adFea82",
-                "group_name": "testGroup",
-                "source_type": 0,
-                "id": "2",
-                "extra": "\"{\\\"description\\\":\\\"no description\\\",\\\"imageUrl\\\":\\\"www.images.com/image1\\\"}\""
-            },
-            "operator": "0x0000000000000000000000000000000000000000",
-            "create_at": "144203",
-            "create_time": "1683777034",
-            "update_at": "144203",
-            "update_time": "1683777034",
-            "removed": false
-        },
-        {
-            "group": {
-                "owner": "0x3FB2B6E513095BfbbB923A8799d40673e446ecEc",
-                "group_name": "testGroup",
-                "source_type": 0,
-                "id": "3",
-                "extra": "\"{\\\"description\\\":\\\"no description\\\",\\\"imageUrl\\\":\\\"www.images.com/image1\\\"}\""
-            },
-            "operator": "0x0000000000000000000000000000000000000000",
-            "create_at": "144228",
-            "create_time": "1683777092",
-            "update_at": "144235",
-            "update_time": "1683777108",
-            "removed": false
-        },
-        {
-            "group": {
-                "owner": "0x3FB2B6E513095BfbbB923A8799d40673e446ecEc",
-                "group_name": "testGroup",
-                "source_type": 0,
-                "id": "3",
-                "extra": "\"{\\\"description\\\":\\\"no description\\\",\\\"imageUrl\\\":\\\"www.images.com/image1\\\"}\""
-            },
-            "operator": "0x0000000000000000000000000000000000000000",
-            "create_at": "144228",
-            "create_time": "1683777092",
-            "update_at": "144235",
-            "update_time": "1683777108",
-            "removed": false
-        },
-        {
-            "group": {
-                "owner": "0x3FB2B6E513095BfbbB923A8799d40673e446ecEc",
-                "group_name": "testGroup",
-                "source_type": 0,
-                "id": "3",
-                "extra": "\"{\\\"description\\\":\\\"no description\\\",\\\"imageUrl\\\":\\\"www.images.com/image1\\\"}\""
-            },
-            "operator": "0x0000000000000000000000000000000000000000",
-            "create_at": "144228",
-            "create_time": "1683777092",
-            "update_at": "144235",
-            "update_time": "1683777108",
-            "removed": false
-        }
-    ],
-    "count": "5"
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<GfSpGetGroupListResponse>
+    <Groups>
+        <Group>
+            <Owner>0xc3108C8021f85337c71cD267aF2349F1a5638D4B</Owner>
+            <GroupName>test-groupxx1</GroupName>
+            <SourceType>0</SourceType>
+            <Id>10</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>28749</CreateAt>
+        <CreateTime>1692326553</CreateTime>
+        <UpdateAt>28749</UpdateAt>
+        <UpdateTime>1692326553</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Groups>
+        <Group>
+            <Owner>0xc3108C8021f85337c71cD267aF2349F1a5638D4B</Owner>
+            <GroupName>test-groupxx2</GroupName>
+            <SourceType>0</SourceType>
+            <Id>11</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>28798</CreateAt>
+        <CreateTime>1692326668</CreateTime>
+        <UpdateAt>28798</UpdateAt>
+        <UpdateTime>1692326668</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Groups>
+        <Group>
+            <Owner>0x6633Ae37f10991Da203978642004234e011CbfcC</Owner>
+            <GroupName>test-groupxj1</GroupName>
+            <SourceType>0</SourceType>
+            <Id>13</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>32457</CreateAt>
+        <CreateTime>1692335183</CreateTime>
+        <UpdateAt>32457</UpdateAt>
+        <UpdateTime>1692335183</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Groups>
+        <Group>
+            <Owner>0x6633Ae37f10991Da203978642004234e011CbfcC</Owner>
+            <GroupName>test-groupxj2</GroupName>
+            <SourceType>0</SourceType>
+            <Id>14</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>32477</CreateAt>
+        <CreateTime>1692335229</CreateTime>
+        <UpdateAt>32672</UpdateAt>
+        <UpdateTime>1692335683</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Groups>
+        <Group>
+            <Owner>0x6633Ae37f10991Da203978642004234e011CbfcC</Owner>
+            <GroupName>test-groupxj3</GroupName>
+            <SourceType>0</SourceType>
+            <Id>15</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>32511</CreateAt>
+        <CreateTime>1692335309</CreateTime>
+        <UpdateAt>32677</UpdateAt>
+        <UpdateTime>1692335695</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Groups>
+        <Group>
+            <Owner>0x6633Ae37f10991Da203978642004234e011CbfcC</Owner>
+            <GroupName>test-groupxj4</GroupName>
+            <SourceType>0</SourceType>
+            <Id>16</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>32514</CreateAt>
+        <CreateTime>1692335316</CreateTime>
+        <UpdateAt>32514</UpdateAt>
+        <UpdateTime>1692335316</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Groups>
+        <Group>
+            <Owner>0x6633Ae37f10991Da203978642004234e011CbfcC</Owner>
+            <GroupName>test-groupxj5</GroupName>
+            <SourceType>0</SourceType>
+            <Id>17</Id>
+            <Extra></Extra>
+        </Group>
+        <Operator>0x0000000000000000000000000000000000000000</Operator>
+        <CreateAt>32517</CreateAt>
+        <CreateTime>1692335323</CreateTime>
+        <UpdateAt>32517</UpdateAt>
+        <UpdateTime>1692335323</UpdateTime>
+        <Removed>false</Removed>
+    </Groups>
+    <Count>7</Count>
+</GfSpGetGroupListResponse>
 ```

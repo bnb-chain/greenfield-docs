@@ -43,7 +43,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -132,11 +132,11 @@ Body
 
 The examples given all use virtual-hosted-style.
 
-### Example 1: Get Object Meta
+### Example 1: Get Bucket Meta
 
 ```HTTP
 GET /?bucket-meta HTTP/1.1
-Host: uvfzo.gnfd-testnet-sp-1.bnbchain.org
+Host: j6it2.gnfd-testnet-sp-1.bnbchain.org
 Date: Fri, 31 March 2023 17:32:00 GMT
 ```
 
@@ -144,83 +144,44 @@ Date: Fri, 31 March 2023 17:32:00 GMT
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
 
-{
-    "bucket": {
-        "bucket_info": {
-            "owner": "0xE0523429EA945CeD7bd3B170fd8dBe797778049b",
-            "bucket_name": "uvfzo",
-            "visibility": 1,
-            "id": "7155",
-            "source_type": 0,
-            "create_at": "1687942206",
-            "payment_address": "0xE0523429EA945CeD7bd3B170fd8dBe797778049b",
-            "primary_sp_address": "0x87Cc08944D8f63F006F9939f82Fcdb0E723B0C79",
-            "charged_read_quota": "7372800000000",
-            "billing_info": {
-                "price_time": "0",
-                "total_charge_size": "0",
-                "secondary_sp_objects_size": []
-            },
-            "bucket_status": 1
-        },
-        "removed": false,
-        "delete_at": "1688719854",
-        "delete_reason": "testnet cleanup",
-        "operator": "0xE0523429EA945CeD7bd3B170fd8dBe797778049b",
-        "create_tx_hash": "0x099908c60dd0fc8692384ff0fce83b9515b4f314b0e16e3b350b012541e42d87",
-        "update_tx_hash": "0xdc78c1bc350f518f07a0407fd80300b6a496e963674f5e9c77531c2d3aa3788f",
-        "update_at": "110511",
-        "update_time": "1688115054"
-    },
-    "stream_record": {
-        "account": "0xE0523429EA945CeD7bd3B170fd8dBe797778049b",
-        "crud_timestamp": "1688964834",
-        "netflow_rate": "-25715663",
-        "static_balance": "0",
-        "buffer_balance": "399929990976000",
-        "lock_balance": "6095481984000",
-        "status": 0,
-        "settle_timestamp": "1704430434",
-        "out_flows": [
-            {
-                "to_address": "0x21109411DDEF406C075c8fE000a3ee15110aF9D0",
-                "rate": "9338893"
-            },
-            {
-                "to_address": "0x2e66aa9e1Ae23a4A683E6d71a3C8162c566C98fb",
-                "rate": "30196"
-            },
-            {
-                "to_address": "0x3c883b6edF3e199faC735a7b2b012ebAf5371C01",
-                "rate": "1793809"
-            },
-            {
-                "to_address": "0x6554D1898eb7d0174CFB834ce6f73dD42cd284BE",
-                "rate": "7153123"
-            },
-            {
-                "to_address": "0x873AF49af2CC09055741Fb7476dBdc7c397636F5",
-                "rate": "1787769"
-            },
-            {
-                "to_address": "0x9C244D795175DC9F933786e60D6af325adA7AD62",
-                "rate": "1793809"
-            },
-            {
-                "to_address": "0xB373a07A981264419134451F44016a8E64DeD059",
-                "rate": "1781731"
-            },
-            {
-                "to_address": "0xE183689c42dBF8aE6b8D406BFb53D3169731DEDF",
-                "rate": "1781730"
-            },
-            {
-                "to_address": "0xdF5F0588f6B09f0B9E58D3426252db25Dc74E7a1",
-                "rate": "254603"
-            }
-        ]
-    }
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<GfSpGetBucketMetaResponse>
+    <Bucket>
+        <BucketInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <BucketName>j6it2</BucketName>
+            <Visibility>2</Visibility>
+            <Id>2</Id>
+            <SourceType>0</SourceType>
+            <CreateAt>1692278045</CreateAt>
+            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>1</GlobalVirtualGroupFamilyId>
+            <ChargedReadQuota>0</ChargedReadQuota>
+            <BucketStatus>1</BucketStatus>
+        </BucketInfo>
+        <Removed>false</Removed>
+        <DeleteAt>1693055775</DeleteAt>
+        <DeleteReason>testnet cleanup</DeleteReason>
+        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+        <CreateTxHash>0x8284859bf59b0fbde5a4836b0ffb1449fece0167ccd774782c37e4ed10af9047</CreateTxHash>
+        <UpdateTxHash>0x2a1c313dec9196b07cef8008f0e0e614c804a0c28dc08c9d78648afac1908bce</UpdateTxHash>
+        <UpdateAt>82179</UpdateAt>
+        <UpdateTime>1692450975</UpdateTime>
+    </Bucket>
+    <StreamRecord>
+        <Account>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Account>
+        <CrudTimestamp>1692366686</CrudTimestamp>
+        <NetflowRate>-11191795</NetflowRate>
+        <StaticBalance>0</StaticBalance>
+        <BufferBalance>174054795840000</BufferBalance>
+        <LockBalance>0</LockBalance>
+        <Status>0</Status>
+        <SettleTimestamp>1707832286</SettleTimestamp>
+        <OutFlowCount>0</OutFlowCount>
+        <FrozenNetflowRate>0</FrozenNetflowRate>
+    </StreamRecord>
+</GfSpGetBucketMetaResponse>
 ```

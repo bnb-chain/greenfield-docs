@@ -52,7 +52,7 @@ The response returns the following HTTP headers.
 
 | ParameterName | Type   | Description                 |
 | ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| Content-Type  | string | value is `application/xml`  |
 
 ## HTTP Response Parameter
 
@@ -71,7 +71,7 @@ If you failed to send request, you will get error response body in [XML](./sp_re
 ```HTTP
 HTTP/1.1 200
 
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -91,37 +91,120 @@ X-Gnfd-User-Address: user address string
 
 ```HTTP
 HTTP/1.1 200 OK
+X-Gnfd-Request-ID: 4208447844380058399
 Date: Fri, 31 March 2023 17:32:10 GMT
 
-{
-    "buckets": [
-        {
-            "bucket_info": {
-                "owner": "0x0E25AF015EA1Be52e36ce5Ebc4E1558dfcC8eBD0",
-                "bucket_name": "rbna62ktkrwm",
-                "visibility": 2,
-                "id": "3",
-                "source_type": 0,
-                "create_at": "1681900505",
-                "payment_address": "0x0E25AF015EA1Be52e36ce5Ebc4E1558dfcC8eBD0",
-                "primary_sp_address": "0x3c5D5A4f6E3EF9c4b7AE4bA5E782D11B16bD1eAD",
-                "charged_read_quota": "0",
-                "billing_info": {
-                    "price_time": "0",
-                    "total_charge_size": "0",
-                    "secondary_sp_objects_size": []
-                },
-                "bucket_status": 1
-            },
-            "removed": true,
-            "delete_at": "1681900525",
-            "delete_reason": "test",
-            "operator": "0x3c5D5A4f6E3EF9c4b7AE4bA5E782D11B16bD1eAD",
-            "create_tx_hash": "0x5961fe5ee9be7ecf4817fe3488bebb882e282d2c45ea4228961a83bf660f5489",
-            "update_tx_hash": "0xb694ef890d6259767295098c43cdd881570316f3e887658dd9d8f7046424d8cc",
-            "update_at": "1172",
-            "update_time": "1681900525"
-        }
-    ]
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<GfSpGetUserBucketsResponse>
+    <Buckets>
+        <BucketInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <BucketName>wcm2w</BucketName>
+            <Visibility>2</Visibility>
+            <Id>241</Id>
+            <SourceType>0</SourceType>
+            <CreateAt>1692366630</CreateAt>
+            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>4</GlobalVirtualGroupFamilyId>
+            <ChargedReadQuota>0</ChargedReadQuota>
+            <BucketStatus>1</BucketStatus>
+        </BucketInfo>
+        <Removed>false</Removed>
+        <DeleteAt>1693144356</DeleteAt>
+        <DeleteReason>testnet cleanup</DeleteReason>
+        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+        <CreateTxHash>0xfcab5c93def74983f22cf3826bd3bd8f66db3bd51552832e343a179290c27fe0</CreateTxHash>
+        <UpdateTxHash>0xb2a0ff3b38f1cc65e55ff094661c0ad5d2aa515f48bb883aef5754238532b925</UpdateTxHash>
+        <UpdateAt>120197</UpdateAt>
+        <UpdateTime>1692539556</UpdateTime>
+    </Buckets>
+    <Buckets>
+        <BucketInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <BucketName>sz9cu</BucketName>
+            <Visibility>2</Visibility>
+            <Id>135</Id>
+            <SourceType>0</SourceType>
+            <CreateAt>1692337680</CreateAt>
+            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>2</GlobalVirtualGroupFamilyId>
+            <ChargedReadQuota>0</ChargedReadQuota>
+            <BucketStatus>1</BucketStatus>
+        </BucketInfo>
+        <Removed>false</Removed>
+        <DeleteAt>1693115382</DeleteAt>
+        <DeleteReason>testnet cleanup</DeleteReason>
+        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+        <CreateTxHash>0x2eab7e67b6a53f81432d4bc919319f211ddcf9cfddac7df259564ccbc70a3521</CreateTxHash>
+        <UpdateTxHash>0xeb81c7599ed043fdc7cae127cb440353a4a6b74cd87ee7a6fe81fe1accdeefa7</UpdateTxHash>
+        <UpdateAt>107749</UpdateAt>
+        <UpdateTime>1692510582</UpdateTime>
+    </Buckets>
+    <Buckets>
+        <BucketInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <BucketName>bdu5d</BucketName>
+            <Visibility>2</Visibility>
+            <Id>114</Id>
+            <SourceType>0</SourceType>
+            <CreateAt>1692336285</CreateAt>
+            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>4</GlobalVirtualGroupFamilyId>
+            <ChargedReadQuota>0</ChargedReadQuota>
+            <BucketStatus>1</BucketStatus>
+        </BucketInfo>
+        <Removed>false</Removed>
+        <DeleteAt>1693113935</DeleteAt>
+        <DeleteReason>testnet cleanup</DeleteReason>
+        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+        <CreateTxHash>0xaec3bb18fa6c4b40cd784135b65edc9f55705e044eedc58f6ec8b1ec484053ff</CreateTxHash>
+        <UpdateTxHash>0xc72703d2d2c1cbd56e55013d857f03335553a3a1db60130a4bf3117468260c0e</UpdateTxHash>
+        <UpdateAt>107127</UpdateAt>
+        <UpdateTime>1692509135</UpdateTime>
+    </Buckets>
+    <Buckets>
+        <BucketInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <BucketName>mjoo1</BucketName>
+            <Visibility>2</Visibility>
+            <Id>25</Id>
+            <SourceType>0</SourceType>
+            <CreateAt>1692321962</CreateAt>
+            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>7</GlobalVirtualGroupFamilyId>
+            <ChargedReadQuota>0</ChargedReadQuota>
+            <BucketStatus>1</BucketStatus>
+        </BucketInfo>
+        <Removed>false</Removed>
+        <DeleteAt>1693099716</DeleteAt>
+        <DeleteReason>testnet cleanup</DeleteReason>
+        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+        <CreateTxHash>0x1b0a1b35debdc0f8d68e87e54a6edec79acea57973e1a4b817f3fcef9568dda5</CreateTxHash>
+        <UpdateTxHash>0xf88c849041c0aad2bbb91f0fb95db5405cf38f459fabd909fb079dd34eb986bc</UpdateTxHash>
+        <UpdateAt>101013</UpdateAt>
+        <UpdateTime>1692494916</UpdateTime>
+    </Buckets>
+    <Buckets>
+        <BucketInfo>
+            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
+            <BucketName>j6it2</BucketName>
+            <Visibility>2</Visibility>
+            <Id>2</Id>
+            <SourceType>0</SourceType>
+            <CreateAt>1692278045</CreateAt>
+            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>1</GlobalVirtualGroupFamilyId>
+            <ChargedReadQuota>0</ChargedReadQuota>
+            <BucketStatus>1</BucketStatus>
+        </BucketInfo>
+        <Removed>false</Removed>
+        <DeleteAt>1693055775</DeleteAt>
+        <DeleteReason>testnet cleanup</DeleteReason>
+        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
+        <CreateTxHash>0x8284859bf59b0fbde5a4836b0ffb1449fece0167ccd774782c37e4ed10af9047</CreateTxHash>
+        <UpdateTxHash>0x2a1c313dec9196b07cef8008f0e0e614c804a0c28dc08c9d78648afac1908bce</UpdateTxHash>
+        <UpdateAt>82179</UpdateAt>
+        <UpdateTime>1692450975</UpdateTime>
+    </Buckets>
+</GfSpGetUserBucketsResponse>
 ```

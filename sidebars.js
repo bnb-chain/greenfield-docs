@@ -219,11 +219,14 @@ const sidebars = {
           "api/storgae-provider-rest/update_key",
           "api/storgae-provider-rest/get_group_list",
           "api/storgae-provider-rest/sp_response",
-          "api/storgae-provider-rest/list_objects_by_object_ids",
-          "api/storgae-provider-rest/list_buckets_by_bucket_ids",
+          "api/storgae-provider-rest/list_objects_by_ids",
+          "api/storgae-provider-rest/list_buckets_by_ids",
           "api/storgae-provider-rest/verify_permission",
           "api/storgae-provider-rest/get_object_meta",
+          "api/storgae-provider-rest/list_group_members",
           "api/storgae-provider-rest/get_bucket_meta",
+          "api/storgae-provider-rest/list_user_groups",
+          "api/storgae-provider-rest/list_user_owned_groups",
 
       ]
     },
