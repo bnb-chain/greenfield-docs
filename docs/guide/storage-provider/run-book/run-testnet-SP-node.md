@@ -29,7 +29,7 @@ Each storage provider will hold 6 different accounts serving different purposes
 * Seal Account: Used to seal the user's object. Please make sure it has enough BNB to pay the gas fee of `SealObject` transaction.
 * Approval Account: Used to approve user's requests. This account does not require holding BNB tokens.
 * GC Account: It is a special address for sp and is used by sp to clean up local expired or unwanted storage. Please make sure it has enough BNB tokens because it's going to keep sending transactions up the chain.
-* Maintenance Account: It is used for SP self-testing while in maintenance mode. Such account for creating bucket and objects will be allowed-listed by Chain while other users' create request would fail.
+* Maintenance Account: It is used for SP self-testing while in maintenance mode. This account for creating bucket and object will be allowed-listed by Chain while other users' create request will fail.
 * Bls Account: Used to create bls signature when sealing objects to ensure integrity, it does not need to be deposited. 
 
 You can use the below command to generate these seven accounts:
@@ -55,7 +55,7 @@ and then export these private keys to prepare for SP deployment:
 ./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-maintenance account is not needed for SP deployment, but you would also need to export it for self-testing:
+maintenance account is not needed for SP deployment, but you should export it for self-testing:
 
 ```shell
 ./build/bin/gnfd keys export maintenance --unarmored-hex --unsafe --keyring-backend os

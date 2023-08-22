@@ -53,7 +53,7 @@ For more information, please see [SP exit](../modules/virtual-group.md#sp-exit-w
 The storage provider can be in one of these several statuses:
 
 * `STATUS_IN_SERVICE`: The SP is in service. it can serve user's Create/Upload/Download request.
-* `STATUS_IN_MAINTENANCE`: The SP is in maintenance. it can not serve users' Create/Upload request. It might be able to serve Download request.
+* `STATUS_IN_MAINTENANCE`: The SP is in maintenance. it can not serve user's Create/Upload request. It might be able to serve Download request.
 * `STATUS_GRACEFUL_EXITING`: The SP is exiting gracefully. All the object stored in it will be shifted to another sp.
 
 The storage providers metadata should be primarily stored and accessed by the `OperatorAddr`, an EIP712 account address
@@ -142,31 +142,6 @@ message Params {
 ### Deposit Pool
 
 The SP module uses its module account to manage all the staking tokens deposited by storage providers.
-
-### Maintenance Mode
-
-The maintenance mode for SP is the status which it would not serve any create/upload request from users, there are two
-circustance where an SP in maintenance mode:
-
-1. SP joins the network after proposal passed, the SP would stay in `STATUS_IN_MAINTENANCE` until it sends a transaction
-   including msg `MsgUpdateStorageProviderStatus` to Greenfield to change its status to `STATUS_IN_SERVICE`
-2. SP which is in service sends a transaction including msg `MsgUpdateStorageProviderStatus` to Greenfield with requested duration,
-   if there is no restriction violated, it would enter maintenance mode immediatley. Note: SP needs to send a transaction to Greenfield to update its status back `STATUS_IN_SERVICE` before its request duration ends.
-
-There are two restriction listed below if an SP requests to be in maintenance, and these restriction need to work with 
-params `num_of_historical_blocks_for_maintenance_records`, `maintenance_duration_quota` and `num_of_lockup_blocks_for_maintenance`. 
-
-* Tracing back number of blocks defined by `num_of_historical_blocks_for_maintenance_records`, total maintenance duration 
-  for each SP should not exceed `maintenance_duration_quota`
-* Frequency of updating status. A SP is not allowed to make two consecutive update to `STATUS_IN_MAINTENANCE` within `num_of_lockup_blocks_for_maintenance`,
-  eventhough there is enough quota for it.
-
-If a SP does not sends a transaction to mark its status back to `STATUS_IN_SERVICE` after promised duration ends. The `Greenfield` would force
-update the the SP status back. If the SP is still not fully ready yet, it might be slashed for its poor servcie. 
-
-To better ensure the quality of service the SP can provide, we would strongly recommend that SP can conduct a self test via the maintenance account,
-including create bucket/object to verify the functionalities work as expected.
-
 
 ## Message
 
@@ -276,4 +251,4 @@ This message is expected to fail if:
 
 * The storage provider doesn't exist;
 * The status is not changed
-* The contrait
+* The restrictions violated

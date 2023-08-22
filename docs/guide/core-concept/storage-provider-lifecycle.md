@@ -30,6 +30,7 @@ Below are the required fields that need to be modified in the proposal:
   - seal_address: The address used for sealing object
   - approval_address: The address responsible for approving bucket/object creation.
   - gc_address: The address for garbage collection.
+  - maintenance_address: The address is used for testing while in maintenance mode.
 - EndPoint: Details of the endpoint where the SP will serve data requests.
 - Quota & Price:
   - read_price: The cost in Gwei per byte per second for read operations.
@@ -63,6 +64,24 @@ Additionally, SPs are required to provide corresponding stakes for the amount of
 Moreover, the creation of virtual groups and staking helps to disentangle the interdependency between buckets/objects and SPs. By doing so, SPs mitigate the need for an extensive volume of transactions when modifying on-chain BucketInfo and ObjectInfo during SP exits and bucket migrations. This leads to more efficient network management and smoother transitions during changes in the network's composition.
 
 As SPs continue to serve user needs and actively participate in network operations, their reputation and service quality become paramount. A positive reputation score is crucial for attracting more users to store their data with a particular SP. Through continuous improvement and adaptation, SPs can enhance their services, increase storage capacity, and maintain a competitive edge in the dynamic decentralized storage market.
+
+## In Maintenance
+
+The maintenance mode for service providers (SPs) is a status in which SPs do not serve any create/upload requests from users. There are two circumstances in which an SP can be in maintenance mode:
+1. When an SP joins the network after a proposal has passed, it will stay in `STATUS_IN_MAINTENANCE` until it sends a transaction
+   including msg `MsgUpdateStorageProviderStatus` to Greenfield to change its status to `STATUS_IN_SERVICE`.
+2. If an SP is already in service, it can send a transaction with msg `MsgUpdateStorageProviderStatus` to Greenfield and request a maintenance duration,
+   if there are no restrictions violated, the SP is allowed to enter maintenance mode immediately.
+   :::note  
+   Note: The SP needs to send a transaction to Greenfield to update its status back `STATUS_IN_SERVICE` before its request duration ends, or Greenfield would do it mandatorily.
+   :::
+
+There are two restrictions that apply when an SP requests to be in maintenance. These restrictions work with the parameters `num_of_historical_blocks_for_maintenance_records`, `maintenance_duration_quota` and `num_of_lockup_blocks_for_maintenance`. Refer to [Params](../greenfield-blockchain/modules/storage-provider.md#params)
+
+* The total maintenance duration for each SP, within the number of blocks defined by `num_of_historical_blocks_for_maintenance_records`, should not exceed the `maintenance_duration_quota`.
+* An SP is not allowed to make two consecutive requests to `STATUS_IN_MAINTENANCE` within `num_of_lockup_blocks_for_maintenance`, even if there are enough quotas for it.
+
+To ensure the quality of service provided, we strongly recommend that SPs conduct a self-test via the maintenance account before turning back to `STATUS_IN_SERVICE`. This includes creating buckets/objects to verify that all functionalities work as expected. For a detailed illustration on how to use SDK to create bucket/object, please refer to the [SDKs](../../sdks/).
 
 ## Exit
 
