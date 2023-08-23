@@ -8,6 +8,36 @@ order: 7
 
 # Release Notes
 
+## Greenfield v0.2.4 - Testnet Maintenance Upgrade Reset.
+
+Greenfield v0.2.4 - Testnet Maintenance Upgrade Reset.[](https://docs.bnbchain.org/greenfield-docs/docs/release-notes/releaseNotes#greenfield-v023---testnet-maintenance-upgrade-reset)
+
+On August 31st, we reset the Greenfield Testnet and upgrade the Greenfield version to [v0.2.4](https://github.com/bnb-chain/greenfield/tree/v0.2.4). Here are key changes to note.
+
+**Greenfield Blockchain Changelog**
+
+- [#411](https://github.com/bnb-chain/greenfield/pull/411) Add RemoveExpiredPolicies to remove expired data from kvstore. This new feature will reduce blockchain data size.
+- [#413](https://github.com/bnb-chain/greenfield/pull/413) Implement cross-chain mechanism between opBNB and BNB Greenfield
+- [#415](https://github.com/bnb-chain/greenfield/pull/415) Enable plain store for full node
+- [#420](https://github.com/bnb-chain/greenfield/pull/420) Skip signature verification on genesis block
+- [#374](https://github.com/bnb-chain/greenfield/pull/374) Group member expiration
+- [#390](https://github.com/bnb-chain/greenfield/pull/390) Add a flag to enable/disable heavy queries and refactor APIs
+- [#399](https://github.com/bnb-chain/greenfield/pull/399) Add new query APIs for querying storage group and group members
+- [#403](https://github.com/bnb-chain/greenfield/pull/403) Introduce Storage Provider maintenance mode
+
+**Greenfield Storage Provider changelog**
+
+- [#989](https://github.com/bnb-chain/greenfield-storage-provider/pull/989) Implement Group APIs
+- [#1008](https://github.com/bnb-chain/greenfield-storage-provider/pull/1008) Change auth api response from JSON to XML
+- [#1010](https://github.com/bnb-chain/greenfield-storage-provider/pull/1010) Add real-time mode to blocksyncer
+- [#1015](https://github.com/bnb-chain/greenfield-storage-provider/pull/1015) Add new API to retrieve groups where the user is the owner
+- [#1012](https://github.com/bnb-chain/greenfield-storage-provider/pull/1012) Enhance error handling to deliver meaningful and informative update messages.
+- [#1025](https://github.com/bnb-chain/greenfield-storage-provider/pull/1025) Change Metadata API response from JSON to XML
+- [#857](https://github.com/bnb-chain/greenfield-storage-provider/pull/857) Implement validation for virtual group families to handle bucket creation requests through RPC calls to the chain, followed by SP-driven family selection using the designated strategy.
+- [#985](https://github.com/bnb-chain/greenfield-storage-provider/pull/985) Implement Time Ticker for BlockSyncer
+- [#981](https://github.com/bnb-chain/greenfield-storage-provider/pull/981) Add transaction confirmation function and support virtual group retry
+- [#968](https://github.com/bnb-chain/greenfield-storage-provider/pull/968) Support bucket migration verification when loading from db
+
 ## Greenfield v0.2.3 - Testnet Maintenance Upgrade Reset.
 
 On August 3rd, we reset the Greenfield Testnet and upgrade the Greenfield version to [v0.2.3](https://github.com/bnb-chain/greenfield/tree/v0.2.3). Here are key changes to note.
