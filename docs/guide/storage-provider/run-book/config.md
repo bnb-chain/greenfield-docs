@@ -423,6 +423,13 @@ AuthenticatorEndpoint = 'localhost:9333'
 
 * `P2PBootstrap` can be left empty.
 
+## Gateway
+```
+[Gateway]
+DomainName = 'region.sp-name.com'
+```
+The correct configuration should not include the protocol prefix `https://`.
+
 ## BlockSyncer
 Here is how you put `Dsn` config for `[BlockSyncer]`
 ```
