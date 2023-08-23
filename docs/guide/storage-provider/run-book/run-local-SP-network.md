@@ -41,7 +41,7 @@ make: *** [build] Error 1
 2. Start Greenfield Blockchain
 
 ```shell
-# 1 validator and 7 storage providers
+# 1 validator and 8 storage providers
 bash ./deployment/localup/localup.sh all 1 8
 ```
 
@@ -63,7 +63,8 @@ bash ./deployment/localup/localup.sh export_sps 1 8
 #     "FundingPrivateKey": "bd9d9e7823cd2dc7bc20f1b6676c3025cdda6cf5a8df9b04597fdff42c29af01",
 #     "SealPrivateKey": "aacd6b834627fdbc5de2bfdb1db31be0ea810a941854787653814c8040a9dd39",
 #     "ApprovalPrivateKey": "32108ed1a47c0af965824f84ac2162c029f347eec6d0988e642330b0ac264c85",
-#     "GcPrivateKey": "2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d"
+#     "GcPrivateKey": "2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d",
+#     "MaintenancePrivateKey": "cc38f4c004f73a810223776376a37a8ab3ed8204214f5a3a0a2f77f7bb5e2dc1",
 #     "BlsPrivateKey": "6f349866f18413abb1a78cab947933459042044649686f354e941a646b9ed6e7"
 #   }
 #   ...

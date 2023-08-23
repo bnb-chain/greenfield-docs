@@ -19,7 +19,7 @@ The following lists the recommended hardware requirements:
 * 6 Greenfield accounts with enough BNB tokens.
 
 :::danger IMPORTANT
-Each storage provider will hold 6 different accounts serving different purposes
+Each storage provider will hold 7 different accounts serving different purposes
 :::
 
 ### Wallet Preparation
@@ -55,7 +55,7 @@ and then export these private keys to prepare for SP deployment:
 ./build/bin/gnfd keys export bls --unarmored-hex --unsafe --keyring-backend os
 ```
 
-maintenance account is not needed for SP deployment, but you should export it for self-testing:
+maintenance account is not needed for SP deployment, but you should export it to conduct self-test:
 
 ```shell
 ./build/bin/gnfd keys export maintenance --unarmored-hex --unsafe --keyring-backend os
