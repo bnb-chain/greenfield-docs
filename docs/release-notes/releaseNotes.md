@@ -16,6 +16,10 @@ On August 31st, we reset the Greenfield Testnet and upgrade the Greenfield versi
 
 **Greenfield Blockchain Changelog**
 
+- [#408](https://github.com/bnb-chain/greenfield/pull/408) This refactors the payment system to streamline billing calculations and simplifies billing with a consistent pricing model and periodic updates:
+  - **Global Price**: Introduces a single global storage price, a median of individual storage prices, for both read and store operations.
+  - **Updates**: This global price is updated every 30 days to reflect changes in storage costs.
+  - **Billing**: Bucket fees, including read and store costs, are now based on this global price.
 - [#411](https://github.com/bnb-chain/greenfield/pull/411) Add RemoveExpiredPolicies to remove expired data from kvstore. This new feature will reduce blockchain data size.
 - [#413](https://github.com/bnb-chain/greenfield/pull/413) Implement cross-chain mechanism between opBNB and BNB Greenfield
 - [#415](https://github.com/bnb-chain/greenfield/pull/415) Enable plain store for full node

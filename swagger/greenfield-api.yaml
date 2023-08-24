@@ -338,18 +338,18 @@ paths:
                       format: byte
       tags:
         - Challenge
-  /greenfield/payment/auto_settle_record:
+  /greenfield/payment/auto_settle_records:
     get:
-      summary: AutoSettleRecordAll
-      description: Queries a list of AutoSettleRecord items.
-      operationId: AutoSettleRecordAll
+      summary: AutoSettleRecords
+      description: Queries all auto settle records.
+      operationId: AutoSettleRecords
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              auto_settle_record:
+              auto_settle_records:
                 type: array
                 items:
                   type: object
@@ -484,7 +484,7 @@ paths:
   /greenfield/payment/dynamic_balance/{account}:
     get:
       summary: DynamicBalance
-      description: Queries a list of DynamicBalance items.
+      description: Queries dynamic balance of a payment account.
       operationId: DynamicBalance
       responses:
         '200':
@@ -607,54 +607,10 @@ paths:
           type: string
       tags:
         - Payment
-  /greenfield/payment/get_payment_accounts_by_owner/{owner}:
-    get:
-      summary: GetPaymentAccountsByOwner
-      description: Queries a list of GetPaymentAccountsByOwner items.
-      operationId: GetPaymentAccountsByOwner
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              paymentAccounts:
-                type: array
-                items:
-                  type: string
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string
-                      format: byte
-      parameters:
-        - name: owner
-          in: path
-          required: true
-          type: string
-      tags:
-        - Payment
   /greenfield/payment/out_flows/{account}:
     get:
       summary: OutFlows
-      description:  Queries a StreamRecord by index.
+      description: Queries our flows by account.
       operationId: OutFlows
       responses:
         '200':
@@ -809,7 +765,7 @@ paths:
   /greenfield/payment/params/{timestamp}:
     get:
       summary: ParamsByTimestamp
-      description: ParamsByTimestamp queries the parameters of the module.
+      description: ParamsByTimestamp queries the parameter of the module by timestamp.
       operationId: ParamsByTimestamp
       responses:
         '200':
@@ -901,145 +857,10 @@ paths:
           format: int64
       tags:
         - Payment
-  /greenfield/payment/payment_account:
-    get:
-      summary: PaymentAccountAll
-      description: Queries a list of PaymentAccount items.
-      operationId: PaymentAccountAll
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              payment_account:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    addr:
-                      type: string
-                      title: the address of the payment account
-                    owner:
-                      type: string
-                      title: the owner address of the payment account
-                    refundable:
-                      type: boolean
-                      title: whether the payment account is refundable
-                  title: PaymentAccount defines a payment account
-              pagination:
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    description: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently. It will be empty if
-                      there are no more results.
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-                description: >-
-                  PageResponse is to be embedded in gRPC response messages where
-                  the
-
-                  corresponding request message has used PageRequest.
-
-                   message SomeResponse {
-                           repeated Bar results = 1;
-                           PageResponse page = 2;
-                   }
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string
-                      format: byte
-      parameters:
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
-          in: query
-          required: false
-          type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
-      tags:
-        - Payment
   /greenfield/payment/payment_account/{addr}:
     get:
       summary: PaymentAccount
-      escription:  Queries a PaymentAccount by index.
+      description: Queries a payment account by payment account address.
       operationId: PaymentAccount
       responses:
         '200':
@@ -1089,11 +910,11 @@ paths:
           type: string
       tags:
         - Payment
-  /greenfield/payment/payment_account_count:
+  /greenfield/payment/payment_account_count/{owner}:
     get:
-      summary: PaymentAccountCountAll
-      description: Queries a list of PaymentAccountCount items.
-      operationId: PaymentAccountCountAll
+      summary: PaymentAccountCount
+      description: Queries the count of payment account by owner.
+      operationId: PaymentAccountCount
       responses:
         '200':
           description: A successful response.
@@ -1101,6 +922,59 @@ paths:
             type: object
             properties:
               payment_account_count:
+                type: object
+                properties:
+                  owner:
+                    type: string
+                    title: owner is the account address
+                  count:
+                    type: string
+                    format: uint64
+                    title: count is the number of payment accounts for the account
+                title: >-
+                  PaymentAccountCount defines the state struct which stores the
+                  number of payment accounts for an account
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          type: string
+      tags:
+        - Payment
+  /greenfield/payment/payment_account_counts:
+    get:
+      summary: PaymentAccountCounts
+      description: Queries all counts of payment account for all owners.
+      operationId: PaymentAccountCounts
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              payment_account_counts:
                 type: array
                 items:
                   type: object
@@ -1224,30 +1098,156 @@ paths:
           type: boolean
       tags:
         - Payment
-  /greenfield/payment/payment_account_count/{owner}:
+  /greenfield/payment/payment_accounts:
     get:
-      summary: PaymentAccountCount
-      description: Queries a PaymentAccountCount by index.
-      operationId: PaymentAccountCount
+      summary: PaymentAccounts
+      description: Queries all payment accounts.
+      operationId: PaymentAccounts
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              payment_account_count:
+              payment_accounts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    addr:
+                      type: string
+                      title: the address of the payment account
+                    owner:
+                      type: string
+                      title: the owner address of the payment account
+                    refundable:
+                      type: boolean
+                      title: whether the payment account is refundable
+                  title: PaymentAccount defines a payment account
+              pagination:
                 type: object
                 properties:
-                  owner:
+                  next_key:
                     type: string
-                    title: owner is the account address
-                  count:
+                    format: byte
+                    description: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently. It will be empty if
+                      there are no more results.
+                  total:
                     type: string
                     format: uint64
-                    title: count is the number of payment accounts for the account
-                title: >-
-                  PaymentAccountCount defines the state struct which stores the
-                  number of payment accounts for an account
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Payment
+  /greenfield/payment/payment_accounts_by_owner/{owner}:
+    get:
+      summary: PaymentAccountsByOwner
+      description: Queries all payment accounts by a owner.
+      operationId: PaymentAccountsByOwner
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              paymentAccounts:
+                type: array
+                items:
+                  type: string
         default:
           description: An unexpected error response.
           schema:
@@ -1277,11 +1277,11 @@ paths:
           type: string
       tags:
         - Payment
-  /greenfield/payment/stream_record:
+  /greenfield/payment/stream_record/{account}:
     get:
-      summary: StreamRecordAll
-      description: Queries a list of StreamRecord items.
-      operationId: StreamRecordAll
+      summary: StreamRecord
+      description: Queries a stream record by account.
+      operationId: StreamRecord
       responses:
         '200':
           description: A successful response.
@@ -1289,6 +1289,111 @@ paths:
             type: object
             properties:
               stream_record:
+                type: object
+                properties:
+                  account:
+                    type: string
+                    title: account address
+                  crud_timestamp:
+                    type: string
+                    format: int64
+                    title: latest update timestamp of the stream record
+                  netflow_rate:
+                    type: string
+                    description: >-
+                      The per-second rate that an account's balance is changing.
+
+                      It is the sum of the account's inbound and outbound flow
+                      rates.
+                  static_balance:
+                    type: string
+                    description: >-
+                      The balance of the stream account at the latest CRUD
+                      timestamp.
+                  buffer_balance:
+                    type: string
+                    title: >-
+                      reserved balance of the stream account
+
+                      If the netflow rate is negative, the reserved balance is
+                      `netflow_rate * reserve_time`
+                  lock_balance:
+                    type: string
+                    title: >-
+                      the locked balance of the stream account after it puts a
+                      new object and before the object is sealed
+                  status:
+                    title: the status of the stream account
+                    type: string
+                    enum:
+                      - STREAM_ACCOUNT_STATUS_ACTIVE
+                      - STREAM_ACCOUNT_STATUS_FROZEN
+                    default: STREAM_ACCOUNT_STATUS_ACTIVE
+                    description: >-
+                      - STREAM_ACCOUNT_STATUS_ACTIVE:
+                      STREAM_ACCOUNT_STATUS_ACTIVE defines the active status of
+                      a stream account.
+                       - STREAM_ACCOUNT_STATUS_FROZEN: STREAM_ACCOUNT_STATUS_FROZEN defines the frozen status of a stream account.
+                      A frozen stream account cannot be used as payment address
+                      for buckets.
+
+                      It can be unfrozen by depositing more BNB to the stream
+                      account.
+                  settle_timestamp:
+                    type: string
+                    format: int64
+                    title: the unix timestamp when the stream account will be settled
+                  out_flow_count:
+                    type: string
+                    format: uint64
+                    title: the count of its out flows
+                  frozen_netflow_rate:
+                    type: string
+                    title: >-
+                      the frozen netflow rate, which is used when resuming
+                      stream account
+                title: Stream Payment Record of a stream account
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: account
+          in: path
+          required: true
+          type: string
+      tags:
+        - Payment
+  /greenfield/payment/stream_records:
+    get:
+      summary: StreamRecords
+      description: Queries all stream records.
+      operationId: StreamRecords
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              stream_records:
                 type: array
                 items:
                   type: object
@@ -1467,135 +1572,34 @@ paths:
           type: boolean
       tags:
         - Payment
-  /greenfield/payment/stream_record/{account}:
+  /greenfield/sp/global_sp_store_price_by_time/{timestamp}:
     get:
-      summary: StreamRecord
-      description: Queries a StreamRecord by index.
-      operationId: StreamRecord
+      summary: QueryGlobalSpStorePriceByTime
+      description: Get global store price by time
+      operationId: QueryGlobalSpStorePriceByTime
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
-              stream_record:
-                type: object
-                properties:
-                  account:
-                    type: string
-                    title: account address
-                  crud_timestamp:
-                    type: string
-                    format: int64
-                    title: latest update timestamp of the stream record
-                  netflow_rate:
-                    type: string
-                    description: >-
-                      The per-second rate that an account's balance is changing.
-
-                      It is the sum of the account's inbound and outbound flow
-                      rates.
-                  static_balance:
-                    type: string
-                    description: >-
-                      The balance of the stream account at the latest CRUD
-                      timestamp.
-                  buffer_balance:
-                    type: string
-                    title: >-
-                      reserved balance of the stream account
-
-                      If the netflow rate is negative, the reserved balance is
-                      `netflow_rate * reserve_time`
-                  lock_balance:
-                    type: string
-                    title: >-
-                      the locked balance of the stream account after it puts a
-                      new object and before the object is sealed
-                  status:
-                    title: the status of the stream account
-                    type: string
-                    enum:
-                      - STREAM_ACCOUNT_STATUS_ACTIVE
-                      - STREAM_ACCOUNT_STATUS_FROZEN
-                    default: STREAM_ACCOUNT_STATUS_ACTIVE
-                    description: >-
-                      - STREAM_ACCOUNT_STATUS_ACTIVE:
-                      STREAM_ACCOUNT_STATUS_ACTIVE defines the active status of
-                      a stream account.
-                       - STREAM_ACCOUNT_STATUS_FROZEN: STREAM_ACCOUNT_STATUS_FROZEN defines the frozen status of a stream account.
-                      A frozen stream account cannot be used as payment address
-                      for buckets.
-
-                      It can be unfrozen by depositing more BNB to the stream
-                      account.
-                  settle_timestamp:
-                    type: string
-                    format: int64
-                    title: the unix timestamp when the stream account will be settled
-                  out_flow_count:
-                    type: string
-                    format: uint64
-                    title: the count of its out flows
-                  frozen_netflow_rate:
-                    type: string
-                    title: >-
-                      the frozen netflow rate, which is used when resuming
-                      stream account
-                title: Stream Payment Record of a stream account
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string
-                      format: byte
-      parameters:
-        - name: account
-          in: path
-          required: true
-          type: string
-      tags:
-        - Payment
-  /greenfield/sp/get_secondary_sp_store_price_by_time/{timestamp}:
-    get:
-      summary: QueryGetSecondarySpStorePriceByTime
-      description: get secondary store price by time
-      operationId: QueryGetSecondarySpStorePriceByTime
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              secondary_sp_store_price:
+              global_sp_store_price:
                 type: object
                 properties:
                   update_time_sec:
                     type: string
                     format: int64
                     title: update time, unix timestamp in seconds
-                  store_price:
+                  read_price:
                     type: string
-                    title: store price, in bnb wei per charge byte
-                title: >-
-                  global secondary sp store price, the price for all secondary
-                  sps
+                    title: read price, in bnb wei per charge byte
+                  primary_store_price:
+                    type: string
+                    title: primary store price, in bnb wei per charge byte
+                  secondary_store_price:
+                    type: string
+                    title: secondary store price, in bnb wei per charge byte
+                title: global sp store price, the price for all sps
         default:
           description: An unexpected error response.
           schema:
@@ -1629,11 +1633,97 @@ paths:
           format: int64
       tags:
         - StorageProvider
-  /greenfield/sp/get_sp_storage_price_by_time/{sp_addr}/{timestamp}:
+  /greenfield/sp/params:
     get:
-      summary: QueryGetSpStoragePriceByTime
-      description: get storage price of specific sp and time
-      operationId: QueryGetSpStoragePriceByTime
+      summary: SpParams
+      description: Parameters queries the parameters of the module.
+      operationId: SpParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+                properties:
+                  deposit_denom:
+                    type: string
+                    description: deposit_denom defines the staking coin denomination.
+                  min_deposit:
+                    type: string
+                    description: >-
+                      min_deposit defines the minimum deposit amount for storage
+                      providers.
+                  secondary_sp_store_price_ratio:
+                    type: string
+                    title: >-
+                      the ratio of the store price of the secondary sp to the
+                      primary sp, the default value is 80%
+                  num_of_historical_blocks_for_maintenance_records:
+                    type: string
+                    format: int64
+                    title: >-
+                      previous blocks that be traced back to for
+                      maintenance_records
+                  maintenance_duration_quota:
+                    type: string
+                    format: int64
+                    title: >-
+                      the max duration that a SP can be in_maintenance within
+                      num_of_historical_blocks_for_maintenance_records
+                  num_of_lockup_blocks_for_maintenance:
+                    type: string
+                    format: int64
+                    title: >-
+                      the number of blocks to be wait for sp to be in
+                      maintenance mode again if already requested
+                  update_global_price_interval:
+                    type: string
+                    format: uint64
+                    title: >-
+                      the time interval to update global storage price, if it is
+                      not set then the price will be updated at the first block
+                      of each natural month
+                  update_price_disallowed_days:
+                    type: integer
+                    format: int64
+                    title: >-
+                      the days counting backwards from end of a month in which a
+                      sp cannot update its price
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      tags:
+        - StorageProvider
+  /greenfield/sp/sp_storage_price/{sp_addr}:
+    get:
+      summary: QuerySpStoragePrice
+      description: Get the latest storage price of specific sp
+      operationId: QuerySpStoragePrice
       responses:
         '200':
           description: A successful response.
@@ -1690,74 +1780,11 @@ paths:
           in: path
           required: true
           type: string
-        - name: timestamp
-          description: >-
-            unix timestamp in seconds. If it's 0, it will return the latest
-            price.
-          in: path
-          required: true
-          type: string
-          format: int64
-      tags:
-        - StorageProvider
-  /greenfield/sp/params:
-    get:
-      summary: SpParams
-      description: Parameters queries the parameters of the module.
-      operationId: SpParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              params:
-                description: params holds all the parameters of this module.
-                type: object
-                properties:
-                  deposit_denom:
-                    type: string
-                    description: deposit_denom defines the staking coin denomination.
-                  min_deposit:
-                    type: string
-                    description: >-
-                      min_deposit defines the minimum deposit amount for storage
-                      providers.
-                  secondary_sp_store_price_ratio:
-                    type: string
-                    title: >-
-                      the ratio of the store price of the secondary sp to the
-                      primary sp, the default value is 80%
-            description: >-
-              QueryParamsResponse is response type for the Query/Params RPC
-              method.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string
-                      format: byte
       tags:
         - StorageProvider
   /greenfield/sp/storage_provider_by_operator_address:
     get:
-      summary: StorageProviderByOperatorAddress
+      summary: SPByOperator
       description: Queries a StorageProvider by specify operator address.
       operationId: StorageProviderByOperatorAddress
       responses:
@@ -1802,6 +1829,12 @@ paths:
                     description: >-
                       gc_address defines one of the storage provider's accounts
                       which is used for gc purpose.
+                  maintenance_address:
+                    type: string
+                    title: >-
+                      maintenance_address defines one of the storage provider's
+                      accounts which is used for testing while in maintenance
+                      mode
                   total_deposit:
                     type: string
                     description: >-
@@ -1816,7 +1849,7 @@ paths:
                       - STATUS_IN_SERVICE
                       - STATUS_IN_JAILED
                       - STATUS_GRACEFUL_EXITING
-                      - STATUS_OUT_OF_SERVICE
+                      - STATUS_IN_MAINTENANCE
                     default: STATUS_IN_SERVICE
                     description: Status is the status of a storage provider.
                   endpoint:
@@ -1858,6 +1891,70 @@ paths:
                       bls_key defines the bls pub key of the Storage provider
                       for sealing object and completing migration
                 title: StorageProvider defines the meta info of storage provider
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: operator_address
+          in: query
+          required: false
+          type: string
+      tags:
+        - StorageProvider
+  /greenfield/sp/storage_provider_maintenance_records_by_operator_address:
+    get:
+      summary: SPMaintenanceRecordsByOperator
+      description: Queries a StorageProvider by specify operator address.
+      operationId: StorageProviderMaintenanceRecordsByOperatorAddress
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              records:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    height:
+                      type: string
+                      format: int64
+                      title: block height that request to be in Maintenance mode
+                    request_duration:
+                      type: string
+                      format: int64
+                      title: request duration
+                    actual_duration:
+                      type: string
+                      format: int64
+                      title: actual duration
+                    request_at:
+                      type: string
+                      format: int64
+                      title: request timestamp
+                  title: >-
+                    MaintenanceRecord is to keep track of every time a sp
+                    request to be in Maintenance mode
         default:
           description: An unexpected error response.
           schema:
@@ -1934,6 +2031,12 @@ paths:
                     description: >-
                       gc_address defines one of the storage provider's accounts
                       which is used for gc purpose.
+                  maintenance_address:
+                    type: string
+                    title: >-
+                      maintenance_address defines one of the storage provider's
+                      accounts which is used for testing while in maintenance
+                      mode
                   total_deposit:
                     type: string
                     description: >-
@@ -1948,7 +2051,7 @@ paths:
                       - STATUS_IN_SERVICE
                       - STATUS_IN_JAILED
                       - STATUS_GRACEFUL_EXITING
-                      - STATUS_OUT_OF_SERVICE
+                      - STATUS_IN_MAINTENANCE
                     default: STATUS_IN_SERVICE
                     description: Status is the status of a storage provider.
                   endpoint:
@@ -2069,6 +2172,12 @@ paths:
                       description: >-
                         gc_address defines one of the storage provider's
                         accounts which is used for gc purpose.
+                    maintenance_address:
+                      type: string
+                      title: >-
+                        maintenance_address defines one of the storage
+                        provider's accounts which is used for testing while in
+                        maintenance mode
                     total_deposit:
                       type: string
                       description: >-
@@ -2083,7 +2192,7 @@ paths:
                         - STATUS_IN_SERVICE
                         - STATUS_IN_JAILED
                         - STATUS_GRACEFUL_EXITING
-                        - STATUS_OUT_OF_SERVICE
+                        - STATUS_IN_MAINTENANCE
                       default: STATUS_IN_SERVICE
                       description: Status is the status of a storage provider.
                     endpoint:
@@ -2225,6 +2334,158 @@ paths:
           type: boolean
       tags:
         - StorageProvider
+  /greenfield/storage/group_members_exist/{group_id}/{members}:
+    get:
+      summary: QueryGroupMembersExist
+      description: Queries whether some members are in the group.
+      operationId: QueryGroupMembersExist
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              exists:
+                type: object
+                additionalProperties:
+                  type: boolean
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          type: string
+        - name: members
+          in: path
+          required: true
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          minItems: 1
+      tags:
+        - Storage
+  /greenfield/storage/groups_exist/{group_owner}/{group_names}:
+    get:
+      summary: QueryGroupsExist
+      description: Queries whether some groups are exist.
+      operationId: QueryGroupsExist
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              exists:
+                type: object
+                additionalProperties:
+                  type: boolean
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: group_owner
+          in: path
+          required: true
+          type: string
+        - name: group_names
+          in: path
+          required: true
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          minItems: 1
+      tags:
+        - Storage
+  /greenfield/storage/groups_exist_by_id/{group_ids}:
+    get:
+      summary: QueryGroupsExistById
+      description: Queries whether some groups are exist by id.
+      operationId: QueryGroupsExistById
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              exists:
+                type: object
+                additionalProperties:
+                  type: boolean
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: group_ids
+          in: path
+          required: true
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          minItems: 1
+      tags:
+        - Storage
   /greenfield/storage/head_bucket/{bucket_name}:
     get:
       summary: HeadBucket
@@ -2269,8 +2530,9 @@ paths:
                     type: string
                     enum:
                       - SOURCE_TYPE_ORIGIN
-                      - SOURCE_TYPE_BSC_CROSS_CHAIN
                       - SOURCE_TYPE_MIRROR_PENDING
+                      - SOURCE_TYPE_BSC_CROSS_CHAIN
+                      - SOURCE_TYPE_OP_CROSS_CHAIN
                     default: SOURCE_TYPE_ORIGIN
                   create_at:
                     type: string
@@ -2379,8 +2641,9 @@ paths:
                     type: string
                     enum:
                       - SOURCE_TYPE_ORIGIN
-                      - SOURCE_TYPE_BSC_CROSS_CHAIN
                       - SOURCE_TYPE_MIRROR_PENDING
+                      - SOURCE_TYPE_BSC_CROSS_CHAIN
+                      - SOURCE_TYPE_OP_CROSS_CHAIN
                     default: SOURCE_TYPE_ORIGIN
                   create_at:
                     type: string
@@ -2643,8 +2906,9 @@ paths:
                     type: string
                     enum:
                       - SOURCE_TYPE_ORIGIN
-                      - SOURCE_TYPE_BSC_CROSS_CHAIN
                       - SOURCE_TYPE_MIRROR_PENDING
+                      - SOURCE_TYPE_BSC_CROSS_CHAIN
+                      - SOURCE_TYPE_OP_CROSS_CHAIN
                     default: SOURCE_TYPE_ORIGIN
                   id:
                     type: string
@@ -2710,6 +2974,12 @@ paths:
                   member:
                     type: string
                     title: member is the account address of the member
+                  expiration_time:
+                    type: string
+                    format: date-time
+                    title: >-
+                      expiration_time defines the expiration time of the group
+                      member
         default:
           description: An unexpected error response.
           schema:
@@ -2894,8 +3164,9 @@ paths:
                     type: string
                     enum:
                       - SOURCE_TYPE_ORIGIN
-                      - SOURCE_TYPE_BSC_CROSS_CHAIN
                       - SOURCE_TYPE_MIRROR_PENDING
+                      - SOURCE_TYPE_BSC_CROSS_CHAIN
+                      - SOURCE_TYPE_OP_CROSS_CHAIN
                     default: SOURCE_TYPE_ORIGIN
                     title: >-
                       SourceType represents the source of resource creation,
@@ -3082,8 +3353,9 @@ paths:
                     type: string
                     enum:
                       - SOURCE_TYPE_ORIGIN
-                      - SOURCE_TYPE_BSC_CROSS_CHAIN
                       - SOURCE_TYPE_MIRROR_PENDING
+                      - SOURCE_TYPE_BSC_CROSS_CHAIN
+                      - SOURCE_TYPE_OP_CROSS_CHAIN
                     default: SOURCE_TYPE_ORIGIN
                     title: >-
                       SourceType represents the source of resource creation,
@@ -3353,8 +3625,9 @@ paths:
                       type: string
                       enum:
                         - SOURCE_TYPE_ORIGIN
-                        - SOURCE_TYPE_BSC_CROSS_CHAIN
                         - SOURCE_TYPE_MIRROR_PENDING
+                        - SOURCE_TYPE_BSC_CROSS_CHAIN
+                        - SOURCE_TYPE_OP_CROSS_CHAIN
                       default: SOURCE_TYPE_ORIGIN
                     create_at:
                       type: string
@@ -3499,11 +3772,11 @@ paths:
           type: boolean
       tags:
         - Storage
-  /greenfield/storage/list_group/{group_owner}:
+  /greenfield/storage/list_groups/{group_owner}:
     get:
-      summary: ListGroup
+      summary: ListGroups
       description: Queries a list of ListGroup items.
-      operationId: ListGroup
+      operationId: ListGroups
       responses:
         '200':
           description: A successful response.
@@ -3558,8 +3831,9 @@ paths:
                       type: string
                       enum:
                         - SOURCE_TYPE_ORIGIN
-                        - SOURCE_TYPE_BSC_CROSS_CHAIN
                         - SOURCE_TYPE_MIRROR_PENDING
+                        - SOURCE_TYPE_BSC_CROSS_CHAIN
+                        - SOURCE_TYPE_OP_CROSS_CHAIN
                       default: SOURCE_TYPE_ORIGIN
                     id:
                       type: string
@@ -3736,8 +4010,9 @@ paths:
                       type: string
                       enum:
                         - SOURCE_TYPE_ORIGIN
-                        - SOURCE_TYPE_BSC_CROSS_CHAIN
                         - SOURCE_TYPE_MIRROR_PENDING
+                        - SOURCE_TYPE_BSC_CROSS_CHAIN
+                        - SOURCE_TYPE_OP_CROSS_CHAIN
                       default: SOURCE_TYPE_ORIGIN
                       title: >-
                         SourceType represents the source of resource creation,
@@ -3953,8 +4228,9 @@ paths:
                       type: string
                       enum:
                         - SOURCE_TYPE_ORIGIN
-                        - SOURCE_TYPE_BSC_CROSS_CHAIN
                         - SOURCE_TYPE_MIRROR_PENDING
+                        - SOURCE_TYPE_BSC_CROSS_CHAIN
+                        - SOURCE_TYPE_OP_CROSS_CHAIN
                       default: SOURCE_TYPE_ORIGIN
                       title: >-
                         SourceType represents the source of resource creation,
@@ -4258,6 +4534,30 @@ paths:
                     type: integer
                     format: int64
                     title: the max number of local virtual group per bucket
+                  op_mirror_bucket_relayer_fee:
+                    type: string
+                    title: relayer fee for the mirror bucket tx to op chain
+                  op_mirror_bucket_ack_relayer_fee:
+                    type: string
+                    title: >-
+                      relayer fee for the ACK or FAIL_ACK package of the mirror
+                      bucket tx to op chain
+                  op_mirror_object_relayer_fee:
+                    type: string
+                    title: relayer fee for the mirror object tx to op chain
+                  op_mirror_object_ack_relayer_fee:
+                    type: string
+                    title: >-
+                      Relayer fee for the ACK or FAIL_ACK package of the mirror
+                      object tx to op chain
+                  op_mirror_group_relayer_fee:
+                    type: string
+                    title: relayer fee for the mirror object tx to op chain
+                  op_mirror_group_ack_relayer_fee:
+                    type: string
+                    title: >-
+                      Relayer fee for the ACK or FAIL_ACK package of the mirror
+                      object tx to op chain
             description: >-
               QueryParamsResponse is response type for the Query/Params RPC
               method.
@@ -4402,6 +4702,30 @@ paths:
                     type: integer
                     format: int64
                     title: the max number of local virtual group per bucket
+                  op_mirror_bucket_relayer_fee:
+                    type: string
+                    title: relayer fee for the mirror bucket tx to op chain
+                  op_mirror_bucket_ack_relayer_fee:
+                    type: string
+                    title: >-
+                      relayer fee for the ACK or FAIL_ACK package of the mirror
+                      bucket tx to op chain
+                  op_mirror_object_relayer_fee:
+                    type: string
+                    title: relayer fee for the mirror object tx to op chain
+                  op_mirror_object_ack_relayer_fee:
+                    type: string
+                    title: >-
+                      Relayer fee for the ACK or FAIL_ACK package of the mirror
+                      object tx to op chain
+                  op_mirror_group_relayer_fee:
+                    type: string
+                    title: relayer fee for the mirror object tx to op chain
+                  op_mirror_group_ack_relayer_fee:
+                    type: string
+                    title: >-
+                      Relayer fee for the ACK or FAIL_ACK package of the mirror
+                      object tx to op chain
             description: >-
               QueryVersionedParamsResponse is response type for the Query/Params
               RPC method with timestamp.
@@ -4439,7 +4763,7 @@ paths:
   /greenfield/storage/policy_by_id/{policy_id}:
     get:
       summary: QueryPolicyById
-      description: Queries a policy by policy id
+      description:  Queries a policy by policy ID
       operationId: QueryPolicyById
       responses:
         '200':
@@ -5156,7 +5480,7 @@ paths:
             format: int64
           collectionFormat: multi
       tags:
-        - Storage
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group:
     get:
       summary: GlobalVirtualGroup
@@ -5250,7 +5574,7 @@ paths:
           type: integer
           format: int64
       tags:
-        - Storage
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group_by_family_id:
     get:
       summary: GlobalVirtualGroupByFamilyID
@@ -5347,7 +5671,7 @@ paths:
           type: integer
           format: int64
       tags:
-        - Storage
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group_families:
     get:
       summary: GlobalVirtualGroupFamilies
@@ -5499,7 +5823,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - Storage
+        - VirtualGroup
   /greenfield/virtualgroup/global_virtual_group_family:
     get:
       summary: GlobalVirtualGroupFamily
@@ -5570,7 +5894,7 @@ paths:
           type: integer
           format: int64
       tags:
-        - Storage
+        - VirtualGroup
   /greenfield/virtualgroup/params:
     get:
       summary: VirtualGroupParams
@@ -5632,7 +5956,7 @@ paths:
                       type: string
                       format: byte
       tags:
-        - Storage
+        - VirtualGroup
   /cosmos/auth/v1beta1/account_info/{address}:
     get:
       summary: AccountInfo
@@ -6048,12 +6372,7 @@ paths:
       description: >-
         Accounts returns all the existing accounts.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
-
-
-        Since: cosmos-sdk 0.43
+        of gas if the pagination field is incorrectly set.
       operationId: Accounts
       responses:
         '200':
@@ -8667,7 +8986,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - Auth
+        - Grants
   /cosmos/authz/v1beta1/grants/grantee/{grantee}:
     get:
       summary: GranteeGrants
@@ -9157,7 +9476,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - Auth
+        - Grants
   /cosmos/authz/v1beta1/grants/granter/{granter}:
     get:
       summary: GranterGrants
@@ -9647,16 +9966,14 @@ paths:
           required: false
           type: boolean
       tags:
-        - Auth
+        - Grants
   /cosmos/bank/v1beta1/balances/{address}:
     get:
       summary: AllBalances
       description: >-
         AllBalances queries the balance of all coins for a single account.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: AllBalances
       responses:
         '200':
@@ -9861,16 +10178,7 @@ paths:
       summary: DenomOwners
       description: >-
         DenomOwners queries for all account addresses that own a particular
-        token
-
-        denomination.
-        When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
-
-
-        Since: cosmos-sdk 0.46
+        token denomination.
       operationId: DenomOwners
       responses:
         '200':
@@ -10030,7 +10338,7 @@ paths:
   /cosmos/bank/v1beta1/denoms_metadata:
     get:
       summary: DenomsMetadata
-      description:  |-
+      description: |-
         DenomsMetadata queries the client metadata for all registered coin
         denominations.
       operationId: DenomsMetadata
@@ -10450,15 +10758,8 @@ paths:
       description: >-
         SendEnabled queries for SendEnabled entries.
         This query only returns denominations that have specific SendEnabled
-        settings.
-
-        Any denomination that does not have a specific setting will use the
-        default
-
-        params.default_send_enabled, and will not be returned by this query.
-
-
-        Since: cosmos-sdk 0.47
+        settings. Any denomination that does not have a specific setting will use the
+        default params.default_send_enabled, and will not be returned by this query.
       operationId: SendEnabled
       responses:
         '200':
@@ -10505,7 +10806,10 @@ paths:
                       was set, its value is undefined otherwise
             description: >-
               QuerySendEnabledResponse defines the RPC response of a SendEnable
-              query. Since: cosmos-sdk 0.47
+              query.
+
+
+              Since: cosmos-sdk 0.47
         default:
           description: An unexpected error response.
           schema:
@@ -10602,9 +10906,8 @@ paths:
       summary: SpendableBalances
       description: >-
         SpendableBalances queries the spendable balance of all coins for a
-        single account.
-        When called from another module, this query might consume a high amount
-        of gas if the pagination field is incorrectly set. Since: cosmos-sdk 0.46
+        single account.When called from another module, this query might consume a high amount
+        of gas if the pagination field is incorrectly set.
       operationId: SpendableBalances
       responses:
         '200':
@@ -10719,8 +11022,12 @@ paths:
         - name: pagination.count_total
           description: >-
             count_total is set to true  to indicate that the result set should
-            include a count of the total number of items available for pagination in
-            UIs. count_total is only respected when offset is used. It is ignored
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
             when key
 
             is set.
@@ -10744,7 +11051,8 @@ paths:
       summary: SpendableBalanceByDenom
       description: >-
         SpendableBalanceByDenom queries the spendable balance of a single denom
-        for a single account. When called from another module, this query might consume a high amount
+        for a single account.
+        When called from another module, this query might consume a high amount
         of gas if the pagination field is incorrectly set.
       operationId: SpendableBalanceByDenom
       responses:
@@ -10835,8 +11143,13 @@ paths:
                     amount:
                       type: string
                   description: >-
-                    Coin defines a token with a denomination and an amount. NOTE: The amount field is an Int which implements the custom
-                    method signatures required by gogoproto.
+                    Coin defines a token with a denomination and an amount.
+
+
+                    NOTE: The amount field is an Int which implements the custom
+                    method
+
+                    signatures required by gogoproto.
                 title: supply is the supply of the coins
               pagination:
                 description: |-
@@ -10899,8 +11212,12 @@ paths:
           format: byte
         - name: pagination.offset
           description: >-
-            offset is a numeric offset that can be used when key is unavailable. It is less efficient than using key. Only one of offset or key
-            should be set.
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
           in: query
           required: false
           type: string
@@ -10908,7 +11225,9 @@ paths:
         - name: pagination.limit
           description: >-
             limit is the total number of results to be returned in the result
-            page. If left empty it will default to a value to be set by each app.
+            page.
+
+            If left empty it will default to a value to be set by each app.
           in: query
           required: false
           type: string
@@ -10916,9 +11235,15 @@ paths:
         - name: pagination.count_total
           description: >-
             count_total is set to true  to indicate that the result set should
-            include a count of the total number of items available for pagination in
-            UIs. count_total is only respected when offset is used. It is ignored
-            when key is set.
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
           in: query
           required: false
           type: boolean
@@ -10926,6 +11251,9 @@ paths:
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
@@ -10933,7 +11261,7 @@ paths:
         - Bank
   /cosmos/bank/v1beta1/supply/by_denom:
     get:
-      summary: supply of a single coin.
+      summary: SupplyOf
       description: >-
         SupplyOf queries the supply of a single coin.
         When called from another module, this query might consume a high amount
@@ -10953,8 +11281,13 @@ paths:
                   amount:
                     type: string
                 description: >-
-                  Coin defines a token with a denomination and an amount. NOTE: The amount field is an Int which implements the custom
-                  method signatures required by gogoproto.
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
             description: >-
               QuerySupplyOfResponse is the response type for the Query/SupplyOf
               RPC method.
@@ -11036,11 +11369,21 @@ paths:
                           format: byte
                       description: >-
                         ProofOp defines an operation used for calculating Merkle
-                        root. The data could be arbitrary format, providing necessary data for
-                        example neighbouring node hash. Note: This type is a duplicate of the ProofOp proto type
+                        root. The data could
+
+                        be arbitrary format, providing necessary data for
+                        example neighbouring node
+
+                        hash.
+
+
+                        Note: This type is a duplicate of the ProofOp proto type
                         defined in Tendermint.
                 description: >-
-                  ProofOps is Merkle proof defined by the list of ProofOps. Note: This type is a duplicate of the ProofOps proto type
+                  ProofOps is Merkle proof defined by the list of ProofOps.
+
+
+                  Note: This type is a duplicate of the ProofOps proto type
                   defined in Tendermint.
               height:
                 type: string
@@ -11049,8 +11392,13 @@ paths:
                 type: string
             description: >-
               ABCIQueryResponse defines the response structure for the ABCIQuery
-              gRPC query. Note: This type is a duplicate of the ResponseQuery proto type
-              defined in Tendermint.
+              gRPC query.
+
+
+              Note: This type is a duplicate of the ResponseQuery proto type
+              defined in
+
+              Tendermint.
         default:
           description: An unexpected error response.
           schema:
@@ -11072,10 +11420,23 @@ paths:
                       type: string
                       description: >-
                         A URL/resource name that uniquely identifies the type of
-                        the serialized protocol buffer message. This string must contain at
-                        least one "/" character. The last segment of the URL's path
-                        must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in
-                        a canonical form (e.g., leading "." is not accepted). In practice, teams usually precompile into the binary
+                        the serialized
+
+                        protocol buffer message. This string must contain at
+                        least
+
+                        one "/" character. The last segment of the URL's path
+                        must represent
+
+                        the fully qualified name of the type (as in
+
+                        `path/google.protobuf.Duration`). The name should be in
+                        a canonical form
+
+                        (e.g., leading "." is not accepted).
+
+
+                        In practice, teams usually precompile into the binary
                         all types that they
 
                         expect it to use in the context of Any. However, for
@@ -14171,7 +14532,7 @@ paths:
   /cosmos/base/tendermint/v1beta1/syncing:
     get:
       summary: GetSyncing
-      escription: GetSyncing queries node syncing.
+      description: GetSyncing queries node syncing.
       operationId: GetSyncing
       responses:
         '200':
@@ -15396,6 +15757,12 @@ paths:
                       type: string
                       format: byte
       parameters:
+        - name: dest_chain_id
+          description: destination chain id.
+          in: query
+          required: false
+          type: integer
+          format: int64
         - name: channel_id
           description: channel id of the cross chain package.
           in: query
@@ -15498,6 +15865,12 @@ paths:
                       type: string
                       format: byte
       parameters:
+        - name: dest_chain_id
+          description: destination chain id.
+          in: query
+          required: false
+          type: integer
+          format: int64
         - name: channel_id
           description: channel id of the cross chain package.
           in: query
@@ -15547,6 +15920,12 @@ paths:
                       type: string
                       format: byte
       parameters:
+        - name: dest_chain_id
+          description: destination chain id.
+          in: query
+          required: false
+          type: integer
+          format: int64
         - name: channel_id
           description: channel id of the cross chain package.
           in: query
@@ -15617,7 +15996,7 @@ paths:
   /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards:
     get:
       summary: DelegationTotalRewards
-      description:  |-
+      description: |-
         DelegationTotalRewards queries the total rewards accrued by a each
         validator.
       operationId: DelegationTotalRewards
@@ -15937,7 +16316,7 @@ paths:
   /cosmos/distribution/v1beta1/validators/{validator_address}:
     get:
       summary: ValidatorDistributionInfo
-      description:  >-
+      description: >-
         ValidatorDistributionInfo queries validator commission and
         self-delegation rewards for validator
       operationId: ValidatorDistributionInfo
@@ -17501,7 +17880,7 @@ paths:
           required: true
           type: string
       tags:
-        - FeeGrant
+        - Fee
   /cosmos/feegrant/v1beta1/allowances/{grantee}:
     get:
       summary: Allowances
@@ -17880,7 +18259,7 @@ paths:
           required: false
           type: boolean
       tags:
-        - FeeGrant
+        - Fee
   /cosmos/feegrant/v1beta1/issued/{granter}:
     get:
       summary: AllowancesByGranter
@@ -18262,14 +18641,13 @@ paths:
           required: false
           type: boolean
       tags:
-        - FeeGrant
+        - Fee
   /cosmos/gashub/v1beta1/msg_gas_params:
     get:
       summary: MsgGasParams
       description: >-
         MsgGasParams queries for MsgGasParams entries.
         This query only returns params that have specific MsgGasParams settings.
-
         Any msg type that does not have a specific setting will not be returned
         by this query.
       operationId: MsgGasParams
@@ -20330,7 +20708,7 @@ paths:
   /cosmos/gov/v1/proposals/{proposal_id}/deposits/{depositor}:
     get:
       summary: GovV1Deposit
-      description:  >-
+      description: >-
         Deposit queries single deposit information based proposalID,
         depositAddr.
       operationId: GovV1Deposit
@@ -21475,7 +21853,7 @@ paths:
                       type: string
                       format: byte
       tags:
-        - Mint
+        - Governance
   /cosmos/mint/v1beta1/inflation:
     get:
       summary: Inflation
@@ -21584,7 +21962,7 @@ paths:
   /cosmos/oracle/v1/inturn_relayer:
     get:
       summary: InturnRelayer
-      description:   >-
+      description: >-
         InturnRelayer returns the inturn relayer bls pub key and its relay
         interval
       operationId: InturnRelayer
@@ -21753,9 +22131,9 @@ paths:
         - Slashing
   /cosmos/slashing/v1beta1/signing_infos:
     get:
-      summary: SigningInfos
-      description: SigningInfos queries signing info of all validators
-      operationId: SigningInfos
+      summary: SigningInfo
+      description: SigningInfo queries signing info of all validators
+      operationId: SigningInfo
       responses:
         '200':
           description: A successful response.
@@ -22033,11 +22411,8 @@ paths:
       summary: DelegatorDelegations
       description: >-
         DelegatorDelegations queries all delegations of a given delegator
-        address.
-        When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        address. When called from another module, this query might consume a high amount
+        of gas if the pagination field is incorrectly set.
       operationId: DelegatorDelegations
       responses:
         '200':
@@ -22384,9 +22759,7 @@ paths:
       description: >-
         Redelegations queries redelegations of given address.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: Redelegations
       responses:
         '200':
@@ -22828,13 +23201,9 @@ paths:
       summary: DelegatorUnbondingDelegations
       description: >-
         DelegatorUnbondingDelegations queries all unbonding delegations of a
-        given
-
-        delegator address.
+        given delegator address.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: DelegatorUnbondingDelegations
       responses:
         '200':
@@ -23194,9 +23563,7 @@ paths:
         DelegatorValidators queries all validators info for given delegator
         address.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: StakingDelegatorValidators
       responses:
         '200':
@@ -23843,7 +24210,7 @@ paths:
   /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}:
     get:
       summary: DelegatorValidator
-      description: |-
+      description:  |-
         DelegatorValidator queries validator info for given delegator validator
         pair.
       operationId: DelegatorValidator
@@ -25318,9 +25685,9 @@ paths:
         - Staking
   /cosmos/staking/v1beta1/pool:
     get:
-      summary: PoolInfo
+      summary: Pool
       description: Pool queries the pool info.
-      operationId: PoolInfo
+      operationId: Pool
       responses:
         '200':
           description: A successful response.
@@ -25538,9 +25905,7 @@ paths:
       description: >-
         Validators queries all validators that match the given status.
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: Validators
       responses:
         '200':
@@ -26755,11 +27120,8 @@ paths:
       summary: ValidatorDelegations
       description: >-
         ValidatorDelegations queries delegate info for given validator.
-
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: ValidatorDelegations
       responses:
         '200':
@@ -27654,11 +28016,8 @@ paths:
       description: >-
         ValidatorUnbondingDelegations queries unbonding delegations of a
         validator.
-
         When called from another module, this query might consume a high amount
-        of
-
-        gas if the pagination field is incorrectly set.
+        of gas if the pagination field is incorrectly set.
       operationId: ValidatorUnbondingDelegations
       responses:
         '200':
@@ -28470,7 +28829,7 @@ paths:
         - Transaction
   /cosmos/tx/v1beta1/encode:
     post:
-      summary: TxEncodeTxEncode
+      summary: TxEncode
       description: TxEncode encodes the transaction.
       operationId: TxEncode
       responses:
@@ -28953,6 +29312,10 @@ paths:
                   min_gas_price:
                     type: string
                     description: MinGasPrice are the min gas price.
+                  rw_used:
+                    type: string
+                    format: uint64
+                    description: RWUsed is the amount of r/w actually consumed.
               result:
                 description: result is the result of the simulation.
                 type: object
@@ -29408,7 +29771,7 @@ paths:
   /cosmos/tx/v1beta1/txs:
     get:
       summary: GetTxsEvent
-      description:  GetTxsEvent fetches txs by event.
+      description: GetTxsEvent fetches txs by event.
       operationId: GetTxsEvent
       responses:
         '200':
@@ -29708,8 +30071,7 @@ paths:
       tags:
         - Transaction
     post:
-      summary: BroadcastTx
-      description: BroadcastTx broadcast transaction.
+      summary: BroadcastTx broadcast transaction.
       operationId: BroadcastTx
       responses:
         '200':
@@ -30550,7 +30912,6 @@ paths:
     get:
       summary: GetTx
       description: GetTx fetches a tx by hash.
-        GetTx fetches a tx by hash.
       operationId: GetTx
       responses:
         '200':
@@ -30812,7 +31173,7 @@ paths:
   /cosmos/upgrade/v1beta1/current_plan:
     get:
       summary: CurrentPlan
-      description:  CurrentPlan queries the current upgrade plan.
+      description: CurrentPlan queries the current upgrade plan.
       operationId: CurrentPlan
       responses:
         '200':
@@ -30926,7 +31287,12 @@ paths:
                   versions.
             description: >-
               QueryModuleVersionsResponse is the response type for the
-              Query/ModuleVersions RPC method.
+              Query/ModuleVersions
+
+              RPC method.
+
+
+              Since: cosmos-sdk 0.43
         default:
           description: An unexpected error response.
           schema:
@@ -30963,17 +31329,12 @@ paths:
   /cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}:
     get:
       summary: UpgradedConsensusState
-      description:  |-
+      description:  >-
         UpgradedConsensusState queries the consensus state that will serve
-
         as a trusted kernel for the next version of this chain. It will only be
-
         stored at the last height of this chain.
-
         UpgradedConsensusState RPC not supported with legacy querier
-
         This rpc is deprecated now that IBC has its own replacement
-
         (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
       operationId: UpgradedConsensusState
       responses:
@@ -31834,10 +32195,10 @@ definitions:
     title: >-
       PaymentAccountCount defines the state struct which stores the number of
       payment accounts for an account
-  greenfield.payment.QueryAllAutoSettleRecordResponse:
+  greenfield.payment.QueryAutoSettleRecordsResponse:
     type: object
     properties:
-      auto_settle_record:
+      auto_settle_records:
         type: array
         items:
           type: object
@@ -31859,184 +32220,6 @@ definitions:
 
             and settle the stream account if the timestamp is less than the
             current time.
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  greenfield.payment.QueryAllPaymentAccountCountResponse:
-    type: object
-    properties:
-      payment_account_count:
-        type: array
-        items:
-          type: object
-          properties:
-            owner:
-              type: string
-              title: owner is the account address
-            count:
-              type: string
-              format: uint64
-              title: count is the number of payment accounts for the account
-          title: >-
-            PaymentAccountCount defines the state struct which stores the number
-            of payment accounts for an account
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  greenfield.payment.QueryAllPaymentAccountResponse:
-    type: object
-    properties:
-      payment_account:
-        type: array
-        items:
-          type: object
-          properties:
-            addr:
-              type: string
-              title: the address of the payment account
-            owner:
-              type: string
-              title: the owner address of the payment account
-            refundable:
-              type: boolean
-              title: whether the payment account is refundable
-          title: PaymentAccount defines a payment account
-      pagination:
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            description: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently. It will be empty if
-              there are no more results.
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-        description: |-
-          PageResponse is to be embedded in gRPC response messages where the
-          corresponding request message has used PageRequest.
-
-           message SomeResponse {
-                   repeated Bar results = 1;
-                   PageResponse page = 2;
-           }
-  greenfield.payment.QueryAllStreamRecordResponse:
-    type: object
-    properties:
-      stream_record:
-        type: array
-        items:
-          type: object
-          properties:
-            account:
-              type: string
-              title: account address
-            crud_timestamp:
-              type: string
-              format: int64
-              title: latest update timestamp of the stream record
-            netflow_rate:
-              type: string
-              description: |-
-                The per-second rate that an account's balance is changing.
-                It is the sum of the account's inbound and outbound flow rates.
-            static_balance:
-              type: string
-              description: The balance of the stream account at the latest CRUD timestamp.
-            buffer_balance:
-              type: string
-              title: >-
-                reserved balance of the stream account
-
-                If the netflow rate is negative, the reserved balance is
-                `netflow_rate * reserve_time`
-            lock_balance:
-              type: string
-              title: >-
-                the locked balance of the stream account after it puts a new
-                object and before the object is sealed
-            status:
-              title: the status of the stream account
-              type: string
-              enum:
-                - STREAM_ACCOUNT_STATUS_ACTIVE
-                - STREAM_ACCOUNT_STATUS_FROZEN
-              default: STREAM_ACCOUNT_STATUS_ACTIVE
-              description: >-
-                - STREAM_ACCOUNT_STATUS_ACTIVE: STREAM_ACCOUNT_STATUS_ACTIVE
-                defines the active status of a stream account.
-                 - STREAM_ACCOUNT_STATUS_FROZEN: STREAM_ACCOUNT_STATUS_FROZEN defines the frozen status of a stream account.
-                A frozen stream account cannot be used as payment address for
-                buckets.
-
-                It can be unfrozen by depositing more BNB to the stream account.
-            settle_timestamp:
-              type: string
-              format: int64
-              title: the unix timestamp when the stream account will be settled
-            out_flow_count:
-              type: string
-              format: uint64
-              title: the count of its out flows
-            frozen_netflow_rate:
-              type: string
-              title: >-
-                the frozen netflow rate, which is used when resuming stream
-                account
-          title: Stream Payment Record of a stream account
       pagination:
         type: object
         properties:
@@ -32146,45 +32329,6 @@ definitions:
       change_rate:
         type: string
         title: change_rate is the netflow rate of the given account
-  greenfield.payment.QueryGetPaymentAccountCountResponse:
-    type: object
-    properties:
-      payment_account_count:
-        type: object
-        properties:
-          owner:
-            type: string
-            title: owner is the account address
-          count:
-            type: string
-            format: uint64
-            title: count is the number of payment accounts for the account
-        title: >-
-          PaymentAccountCount defines the state struct which stores the number
-          of payment accounts for an account
-  greenfield.payment.QueryGetPaymentAccountResponse:
-    type: object
-    properties:
-      payment_account:
-        type: object
-        properties:
-          addr:
-            type: string
-            title: the address of the payment account
-          owner:
-            type: string
-            title: the owner address of the payment account
-          refundable:
-            type: boolean
-            title: whether the payment account is refundable
-        title: PaymentAccount defines a payment account
-  greenfield.payment.QueryGetPaymentAccountsByOwnerResponse:
-    type: object
-    properties:
-      paymentAccounts:
-        type: array
-        items:
-          type: string
   greenfield.payment.QueryGetStreamRecordResponse:
     type: object
     properties:
@@ -32383,6 +32527,223 @@ definitions:
             type: string
             title: The denom of fee charged in payment module
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  greenfield.payment.QueryPaymentAccountCountResponse:
+    type: object
+    properties:
+      payment_account_count:
+        type: object
+        properties:
+          owner:
+            type: string
+            title: owner is the account address
+          count:
+            type: string
+            format: uint64
+            title: count is the number of payment accounts for the account
+        title: >-
+          PaymentAccountCount defines the state struct which stores the number
+          of payment accounts for an account
+  greenfield.payment.QueryPaymentAccountCountsResponse:
+    type: object
+    properties:
+      payment_account_counts:
+        type: array
+        items:
+          type: object
+          properties:
+            owner:
+              type: string
+              title: owner is the account address
+            count:
+              type: string
+              format: uint64
+              title: count is the number of payment accounts for the account
+          title: >-
+            PaymentAccountCount defines the state struct which stores the number
+            of payment accounts for an account
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  greenfield.payment.QueryPaymentAccountResponse:
+    type: object
+    properties:
+      payment_account:
+        type: object
+        properties:
+          addr:
+            type: string
+            title: the address of the payment account
+          owner:
+            type: string
+            title: the owner address of the payment account
+          refundable:
+            type: boolean
+            title: whether the payment account is refundable
+        title: PaymentAccount defines a payment account
+  greenfield.payment.QueryPaymentAccountsByOwnerResponse:
+    type: object
+    properties:
+      paymentAccounts:
+        type: array
+        items:
+          type: string
+  greenfield.payment.QueryPaymentAccountsResponse:
+    type: object
+    properties:
+      payment_accounts:
+        type: array
+        items:
+          type: object
+          properties:
+            addr:
+              type: string
+              title: the address of the payment account
+            owner:
+              type: string
+              title: the owner address of the payment account
+            refundable:
+              type: boolean
+              title: whether the payment account is refundable
+          title: PaymentAccount defines a payment account
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  greenfield.payment.QueryStreamRecordsResponse:
+    type: object
+    properties:
+      stream_records:
+        type: array
+        items:
+          type: object
+          properties:
+            account:
+              type: string
+              title: account address
+            crud_timestamp:
+              type: string
+              format: int64
+              title: latest update timestamp of the stream record
+            netflow_rate:
+              type: string
+              description: |-
+                The per-second rate that an account's balance is changing.
+                It is the sum of the account's inbound and outbound flow rates.
+            static_balance:
+              type: string
+              description: The balance of the stream account at the latest CRUD timestamp.
+            buffer_balance:
+              type: string
+              title: >-
+                reserved balance of the stream account
+
+                If the netflow rate is negative, the reserved balance is
+                `netflow_rate * reserve_time`
+            lock_balance:
+              type: string
+              title: >-
+                the locked balance of the stream account after it puts a new
+                object and before the object is sealed
+            status:
+              title: the status of the stream account
+              type: string
+              enum:
+                - STREAM_ACCOUNT_STATUS_ACTIVE
+                - STREAM_ACCOUNT_STATUS_FROZEN
+              default: STREAM_ACCOUNT_STATUS_ACTIVE
+              description: >-
+                - STREAM_ACCOUNT_STATUS_ACTIVE: STREAM_ACCOUNT_STATUS_ACTIVE
+                defines the active status of a stream account.
+                 - STREAM_ACCOUNT_STATUS_FROZEN: STREAM_ACCOUNT_STATUS_FROZEN defines the frozen status of a stream account.
+                A frozen stream account cannot be used as payment address for
+                buckets.
+
+                It can be unfrozen by depositing more BNB to the stream account.
+            settle_timestamp:
+              type: string
+              format: int64
+              title: the unix timestamp when the stream account will be settled
+            out_flow_count:
+              type: string
+              format: uint64
+              title: the count of its out flows
+            frozen_netflow_rate:
+              type: string
+              title: >-
+                the frozen netflow rate, which is used when resuming stream
+                account
+          title: Stream Payment Record of a stream account
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            description: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently. It will be empty if
+              there are no more results.
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
   greenfield.payment.StreamAccountStatus:
     type: string
     enum:
@@ -32491,6 +32852,45 @@ definitions:
         type: string
         description: details define other optional details.
     description: Description defines a storage provider description.
+  greenfield.sp.GlobalSpStorePrice:
+    type: object
+    properties:
+      update_time_sec:
+        type: string
+        format: int64
+        title: update time, unix timestamp in seconds
+      read_price:
+        type: string
+        title: read price, in bnb wei per charge byte
+      primary_store_price:
+        type: string
+        title: primary store price, in bnb wei per charge byte
+      secondary_store_price:
+        type: string
+        title: secondary store price, in bnb wei per charge byte
+    title: global sp store price, the price for all sps
+  greenfield.sp.MaintenanceRecord:
+    type: object
+    properties:
+      height:
+        type: string
+        format: int64
+        title: block height that request to be in Maintenance mode
+      request_duration:
+        type: string
+        format: int64
+        title: request duration
+      actual_duration:
+        type: string
+        format: int64
+        title: actual duration
+      request_at:
+        type: string
+        format: int64
+        title: request timestamp
+    title: >-
+      MaintenanceRecord is to keep track of every time a sp request to be in
+      Maintenance mode
   greenfield.sp.Params:
     type: object
     properties:
@@ -32505,22 +32905,107 @@ definitions:
         title: >-
           the ratio of the store price of the secondary sp to the primary sp,
           the default value is 80%
+      num_of_historical_blocks_for_maintenance_records:
+        type: string
+        format: int64
+        title: previous blocks that be traced back to for maintenance_records
+      maintenance_duration_quota:
+        type: string
+        format: int64
+        title: >-
+          the max duration that a SP can be in_maintenance within
+          num_of_historical_blocks_for_maintenance_records
+      num_of_lockup_blocks_for_maintenance:
+        type: string
+        format: int64
+        title: >-
+          the number of blocks to be wait for sp to be in maintenance mode again
+          if already requested
+      update_global_price_interval:
+        type: string
+        format: uint64
+        title: >-
+          the time interval to update global storage price, if it is not set
+          then the price will be updated at the first block of each natural
+          month
+      update_price_disallowed_days:
+        type: integer
+        format: int64
+        title: >-
+          the days counting backwards from end of a month in which a sp cannot
+          update its price
     description: Params defines the parameters for the module.
-  greenfield.sp.QueryGetSecondarySpStorePriceByTimeResponse:
+  greenfield.sp.QueryGlobalSpStorePriceByTimeResponse:
     type: object
     properties:
-      secondary_sp_store_price:
+      global_sp_store_price:
         type: object
         properties:
           update_time_sec:
             type: string
             format: int64
             title: update time, unix timestamp in seconds
-          store_price:
+          read_price:
             type: string
-            title: store price, in bnb wei per charge byte
-        title: global secondary sp store price, the price for all secondary sps
-  greenfield.sp.QueryGetSpStoragePriceByTimeResponse:
+            title: read price, in bnb wei per charge byte
+          primary_store_price:
+            type: string
+            title: primary store price, in bnb wei per charge byte
+          secondary_store_price:
+            type: string
+            title: secondary store price, in bnb wei per charge byte
+        title: global sp store price, the price for all sps
+  greenfield.sp.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+        properties:
+          deposit_denom:
+            type: string
+            description: deposit_denom defines the staking coin denomination.
+          min_deposit:
+            type: string
+            description: >-
+              min_deposit defines the minimum deposit amount for storage
+              providers.
+          secondary_sp_store_price_ratio:
+            type: string
+            title: >-
+              the ratio of the store price of the secondary sp to the primary
+              sp, the default value is 80%
+          num_of_historical_blocks_for_maintenance_records:
+            type: string
+            format: int64
+            title: previous blocks that be traced back to for maintenance_records
+          maintenance_duration_quota:
+            type: string
+            format: int64
+            title: >-
+              the max duration that a SP can be in_maintenance within
+              num_of_historical_blocks_for_maintenance_records
+          num_of_lockup_blocks_for_maintenance:
+            type: string
+            format: int64
+            title: >-
+              the number of blocks to be wait for sp to be in maintenance mode
+              again if already requested
+          update_global_price_interval:
+            type: string
+            format: uint64
+            title: >-
+              the time interval to update global storage price, if it is not set
+              then the price will be updated at the first block of each natural
+              month
+          update_price_disallowed_days:
+            type: integer
+            format: int64
+            title: >-
+              the days counting backwards from end of a month in which a sp
+              cannot update its price
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
+  greenfield.sp.QuerySpStoragePriceResponse:
     type: object
     properties:
       sp_storage_price:
@@ -32545,27 +33030,6 @@ definitions:
             type: string
             title: store price, in bnb wei per charge byte
         title: storage price of a specific sp
-  greenfield.sp.QueryParamsResponse:
-    type: object
-    properties:
-      params:
-        description: params holds all the parameters of this module.
-        type: object
-        properties:
-          deposit_denom:
-            type: string
-            description: deposit_denom defines the staking coin denomination.
-          min_deposit:
-            type: string
-            description: >-
-              min_deposit defines the minimum deposit amount for storage
-              providers.
-          secondary_sp_store_price_ratio:
-            type: string
-            title: >-
-              the ratio of the store price of the secondary sp to the primary
-              sp, the default value is 80%
-    description: QueryParamsResponse is response type for the Query/Params RPC method.
   greenfield.sp.QueryStorageProviderByOperatorAddressResponse:
     type: object
     properties:
@@ -32603,6 +33067,11 @@ definitions:
             description: >-
               gc_address defines one of the storage provider's accounts which is
               used for gc purpose.
+          maintenance_address:
+            type: string
+            title: >-
+              maintenance_address defines one of the storage provider's accounts
+              which is used for testing while in maintenance mode
           total_deposit:
             type: string
             description: >-
@@ -32615,7 +33084,7 @@ definitions:
               - STATUS_IN_SERVICE
               - STATUS_IN_JAILED
               - STATUS_GRACEFUL_EXITING
-              - STATUS_OUT_OF_SERVICE
+              - STATUS_IN_MAINTENANCE
             default: STATUS_IN_SERVICE
             description: Status is the status of a storage provider.
           endpoint:
@@ -32653,6 +33122,33 @@ definitions:
               bls_key defines the bls pub key of the Storage provider for
               sealing object and completing migration
         title: StorageProvider defines the meta info of storage provider
+  greenfield.sp.QueryStorageProviderMaintenanceRecordsResponse:
+    type: object
+    properties:
+      records:
+        type: array
+        items:
+          type: object
+          properties:
+            height:
+              type: string
+              format: int64
+              title: block height that request to be in Maintenance mode
+            request_duration:
+              type: string
+              format: int64
+              title: request duration
+            actual_duration:
+              type: string
+              format: int64
+              title: actual duration
+            request_at:
+              type: string
+              format: int64
+              title: request timestamp
+          title: >-
+            MaintenanceRecord is to keep track of every time a sp request to be
+            in Maintenance mode
   greenfield.sp.QueryStorageProviderResponse:
     type: object
     properties:
@@ -32690,6 +33186,11 @@ definitions:
             description: >-
               gc_address defines one of the storage provider's accounts which is
               used for gc purpose.
+          maintenance_address:
+            type: string
+            title: >-
+              maintenance_address defines one of the storage provider's accounts
+              which is used for testing while in maintenance mode
           total_deposit:
             type: string
             description: >-
@@ -32702,7 +33203,7 @@ definitions:
               - STATUS_IN_SERVICE
               - STATUS_IN_JAILED
               - STATUS_GRACEFUL_EXITING
-              - STATUS_OUT_OF_SERVICE
+              - STATUS_IN_MAINTENANCE
             default: STATUS_IN_SERVICE
             description: Status is the status of a storage provider.
           endpoint:
@@ -32779,6 +33280,11 @@ definitions:
               description: >-
                 gc_address defines one of the storage provider's accounts which
                 is used for gc purpose.
+            maintenance_address:
+              type: string
+              title: >-
+                maintenance_address defines one of the storage provider's
+                accounts which is used for testing while in maintenance mode
             total_deposit:
               type: string
               description: >-
@@ -32793,7 +33299,7 @@ definitions:
                 - STATUS_IN_SERVICE
                 - STATUS_IN_JAILED
                 - STATUS_GRACEFUL_EXITING
-                - STATUS_OUT_OF_SERVICE
+                - STATUS_IN_MAINTENANCE
               default: STATUS_IN_SERVICE
               description: Status is the status of a storage provider.
             endpoint:
@@ -32852,17 +33358,6 @@ definitions:
               PageRequest.count_total
 
               was set, its value is undefined otherwise
-  greenfield.sp.SecondarySpStorePrice:
-    type: object
-    properties:
-      update_time_sec:
-        type: string
-        format: int64
-        title: update time, unix timestamp in seconds
-      store_price:
-        type: string
-        title: store price, in bnb wei per charge byte
-    title: global secondary sp store price, the price for all secondary sps
   greenfield.sp.SpStoragePrice:
     type: object
     properties:
@@ -32891,7 +33386,7 @@ definitions:
       - STATUS_IN_SERVICE
       - STATUS_IN_JAILED
       - STATUS_GRACEFUL_EXITING
-      - STATUS_OUT_OF_SERVICE
+      - STATUS_IN_MAINTENANCE
     default: STATUS_IN_SERVICE
     description: Status is the status of a storage provider.
   greenfield.sp.StorageProvider:
@@ -32926,6 +33421,11 @@ definitions:
         description: >-
           gc_address defines one of the storage provider's accounts which is
           used for gc purpose.
+      maintenance_address:
+        type: string
+        title: >-
+          maintenance_address defines one of the storage provider's accounts
+          which is used for testing while in maintenance mode
       total_deposit:
         type: string
         description: >-
@@ -32938,7 +33438,7 @@ definitions:
           - STATUS_IN_SERVICE
           - STATUS_IN_JAILED
           - STATUS_GRACEFUL_EXITING
-          - STATUS_OUT_OF_SERVICE
+          - STATUS_IN_MAINTENANCE
         default: STATUS_IN_SERVICE
         description: Status is the status of a storage provider.
       endpoint:
@@ -33028,6 +33528,10 @@ definitions:
       member:
         type: string
         title: member is the account address of the member
+      expiration_time:
+        type: string
+        format: date-time
+        title: expiration_time defines the expiration time of the group member
   greenfield.permission.Policy:
     type: object
     properties:
@@ -33317,8 +33821,9 @@ definitions:
         type: string
         enum:
           - SOURCE_TYPE_ORIGIN
-          - SOURCE_TYPE_BSC_CROSS_CHAIN
           - SOURCE_TYPE_MIRROR_PENDING
+          - SOURCE_TYPE_BSC_CROSS_CHAIN
+          - SOURCE_TYPE_OP_CROSS_CHAIN
         default: SOURCE_TYPE_ORIGIN
       create_at:
         type: string
@@ -33404,8 +33909,9 @@ definitions:
         type: string
         enum:
           - SOURCE_TYPE_ORIGIN
-          - SOURCE_TYPE_BSC_CROSS_CHAIN
           - SOURCE_TYPE_MIRROR_PENDING
+          - SOURCE_TYPE_BSC_CROSS_CHAIN
+          - SOURCE_TYPE_OP_CROSS_CHAIN
         default: SOURCE_TYPE_ORIGIN
       id:
         type: string
@@ -33600,8 +34106,9 @@ definitions:
         type: string
         enum:
           - SOURCE_TYPE_ORIGIN
-          - SOURCE_TYPE_BSC_CROSS_CHAIN
           - SOURCE_TYPE_MIRROR_PENDING
+          - SOURCE_TYPE_BSC_CROSS_CHAIN
+          - SOURCE_TYPE_OP_CROSS_CHAIN
         default: SOURCE_TYPE_ORIGIN
         title: |-
           SourceType represents the source of resource creation, which can
@@ -33755,6 +34262,30 @@ definitions:
         type: integer
         format: int64
         title: the max number of local virtual group per bucket
+      op_mirror_bucket_relayer_fee:
+        type: string
+        title: relayer fee for the mirror bucket tx to op chain
+      op_mirror_bucket_ack_relayer_fee:
+        type: string
+        title: >-
+          relayer fee for the ACK or FAIL_ACK package of the mirror bucket tx to
+          op chain
+      op_mirror_object_relayer_fee:
+        type: string
+        title: relayer fee for the mirror object tx to op chain
+      op_mirror_object_ack_relayer_fee:
+        type: string
+        title: >-
+          Relayer fee for the ACK or FAIL_ACK package of the mirror object tx to
+          op chain
+      op_mirror_group_relayer_fee:
+        type: string
+        title: relayer fee for the mirror object tx to op chain
+      op_mirror_group_ack_relayer_fee:
+        type: string
+        title: >-
+          Relayer fee for the ACK or FAIL_ACK package of the mirror object tx to
+          op chain
     description: Params defines the parameters for the module.
   greenfield.storage.QueryBucketNFTResponse:
     type: object
@@ -33784,6 +34315,13 @@ definitions:
                 value:
                   type: string
             title: attributes
+  greenfield.storage.QueryGroupMembersExistResponse:
+    type: object
+    properties:
+      exists:
+        type: object
+        additionalProperties:
+          type: boolean
   greenfield.storage.QueryGroupNFTResponse:
     type: object
     properties:
@@ -33812,6 +34350,13 @@ definitions:
                 value:
                   type: string
             title: attributes
+  greenfield.storage.QueryGroupsExistResponse:
+    type: object
+    properties:
+      exists:
+        type: object
+        additionalProperties:
+          type: boolean
   greenfield.storage.QueryHeadBucketExtraResponse:
     type: object
     properties:
@@ -33912,8 +34457,9 @@ definitions:
             type: string
             enum:
               - SOURCE_TYPE_ORIGIN
-              - SOURCE_TYPE_BSC_CROSS_CHAIN
               - SOURCE_TYPE_MIRROR_PENDING
+              - SOURCE_TYPE_BSC_CROSS_CHAIN
+              - SOURCE_TYPE_OP_CROSS_CHAIN
             default: SOURCE_TYPE_ORIGIN
           create_at:
             type: string
@@ -33962,6 +34508,10 @@ definitions:
           member:
             type: string
             title: member is the account address of the member
+          expiration_time:
+            type: string
+            format: date-time
+            title: expiration_time defines the expiration time of the group member
   greenfield.storage.QueryHeadGroupResponse:
     type: object
     properties:
@@ -33981,8 +34531,9 @@ definitions:
             type: string
             enum:
               - SOURCE_TYPE_ORIGIN
-              - SOURCE_TYPE_BSC_CROSS_CHAIN
               - SOURCE_TYPE_MIRROR_PENDING
+              - SOURCE_TYPE_BSC_CROSS_CHAIN
+              - SOURCE_TYPE_OP_CROSS_CHAIN
             default: SOURCE_TYPE_ORIGIN
           id:
             type: string
@@ -34062,8 +34613,9 @@ definitions:
             type: string
             enum:
               - SOURCE_TYPE_ORIGIN
-              - SOURCE_TYPE_BSC_CROSS_CHAIN
               - SOURCE_TYPE_MIRROR_PENDING
+              - SOURCE_TYPE_BSC_CROSS_CHAIN
+              - SOURCE_TYPE_OP_CROSS_CHAIN
             default: SOURCE_TYPE_ORIGIN
             title: |-
               SourceType represents the source of resource creation, which can
@@ -34185,8 +34737,9 @@ definitions:
               type: string
               enum:
                 - SOURCE_TYPE_ORIGIN
-                - SOURCE_TYPE_BSC_CROSS_CHAIN
                 - SOURCE_TYPE_MIRROR_PENDING
+                - SOURCE_TYPE_BSC_CROSS_CHAIN
+                - SOURCE_TYPE_OP_CROSS_CHAIN
               default: SOURCE_TYPE_ORIGIN
             create_at:
               type: string
@@ -34246,7 +34799,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  greenfield.storage.QueryListGroupResponse:
+  greenfield.storage.QueryListGroupsResponse:
     type: object
     properties:
       pagination:
@@ -34295,8 +34848,9 @@ definitions:
               type: string
               enum:
                 - SOURCE_TYPE_ORIGIN
-                - SOURCE_TYPE_BSC_CROSS_CHAIN
                 - SOURCE_TYPE_MIRROR_PENDING
+                - SOURCE_TYPE_BSC_CROSS_CHAIN
+                - SOURCE_TYPE_OP_CROSS_CHAIN
               default: SOURCE_TYPE_ORIGIN
             id:
               type: string
@@ -34378,8 +34932,9 @@ definitions:
               type: string
               enum:
                 - SOURCE_TYPE_ORIGIN
-                - SOURCE_TYPE_BSC_CROSS_CHAIN
                 - SOURCE_TYPE_MIRROR_PENDING
+                - SOURCE_TYPE_BSC_CROSS_CHAIN
+                - SOURCE_TYPE_OP_CROSS_CHAIN
               default: SOURCE_TYPE_ORIGIN
               title: |-
                 SourceType represents the source of resource creation, which can
@@ -34554,6 +35109,30 @@ definitions:
             type: integer
             format: int64
             title: the max number of local virtual group per bucket
+          op_mirror_bucket_relayer_fee:
+            type: string
+            title: relayer fee for the mirror bucket tx to op chain
+          op_mirror_bucket_ack_relayer_fee:
+            type: string
+            title: >-
+              relayer fee for the ACK or FAIL_ACK package of the mirror bucket
+              tx to op chain
+          op_mirror_object_relayer_fee:
+            type: string
+            title: relayer fee for the mirror object tx to op chain
+          op_mirror_object_ack_relayer_fee:
+            type: string
+            title: >-
+              Relayer fee for the ACK or FAIL_ACK package of the mirror object
+              tx to op chain
+          op_mirror_group_relayer_fee:
+            type: string
+            title: relayer fee for the mirror object tx to op chain
+          op_mirror_group_ack_relayer_fee:
+            type: string
+            title: >-
+              Relayer fee for the ACK or FAIL_ACK package of the mirror object
+              tx to op chain
     description: >-
       QueryVersionedParamsResponse is response type for the Query/Params RPC
       method with timestamp.
@@ -34658,6 +35237,30 @@ definitions:
             type: integer
             format: int64
             title: the max number of local virtual group per bucket
+          op_mirror_bucket_relayer_fee:
+            type: string
+            title: relayer fee for the mirror bucket tx to op chain
+          op_mirror_bucket_ack_relayer_fee:
+            type: string
+            title: >-
+              relayer fee for the ACK or FAIL_ACK package of the mirror bucket
+              tx to op chain
+          op_mirror_object_relayer_fee:
+            type: string
+            title: relayer fee for the mirror object tx to op chain
+          op_mirror_object_ack_relayer_fee:
+            type: string
+            title: >-
+              Relayer fee for the ACK or FAIL_ACK package of the mirror object
+              tx to op chain
+          op_mirror_group_relayer_fee:
+            type: string
+            title: relayer fee for the mirror object tx to op chain
+          op_mirror_group_ack_relayer_fee:
+            type: string
+            title: >-
+              Relayer fee for the ACK or FAIL_ACK package of the mirror object
+              tx to op chain
     description: QueryParamsResponse is response type for the Query/Params RPC method.
   greenfield.storage.QueryPolicyByIdResponse:
     type: object
@@ -35141,8 +35744,9 @@ definitions:
     type: string
     enum:
       - SOURCE_TYPE_ORIGIN
-      - SOURCE_TYPE_BSC_CROSS_CHAIN
       - SOURCE_TYPE_MIRROR_PENDING
+      - SOURCE_TYPE_BSC_CROSS_CHAIN
+      - SOURCE_TYPE_OP_CROSS_CHAIN
     default: SOURCE_TYPE_ORIGIN
     title: |-
       SourceType represents the source of resource creation, which can
@@ -51451,6 +52055,10 @@ definitions:
       min_gas_price:
         type: string
         description: MinGasPrice are the min gas price.
+      rw_used:
+        type: string
+        format: uint64
+        description: RWUsed is the amount of r/w actually consumed.
     description: GasInfo defines tx execution gas context.
   cosmos.base.abci.v1beta1.Result:
     type: object
@@ -54277,6 +54885,10 @@ definitions:
           min_gas_price:
             type: string
             description: MinGasPrice are the min gas price.
+          rw_used:
+            type: string
+            format: uint64
+            description: RWUsed is the amount of r/w actually consumed.
       result:
         description: result is the result of the simulation.
         type: object
