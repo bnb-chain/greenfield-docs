@@ -85,54 +85,45 @@ Host: gnfd-testnet-sp-1.bnbchain.org
 ```HTTP
 HTTP/1.1 200 OK
 Date: Fri, 31 March 2023 17:32:10 GMT
-{
-    "objects": {
-        "1": null,
-        "2": null,
-        "3": null,
-        "4": null,
-        "5": null,
-        "333": {
-            "object_info": {
-                "owner": "0xFD53FA60d84B6fa058993871b16Fd492B6d64903",
-                "bucket_name": "bg-0521-buc-01-00003-00000",
-                "object_name": "bg-obj-1k-00000",
-                "id": "333",
-                "payload_size": "1024",
-                "visibility": 3,
-                "content_type": "application/octet-stream",
-                "create_at": "1685465760",
-                "object_status": 1,
-                "redundancy_type": 0,
-                "source_type": 0,
-                "checksums": [
-                    "OpIu9mWQ9SuHkFIgqW3ZaHYQ5BtuXxd64+OocR/hA1c=",
-                    "SiUVQ+Te2cTyCaH+5dIa+yHOAwmQYaA6K/V3Nfb8gn4=",
-                    "vLW23p/VzslF7tNPdz3GQ/RUPyg2GN2a73sKTRzxvG8=",
-                    "vB2IRZJ+FzkzJDsJg7Kdkyz+eX6mRngll7gmkfKfkAE=",
-                    "e6OOvf7Kv+ZJSCyexotwYoN4hG6EG4ImK5uyGwO3fBg=",
-                    "XsGcWLUcDhTCyFCwdSSoCwTB+buKWbNWY3D0PHqeP7I=",
-                    "DBWKPxvZ3YBy4K++2U8lNcU9CtN2xIckgslcpS+ZbAk="
-                ],
-                "secondary_sp_addresses": [
-                    "0x66d06FFe266B46C6F0730cC9Ec2fc5B811cdA085",
-                    "0x55f2b3729036567dA574b8640F3eCeDBA590CEE9",
-                    "0x87Cc08944D8f63F006F9939f82Fcdb0E723B0C79",
-                    "0x4F38A24aAcC530c38975057b5a158f85707f701F",
-                    "0xf4AB94Cc32544c7b6BEF058BF629d9C8fDFb64c0",
-                    "0x7BB727bdA19F4b6EEc21Cf2cC866c60daF8c2282"
-                ]
-            },
-            "locked_balance": "0x0000000000000000000000000000000000000000000000000000000000000000",
-            "removed": false,
-            "update_at": "0",
-            "delete_at": "0",
-            "delete_reason": "",
-            "operator": "0x8b97D152149309C15B1C339F547a9aca9Bf629D2",
-            "create_tx_hash": "0x87feecde17f96132bc6b7519a8ce274489e99a62d0299bdf50006ffdd6d7c81f",
-            "update_tx_hash": "0x7b90405d5e75d42048eaed06310293565923a990fcd8d3eb68dd2e4fcc1758a2",
-            "seal_tx_hash": "0x7b90405d5e75d42048eaed06310293565923a990fcd8d3eb68dd2e4fcc1758a2"
-        }
-    }
-}
+<GfSpListObjectsByIDsResponse>
+    <ObjectEntry>
+        <Id>2</Id>
+        <Value>
+            <ObjectInfo>
+                <Owner>0xB769053f37080e70EE8458B7d376cCD64C1d1eab</Owner>
+                <Creator>0xB769053f37080e70EE8458B7d376cCD64C1d1eab</Creator>
+                <BucketName>cwtmcrfqen</BucketName>
+                <ObjectName>dq6knn/n/00ybg9</ObjectName>
+                <Id>2</Id>
+                <LocalVirtualGroupId>0</LocalVirtualGroupId>
+                <PayloadSize>1067008</PayloadSize>
+                <Visibility>3</Visibility>
+                <ContentType>text/event-stream</ContentType>
+                <CreateAt>1688364504</CreateAt>
+                <ObjectStatus>1</ObjectStatus>
+                <RedundancyType>0</RedundancyType>
+                <SourceType>0</SourceType>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+                <Checksums>0251d00d386672c15072a311b56881bd470e2bb435aa618ca457eb44456b5aa1</Checksums>
+            </ObjectInfo>
+            <LockedBalance>0x0000000000000000000000000000000000000000000000000000000000000000</LockedBalance>
+            <Removed>false</Removed>
+            <UpdateAt>0</UpdateAt>
+            <DeleteAt>0</DeleteAt>
+            <DeleteReason></DeleteReason>
+            <Operator>0xB769053f37080e70EE8458B7d376cCD64C1d1eab</Operator>
+            <CreateTxHash>0xfd58401fc320c183475b956056ced8ab6762c635e6841a36fd432ad190c70545</CreateTxHash>
+            <UpdateTxHash>0xf92faafa57aebe2444df8715faece0fa8c2631381b2157875baaf52f63b3dff4</UpdateTxHash>
+            <SealTxHash>0xf512b2a742ed4fcf6cecedbe058ebb07eceba390041948b04b2a82392801a9b5</SealTxHash>
+        </Value>
+    </ObjectEntry>
+    <ObjectEntry>
+        <Id>1</Id>
+    </ObjectEntry>
+</GfSpListObjectsByIDsResponse>
 ```

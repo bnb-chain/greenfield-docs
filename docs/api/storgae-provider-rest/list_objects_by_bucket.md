@@ -145,6 +145,9 @@ Date: Fri, 31 March 2023 17:32:10 GMT
     <Name>j6it2</Name>
     <Prefix>t3</Prefix>
     <Delimiter>/</Delimiter>
+    <CommonPrefixes>cccc/</CommonPrefixes>
+    <CommonPrefixes>notice/</CommonPrefixes>
+    <CommonPrefixes>number/</CommonPrefixes>  
     <ContinuationToken>Y2NjYy8=</ContinuationToken>
 </GfSpListObjectsByBucketNameResponse>
 ```
