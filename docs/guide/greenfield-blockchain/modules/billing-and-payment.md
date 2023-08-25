@@ -155,7 +155,8 @@ their in-flow calculation.
 Every time users do the actions below, their `StreamRecord` will
 be updated:
 
-- Creating an object will create new streams to the SPs;
+- Creating an object will create new streams to the Global Virtual Groups
+  and Global Virtual Group Family;
 
 - Deleting an object will delete associated streams to the Global Virtual Groups
   and Global Virtual Group Family;
@@ -296,29 +297,35 @@ is resumed.
 
 ### Storage Fee Price and Adjustment
 
-The storage fee prices are determined by the SPs who supply the storage service.
-The cost of the SPs are composed of 3 parts:
+The cost of **object storage fee** and **data package fee** are composed of 3 parts:
 
 - The primary SP will store the whole object file;
 - The secondary SPs will store part of the object file as a replica;
 - The primary SP will supply all the download requests of the object.
 
-There are 3 different on-chain prices:
+Hence, there are 3 different on-chain prices globally, which are used to charge storage 
+and download:
 
 - Primary SP Store Price;
+- Secondary SP Store Price,
 - Primary SP Read Price;
-- Secondary SP Store Price.
 
-Every SP can set their own store price and read price via on-chain transactions.
-While the secondary SP store price is calculated as the median all SPs' store price.
+Every SP can set their own suggested store price and read price via on-chain transactions.
+At the first block of each month, the median all SPs' store prices will be calculated as 
+the Primary SP Store Price, the Secondary SP Store Price will be calculated as a proportion 
+of the Primary SP Store Price (e.g. 12%), and the median of all SPs' read prices will be 
+calculated as the Primary SP Read Price.
+
+To make the global prices predictable to users and avoid price war, during the last two days 
+of a month all SPs are not allowed to set their own suggested prices.
 
 The unit of price is a decimal, which indicates wei BNB per byte per second.
 E.g. the price is 0.027, means approximately $0.022 / GB / Month.
 (`0.027 * (30 * 86400) * (1024 * 1024 * 1024) * 300 / 10 ** 18 ≈ 0.022`, assume the BNB price is 300 USD)
 
 The storage fees are calculated and charged in bucket level.
-The store price and read price is up to the SP of bucket.
-The secondary store price is stored in the chain state and the same for all buckets.
+The primary store price, secondary store price, and primary read price are stored in the chain state 
+and the same for all buckets at a specific time.
 The total size of all objects and per Global Virtual Group served size in a bucket will be recorded in the bucket
 metadata.
 The charge size will be used instead of the real size, e.g. files under 1KB will be charged as 1KB to cover the cost.

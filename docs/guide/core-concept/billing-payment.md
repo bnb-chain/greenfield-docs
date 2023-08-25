@@ -25,7 +25,7 @@ storage will be mainly only related to time and the base price.
 
 Users are granted a free, time-based quota for downloading data, with each bucket corresponding to a set of their
 objects. If the quota is exceeded, users can upgrade their data package to obtain additional quota. The price for each
-data package is fixed for a certain period (unless the primary storage provider updates the read price and the user
+data package is fixed for a certain period (unless the read price has been changed and the user
 takes some actions to reflect the price change), during which users will only be charged based on the amount of time
 they spend downloading and the package price. This charging scheme remains in effect until the user modifies their data
 package settings.
