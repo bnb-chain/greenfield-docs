@@ -307,14 +307,14 @@ Hence, there are 3 different on-chain prices globally, which are used to charge 
 and download:
 
 - Primary SP Store Price;
-- Secondary SP Store Price,
 - Primary SP Read Price;
+- Secondary SP Store Price.
 
 Every SP can set their own suggested store price and read price via on-chain transactions.
 At the first block of each month, the median all SPs' store prices will be calculated as 
 the Primary SP Store Price, the Secondary SP Store Price will be calculated as a proportion 
-of the Primary SP Store Price (e.g. 12%), and the median of all SPs' read prices will be 
-calculated as the Primary SP Read Price.
+of the Primary SP Store Price (e.g. 12%, which can be governed), and the median of all SPs' 
+read prices will be calculated as the Primary SP Read Price.
 
 To make the global prices predictable to users and avoid price war, during the last two days 
 of a month all SPs are not allowed to set their own suggested prices.
