@@ -313,6 +313,16 @@ Alternatively, you can check the proposal to know about its execution status.
 ./build/bin/gnfd query gov proposal {proposal_id} --node https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443
 ```
 
+### 4. Activate SP
+
+After the proposal has passed, the status of SP is `STATUS_IN_MAINTENANCE`, You need to send a tx to activate the SP to `STATUS_IN_SERVICE`.
+
+refer to [Maintenance mode](../../core-concept/storage-provider-lifecycle.md#in-maintenance) for more details regarding maintenance mode and seft-testing by maintenance account.
+
+```shell
+./build/bin/gnfd tx sp update-status [sp-address] STATUS_IN_SERVICE [flags]
+```
+
 ## Storage Provider Operations
 ### Deposit collateral
 
