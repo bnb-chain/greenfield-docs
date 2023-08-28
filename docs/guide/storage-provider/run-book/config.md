@@ -174,13 +174,13 @@ ListenSealRetryTimeout = 0
 MaxListenSealRetry = 0
 
 [P2P]
-# required
+# optional
 P2PPrivateKey = ''
-# required
+# optional
 P2PAddress = ''
-# required
+# optional
 P2PAntAddress = ''
-# required
+# optional
 P2PBootstrap = []
 # optional
 P2PPingPeriod = 0

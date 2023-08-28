@@ -87,4 +87,4 @@ err = s.Client.FGetObjectResumable(
 )
 ```
 
-In the above example, the **`FGetObjectResumable`** function is used to perform a resumable download of a file from the specified bucket and object name. If an error occurs during the download, the subsequent function calls will check the existence and validity of the **`object.tmp`** file, and resume the download from the last offset.
+In the above example, the **`FGetObjectResumable`** function is used to perform a resumable download of a file from the specified bucket and object name. If an error occurs during the download, the subsequent function calls will check the existence and validity of the **`object_{operatoraddress}{getrange}.tmp`** file, and resume the download from the last offset.

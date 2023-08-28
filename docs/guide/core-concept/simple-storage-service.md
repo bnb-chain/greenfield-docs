@@ -93,6 +93,7 @@ To store an object in Greenfield, the user creates a bucket and then uploads the
 - Create: Users send `CreateBucket` transactions to the blockchain, and the corresponding metadata will be created on the chain.
 - Update: Users can modify Bucket-related metadata, such as payment accounts and quotas, by sending the `UpdateBucketInfo` transaction to the blockchain.
 - Delete: Users send `DeleteBucket` transactions to the blockchain to delete the bucket, but they need to ensure that all objects in the bucket have been deleted.
+- Migration: Users send `MigrateBucket ` transactions to the blockchain to migrate the bucket, and the corresponding bucket will be moved to the dest sp.
 
 ### Object
 
