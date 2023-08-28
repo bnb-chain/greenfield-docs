@@ -73,6 +73,11 @@ same user. However, a group can not create or own any resource. A group can not 
 A resource can only have a limited number of groups associated with it for permissions. This ensures that the on-chain
 permission check can be finished within a constant time.
 
+### Group Member
+
+A Group Member is an account that is associated with a group. A group member can be added to multiple groups.
+Group Member has a expiration time which is set by the group owner. After the expiration time, the group member will still in the group, but the permission will be revoked.
+
 ### Resource-Based Policy
 
 The user can use Resource-Based Policy to grant permissions to other accounts. Any resources, such as buckets, objects and groups, can associate several policy. Only the resource owner can put a policy which associate to a resource he owned. 

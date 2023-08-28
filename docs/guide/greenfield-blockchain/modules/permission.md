@@ -61,7 +61,7 @@ Group subresources consist of the following:
 
 - **GroupInfo**: Allows for modification of specific fields within a group, such as members, user-meta, etc;
 - **Policy**: Stores access permissions information for the group;
-- **GroupMember**: Any account in Greenfield has the ability to join a group, but a group cannot become a member of another group.
+- **GroupMember**: Any account in Greenfield has the ability to join a group, but a group cannot become a member of another group; expiration time can be set for group membership if the member is expired the permission will be revoked.
 
 ### Ownership
 

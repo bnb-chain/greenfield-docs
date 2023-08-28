@@ -103,8 +103,6 @@ SpOperatorAddress = ''
 # required
 OperatorPrivateKey = ''
 # required
-FundingPrivateKey = ''
-# required
 SealPrivateKey = ''
 # required
 ApprovalPrivateKey = ''
