@@ -42,6 +42,8 @@ As we can see from the second parameter of `HandleReplicatePieceApproval` define
 
 We can query UploadObject tasks that we care about by `QueryTasks` method through using subKey.
 
+> Following the implementation of the SP Exit feature, the existing P2P module is currently inactive. Nevertheless, there remains a potential scenario where the P2P module could be reutilized at a later point in time.
+
 ## ApprovalReplicatePieceTask
 
 ApprovalReplicatePieceTask is an abstract interface to record the ask replicate pieces to other SPs(as secondary SP for the object). It is initiated by the primary SP in the replicate pieces phase. Before the primary SP sends it to other SPs, the primary SP will sign the task, other SPs will verify it is sent by a legitimate SP. If other SPs approved the approval, they will SetExpiredHeight and signs the ApprovalReplicatePieceTask.
