@@ -57,14 +57,12 @@ The detailed spec is defined [here](https://github.com/bnb-chain/greenfield-whit
 
 Permission management and authentication mechanisms are essential for a decentralized storage network, ensuring that only authorized users can access specific storage objects. The Greenfield Network defines standard permission divisions and authorization processes, requiring SP nodes to implement detailed permission control and user authentication accordingly. SP should achieve following three authentication at least:
 
-* AuthTypeV1
+* GNFD1-ECDSA 
 It requires users to use a private key to sign for authentication.
-* PersonalSign
-It is used to verify wallet personal signature from a certain dApp website.
-* OffChainAuth
-It is used for some dApps and users to store the “off chain auth” account key in SPs. Users can communicate with the SP without explicit signature for most interactions.
-
-For more information please refer to [here](https://docs.bnbchain.org/greenfield-docs/docs/api/storgae-provider-rest/reference/sp-reference).
+* GNFD1-EDDSA 
+It is used for web-based applications and users to store the “off chain auth” EdDSA account key in SPs. Users can communicate with the SP without explicit signature for most interactions.
+* GNFD1-ETH-PERSONAL_SIGN 
+It is only used to verify wallet personal signature when registering EdDSA account key in SP from a web application (e.g.  https://dcellar.io).
 
 ## P2P Protocol
 

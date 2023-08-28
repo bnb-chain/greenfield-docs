@@ -6,19 +6,23 @@
 
 ### Authentication type
 
-Authentication type represents which authentication mode the users want to use. Now there are three supported authentication modes: `authTypeV1`, `PersonalSign`, `OffChainAuth`.
+Authentication type represents which authentication mode the users want to use. Now there are three supported authentication modes: `GNFD1-ECDSA`, `GNFD1-ETH-PERSONAL_SIGN`, `GNFD1-EDDSA`.
 
-`authTypeV1` require users to use `private key` for authentication. This mode is used in `greenfield-go-sdk`. We recommend users using this mode when calling Greenfield SP RESTful APIs.
+`GNFD1-ECDSA` require users to use `private key` for authentication. This mode is used in `greenfield-go-sdk`. We recommend users using this mode when calling Greenfield SP RESTful APIs.
 
-`PersonalSign` is used for verify wallet personal signature from a certain dapp website, which is not able to access users' `private key` but can interact with users by using wallets.
+`GNFD1-ETH-PERSONAL_SIGN` is used for verify wallet personal signature from a certain dapp website, which is not able to access users' `private key` but can interact with users by using wallets. This mode is currently only used to register the following `GNFD1-EDDSA` user public key, from web apps to SP servers.
 
-`OffChainAuth` Once the dapp and user set up the "off chain auth" user account key in SPs (see [details](https://greenfield.bnbchain.org/docsguide/storage-provider/services/auth.html)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
+`GNFD1-EDDSA` Once the dapp and user set up the "off chain auth" user account key in SPs (see [details](../../guide/storage-provider/modules/authenticator.md)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
 
 ### Encryption algorithm type
-
-Greenfield SP RESTful APIs use `ECDSA-secp256k1` to sign `SignedMsg` field to get `Signature` field. Users can refer these two libraries to generate `Signature` field:
+For `GNFD1-ECDSA` auth type, Greenfield SP RESTful APIs use `ECDSA-secp256k1` to sign `SignedMsg` field to get `Signature` field. Users can refer the following library to generate `Signature` field:
 
 - [secp256k1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256k1)
+
+For `GNFD1-EDDSA` auth type, Greenfield SP RESTful APIs use `Edwards-curve Digital Signature Algorithm` to sign `SignedMsg` field to get `Signature` field. Users can refer the following library to generate `Signature` field:
+
+- [greenfield go sdk] https://github.com/bnb-chain/greenfield-go-sdk/blob/master/client/api_off_chain_auth.go#L32-L37
+- [gnark-crypto] https://github.com/Consensys/gnark-crypto/tree/master/ecc/bn254/fr/mimc
 
 ### The step of generating authorization header
 
@@ -45,17 +49,30 @@ First create a hash (digest) of the canonical request using `sha256` algorithm. 
 3. Calculate the signature
 After you create the string to sign, you are ready to calculate the signature for the authentication information that you'll add to your request. Use your private key, [secp256k1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256k1) to generate Signature.And you should convert this to lowercase hexadecimal characters.
 
-SP verifies the Authortization signature content to obtain the sender's address and check the sender's permission. [Ethereum-secp256k1](https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1) lib provides two functions: RecoverPubkey and VerifySignature that helps recover user address and whether data has been tampered with.
+SP verifies the Authorization signature content to obtain the sender's address and check the sender's permission.
+- For auth type `GNFD1-ECDSA`  
+[Ethereum-secp256k1](https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1) lib provides two functions: RecoverPubkey and VerifySignature that helps recover user address and whether data has been tampered with.
+
+- For auth type `GNFD1-EDDSA`  
+[gnark-crypto] (https://github.com/Consensys/gnark-crypto/blob/master/ecc/bn254/twistededwards/eddsa/eddsa.go#L189) lib provides a Verify function that helps recover if users' signature matches their public key registered in SP previously.
 
 ### Authorization header example
-
+#### For auth type `GNFD1-ECDSA`
 ```shell
-Authorization = auth_type + "ECDSA-secp256k1 " + string-to-sign + ":" + Signature
-string-to-sign = crypto.Keccak256(sha256(canonical request)
+Authorization = auth_type + "," + Signature
+string-to-sign = crypto.Keccak256(canonical)
 Signature = privateKey.secp256k1-Sign(string-to-sign)
-
-Authorization: authTypeV1 ECDSA-secp256k1, SignedMsg=70d03c8d65eb304fefc6d358168db4cfe9305a82dae54bb6a8dc4fbfa7461ca2, Signature=53e2f098411c5df46b71111337a5cf48bf254ba4a8516996445626619c4f10ac57a5ba081154272ed9e0334a338db39bf74f6de0f3c252fd27890fb81cffd29d00
+Authorization: GNFD1-ECDSA, Signature=53e2f098411c5df46b71111337a5cf48bf254ba4a8516996445626619c4f10ac57a5ba081154272ed9e0334a338db39bf74f6de0f3c252fd27890fb81cffd29d00
 ```
+
+#### For auth type `GNFD1-EDDSA`
+```shell
+Authorization = auth_type + "," + Signature
+string-to-sign = crypto.Keccak256(canonical)
+Signature = privateKey.EdDSA-Sign(string-to-sign)
+Authorization: GNFD1-ECDSA, Signature=9dac5eeaca7fb65265528773e11819cb9980cd9be68eebe8a10dea643f265c8302887f014eb78c3249c05d1038e81f93b4253a298cd9edf18982345c394ba9fb
+```
+
 
 ### Code examples in Greenfield Go SDK
 

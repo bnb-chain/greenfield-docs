@@ -8,7 +8,7 @@ title: Get Nonce
 
 This API is used to query the current user account key record.
 
-See [off-chain authentication specification](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/auth.html)
+See [off-chain authentication specification](../../guide/storage-provider/modules/authenticator.md)
 
 ## HTTP Request Format
 
@@ -53,9 +53,9 @@ X-Gnfd-App-Domain: AppDomain
 
 The response returns the following HTTP headers.
 
-| ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| ParameterName | Type   | Description                |
+| ------------- | ------ |----------------------------|
+| Content-Type  | string | value is `application/xml` |
 
 ## HTTP Response Parameter
 
@@ -63,7 +63,7 @@ The response returns the following HTTP headers.
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-The following data is returned in JSON format by the service.
+The following data is returned in XML format by the service.
 
 | ParameterName      | Type    | Description                                                                                              |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------- |
@@ -76,9 +76,9 @@ The following data is returned in JSON format by the service.
 
 ```HTTP
 HTTP/1.1 200
-Content-Type: application/json
+Content-Type: application/xml
 
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -96,24 +96,24 @@ X-Gnfd-App-Domain: https://greenfield.dapp.io
 
 #### response
 
-```json
-{
-    "current_nonce": 0,
-    "next_nonce": 1,
-    "current_public_key": "",
-    "expiry_date": "1683885489612"
-}
+```xml
+<RequestNonceResp>
+<CurrentNonce>0</CurrentNonce>
+<NextNonce>1</NextNonce>
+<CurrentPublicKey></CurrentPublicKey>
+<ExpiryDate>1693204673610</ExpiryDate>
+</RequestNonceResp>
 ```
 
 ### Example 2: Get nonce for an existing combination of user address and app domain
 
 #### response
 
-```json
-{
-    "current_nonce": 7,
-    "next_nonce": 8,
-    "current_public_key": "ba149b8e932b38cf4098bad7f5189e23ad59672d5e6cb141c515e0e34ea9652e",
-    "expiry_date": "1683885489612"
-}
+```xml
+<RequestNonceResp>
+<CurrentNonce>7</CurrentNonce>
+<NextNonce>8</NextNonce>
+<CurrentPublicKey>ba149b8e932b38cf4098bad7f5189e23ad59672d5e6cb141c515e0e34ea9652e</CurrentPublicKey>
+<ExpiryDate>1683885489612</ExpiryDate>
+</RequestNonceResp>
 ```

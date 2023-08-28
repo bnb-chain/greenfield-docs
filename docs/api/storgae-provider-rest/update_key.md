@@ -8,7 +8,7 @@ title: Update User Account Key
 
 This API is used to update the current user account key record.
 
-See [off-chain authentication specification](https://greenfield.bnbchain.org/docs/guide/storage-provider/services/auth.html)
+See [off-chain authentication specification](../../guide/storage-provider/modules/authenticator.md)
 
 ## HTTP Request Format
 
@@ -26,7 +26,7 @@ See [off-chain authentication specification](https://greenfield.bnbchain.org/doc
 | X-Gnfd-App-Domain          | string | yes      | app domain for the account key                                                                                                                                                                              |
 | X-Gnfd-App-Reg-Nonce       | string | yes      | the nonce value which the account key is updated for                                                                                                                                                        |
 | X-Gnfd-App-Reg-Public-Key  | string | yes      | the account key needed to update                                                                                                                                                                            |
-| X-Gnfd-App-Reg-Expiry-Date | string | yes      | It defines the Expiry-Date is the ISO 8601 datetime string (e.g. 2021-09-30T16:25:24Z), used to register the EDDSA public key. This expire date should be future timestamp but within **7 days** since now. |
+| X-Gnfd-Expiry-Timestamp | string | yes      | It defines the Expiry-Date is the ISO 8601 datetime string (e.g. 2021-09-30T16:25:24Z), used to register the EDDSA public key. This expire date should be future timestamp but within **7 days** since now. |
 | Authorization              | string | yes      | see [Authorization Header](#authorization-header)                                                                                                                                                           |
 
 ### Authorization Header
@@ -35,7 +35,7 @@ The Authorization Header could be composed of 3 parts.
 
 #### Auth type
 
-Update_key API expects `PersonalSign ECDSA-secp256k1` as [authentication type](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/sp-reference.html#authentication-type) and [encryption algorithm type](https://greenfield.bnbchain.org/docs/api/storgae-provider-rest/sp-reference.html#encryption-algorithm-type) in HTTP Authorization header.
+Update_key API expects `GNFD1-ETH-PERSONAL_SIGN` as [authentication type](../../../docs/api/storgae-provider-rest#authentication-type) in HTTP Authorization header.
 
 #### SignedMsg
 
@@ -86,7 +86,7 @@ e.g. `0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576
 Below is an example:
 
 ```HTTP
-Authorization: PersonalSign ECDSA-secp256k1,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
+Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
 ```
 
 ## HTTP Request Parameter
@@ -111,7 +111,7 @@ Origin: Origin
 X-Gnfd-App-Domain: AppDomain
 X-Gnfd-App-Reg-Nonce: Nonce
 X-Gnfd-App-Reg-Public-Key: PublicKey
-X-Gnfd-App-Reg-Expiry-Date: ExpiryDate
+X-Gnfd-Expiry-Timestamp: ExpiryDate
 Authorization: AuthorizationString
 ```
 
@@ -119,9 +119,9 @@ Authorization: AuthorizationString
 
 The response returns the following HTTP headers.
 
-| ParameterName | Type   | Description                 |
-| ------------- | ------ | --------------------------- |
-| Content-Type  | string | value is `application/json` |
+| ParameterName | Type   | Description                |
+| ------------- | ------ |----------------------------|
+| Content-Type  | string | value is `application/xml` |
 
 ## HTTP Response Parameter
 
@@ -129,7 +129,7 @@ The response returns the following HTTP headers.
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-The following data is returned in JSON format by the service.
+The following data is returned in XML format by the service.
 
 | ParameterName | Type    | Description                                                |
 | ------------- | ------- | ---------------------------------------------------------- |
@@ -139,9 +139,9 @@ The following data is returned in JSON format by the service.
 
 ```HTTP
 HTTP/1.1 200
-Content-Type: application/json
+Content-Type: application/xml
 
-JSON Body
+XML Body
 ```
 
 ## Examples
@@ -157,14 +157,14 @@ Origin: https://greenfield.dapp.cc
 X-Gnfd-App-Domain: https://greenfield.dapp.cc
 X-Gnfd-App-Reg-Nonce: 1
 X-Gnfd-App-Reg-Public-Key: 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083
-X-Gnfd-App-Reg-Expiry-Date: 2023-04-28T16:25:24Z
-Authorization: PersonalSign ECDSA-secp256k1,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
+X-Gnfd-Expiry-Timestamp: 2023-04-28T16:25:24Z
+Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
 ```
 
 #### response
 
-```json
-{
-    "Result": true
-}
+```xml
+<UpdateUserPublicKeyResp>
+<result>true</result>
+</UpdateUserPublicKeyResp>
 ```
