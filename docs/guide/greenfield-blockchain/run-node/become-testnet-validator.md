@@ -57,7 +57,7 @@ VALIDATOR_ADDR=$(gnfd keys show validator -a --keyring-backend test)
 RELAYER_ADDR=$(gnfd keys show validator_relayer -a --keyring-backend test)
 CHALLENGER_ADDR=$(gnfd keys show validator_challenger -a --keyring-backend test)
 VALIDATOR_BLS=$(gnfd keys show validator_bls --keyring-backend test --output json | jq -r '.pubkey_hex')
-VALIDATOR_BLS_PROOF==$(gnfd keys sign ${VALIDATOR_BLS} --keyring-backend test --from validator_bls)
+VALIDATOR_BLS_PROOF=$(gnfd keys sign ${VALIDATOR_BLS} --keyring-backend test --from validator_bls)
 VALIDATOR_NODE_PUB_KEY=$(cat ${CONFIG_PATH}/config/priv_validator_key.json | jq -r '.pub_key.value')
 ```
 
