@@ -8,17 +8,6 @@ order: 2
 
 ## Upcoming
 
-### August 3rd, Reset Mekong Testnet
-
-This version will focus on improving the performance and stability of the SP. At the same time, this version will introduce
-some advanced features:
-
-- Support data recovery: Recover the data stored on SPs automatically to ensure the data availability on Greenfield
-- Support large object and breakpoint resume transfer: Resume data transfer will tremendously improve the transfer
-  efficiency and user experience when uploading or downloading a large object from Greenfield
-- Introduce new concepts such as Virtual Group, Family, etc., to make bucket migration and storage provider exit more
-  lightweight and reduces the storage of chain metadata.
-
 ### August 31st, Upgrade Mekong Testnet
 
 This version will implement a hard fork for Greenfield MeKong Testnet, which can be upgraded with zero downtime. At the
@@ -29,13 +18,16 @@ same time, this version will introduce some advanced features:
 - Support expired group member: Group members can be given an expiration time, after which they will no longer have
   access to the group even though their account remains part of the group
 
-### September 20th, Launch Mainnet Lena
+### September 7th, Mekong Testnet Nagqu Hardfork
+Nagqu hardfork is an experimental upgrade on the Greenfield Testnet. By introducing a break change and upgrading through
+hardfork, Greenfield can smoothly transition, which means we can upgrade Greenfield through hardfork in the future without
+any downtime. This version will introduce one key feature:
 
-This version will be a maintenance version for bugfix and enhancement focusing on reducing the cost of operating an SP
-and adapting the economy to make SP profitable:
+- Support deposit payment account bank module funds into payment module.
 
-- Support rich underlying storage platforms, such as GCP, B2, and Ali-Cloud OSS
-- Adapt the storage economy to make SP profitable
+### October, Launch Mainnet Lena
+
+This version will be our first version for Greenfield Mainnet, including all key features introduced on the Testnet.
 
 ## Long Term
 
