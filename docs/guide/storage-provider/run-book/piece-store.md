@@ -66,7 +66,7 @@ Permanent access credentials generally have two parts, Access Key, Secret Key, w
 
 ### SA
 
-Service Account (abbreviated as SA) is a more secure way for object storage system to authenticate users. In this mode, you needn't to provide `AccessKeyID` and `AccessKeySecret`. If you deploy your SP in Kubernetes, we recommend you using SA to access object storage. AWS S3 can read this [documentation](https://docs.aws.amazon.com/eks/latest/userguide/service-accounts.html) to learn how to use SA.
+Service Account (abbreviated as SA) is a more secure way for object storage system to authenticate users. In this mode, you needn't to provide `AccessKeyID` and `AccessKeySecret`. If you deploy your SP in Kubernetes, we recommend you using SA to access object storage. AWS S3 can read this [documentation](https://docs.aws.amazon.com/eks/latest/userguide/service-accounts.html) to learn how to use SA. Alibaba Cloud OSS uses `OIDC` to visit OSS safely which users don't need to provide `AccessKeyID` and `AccessKeySecret`.
 
 #### How to get temporary credentials
 
@@ -78,13 +78,13 @@ Temporary credentials are also set into environment variables such as s3 by `AWS
 
 PieceStore now supports the following storage system. If the listed storage systems don't conatin that you want to use, feel free to submit a requirement [issue](https://github.com/bnb-chain/greenfield-storage-provider/issues).
 
-| Name                                    | value      |
-| --------------------------------------- | ---------- |
-| [Amazon S3](#amazon-s3)                 | `s3`       |
-| [Alibaba Cloud OSS](#alibaba-cloud-oss) | `aliyunfs` |
-| [Backblaze B2](#backblaze-b2)           | `b2`       |
-| [MinIO](#minio)                         | `minio`    |
-| [File](#file)                           | `file`     |
+| Name                                    | value   |
+| --------------------------------------- | ------- |
+| [Amazon S3](#amazon-s3)                 | `s3`    |
+| [Alibaba Cloud OSS](#alibaba-cloud-oss) | `oss`   |
+| [Backblaze B2](#backblaze-b2)           | `b2`    |
+| [MinIO](#minio)                         | `minio` |
+| [File](#file)                           | `file`  |
 
 ### Amazon S3
 
@@ -112,19 +112,19 @@ If the S3 bucket has public access (anonymous access is supported), please set `
 
 ### Alibaba Cloud OSS
 
-Please follow this [document](https://www.alibabacloud.com/help/en/basics-for-beginners/latest/obtain-an-accesskey-pair) to learn how to get access key and secret key. Alibaba Cloud also supports using Security Token Service (STS) to authorize temporary access to OSS. If you use OSS as the underlying storage, you can set `Storage = aliyunfs` in config.toml.
+Please follow this [document](https://www.alibabacloud.com/help/en/basics-for-beginners/latest/obtain-an-accesskey-pair) to learn how to get access key and secret key. Alibaba Cloud also supports using Security Token Service (STS) to authorize temporary access to OSS. If you use OSS as the underlying storage, you can set `Storage = oss` in config.toml.
 
 PieceStore use environment variables of Alibaba Cloud OSS:
 
 ```shell
-// AliyunAccessKey defines env variable name for aliyun access key
-AliyunAccessKey = "ALIBABA_CLOUD_ACCESS_KEY"
-// AliyunSecretKey defines env variable name for aliyun secret key
-AliyunSecretKey = "ALIBABA_CLOUD_SECRET_KEY"
-// AliyunSessionToken defines env variable name for aliyun session token
-AliyunSessionToken = "ALIBABA_CLOUD_SESSION_TOKEN"
-// AliyunRegion defines env variable name for aliyun oss region
-AliyunRegion = "ALIBABA_CLOUD_OSS_REGION"
+// OSSAccessKey defines env variable name for OSS access key
+OSSAccessKey = "ALIBABA_CLOUD_ACCESS_KEY"
+// OSSSecretKey defines env variable name for OSS secret key
+OSSSecretKey = "ALIBABA_CLOUD_SECRET_KEY"
+// OSSSessionToken defines env variable name for OSS session token
+OSSSessionToken = "ALIBABA_CLOUD_SESSION_TOKEN"
+// OSSRegion defines env variable name for OSS oss region
+OSSRegion = "ALIBABA_CLOUD_OSS_REGION"
 ```
 
 ### Backblaze B2
