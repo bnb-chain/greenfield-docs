@@ -18,7 +18,15 @@ If your proposal received less than 2/3 of `yes` votes from validators, your pro
 
 ### 3. Why is Proposal Failed
 
-The proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit.
+To query the failed reason, run the following command:
+```
+./gnfd q gov proposal <proposal-id> --node https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org:443
+```
+If you see the following message: 
+```
+failed_reason: 'spendable balance 999009992000000000000BNB is smaller than 1000000000000000000000BNB:
+```
+It means the proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit.
 
 ## SP node issues
 
