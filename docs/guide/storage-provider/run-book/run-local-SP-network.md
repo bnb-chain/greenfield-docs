@@ -235,7 +235,7 @@ cd build/
 # generate a keystore file to manage private key information
 touch key.txt & echo ${TEST_ACCOUNT_PRIVATE_KEY} > key.txt
 touch password.txt & echo "test_sp_function" > password.txt
-./gnfd-cmd --home ./ keystore generate --privKeyFile key.txt --passwordfile password.txt
+./gnfd-cmd --home ./  --passwordfile password.txt account import key.txt 
 
 # construct config.toml
 touch config.toml

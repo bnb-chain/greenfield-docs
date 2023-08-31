@@ -169,9 +169,12 @@ Users can use the "policy put [RESOURCE-URL]" command to assign resource permiss
 After the command executes successfully, the object policy information of the principal will be returned. The principal is set by --groupId which indicates the group or --grantee which indicates the account.
 
 The resource url can be the follow types:
-1) grn:b::bucketname, it indicates the bucket policy
-2) grn:o::bucketname/objectname, it indicates the object policy
-3) grn:g:owneraddress:groupname, it indicates the group policy
+
+1) "**grn:**b::bucket-name", it indicates the bucket policy
+
+2) "**grn:**o::bucket-name/object-name", it indicates the object policy
+
+3) "**grn:**g:owner-address:group-name", it indicates the group policy
 
 ```
 // put object policy 
