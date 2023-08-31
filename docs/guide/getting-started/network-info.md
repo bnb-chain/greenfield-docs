@@ -16,7 +16,7 @@ or [DCellar](https://dcellar.io).
 ## Block Explorers
 
 - [GreenfieldScan](https://greenfieldscan.com), developed by TraceReal.
-- [BSC Testnet Explorer](hhttps://testnet.bscscan.com/)
+- [BSC Testnet Explorer](https://testnet.bscscan.com)
 
 ## DCellar
 [DCellar](https://dcellar.io), as the inaugural application built on the BNB Greenfield, serves as an ultimate client of the BNB Greenfield network. Besides Basic file management and asset management functions, DCellar can also greatly assist developers in comprehending the functionalities of Greenfield:
