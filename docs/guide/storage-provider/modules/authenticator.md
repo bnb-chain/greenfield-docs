@@ -124,13 +124,13 @@ We denote the new string as `M`
 
 For each combination of user address and app domain, the SP backend maintains a key nonce `n`. It starts from 0 and increments by 1 after each successful account key update.
 
-To register an account public key into a certain SP, you can invoke [SP API "update\_key"](../../../api/storgae-provider-rest/update_key.md).
+To register an account public key into a certain SP, you can invoke [SP API "update\_key"](../../../api/storage-provider-rest/update_key.md).
 
 Here is an example. Suppose that
 
 1. The **user account address** is `0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0`
 2. The **app domain** is `https://greenfield_app1.domain.com`
-3. The **nonce** for above user address and app domain from [SP API "request\_nonce"](../../../api/storgae-provider-rest/get_nonce.md) is `1`
+3. The **nonce** for above user address and app domain from [SP API "request\_nonce"](../../../api/storage-provider-rest/get_nonce.md) is `1`
 4. The **SP operator address** is `0x70d1983A9A76C8d5d80c4cC13A801dc570890819`
 5. The **EdDSA\_public\_K** is `4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083`
 6. The **expiry time** for this `EdDSA_public_K` is `2023-04-28T16:25:24Z`. The expiry time indicates the expiry time of this `EdDSA_public_K` , which should be a future time and within **7 days.**
@@ -147,7 +147,7 @@ and request user to sign and get the signature`S2`:
 
 ![auth-update-key-metamask](../../../../static/asset/015-Auth-Update-Key-Metamask.png)
 
-Finally, the app invokes [SP API "update\_key"](../../../api/storgae-provider-rest/update_key.md) by putting `S2` into http Authorization header. The following is an example:
+Finally, the app invokes [SP API "update\_key"](../../../api/storage-provider-rest/update_key.md) by putting `S2` into http Authorization header. The following is an example:
 
 ```plain
 curl --location --request POST 'https://${SP_API_ADDRESS}/auth/update_key' \
@@ -159,7 +159,7 @@ curl --location --request POST 'https://${SP_API_ADDRESS}/auth/update_key' \
 --header 'Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield_app1.domain.com wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield_app1.domain.com\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b'
 ```
 
-Once the response code returns 200, you can check if the new account public key is saved into this SP by invoking [SP API "request\_nonce"](../../../api/storgae-provider-rest/get_nonce.md)
+Once the response code returns 200, you can check if the new account public key is saved into this SP by invoking [SP API "request\_nonce"](../../../api/storage-provider-rest/get_nonce.md)
 This API returns the latest key nonce for a given user address and app domain.
 
 If the API returns the new key nonce, the account public key has been successfully registered into the SP servers. The app can now use the EdDSA key pair generated in Step 1 to authenticate the user in future interactions with the SP.
@@ -169,7 +169,7 @@ If the API returns the new key nonce, the account public key has been successful
 In Step1 & Step2, we generated EdDSA keys and registered them into SP. In Step3, we can use `EdDSA_private_K` to sign request when an app invokes a certain SP API.
 
 To sign a request, the app needs to calculate the signedMsg before doing the actual signing.  
-See [calculate the signedMsg](../../../api/storgae-provider-rest#the-step-of-generating-authorization-header)
+See [calculate the signedMsg](../../../api/storage-provider-rest#the-step-of-generating-authorization-header)
 
 And the following is an example
 ```shell
@@ -200,12 +200,12 @@ By including the signed message and signature in the Authorization header, the a
 
 Although we defined an expiry date for registered `EdDSA_public_K`, users might want to know how many EdDSA keys they are currently using and might want to delete them for security concerns.
 
-To list a user's registered EdDSA account public keys in an SP, apps can invoke [SP API "list\_key"](../../../api/storgae-provider-rest/list_key.md).
-To delete a user's registered EdDSA account public key in an SP, apps can invoke  [SP API "delete\_key"](../../../api/storgae-provider-rest/delete_key.md)
+To list a user's registered EdDSA account public keys in an SP, apps can invoke [SP API "list\_key"](../../../api/storage-provider-rest/list_key.md).
+To delete a user's registered EdDSA account public key in an SP, apps can invoke  [SP API "delete\_key"](../../../api/storage-provider-rest/delete_key.md)
 
 ### Auth API Specification
 
-See [SP Auth Rest API Doc](../../../api/storgae-provider-rest)
+See [SP Auth Rest API Doc](../../../api/storage-provider-rest)
 
 ## Rational
 

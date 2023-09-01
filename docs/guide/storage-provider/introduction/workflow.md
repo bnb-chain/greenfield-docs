@@ -4,7 +4,7 @@ This section will combine all the current and existing workflows of SP to help y
 
 ## Get Approval
 
-[Get Approval](../../../api/storgae-provider-rest/get_approval) API includes actions: CreateBucket and CreateObject. To upload an object into SP, you must first send a CreateBucket approval request, which will create a bucket on the Greenfield blockchain. If the request is successful, you can then send a CreateObject approval request. Both of these actions are used to determine whether SP is willing to serve the request. SP may reject users with a bad reputation or specific objects or buckets. SP approves the request by signing a message for the action and responding to the users. By default, SP will serve the request, but it can refuse if it chooses to do so. Each SP can customize its own strategy for accepting or rejecting requests.
+[Get Approval](../../../api/storage-provider-rest/get_approval) API includes actions: CreateBucket and CreateObject. To upload an object into SP, you must first send a CreateBucket approval request, which will create a bucket on the Greenfield blockchain. If the request is successful, you can then send a CreateObject approval request. Both of these actions are used to determine whether SP is willing to serve the request. SP may reject users with a bad reputation or specific objects or buckets. SP approves the request by signing a message for the action and responding to the users. By default, SP will serve the request, but it can refuse if it chooses to do so. Each SP can customize its own strategy for accepting or rejecting requests.
 
 The flow chart is shown below:
 
@@ -24,11 +24,11 @@ By default, each account can create a maximum of 100 buckets.
 
 If users send multiple CreateBucket or CreateObject approval requests in a short period of time, SP will provide the same results due to an expired blockchain height that is set to prevent repeated requests, such as DDoS attacks.
 
-See request and response details for this API: [GetApproval](../../../api/storgae-provider-rest/get_approval).
+See request and response details for this API: [GetApproval](../../../api/storage-provider-rest/get_approval).
 
 ## Upload Object
 
-After successfully sending requests to the [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storgae-provider-rest/get_approval.html) API and receiving results, you can upload an object to SP. This API involves two steps: first, users manually upload an object to PrimarySP; second, after a successful upload to PrimarySP, the object is automatically replicated to secondarySP to ensure data reliability.
+After successfully sending requests to the [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storage-provider-rest/get_approval.html) API and receiving results, you can upload an object to SP. This API involves two steps: first, users manually upload an object to PrimarySP; second, after a successful upload to PrimarySP, the object is automatically replicated to secondarySP to ensure data reliability.
 
 Upload to PrimarySP flow chart is shown below:
 
@@ -76,7 +76,7 @@ Replicate to SecondarySP flow chart is shown below:
 - Sends the MsgSealObject to the Signer for signing the seal object transaction and broadcasting to the Greenfield chain with the secondary SPs' integrity hash and signature. The state of the JobContext turns to `SIGN_OBJECT_DOING` from `REPLICATE_OBJECT_DONE`. If Signer succeeds to broadcast the SealObjectTX, changes `SEAL_OBJECT_TX_DOING` state immediately into `SIGN_OBJECT_DONE` state.
 - Monitor the execution results of seal object transaction on the Greenfield chain to determine whether the seal is successful. If so, the JobContext state is changed into `SEAL_OBJECT_DONE` state.
 
-See request and response details for this API: [PutObject](../../../api/storgae-provider-rest/put_object).
+See request and response details for this API: [PutObject](../../../api/storage-provider-rest/put_object).
 
 ## Download Object
 
@@ -102,7 +102,7 @@ Users can download an object from PrimarySP. The flow chart is shown below:
     * If the quota is sufficient, Downloader inserts read record into the SP traffic-db.
 - Downloader splits the GetObject request into GetPiece requests (which support range reads) to retrieve the corresponding piece payload data. Downloader then streams the object payload data back to the Gateway.
 
-See request and response details for this API: [GetObject](../../../api/storgae-provider-rest/put_object).
+See request and response details for this API: [GetObject](../../../api/storage-provider-rest/put_object).
 
 ## QueryMeta
 

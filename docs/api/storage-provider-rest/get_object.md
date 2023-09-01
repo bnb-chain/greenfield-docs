@@ -20,7 +20,7 @@ This API is used to download an object from Greenfield SP. And it supports both 
 
 | ParameterName                                                            | Type   | Required | Description                                                                                   |
 | ------------------------------------------------------------------------ | ------ | -------- | --------------------------------------------------------------------------------------------- |
-| [Authorization](../storgae-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
+| [Authorization](../storage-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request.                                                 |
 | Range                                                                    | string | no       | The Range HTTP request header indicates the part of a document that the server should return. |
 
 ## HTTP Request Parameter
