@@ -9,10 +9,8 @@ order: 2
 Data marketplace is a data exchange platform where users can freely create, list, trade, 
 and sell data assets, including digital publications, scientific experimental data, and specific domain data.
 
-Demo Link: https://gf-marketplace.gnfd-testnet-sp1.bnbchain.org/index.html
+Demo Link: https://gnfd-testnet-sp1.bnbchain.org/view/data-marketplace/index.html
 
 Frontend Repo: https://github.com/bnb-chain/greenfield-data-marketplace-frontend
 
 Smart Contract Repo: https://github.com/bnb-chain/greenfield-data-marketplace-contracts
-
-
