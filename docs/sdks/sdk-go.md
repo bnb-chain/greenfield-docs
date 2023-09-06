@@ -27,13 +27,14 @@ Edit `go.mod` to replace dependencies
 
 ```
 replace (
-    cosmossdk.io/api => github.com/bnb-chain/greenfield-cosmos-sdk/api v0.0.0-20230425074444-eb5869b05fe9   
-    cosmossdk.io/math => github.com/bnb-chain/greenfield-cosmos-sdk/math v0.0.0-20230425074444-eb5869b05fe9
-    github.com/cometbft/cometbft => github.com/bnb-chain/greenfield-cometbft v0.0.2
+    cosmossdk.io/api => github.com/bnb-chain/greenfield-cosmos-sdk/api v0.0.0-20230816082903-b48770f5e210
+    cosmossdk.io/math => github.com/bnb-chain/greenfield-cosmos-sdk/math v0.0.0-20230816082903-b48770f5e210
+    github.com/cometbft/cometbft => github.com/bnb-chain/greenfield-cometbft v0.0.3
     github.com/cometbft/cometbft-db => github.com/bnb-chain/greenfield-cometbft-db v0.8.1-alpha.1
-    github.com/cosmos/cosmos-sdk => github.com/bnb-chain/greenfield-cosmos-sdk v0.2.3
-    github.com/cosmos/iavl => github.com/bnb-chain/greenfield-iavl v0.20.1-alpha.1
+    github.com/cosmos/cosmos-sdk => github.com/bnb-chain/greenfield-cosmos-sdk v0.2.4
+    github.com/cosmos/iavl => github.com/bnb-chain/greenfield-iavl v0.20.1
     github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+    github.com/consensys/gnark-crypto => github.com/consensys/gnark-crypto v0.7.0
 )
 ```
 
@@ -245,7 +246,7 @@ Now, let’s try to transfer tBNB to this new address. Under the hood, this will
 	// wait for transaction hash
 	waitForTx, err := cli.WaitForTx(ctx, transferTxHash)
 
-	log.Printf("Wair for tx: %s", waitForTx.String())
+	log.Printf("Wait for tx: %s", waitForTx.String())
 
 	//verify account2's balance
 	balance, err = cli.GetAccountBalance(ctx, account2.GetAddress().String())
@@ -311,28 +312,26 @@ func main() {
 
   // initialize account
   account, err := types.NewAccountFromPrivateKey("test", privateKey)
-	log.Println("address info:", account)
+  log.Println("address info:", account)
 
-	if err != nil {
-		log.Fatalf("New account from private key error, %v", err)
-	}
+  if err != nil {
+	  log.Fatalf("New account from private key error, %v", err)
+  }
 
-    //initialize client
-	cli, err := client.New(chainId, rpcAddr, client.Option{DefaultAccount: account})
-	if err != nil {
-		log.Fatalf("unable to new greenfield client, %v", err)
-	}
-	ctx := context.Background()
+  //initialize client
+  cli, err := client.New(chainId, rpcAddr, client.Option{DefaultAccount: account})
+  if err != nil {
+	  log.Fatalf("unable to new greenfield client, %v", err)
+  }
+  ctx := context.Background()
 
-	// 1. choose storage provider
+  // 1. choose storage provider
 
   // 2. Create a bucket
 
   // 3. Upload your data and set a quota
-
 }
 ```
-
 
 
 #### 2. Choose SP
@@ -377,7 +376,7 @@ Uploading objects is composed of two parts: `create` and `put`.
 *   `PutObject` supports the second stage of uploading the object to bucket.
 
 ```go
-// create and put object
+    // create and put object
 	txnHash, err := cli.CreateObject(ctx, bucketName, objectName, bytes.NewReader(buffer.Bytes()), types.CreateObjectOptions{})
 
 	handleErr(err, "CreateObject")
@@ -478,24 +477,31 @@ Basic interface defines basic functions of greenfield client.
 
 ```go
 type Basic interface {
-	GetNodeInfo(ctx context.Context) (*p2p.DefaultNodeInfo, *tmservice.VersionInfo, error)
-
-	GetLatestBlockHeight(ctx context.Context) (int64, error)
-	GetLatestBlock(ctx context.Context) (*tmservice.Block, error)
-	GetSyncing(ctx context.Context) (bool, error)
-	GetBlockByHeight(ctx context.Context, height int64) (*tmservice.Block, error)
-
-	GetValidatorSet(ctx context.Context, request *query.PageRequest) (int64, []*tmservice.Validator, *query.PageResponse, error)
-
-	WaitForBlockHeight(ctx context.Context, height int64) error
-	WaitForTx(ctx context.Context, hash string) (*sdk.TxResponse, error)
-	WaitForNBlocks(ctx context.Context, n int64) error
-	WaitForNextBlock(ctx context.Context) error
-
-	SimulateTx(ctx context.Context, msgs []sdk.Msg, txOpt types.TxOption, opts ...grpc.CallOption) (*tx.SimulateResponse, error)
-	SimulateRawTx(ctx context.Context, txBytes []byte, opts ...grpc.CallOption) (*tx.SimulateResponse, error)
-	BroadcastTx(ctx context.Context, msgs []sdk.Msg, txOpt types.TxOption, opts ...grpc.CallOption) (*tx.BroadcastTxResponse, error)
-	BroadcastRawTx(ctx context.Context, txBytes []byte, sync bool) (*sdk.TxResponse, error)
+    GetNodeInfo(ctx context.Context) (*p2p.DefaultNodeInfo, *tmservice.VersionInfo, error)
+    
+    GetStatus(ctx context.Context) (*ctypes.ResultStatus, error)
+    GetCommit(ctx context.Context, height int64) (*ctypes.ResultCommit, error)
+    GetLatestBlockHeight(ctx context.Context) (int64, error)
+    GetLatestBlock(ctx context.Context) (*bfttypes.Block, error)
+    GetSyncing(ctx context.Context) (bool, error)
+    GetBlockByHeight(ctx context.Context, height int64) (*bfttypes.Block, error)
+    GetBlockResultByHeight(ctx context.Context, height int64) (*ctypes.ResultBlockResults, error)
+    
+    GetValidatorSet(ctx context.Context) (int64, []*bfttypes.Validator, error)
+    GetValidatorsByHeight(ctx context.Context, height int64) ([]*bfttypes.Validator, error)
+    
+    WaitForBlockHeight(ctx context.Context, height int64) error
+    WaitForTx(ctx context.Context, hash string) (*ctypes.ResultTx, error)
+    WaitForNBlocks(ctx context.Context, n int64) error
+    WaitForNextBlock(ctx context.Context) error
+    
+    SimulateTx(ctx context.Context, msgs []sdk.Msg, txOpt types.TxOption, opts ...grpc.CallOption) (*tx.SimulateResponse, error)
+    SimulateRawTx(ctx context.Context, txBytes []byte, opts ...grpc.CallOption) (*tx.SimulateResponse, error)
+    BroadcastTx(ctx context.Context, msgs []sdk.Msg, txOpt types.TxOption, opts ...grpc.CallOption) (*tx.BroadcastTxResponse, error)
+    BroadcastRawTx(ctx context.Context, txBytes []byte, sync bool) (*sdk.TxResponse, error)
+    
+    BroadcastVote(ctx context.Context, vote votepool.Vote) error
+    QueryVote(ctx context.Context, eventType int, eventHash []byte) (*ctypes.ResultQueryVote, error)
 }
 ```
 
@@ -538,6 +544,7 @@ type Bucket interface {
 	ListBucketsByBucketID(ctx context.Context, bucketIds []uint64, opts types.EndPointOptions) (types.ListBucketsByBucketIDResponse, error)
 	GetMigrateBucketApproval(ctx context.Context, migrateBucketMsg *storageTypes.MsgMigrateBucket) (*storageTypes.MsgMigrateBucket, error)
 	MigrateBucket(ctx context.Context, bucketName string, opts types.MigrateBucketOptions) (string, error)
+    CancelMigrateBucket(ctx context.Context, bucketName string, opts types.CancelMigrateBucketOptions) (uint64, string, error)
 }
 
 ```
@@ -576,7 +583,9 @@ type Client interface {
 	Distribution
 	CrossChain
 	FeeGrant
-
+	VirtualGroup
+	OffChainAuth
+	
 	GetDefaultAccount() (*types.Account, error)
 	SetDefaultAccount(account *types.Account)
 	EnableTrace(outputStream io.Writer, onlyTraceErr bool)
@@ -601,14 +610,14 @@ type CrossChain interface {
 	TransferOut(ctx context.Context, toAddress string, amount math.Int, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
 
 	Claims(ctx context.Context, srcShainId, destChainId uint32, sequence uint64, timestamp uint64, payload []byte, voteAddrSet []uint64, aggSignature []byte, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
-	GetChannelSendSequence(ctx context.Context, channelId uint32) (uint64, error)
-	GetChannelReceiveSequence(ctx context.Context, channelId uint32) (uint64, error)
+    GetChannelSendSequence(ctx context.Context, destChainId sdk.ChainID, channelId uint32) (uint64, error)
+    GetChannelReceiveSequence(ctx context.Context, destChainId sdk.ChainID, channelId uint32) (uint64, error)
 	GetInturnRelayer(ctx context.Context, req *oracletypes.QueryInturnRelayerRequest) (*oracletypes.QueryInturnRelayerResponse, error)
-	GetCrossChainPackage(ctx context.Context, channelId uint32, sequence uint64) ([]byte, error)
+    GetCrossChainPackage(ctx context.Context, destChainId sdk.ChainID, channelId uint32, sequence uint64) ([]byte, error)
 
-	MirrorGroup(ctx context.Context, id math.Uint, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
-	MirrorBucket(ctx context.Context, id math.Uint, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
-	MirrorObject(ctx context.Context, id math.Uint, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
+    MirrorGroup(ctx context.Context, destChainId sdk.ChainID, groupId math.Uint, groupName string, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
+    MirrorBucket(ctx context.Context, destChainId sdk.ChainID, bucketId math.Uint, bucketName string, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
+    MirrorObject(ctx context.Context, destChainId sdk.ChainID, objectId math.Uint, bucketName, objectName string, txOption gnfdSdkTypes.TxOption) (*sdk.TxResponse, error)
 }
 ```
 
@@ -654,8 +663,9 @@ type Group interface {
 	// groupOwnerAddr indicates the HEX-encoded string of the group owner address
 	// addAddresses indicates the HEX-encoded string list of the member addresses to be added
 	// removeAddresses indicates the HEX-encoded string list of the member addresses to be removed
-	UpdateGroupMember(ctx context.Context, groupName string, groupOwnerAddr string,
-		addAddresses, removeAddresses []string, opts types.UpdateGroupMemberOption) (string, error)
+    // expirationTime  indicates the expiration time of the group member, user need set the expiration time for the addAddresses
+    UpdateGroupMember(ctx context.Context, groupName string, groupOwnerAddr string,
+    addAddresses, removeAddresses []string, opts types.UpdateGroupMemberOption) (string, error)
 	// LeaveGroup make the member leave the specific group
 	// groupOwnerAddr indicates the HEX-encoded string of the group owner address
 	LeaveGroup(ctx context.Context, groupName string, groupOwnerAddr string, opt types.LeaveGroupOption) (string, error)
@@ -683,8 +693,18 @@ type Group interface {
 	// ListGroup get the group list by name and prefix.
 	// prefix is the start of the search pattern. The system will only return groups that start with this prefix.
 	// name is the ending of the search pattern.
-	// it providers fuzzy searches by inputting a specific name and prefix
+	// it provides fuzzy searches by inputting a specific name and prefix
 	ListGroup(ctx context.Context, name, prefix string, opts types.ListGroupsOptions) (types.ListGroupsResult, error)
+    // RenewGroupMember renew a list of group members and their expiration time
+    RenewGroupMember(ctx context.Context, groupOwnerAddr, groupName string, memberAddresses []string, opts types.RenewGroupMemberOption) (string, error)
+    // ListGroupMembers returns a list of members contained within the group specified by the group id, including those for which the user's expiration time has already elapsed
+    ListGroupMembers(ctx context.Context, groupID int64, opts types.GroupMembersPaginationOptions) (*types.GroupMembersResult, error)
+    // ListGroupsByAccount returns a list of all groups that the user has joined, including those for which the user's expiration time has already elapsed
+    // By default, the user is the sender. Other users can be set using the option
+    ListGroupsByAccount(ctx context.Context, opts types.GroupsPaginationOptions) (*types.GroupsResult, error)
+    // ListGroupsByOwner returns a list of groups owned by the specified user, including those for which the user's expiration time has already elapsed
+    // By default, the user is the sender. Other users can be set using the option
+    ListGroupsByOwner(ctx context.Context, opts types.GroupsOwnerPaginationOptions) (*types.GroupsResult, error)
 }
 ```
 
@@ -745,6 +765,14 @@ type Object interface {
 ```
 
 
+### Type OffChainAuth
+```go
+type OffChainAuth interface {
+    RegisterEDDSAPublicKey(spAddress string, spEndpoint string) (string, error)
+    OffChainAuthSign(unsignBytes []byte) string
+}
+```
+
 #### Type Option
 
 Option is a configuration struct used to provide optional parameters to the
@@ -762,6 +790,14 @@ type Option struct {
 	Transport http.RoundTripper
 	// Host is the target sp server hostname
 	Host string
+    // OffChainAuthOption consists of a EdDSA private key and the domain where the EdDSA keys will be registered for.
+    // This property should not be set in most cases unless you want to use go-sdk to test if the SP support off-chain-auth feature.
+    // Once this property is set, the request will be signed in "off-chain-auth" way rather than v1
+    OffChainAuthOption *OffChainAuthOption
+    // UseWebSocketConn specifies that connection to Chain is via websocket
+    UseWebSocketConn bool
+    // ExpireSeconds indicates the number of seconds after which the authentication of the request sent to the SP will become invalid，the default value is 1000
+    ExpireSeconds uint64
 }
 ```
 
@@ -801,14 +837,17 @@ type SP interface {
 	GetStorageProviderInfo(ctx context.Context, SPAddr sdk.AccAddress) (*spTypes.StorageProvider, error)
 	// GetStoragePrice returns the storage price for a particular storage provider, including update time, read price, store price and .etc.
 	GetStoragePrice(ctx context.Context, SPAddr string) (*spTypes.SpStoragePrice, error)
-	// GetSecondarySpStorePrice returns the secondary storage price, including update time and store price
-	GetSecondarySpStorePrice(ctx context.Context) (*spTypes.SecondarySpStorePrice, error)
-	// GrantDepositForStorageProvider submit a grant transaction to allow gov module account to deduct the specified number of tokens
-	GrantDepositForStorageProvider(ctx context.Context, spAddr string, depositAmount math.Int, opts types.GrantDepositForStorageProviderOptions) (string, error)
+	// GetGlobalSpStorePrice returns the global storage price, including update time and store price
+	GetGlobalSpStorePrice(ctx context.Context) (*spTypes.GlobalSpStorePrice, error)
+    // GrantDepositForStorageProvider submit a grant transaction to allow gov module account to deduct the specified number of token
+    GrantDepositForStorageProvider(ctx context.Context, spAddr string, depositAmount math.Int, opts types.GrantDepositForStorageProviderOptions) (string, error)
 	// CreateStorageProvider submits a proposal to create a storage provider to the greenfield blockchain, and it returns a proposal ID
 	CreateStorageProvider(ctx context.Context, fundingAddr, sealAddr, approvalAddr, gcAddr, blsPubKey, blsProof, endpoint string, depositAmount math.Int, description spTypes.Description, opts types.CreateStorageProviderOptions) (uint64, string, error)
 	// UpdateSpStoragePrice updates the read price, storage price and free read quota for a particular storage provider
 	UpdateSpStoragePrice(ctx context.Context, spAddr string, readPrice, storePrice sdk.Dec, freeReadQuota uint64, TxOption gnfdSdkTypes.TxOption) (string, error)
+    // UpdateSpStatus set an SP status between STATUS_IN_SERVICE and STATUS_IN_MAINTENANCE, duration is requested time an SP wish to stay in maintenance mode
+    // for setting to STATUS_IN_SERVICE, duration is set to 0
+    UpdateSpStatus(ctx context.Context, spAddr string, status spTypes.Status, duration int64, TxOption gnfdSdkTypes.TxOption) (string, error)
 }
 ```
 
@@ -824,12 +863,12 @@ type Validator interface {
 	//	"BOND_STATUS_BONDED",
 	ListValidators(ctx context.Context, status string) (*stakingtypes.QueryValidatorsResponse, error)
 
-	CreateValidator(ctx context.Context, description stakingtypes.Description, commission stakingtypes.CommissionRates,
-		selfDelegation math.Int, validatorAddress string, ed25519PubKey string, selfDelAddr string, relayerAddr string, challengerAddr string, blsKey string,
-		proposalDepositAmount math.Int, proposalTitle, proposalSummary, proposalMetadata string, txOption gnfdsdktypes.TxOption) (uint64, string, error)
-	EditValidator(ctx context.Context, description stakingtypes.Description, newRate *sdktypes.Dec,
-		newMinSelfDelegation *math.Int, newRelayerAddr, newChallengerAddr, newBlsKey string, txOption gnfdsdktypes.TxOption) (string, error)
-	DelegateValidator(ctx context.Context, validatorAddr string, amount math.Int, txOption gnfdsdktypes.TxOption) (string, error)
+    CreateValidator(ctx context.Context, description stakingtypes.Description, commission stakingtypes.CommissionRates,
+        selfDelegation math.Int, validatorAddress string, ed25519PubKey string, selfDelAddr string, relayerAddr string, challengerAddr string, blsKey, blsProof string,
+        proposalDepositAmount math.Int, proposalTitle, proposalSummary, proposalMetadata string, txOption gnfdsdktypes.TxOption) (uint64, string, error)
+    EditValidator(ctx context.Context, description stakingtypes.Description, newRate *sdktypes.Dec,
+		newMinSelfDelegation *math.Int, newRelayerAddr, newChallengerAddr, newBlsKey, blsProof string, txOption gnfdsdktypes.TxOption) (string, error)
+    DelegateValidator(ctx context.Context, validatorAddr string, amount math.Int, txOption gnfdsdktypes.TxOption) (string, error)
 	BeginRedelegate(ctx context.Context, validatorSrcAddr, validatorDestAddr string, amount math.Int, txOption gnfdsdktypes.TxOption) (string, error)
 	Undelegate(ctx context.Context, validatorAddr string, amount math.Int, txOption gnfdsdktypes.TxOption) (string, error)
 	CancelUnbondingDelegation(ctx context.Context, validatorAddr string, creationHeight int64, amount math.Int, txOption gnfdsdktypes.TxOption) (string, error)
