@@ -86,7 +86,7 @@ const sidebars = {
         
         {
           type: "category",
-          label: "Run Storage Provider",
+          label: "Run Node",
           collapsible: true,
           collapsed: true,
           items:[
