@@ -8,7 +8,7 @@ BNB remains the main utility token on Greenfield, no other token on Greenfield.
 You can acquire BNB in multiple ways:
 
 1. [Buy BNB](https://www.binance.com/en/how-to-buy/bnb) if you never own it.
-2. Cross chain transfer BNB from BSC network to greenfield using [DCellar](https://pending_domain_name) if you get any BEP20 BNB.
+2. Cross chain transfer BNB from BSC network to greenfield using [DCellar](https://dcellar.io/) if you get any BEP20 BNB.
 3. Get BNB from other Greenfield users.
 
 ### What is the utility of BNB on Greenfield?
