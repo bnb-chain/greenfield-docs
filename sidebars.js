@@ -257,7 +257,7 @@ const sidebars = {
       items:[
         {
           type: "category",
-          label: "Building with Smart Contract",
+          label: "Building programmable storage",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/dapp/overview'},
@@ -273,7 +273,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Building without Smart Contract",
+          label: "Interacting with storage",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/native-dapp/overview'},

@@ -3,7 +3,7 @@ title: Basic File Management
 order: 1
 ---
 
-# Introduction to file management with CLI
+# Basic File Management with CLI
 ## Introduction
 Backing up files is an essential practice for any development process. The benefits initially might not seem straightforward, but backups provide a safety net for disaster recovery, ensuring that data can be restored in the event of hardware failures, accidental deletions, or natural disasters. 
 
@@ -41,7 +41,7 @@ Once you have the files ready, run the following command "account import [keyfil
 gnfd-cmd account import key.txt
 ```
 
-The terminal will prompt user to enter the password information. Users can also specify the password file path by using the "--passwordfile". While the password doesn’t have any restriction on the length or complexity,
+The terminal will prompt user to enter the password information. Users can also specify the password file path by using the "-p". While the password doesn’t have any restriction on the length or complexity,
 it’s better to follow generally recommended principles.
 
 This command will create a keystore file and store it in the path "keystore/key.json" under the home directory of the system or the directory set by "-home" and will be picked up by the CLI for commands that require identity and payment. After generating the keystore file, make sure to delete the key.txt file with the private key inside.
