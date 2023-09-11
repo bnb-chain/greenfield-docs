@@ -81,21 +81,20 @@ const config = {
             to: "/docs/guide/introduction/overview"
           },
           {
+            label: "Tutorials",
+            position: "left",
+            to: "/docs/tutorials/overview"
+          },
+          {
             //type: 'dropdown',
             label: "API & SDK",
             position: "left",
             to: "/docs/api/endpoints",
           },
-          
           {
             label: "Releases",
             position:"left",
             to: "/docs/release-notes/releaseNotes"
-          },
-          {
-            label: "Tutorials",
-            position: "left",
-            to: "/docs/tutorials/overview"
           },
           {
             label: "FAQs",
