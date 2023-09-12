@@ -86,15 +86,18 @@ func main() {
   if err != nil {
     log.Fatalf("New account from private key error, %v", err)
   }
+
   cli, err := client.New(chainId, rpcAddr, client.Option{DefaultAccount: account})
   if err != nil {
     log.Fatalf("unable to new greenfield client, %v", err)
   }
+
   ctx := context.Background()
   nodeInfo, versionInfo, err := cli.GetNodeInfo(ctx)
   if err != nil {
     log.Fatalf("unable to get node info, %v", err)
   }
+
   log.Printf("nodeInfo moniker: %s, go version: %s", nodeInfo.Moniker, versionInfo.GoVersion)
   latestBlock, err := cli.GetLatestBlock(ctx)
   if err != nil {
