@@ -23,13 +23,10 @@ To utilize the SDK functionality, users need to instantiate a client object from
 import {Client} from '@bnb-chain/greenfield-js-sdk'
 
 // Node.js
-const client = Client.create(GRPC_URL, GREEN_CHAIN_ID);
+const { Client } = require('@bnb-chain/greenfield-js-sdk');
+const { ACCOUNT_ADDRESS, ACCOUNT_PRIVATEKEY } = require('./env');
 
-// Browser
-Client.create(GRPC_URL, String(GREEN_CHAIN_ID), {
-  zkCryptoUrl:
-    'https://unpkg.com/@bnb-chain/greenfield-zk-crypto@0.0.2-alpha.4/dist/node/zk-crypto.wasm',
-});
+const client = Client.create('https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org', '5600');
 ```
 
 > Browser need load wasm manually.
@@ -63,6 +60,7 @@ const { simulate, broadcast } = await client.account.transfer({
 ```
 
 #### 2. Simulate Transactions
+This function returns the estimated gas limit, gas price, and overall gas fee.
 
 ```js
 // simulate tx
@@ -70,12 +68,25 @@ const simulateInfo = await simulate({
     denom: 'BNB',
 });
 
-// This includes details such as gas limit, gas price, and overall gas fee.
+```
+
+Example output
+
+```json
+{
+   "gasLimit":2400,
+   "gasPrice":"5000000000",
+   "gasFee":"0.000012"
+}
 ```
 
 #### 3. Broadcast Transactions
+
+Use the API endpoint to send the transaction data to the blockchain network.
+
 ```js
 // broadcast tx
+// This includes details such as gas limit, gas price, and overall gas fee.
 const broadcastRes = await broadcast({
   denom: 'BNB',
   gasLimit: Number(simulateInfo.gasLimit),
@@ -110,6 +121,117 @@ const broadcastRes = await broadcast({
   //...
   privateKey: '0x.......'
 });
+```
+
+Example output after broadcast your transaction:
+```json
+{
+   "code":0,
+   "height":449276,
+   "txIndex":0,
+   "events":[
+      {
+         "type":"coin_spent",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"coin_received",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"transfer",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"tx",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"coin_spent",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"coin_received",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"transfer",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"message",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"greenfield.payment.EventStreamRecordUpdate",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"greenfield.payment.EventStreamRecordUpdate",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"greenfield.payment.EventStreamRecordUpdate",
+         "attributes":[
+            "Array"
+         ]
+      },
+      {
+         "type":"greenfield.storage.EventCreateBucket",
+         "attributes":[
+            "Array"
+         ]
+      }
+   ],
+   "rawLog":"[{\"msg_index\":0,\"events\":[{\"type\":\"message\",\"attributes\":[{\"key\":\"action\",\"value\":\"/greenfield.storage.MsgCreateBucket\"},{\"key\":\"sender\",\"value\":\"0x525482AB3922230e4D73079890dC905dCc3D37cd\"},{\"key\":\"module\",\"value\":\"storage\"}]},{\"type\":\"coin_spent\",\"attributes\":[{\"key\":\"spender\",\"value\":\"0x525482AB3922230e4D73079890dC905dCc3D37cd\"},{\"key\":\"amount\",\"value\":\"1255106370BNB\"}]},{\"type\":\"coin_received\",\"attributes\":[{\"key\":\"receiver\",\"value\":\"0x040fFD5925D40E11c67b7238A7fc9957850B8b9a\"},{\"key\":\"amount\",\"value\":\"1255106370BNB\"}]},{\"type\":\"transfer\",\"attributes\":[{\"key\":\"recipient\",\"value\":\"0x040fFD5925D40E11c67b7238A7fc9957850B8b9a\"},{\"key\":\"sender\",\"value\":\"0x525482AB3922230e4D73079890dC905dCc3D37cd\"},{\"key\":\"amount\",\"value\":\"1255106370BNB\"}]},{\"type\":\"message\",\"attributes\":[{\"key\":\"sender\",\"value\":\"0x525482AB3922230e4D73079890dC905dCc3D37cd\"}]},{\"type\":\"greenfield.payment.EventStreamRecordUpdate\",\"attributes\":[{\"key\":\"account\",\"value\":\"\\\"0x525482AB3922230e4D73079890dC905dCc3D37cd\\\"\"},{\"key\":\"buffer_balance\",\"value\":\"\\\"1320750144000\\\"\"},{\"key\":\"crud_timestamp\",\"value\":\"\\\"1694704373\\\"\"},{\"key\":\"frozen_netflow_rate\",\"value\":\"\\\"0\\\"\"},{\"key\":\"lock_balance\",\"value\":\"\\\"0\\\"\"},{\"key\":\"netflow_rate\",\"value\":\"\\\"-2183780\\\"\"},{\"key\":\"settle_timestamp\",\"value\":\"\\\"1695265973\\\"\"},{\"key\":\"static_balance\",\"value\":\"\\\"0\\\"\"},{\"key\":\"status\",\"value\":\"\\\"STREAM_ACCOUNT_STATUS_ACTIVE\\\"\"}]},{\"type\":\"greenfield.payment.EventStreamRecordUpdate\",\"attributes\":[{\"key\":\"account\",\"value\":\"\\\"0x8D720138eC1f2006dbe283C9A0f6eCe4B5c2fF1e\\\"\"},{\"key\":\"buffer_balance\",\"value\":\"\\\"0\\\"\"},{\"key\":\"crud_timestamp\",\"value\":\"\\\"1694704373\\\"\"},{\"key\":\"frozen_netflow_rate\",\"value\":\"\\\"0\\\"\"},{\"key\":\"lock_balance\",\"value\":\"\\\"0\\\"\"},{\"key\":\"netflow_rate\",\"value\":\"\\\"32023799692\\\"\"},{\"key\":\"settle_timestamp\",\"value\":\"\\\"0\\\"\"},{\"key\":\"static_balance\",\"value\":\"\\\"1612084953752131\\\"\"},{\"key\":\"status\",\"value\":\"\\\"STREAM_ACCOUNT_STATUS_ACTIVE\\\"\"}]},{\"type\":\"greenfield.payment.EventStreamRecordUpdate\",\"attributes\":[{\"key\":\"account\",\"value\":\"\\\"0xdF5F0588f6B09f0B9E58D3426252db25Dc74E7a1\\\"\"},{\"key\":\"buffer_balance\",\"value\":\"\\\"0\\\"\"},{\"key\":\"crud_timestamp\",\"value\":\"\\\"1694704373\\\"\"},{\"key\":\"frozen_netflow_rate\",\"value\":\"\\\"0\\\"\"},{\"key\":\"lock_balance\",\"value\":\"\\\"0\\\"\"},{\"key\":\"netflow_rate\",\"value\":\"\\\"1294425392\\\"\"},{\"key\":\"settle_timestamp\",\"value\":\"\\\"0\\\"\"},{\"key\":\"static_balance\",\"value\":\"\\\"121675983099\\\"\"},{\"key\":\"status\",\"value\":\"\\\"STREAM_ACCOUNT_STATUS_ACTIVE\\\"\"}]},{\"type\":\"greenfield.storage.EventCreateBucket\",\"attributes\":[{\"key\":\"bucket_id\",\"value\":\"\\\"744\\\"\"},{\"key\":\"bucket_name\",\"value\":\"\\\"vpxyylsyey\\\"\"},{\"key\":\"charged_read_quota\",\"value\":\"\\\"10000\\\"\"},{\"key\":\"create_at\",\"value\":\"\\\"1694704373\\\"\"},{\"key\":\"global_virtual_group_family_id\",\"value\":\"4\"},{\"key\":\"owner\",\"value\":\"\\\"0x525482AB3922230e4D73079890dC905dCc3D37cd\\\"\"},{\"key\":\"payment_address\",\"value\":\"\\\"0x525482AB3922230e4D73079890dC905dCc3D37cd\\\"\"},{\"key\":\"primary_sp_id\",\"value\":\"2\"},{\"key\":\"source_type\",\"value\":\"\\\"SOURCE_TYPE_ORIGIN\\\"\"},{\"key\":\"status\",\"value\":\"\\\"BUCKET_STATUS_CREATED\\\"\"},{\"key\":\"visibility\",\"value\":\"\\\"VISIBILITY_TYPE_PUBLIC_READ\\\"\"}]}]}]",
+   "transactionHash":"D304242145ED9B44F05431C3798B3273CF2A907E6AE1CA892759985C900D6E72",
+   "gasUsed":2400,
+   "gasWanted":2400
+}
 ```
 
 #### 4. Multi-Transactions
@@ -156,9 +278,36 @@ const { simulate, broadcast } = await multiTx([
 
 ### Querying Metadata
 
+* Account info
+
 ```js
-// get account info
-await client.account.getAccount(address);
+
+const { client, selectSp, generateString } = require('./client');
+const { ACCOUNT_ADDRESS, ACCOUNT_PRIVATEKEY } = require('./env');
+const Long = require('long');
+
+(async () => {
+  // get account info
+  const addrInfo = await client.account.getAccount(ACCOUNT_ADDRESS);
+
+  console.log('address is', addrInfo);
+
+
+})
+```
+
+Example output
+
+```json
+{
+   "address":"0x525482AB3922230e4D73079890dC905dCc3D37cd",
+   "pubKey":{
+      "typeUrl":"/cosmos.crypto.eth.ethsecp256k1.PubKey",
+      "value":"CiECKuOEfCNFxnfiinnIIoe0OSf3VEOAU5jxwmZscfpOaW4="
+   },
+   "accountNumber":"5012",
+   "sequence":"9"
+}
 ```
 
 ### Storage Provider Client
@@ -169,14 +318,12 @@ In addition, the SDK provides support for querying the list of storage providers
 
 SDK support two [authentication type](https://docs.bnbchain.org/greenfield-docs/docs/api/storage-provider-rest#authentication-type):
 
-* ECDSA: It is usually used on Node.js(Because it need to use a private key)
+* ECDSA: It is usually used on Node.js (Because it need to use a private key)
 * EDDSA: It is usually used in a browser
 
 `getBucketReadQuota` as example:
 
 ```js
-// browser:
-
 // generate seed:
 const allSps = await getAllSps();
 const offchainAuthRes = await client.offchainauth.genOffChainAuthKeyPairAndUpload(
