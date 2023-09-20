@@ -7,6 +7,42 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v0.2.6 - Final release before mainnet
+[v0.2.6](https://github.com/bnb-chain/greenfield/releases/tag/v0.2.6) This is the final version before the mainnet launch, 
+which mainly includes bug fixes and security enhancement.
+- Change few events the blockchain and enhance the parameter verification.
+- Refactor the code for getObject and Universal apis.
+- Strength the authentication and verification processes between storage providers.
+- Fix the vulnerability of not comparing the chain hash when uploading data.
+- Fix few bugs, like panic, memory leakage on storage provider.
+- Addressed several security vulnerabilities in the smart contract.
+
+## Greenfield v0.2.5 - Testnet Nagqu Upgrade
+
+BNB Greenfield is undergoing Nagqu upgrade for the testnet version to [v0.2.5](https://github.com/bnb-chain/greenfield/releases/tag/v0.2.5). 
+The Nagqu upgrade took place at block height 471350, estimated to be on Sep 15th at 
+03:20 AM considering the current block generation rate.
+
+*Please be aware that the upcoming hardfork will not impact your account balance on Greenfield. 
+All buckets and objects stored on the Greenfield Testnet before will remain accessible.*
+
+This version has undergone comprehensive security enhancements as the final hardfork version prior to the mainnet launch. This mainly includes:
+- The Greenfield resource mirror smart contracts apply more stringent parameter checks.
+- Preventing funds in payment accounts from being permanently trapped in the Cosmos Bank module through intelligent detection.
+- Introducing timer-lock mechanism: funds exceeding 100 BNB will be subject to a one-day lock-up period upon withdrawal from the payment account.
+- Enhance authentication logic between storage providers.
+
+
+To enhance the user experience, the developer community is introducing new features and improvements.
+- Introduce the official native SDK for Ali Oss-based SP to enhance stability.
+- Improve the performance and stability of SP processing for file uploads. The standard specifications of SP allow for the stable processing of 10 files per second with a size of 1M.
+- Optimize user read traffic billing based on actual usage rather than download count.
+- Command line optimization, like support folder upload.
+
+
+For other detailed features, bug fixes, and refactoring, please refer to the changelog in [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/blob/master/CHANGELOG.md) 
+and [Greenfield SP](https://github.com/bnb-chain/greenfield/blob/master/CHANGELOG.md) repo.
+
 
 ## Greenfield v0.2.4 - Testnet Maintenance Upgrade Reset.
 
