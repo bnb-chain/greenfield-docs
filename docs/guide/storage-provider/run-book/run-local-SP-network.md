@@ -9,7 +9,9 @@ and other development related purposes.
 - [Quickly setup local Greenfield Blockchain network](#quickly-setup-local-greenfield-blockchain-network)
 - [Setup local SP network](#setup-local-sp-network)
 - [Operate With SP](#operate-with-sp)
-
+  - [1. Generate your test account](#1-generate-your-test-account)
+  - [2. Transefer some BNB tokens to test account](#2-transefer-some-bnb-tokens-to-test-account)
+  - [3. Use cmd to send requests](#3-use-cmd-to-send-requests)
 
 ## Recommended Prerequisites
 
@@ -139,9 +141,9 @@ GC_PRIVATE_KEY="2fad16031b4fd9facb7dacda3da4ca4dd5f005f4166891bf9f7be13e02abb12d
 BLS_PRIVATE_KEY="6f349866f18413abb1a78cab947933459042044649686f354e941a646b9ed6e7"        # BlsPrivateKey is generated in setup local Greenfield blockchain step 3.
 ```
 
-4. Start Seven SPs
+4. Start Eight SPs
 
-Make config.toml according to db.info, sp.info and start seven sps.
+Make config.toml according to db.info, sp.info and start eight SPs.
 
 ```shell
 cd greenfield-storage-provider/
@@ -274,7 +276,7 @@ dd if=/dev/urandom of=./random_file bs=17M count=1
 # put object
 ./gnfd-cmd -c ./config.toml --home ./ object put --contentType "application/octet-stream" ./random_file gnfd://${BUCKET_NAME}/random_file
 # get object
-./gnfd-cmd -c ./config.toml --home ./ object get gnfd://spe2etestbucket/random_file ./new_random_file
+./gnfd-cmd -c ./config.toml --home ./ object get gnfd://${BUCKET_NAME}/random_file ./new_random_file
 ```
 
 Users can use md5 to compare your generated file and downloaded file whether is the same.

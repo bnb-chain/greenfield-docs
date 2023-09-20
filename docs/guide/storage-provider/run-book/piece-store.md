@@ -78,13 +78,14 @@ Temporary credentials are also set into environment variables such as s3 by `AWS
 
 PieceStore now supports the following storage system. If the listed storage systems don't conatin that you want to use, feel free to submit a requirement [issue](https://github.com/bnb-chain/greenfield-storage-provider/issues).
 
-| Name                                    | value   |
-| --------------------------------------- | ------- |
-| [Amazon S3](#amazon-s3)                 | `s3`    |
-| [Alibaba Cloud OSS](#alibaba-cloud-oss) | `oss`   |
-| [Backblaze B2](#backblaze-b2)           | `b2`    |
-| [MinIO](#minio)                         | `minio` |
-| [File](#file)                           | `file`  |
+| Name                                    | value    |
+| --------------------------------------- | -------- |
+| [Amazon S3](#amazon-s3)                 | `s3`     |
+| [Alibaba Cloud OSS](#alibaba-cloud-oss) | `oss`    |
+| [Backblaze B2](#backblaze-b2)           | `b2`     |
+| [MinIO](#minio)                         | `minio`  |
+| [File](#file)                           | `file`   |
+| [Memory](#memory)                       | `memory` |
 
 ### Amazon S3
 
@@ -95,68 +96,88 @@ S3 supports [two styles of endpoint URI](https://docs.aws.amazon.com/AmazonS3/la
 
 The `<region>` should be replaced with specific region code, e.g. the region code of US East (N. Virginia) is `us-east-1`. All the available region codes can be found [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions). If you use s3 as the underlying storage, you can set `Storage = s3` in config.toml.
 
-PieceStore use environment variables of S3:
+AWS S3 `AKSK` environment variables as follows:
 
 ```shell
-// AWSAccessKey defines env variable name for aws access key
-AWSAccessKey = "AWS_ACCESS_KEY"
-// AWSSecretKey defines env variable name for aws secret key
-AWSSecretKey = "AWS_SECRET_KEY"
-// AWSSessionToken defines env variable name for aws session token
-AWSSessionToken = "AWS_SESSION_TOKEN"
+// AWS_ACCESS_KEY defines env variable name for aws access key
+export AWS_ACCESS_KEY="your_access_key"
+// AWS_SECRET_KEY defines env variable name for aws secret key
+export AWS_SECRET_KEY="your_secret_key"
+// AWS_SESSION_TOKEN defines env variable name for aws session token, this is optional
+export AWS_SESSION_TOKEN="your_session_token"
+```
+
+AWS S3 `SA` environment variables as follows:
+
+```shell
+// AWS_ROLE_ARN defines env variable for aws role arnv
+export AWS_ROLE_ARN="your_role_arn"
+// AWSSecretKey defines env variable name for aws web identity token file
+export AWS_WEB_IDENTITY_TOKEN_FILE="your_web_identity_token_file"
 ```
 
 :::note
-If the S3 bucket has public access (anonymous access is supported), please set `AWSAccessKey` to `NoSignRequest`.
+If the S3 bucket has public access (anonymous access is supported), please set `export AWS_ACCESS_KEY="NoSignRequest"`.
 :::
 
 ### Alibaba Cloud OSS
 
 Please follow this [document](https://www.alibabacloud.com/help/en/basics-for-beginners/latest/obtain-an-accesskey-pair) to learn how to get access key and secret key. Alibaba Cloud also supports using Security Token Service (STS) to authorize temporary access to OSS. If you use OSS as the underlying storage, you can set `Storage = oss` in config.toml.
 
-PieceStore use environment variables of Alibaba Cloud OSS:
+Alibaba Cloud OSS `AKSK` environment variables as follows:
 
 ```shell
-// OSSAccessKey defines env variable name for OSS access key
-OSSAccessKey = "ALIBABA_CLOUD_ACCESS_KEY"
-// OSSSecretKey defines env variable name for OSS secret key
-OSSSecretKey = "ALIBABA_CLOUD_SECRET_KEY"
-// OSSSessionToken defines env variable name for OSS session token
-OSSSessionToken = "ALIBABA_CLOUD_SESSION_TOKEN"
-// OSSRegion defines env variable name for OSS oss region
-OSSRegion = "ALIBABA_CLOUD_OSS_REGION"
+// ALIBABA_CLOUD_ACCESS_KEY defines env variable name for OSS access key
+export ALIBABA_CLOUD_ACCESS_KEY="your_access_key"
+// ALIBABA_CLOUD_SECRET_KEY defines env variable name for OSS secret key
+export ALIBABA_CLOUD_SECRET_KEY="your_secret_key"
+// ALIBABA_CLOUD_SESSION_TOKEN defines env variable name for OSS session token, this is optional
+export ALIBABA_CLOUD_SESSION_TOKEN="your_session_token"
+// ALIBABA_CLOUD_OSS_REGION defines env variable name for OSS region
+export ALIBABA_CLOUD_OSS_REGION="oss_region"
+```
+
+Alibaba Cloud OSS `SA` environment variables as follows:
+
+```shell
+// ALIBABA_CLOUD_ROLE_ARN defines env variable for OSS role arnv
+export ALIBABA_CLOUD_ROLE_ARN="your_role_arn"
+// ALIBABA_CLOUD_OIDC_TOKEN_FILE defines env variable name for OSS oidc token file
+export ALIBABA_CLOUD_OIDC_TOKEN_FILE="your_oidc_token_file"
+// ALIBABA_CLOUD_OIDC_PROVIDER_ARN defines env variable for OSS oidc provider arn
+export ALIBABA_CLOUD_OIDC_PROVIDER_ARN="your_oidc_provider_arn"
 ```
 
 ### Backblaze B2
 
 To use Backblaze B2 as a storage system for Greenfield SP, you need to create [application key](https://www.backblaze.com/docs/cloud-storage-application-keys) firstly. Application Key ID and Application Key respectively corresponds to Access Key and Secret Key. If you use Backblaze B2 as the underlying storage, you can set `Storage = b2` in config.toml.
 
-PieceStore use environment variables of Backblaze B2:
+Backblaze B2 `AKSK` environment variables as follows:
 
 ```shell
-// B2AccessKey defines env variable name for minio access key
-B2AccessKey = "B2_ACCESS_KEY"
-// B2SecretKey defines env variable name for minio secret key
-B2SecretKey = "B2_SECRET_KEY"
-// B2SessionToken defines env variable name for minio session token
-B2SessionToken = "B2_SESSION_TOKEN"
+// B2_ACCESS_KEY defines env variable name for b2 access key
+export B2_ACCESS_KEY="your_access_key"
+// B2_SECRET_KEY defines env variable name for b2 secret key
+export B2_SECRET_KEY="your_secret_key"
+// B2_SESSION_TOKEN defines env variable name for b2 session token
+export B2_SESSION_TOKEN="your_session_token"
 ```
 
 ### MinIO
 
 [MinIO](https://min.io/) is a high-performance, S3 compatible object store. You can visit the official website to learn how to deploy and maintain a MinIO cluster or you can purchase minio service. If you use MinIO as the underlying storage, you can set `Storage = minio` in config.toml.
 
-PieceStore use environment variables of MinIO:
+MinIO `AKSK` environment variables as follows:
 
 ```shell
-// MinioRegion defines env variable name for minio region
-MinioRegion = "MINIO_REGION"
-// MinioAccessKey defines env variable name for minio access key
-MinioAccessKey = "MINIO_ACCESS_KEY"
-// MinioSecretKey defines env variable name for minio secret key
-MinioSecretKey = "MINIO_SECRET_KEY"
-// MinioSessionToken defines env variable name for minio session token
-MinioSessionToken = "MINIO_SESSION_TOKEN"
+// MINIO_REGION defines env variable name for minio region
+export MINIO_REGION="minio_region"
+// MINIO_ACCESS_KEY defines env variable name for minio access key
+export MINIO_ACCESS_KEY="your_access_key"
+// MINIO_SECRET_KEY defines env variable name for minio secret key
+export MINIO_SECRET_KEY="your_secret_key"
+// MINIO_SESSION_TOKEN defines env variable name for minio session token, this is optional
+export MINIO_SESSION_TOKEN="your_session_token"
 ```
 
 ### File
@@ -164,3 +185,7 @@ MinioSessionToken = "MINIO_SESSION_TOKEN"
 When running Greenfield SP in your local machine, you can use local disk to test SP basic functions. The default storage path for root user is `/var/piecestore` and `~/.piecestore/local` for ordinary users in Linux and macOS. In Windows system, the default path is `C:/piecestore/local`.
 
 Local storage is usually only used to help users understand how Greenfield SP works and to give users an experience on the basic features of Greenfield SP. The created PieceStore storage can only be used on a single machine. This is not recommended in production environment.
+
+### Memory
+
+Memory type can be used to test all PieceStore interfaces in memory. It's convenient for unit test or e2e test.
