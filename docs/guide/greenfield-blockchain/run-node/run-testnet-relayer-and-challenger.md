@@ -66,8 +66,8 @@ validator_bls=$(gnfd keys export validator_bls --unarmored-hex --unsafe --keyrin
     ```
     "relay_config": {
         ... 
-        "cross_chain_contract_addr": "0x57b8A375193b2e9c6481f167BaECF1feEf9F7d4B",
-        "greenfield_light_client_contract_addr": "0x4916f5c0688d058659aFce361E2A8F3F5b75CAd5"
+        "cross_chain_contract_addr": "0xa5B2c9194131A4E0BFaCbF9E5D6722c873159cb7",
+        "greenfield_light_client_contract_addr": "0xa9249cefF9cBc9BAC0D9167b79123b6C7413F50a"
       }
     ```
 
