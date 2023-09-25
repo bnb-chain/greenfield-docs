@@ -227,7 +227,9 @@ const sidebars = {
           "api/storage-provider-rest/get_bucket_meta",
           "api/storage-provider-rest/list_user_groups",
           "api/storage-provider-rest/list_user_owned_groups",
-
+          "api/storage-provider-rest/list_user_payment_accounts",
+          "api/storage-provider-rest/list_user_payment_streams",
+          "api/storage-provider-rest/list_groups_by_ids",
       ]
     },
 

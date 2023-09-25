@@ -66,7 +66,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 | PaymentAddress   | string                            | payment_address is the address of the payment account                                                   |
 | ChargedReadQuota | uint64                            | ChargedReadQuota defines the traffic quota for read in bytes per month.                                 |
 | BucketStatus     | [BucketStatus](#bucketstatus)     | BucketStatus define the status of the bucket                                                            |
-
+| Vgf              | [Vgf](#vgf)                       | Vgf define the global virtual group family info of bucket                                               |
 ### StreamRecord
 
 | ParameterName     | Type                                        | Description                                                                                                             |
@@ -113,6 +113,13 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 | 1     | SOURCE_TYPE_BSC_CROSS_CHAIN |
 | 2     | SOURCE_TYPE_MIRROR_PENDING  |
 
+### Vgf
+| ParameterName         | Type                                        | Description                                                                                                             |
+| --------------------- | ------ | --------------------------------------------------------------------------------------------- |
+| Id                    | uint32 | Id is the vgf id                                                                              |
+| PrimarySpId           | uint32 | PrimarySpId is the primary sp id of vgf                                                       |
+| VirtualPaymentAddress | string | VirtualPaymentAddress is the payment address associated with the global virtual group family. |
+
 ### Response Body
 
 If the request is successful, the service sends back an HTTP 200 response.
@@ -151,25 +158,30 @@ Date: Fri, 31 March 2023 17:32:10 GMT
 <GfSpGetBucketMetaResponse>
     <Bucket>
         <BucketInfo>
-            <Owner>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Owner>
-            <BucketName>j6it2</BucketName>
+            <Owner>0xb81c15fdd770684cD59C4Ae9E83E28E34019561E</Owner>
+            <BucketName>duc19</BucketName>
             <Visibility>2</Visibility>
-            <Id>2</Id>
+            <Id>2692561</Id>
             <SourceType>0</SourceType>
-            <CreateAt>1692278045</CreateAt>
-            <PaymentAddress>0xBC212bF5d6004311E350a531A1946D572C4d85E4</PaymentAddress>
-            <GlobalVirtualGroupFamilyId>1</GlobalVirtualGroupFamilyId>
+            <CreateAt>1695106708</CreateAt>
+            <PaymentAddress>0xb81c15fdd770684cD59C4Ae9E83E28E34019561E</PaymentAddress>
+            <GlobalVirtualGroupFamilyId>13</GlobalVirtualGroupFamilyId>
             <ChargedReadQuota>0</ChargedReadQuota>
-            <BucketStatus>1</BucketStatus>
+            <BucketStatus>0</BucketStatus>
         </BucketInfo>
         <Removed>false</Removed>
-        <DeleteAt>1693055775</DeleteAt>
-        <DeleteReason>testnet cleanup</DeleteReason>
-        <Operator>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Operator>
-        <CreateTxHash>0x8284859bf59b0fbde5a4836b0ffb1449fece0167ccd774782c37e4ed10af9047</CreateTxHash>
-        <UpdateTxHash>0x2a1c313dec9196b07cef8008f0e0e614c804a0c28dc08c9d78648afac1908bce</UpdateTxHash>
-        <UpdateAt>82179</UpdateAt>
-        <UpdateTime>1692450975</UpdateTime>
+        <DeleteAt>0</DeleteAt>
+        <DeleteReason></DeleteReason>
+        <Operator>0xb81c15fdd770684cD59C4Ae9E83E28E34019561E</Operator>
+        <CreateTxHash>0x868a3c3432e2f86958cef0efddf4e8c3f630b542719a7fec575ca671ab5a1b61</CreateTxHash>
+        <UpdateTxHash>0x868a3c3432e2f86958cef0efddf4e8c3f630b542719a7fec575ca671ab5a1b61</UpdateTxHash>
+        <UpdateAt>1201393</UpdateAt>
+        <UpdateTime>1695106708</UpdateTime>
+        <Vgf>
+            <Id>13</Id>
+            <PrimarySpId>1</PrimarySpId>
+            <VirtualPaymentAddress>0x26281179b8885F21f95b0a246c8AD70957A95A23</VirtualPaymentAddress>
+        </Vgf>
     </Bucket>
     <StreamRecord>
         <Account>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Account>
