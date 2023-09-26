@@ -38,14 +38,17 @@ Please refer to the example [testnet configure](https://github.com/bnb-chain/bnb
         "bls_private_key": "your_private_key",
          ...
          // please change to the current block height of greenfield network.
-        "start_height": 0, 
+        "start_height": 1, 
       }, 
       "bsc_config": {
         // or "aws_private_key" if you are using aws secret manager.
-        "key_type": "local_private_key", 
+        "key_type": "local_private_key",
         ...
+        "rpc_addrs": [
+           "bsc_rpc_address"
+        ],
         "private_key": "your_private_key",
-        "gas_limit": 4700000,
+        "gas_limit": 20000000,
         "gas_price": 10000000000,
         ...
         // please change to the current block height of BSC network.
@@ -56,6 +59,7 @@ Note:
 The `private_key` and `bls_private_key` refer to the keys `validator_relayer` and `validator_bls` created in [become-testnet-validator](../run-node/become-testnet-validator.md) step 2.
 Follow the below instruction to export keys. Make sure `private_key` has balance on Greenfield and BSC blockchain before running the relayer, the `bls_private_key` does not need to have balance.
 
+You might encounter `Rate limit` issue for using official BSC endpoints, we would highly recommend using 3rd Party RPCs, like the [NodeReal MegaNode](https://nodereal.io/meganode)
 ```bash
 validator_relayer=$(gnfd keys export validator_relayer --unarmored-hex --unsafe --keyring-backend test)
 validator_bls=$(gnfd keys export validator_bls --unarmored-hex --unsafe --keyring-backend test)
@@ -71,7 +75,7 @@ validator_bls=$(gnfd keys export validator_bls --unarmored-hex --unsafe --keyrin
       }
     ```
 
-3. Config your database settings. We Support mysql or sqlite.
+3. Config your database settings. We support mysql or sqlite.
 
     mysql example:
     ```
@@ -127,7 +131,7 @@ docker run --name gnfd-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:8
 
 ##### Create Schema
 
-Create schema in MySQL client:
+Create schema by MySQL client:
 
 ```shell
 CREATE SCHEMA IF NOT EXISTS `greenfield-relayer` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
