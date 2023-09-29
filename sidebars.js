@@ -244,7 +244,80 @@ const sidebars = {
       },
       items:[
         "sdks/sdk-go",
-        "sdks/sdk-js"
+           {
+      type: "category",
+      label: "JS SDK",
+      collapsible: true,
+      collapsed: true,
+      items:[
+          {
+          type: "category",
+          label: "Getting Started",
+          collapsible: true,
+          collapsed: true,
+          items:[
+            "sdks/sdk-js/getting-started/getting-started-overview",
+            "sdks/sdk-js/getting-started/install",
+            "sdks/sdk-js/getting-started/quick-start",
+          ]
+        },
+         {
+          type: "category",
+          label: "Client",
+          collapsible: true,
+          collapsed: true,
+          items:[
+            "sdks/sdk-js/client/greenfield-client",
+            "sdks/sdk-js/client/query-client",
+            "sdks/sdk-js/client/sp-client",
+            "sdks/sdk-js/client/tx-client",
+          ]
+        },
+        {
+          type: "category",
+          label: "API",
+          collapsible: true,
+          collapsed: true,
+          items:[
+            "sdks/sdk-js/api/api-overview",
+            "sdks/sdk-js/api/account",
+            "sdks/sdk-js/api/bucket",
+            "sdks/sdk-js/api/crosschain",
+            "sdks/sdk-js/api/feegrant",
+            "sdks/sdk-js/api/gashub",
+            "sdks/sdk-js/api/group",
+            "sdks/sdk-js/api/object",
+            "sdks/sdk-js/api/payment",
+            "sdks/sdk-js/api/sp",
+            "sdks/sdk-js/api/virtual-group",
+          ]
+        },
+        {
+          type: "category",
+          label: "Types",
+          collapsible: true,
+          collapsed: true,
+          items:[
+            "sdks/sdk-js/types/action",
+            "sdks/sdk-js/types/coin",
+            "sdks/sdk-js/types/pagination",
+            "sdks/sdk-js/types/principal",
+            "sdks/sdk-js/types/redundancy",
+            "sdks/sdk-js/types/timestamp",
+            "sdks/sdk-js/types/visibility",
+          ]
+        },
+        {
+          type: "category",
+          label: "Constants",
+          collapsible: true,
+          collapsed: true,
+          items:[
+            "sdks/sdk-js/constants/msg-type-url",
+          ]
+        },
+      ],
+    },
       ],
     },
   ],

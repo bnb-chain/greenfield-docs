@@ -1,12 +1,20 @@
 ---
-title: Quickstart
+id: quick-start
+sidebar_position: 3
 ---
 
-# Quickstart
+# Quick Start
 
-The BNB Greenfield JavaScript SDK is designed for front-end environments and provides an API for interacting with BNB Greenfield decentralized storage. It offers a range of operations, including retrieving permission details, gas fees, etc. The SDK also includes a crypto component for signing transactions and sending them to BNB Greenfield.
+We provide templates that can run `React` (Next.js, Vite and CRA(Legacy) etc) directly.
 
-However, it should be noted that this SDK does not include methods for interacting with BNB Smart Chain (BSC). For a comprehensive understanding of available operations, refer to the [API Reference](https://github.com/bnb-chain/greenfield-js-sdk).
+You can use [`create-gnfd-app`](https://github.com/bnb-chain/greenfield-js-sdk/tree/main/packages/create-gnfd-app) to create a app quickly:
+
+```bash
+> npx @bnb-chain/create-gnfd-app
+```
+
+![](https://github.com/bnb-chain/greenfield-js-sdk/raw/alpha/packages/create-gnfd-app/example.gif)
+
 
 ## Install
 
@@ -42,7 +50,7 @@ Client.create(GRPC_URL, String(GREEN_CHAIN_ID), {
 
 > Browser need load wasm manually.
 
-The SDK offers two types of operations - sending transactions to BNB Greenfield, allowing users to modify the state of the blockchain; the second type enables users to send queries and retrieve metadata information about objects stored on the blockchain. 
+The SDK offers two types of operations - sending transactions to BNB Greenfield, allowing users to modify the state of the blockchain; the second type enables users to send queries and retrieve metadata information about objects stored on the blockchain.
 
 The SDK consists of two parts:
 
@@ -93,7 +101,7 @@ const broadcastRes = await broadcast({
 });
 ```
 
-#### NOTICE: Signature mode for `Broadcast`  
+#### NOTICE: Signature mode for `Broadcast`
 
 `broadcast` use `window.ethereum` as signature provider by default.
 
@@ -243,7 +251,7 @@ export const getSps = async () => {
 
 #### Search for objects
 
-It's important to note that even if an object is set to private, its metadata remains publicly accessible. This metadata includes information such as file size, file type, and file name. 
+It's important to note that even if an object is set to private, its metadata remains publicly accessible. This metadata includes information such as file size, file type, and file name.
 
 ```js
 export const searchKey = async (key: string) => {
