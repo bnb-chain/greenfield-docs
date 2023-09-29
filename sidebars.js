@@ -246,7 +246,7 @@ const sidebars = {
         "sdks/sdk-go",
            {
       type: "category",
-      label: "JS SDK",
+      label: "JavaScript SDK",
       collapsible: true,
       collapsed: true,
       items:[
