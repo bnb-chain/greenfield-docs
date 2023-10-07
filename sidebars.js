@@ -299,7 +299,8 @@ const sidebars = {
               items:[
                 "tutorials/native-dapp/sdk/file-management/overview",
                 "tutorials/native-dapp/sdk/resumable-upload/overview",
-                "tutorials/native-dapp/sdk/batch-upload"
+                "tutorials/native-dapp/sdk/batch-upload",
+                "tutorials/native-dapp/sdk/payment-price-modeling",
               ]
             },
           ]
