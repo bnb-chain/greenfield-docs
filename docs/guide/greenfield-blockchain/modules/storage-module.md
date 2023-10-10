@@ -45,15 +45,15 @@ The storage module keeps state of the following primary objects:
 
 * BucketInfo
 
-https://github.com/bnb-chain/greenfield/blob/v0.2.3/proto/greenfield/storage/types.proto#L14C1-L41C2
+https://github.com/bnb-chain/greenfield/blob/v1.0.0/proto/greenfield/storage/types.proto#L14C1-L41C2
 
 * ObjectInfo:
 
-https://github.com/bnb-chain/greenfield/blob/v0.2.3/proto/greenfield/storage/types.proto#L54C4-L87
+https://github.com/bnb-chain/greenfield/blob/v1.0.0/proto/greenfield/storage/types.proto#L54C4-L87
 
 * GroupInfo
 
-https://github.com/bnb-chain/greenfield/blob/v0.2.3/proto/greenfield/storage/types.proto#L89-L104
+https://github.com/bnb-chain/greenfield/blob/v1.0.0/proto/greenfield/storage/types.proto#L89-L104
 
 The primary objects are intended to be stored and accessed mainly using the auto-incremented sequence `ID`. 
 However, additional indices are also maintained for each primary object to ensure compatibility with the S3 object storage.
@@ -76,6 +76,15 @@ they can be updated with governance.
 | MaxSegmentSize          | 16M           | The maximum size of the segment. The payload data of an object will split into several segment. Only the size of the last segment can be less than MaxSegmentSize, others is equals. |
 | RedundantDataChunkNum   | 4             | The number of the data chunks in Erasure-Code algorithm.                                                                                                                             |
 | RedundantParityChunkNum | 2             | The number of the parity chunks in Erasure-Code algorithm.                                                                                                                           |
+| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MinChargeSize           | 1M            | The minimum charge size of the payload, objects smaller than this size will be charged as this size                                                                                  |
+| MaxBucketsPerAccount          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| DiscontinueCountingWindow          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
 | MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
 
 
