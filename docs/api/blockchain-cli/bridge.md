@@ -17,7 +17,7 @@ $ bash ./deployment/localup/localup.sh all 3
 $ alias gnfd="./build/bin/gnfd"
 $ receiver=0x32Ff14Fa1547314b95991976DB432F9Aa648A423
 ## send 500BNB to the receiver (note the decimal of BNB is 18)
-$ gnfd tx bridge transfer-out validator0 $receiver 500000000000000000000BNB --home ./deployment/localup/.local/validator0 --keyring-backend test --node http://localhost:26750 -b block  -y
+$ gnfd tx bridge transfer-out $receiver 500000000000000000000BNB --from validator0 --home ./deployment/localup/.local/validator0 --keyring-backend test --node http://localhost:26750 -y
 ## query the relayer fees for crosschain transfers
 $ gnfd q bridge params --node tcp://127.0.0.1:26750 
 ```
@@ -69,11 +69,11 @@ gnfd tx bridge --help
 The `transfer-out` command allows users to send funds between accounts from greenfield to BSC.
 
 ```sh
-gnfd tx bridge transfer-out [from_key_or_address] [to_address] [amount] [flags]
+gnfd tx bridge transfer-out [to_address] [amount] [flags]
 ```
 
 Example:
 
 ```sh
-gnfd tx bridge transfer-out validator0 0x32Ff14Fa1547314b95991976DB432F9Aa648A423 500000000000000000000BNB --home ./deployment/localup/.local/validator0 --keyring-backend test --node http://localhost:26750 -b block  -y
+gnfd tx bridge transfer-out 0x32Ff14Fa1547314b95991976DB432F9Aa648A423 500000000000000000000BNB --from validator0 --home ./deployment/localup/.local/validator0 --keyring-backend test --node http://localhost:26750 -y
 ```
