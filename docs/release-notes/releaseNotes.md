@@ -7,6 +7,16 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v1.0.0 - Initial version for Mainnet
+This is the official version released for Greenfield Mainnet, which includes most of the features that have been
+thoroughly tested during the Testnet phase. You can refer to our [Feature Lists](./features.md).
+
+Currently, we need to conduct more testing and make improvements on the Testnet for the complexity of SP Exit and
+Bucket Migration. We plan to enable these two features on the Mainnet in the near future.
+
+Please refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.0.0) and
+[Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.0.0) for more details about the release.
+
 ## Greenfield v0.2.6 - Final release before mainnet
 [v0.2.6](https://github.com/bnb-chain/greenfield/releases/tag/v0.2.6) This is the final version before the mainnet launch, 
 which mainly includes bug fixes and security enhancement.

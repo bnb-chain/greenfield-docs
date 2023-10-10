@@ -8,26 +8,10 @@ order: 2
 
 ## Upcoming
 
-### August 31st, Upgrade Mekong Testnet
+### October 17th, Launch Mainnet Lena
 
-This version will implement a hard fork for Greenfield MeKong Testnet, which can be upgraded with zero downtime. At the
-same time, this version will introduce some advanced features:
-
-- Support SP graceful exit: It enables SP to join the network freely and exit the network without affecting the user storage experience
-- Support migrating bucket: Users can migrate their bucket from one SP to another on their own needs
-- Support expired group member: Group members can be given an expiration time, after which they will no longer have
-  access to the group even though their account remains part of the group
-
-### September 7th, Mekong Testnet Nagqu Hardfork
-Nagqu hardfork is an experimental upgrade on the Greenfield Testnet. By introducing a break change and upgrading through
-hardfork, Greenfield can smoothly transition, which means we can upgrade Greenfield through hardfork in the future without
-any downtime. This version will introduce one key feature:
-
-- Support deposit payment account bank module funds into payment module.
-
-### October, Launch Mainnet Lena
-
-This version will be our first version for Greenfield Mainnet, including all key features introduced on the Testnet.
+This version will be our first version for Greenfield Mainnet, including major features introduced on the Testnet, please
+refer to [Features](./features.md) for details.
 
 ## Long Term
 
@@ -56,6 +40,7 @@ This version will be our first version for Greenfield Mainnet, including all key
 - Support SP reputation system
 - Enrich the ecosystem by building abundant toolchains and programming paradigms, such as data marketplace, NFT toolset,
   data migration toolset and so on
+- Link Greenfield with opBNB
 
 ### June 2024, Mainnet
 
