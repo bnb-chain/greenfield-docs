@@ -28,10 +28,29 @@ Before starting, please make sure you created related accounts by `gnfd-cmd acco
 Please note that the account should have enough balance before sending transactions to greenfield.
 
 The content of the config.toml is as follows:
-```toml
-rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
-chainId = "greenfield_5600-1"
-```
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="mainnet"
+  values={[
+    {label: 'Mainnet', value: 'mainnet'},
+    {label: 'Testnet', value: 'testnet'},
+  ]}>
+  <TabItem value="mainnet">
+
+	rpcAddr = "https://greenfield-chain.bnbchain.org:443"
+	chainId = "greenfield_1017-1"
+
+  </TabItem>
+  <TabItem value="testnet">
+
+	rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+	chainId = "greenfield_5600-1"
+
+  </TabItem>
+</Tabs>
 
 1. Prepare environment
 
@@ -100,17 +119,39 @@ It turns out that AccountB is not permitted to access the file, which is expecte
 
 9. Grant the access to Account B through the contract.
 
-```shell
-### Example
-export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org 
-$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
---sig "updateGroup(address operator, uint256 groupId, address member)" \
-${AccountA} ${GroupId} ${AccountB} \
--f https://greenfield-bsc-testnet-ap.nodereal.io/ \
---private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
---legacy \
---broadcast
-```
+<Tabs
+  defaultValue="mainnet"
+  values={[
+    {label: 'Mainnet', value: 'mainnet'},
+    {label: 'Testnet', value: 'testnet'},
+  ]}>
+  <TabItem value="mainnet">
+
+	export RPC_TEST=https://greenfield-chain.bnbchain.org:443
+	$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
+	--sig "updateGroup(address operator, uint256 groupId, address member)" \
+	${AccountA} ${GroupId} ${AccountB} \
+	-f https://bsc-dataseed.bnbchain.org \
+	--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
+	--legacy \
+	--broadcast
+
+  </TabItem>
+  <TabItem value="testnet">
+
+	export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org
+	$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
+	--sig "updateGroup(address operator, uint256 groupId, address member)" \
+	${AccountA} ${GroupId} ${AccountB} \
+	-f https://greenfield-bsc-testnet-ap.nodereal.io/ \
+	--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
+	--legacy \
+	--broadcast
+
+  </TabItem>
+</Tabs>
+
+
 
 10. Wait 30 seconds, and try to access the file through AccountB again.
 ```shell

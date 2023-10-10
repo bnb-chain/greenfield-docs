@@ -26,10 +26,25 @@ When running commands that interact with the greenfield, if there is no config/c
 
 Config file example will set up the necessary RPC address and chain id:
 
-```
-rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
-chainId = "greenfield_5600-1"
-```
+<Tabs
+  defaultValue="mainnet"
+  values={[
+    {label: 'Mainnet', value: 'mainnet'},
+    {label: 'Testnet', value: 'testnet'},
+  ]}>
+  <TabItem value="mainnet">
+
+	rpcAddr = "https://greenfield-chain.bnbchain.org:443"
+	chainId = "greenfield_1017-1"
+
+  </TabItem>
+  <TabItem value="testnet">
+
+	rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+	chainId = "greenfield_5600-1"
+
+  </TabItem>
+</Tabs>
 
 ### Impport Account and Generating Keystore
 To set up your identity on the local machine and generate a keystore file, you will need to create the private file which will hold the identity private key. You can export your private key from MetaMask and write it into a local file as plaintext (You can select "Account Details" from the dropdown menu of MetaMask. Click on the "Export Private Key" button at the bottom of the page.

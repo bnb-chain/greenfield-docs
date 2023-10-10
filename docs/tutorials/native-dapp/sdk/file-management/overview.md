@@ -76,8 +76,12 @@ import (
 )
 
 const (
+  rpcAddr    = "https://greenfield-chain.bnbchain.org:443"
+  chainId    = "greenfield_1017-1"
+  /*testnet
   rpcAddr    = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
   chainId    = "greenfield_5600-1"
+  */
   privateKey = ""
 )
 

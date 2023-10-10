@@ -83,7 +83,7 @@ Upload the modified index.html file to your bucket using the following command:
 gnfd://my-plato-website/index.html 
 ```
 
-Now, let's eagerly click the link to view our brand new website at https://gnfd-testnet-sp-2.bnbchain.org/view/my-plato-website/index.html and feel the anticipation building up. 
+Now, let's eagerly click the link to view our brand new website at https://gnfd-testnet-sp1.bnbchain.org/view/my-plato-website/index.html and feel the anticipation building up.
 
 🥁Drum beat... 
 
@@ -96,7 +96,7 @@ However, let's not forget that BNB Greenfield is an immutable storage. So to upd
 To accomplish this, I used the power of the 'object delete' command: 
 
 ```bash
-./gnfd-cmd object delete gnfd://my-plato-website/index.html 
+./gnfd-cmd object rm gnfd://my-plato-website/index.html
 ```
 
 Wait for the confirmation that the file was successfully deleted, accompanied by a transaction hash: 4B12BCF26525C1B661389529524DF14E23164D000FA47FB2E0D0BE26B131E04A.
@@ -112,8 +112,8 @@ And reupload the html file, this time accompanied by the content-type flag:
 Oh, no! The website still looks horrendous, and worse yet, the image of Plato is nowhere to be found. Frustration turned into disappointment as we discovered that the browser was throwing an error due to an incorrect MIME type. It refused to apply the styles from https://gnfd-testnet-sp-2.bnbchain.org/view/my-plato-website/styles.css because the MIME type was set as 'text/plain', which is not a supported stylesheet MIME type when strict MIME checking is enabled.
 Fear not! The error looks familiar and we already know exactly what needed to be done. So swiftly deleting the problematic files and reuploading them correctly this time:
 ```bash
-./gnfd-cmd object delete gnfd://my-plato-website/plato.jpg
-./gnfd-cmd object delete gnfd://my-plato-website/styles.css
+./gnfd-cmd object rm gnfd://my-plato-website/plato.jpg
+./gnfd-cmd object rm gnfd://my-plato-website/styles.css
 ```
 And then, with a determined spirit:
 ```bash
