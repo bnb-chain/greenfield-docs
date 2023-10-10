@@ -71,22 +71,14 @@ However, additional indices are also maintained for each primary object to ensur
 The storage module contains the following parameters,
 they can be updated with governance.
 
-| name                    | default value | meaning                                                                                                                                                                              |
-|-------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| MaxSegmentSize          | 16M           | The maximum size of the segment. The payload data of an object will split into several segment. Only the size of the last segment can be less than MaxSegmentSize, others is equals. |
-| RedundantDataChunkNum   | 4             | The number of the data chunks in Erasure-Code algorithm.                                                                                                                             |
-| RedundantParityChunkNum | 2             | The number of the parity chunks in Erasure-Code algorithm.                                                                                                                           |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MinChargeSize           | 1M            | The minimum charge size of the payload, objects smaller than this size will be charged as this size                                                                                  |
-| MaxBucketsPerAccount          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| DiscontinueCountingWindow          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MaxPayloadSize          | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-
+| name                      | default value | meaning                                                                                                                                                                              |
+|---------------------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| MaxSegmentSize            | 16M           | The maximum size of the segment. The payload data of an object will split into several segment. Only the size of the last segment can be less than MaxSegmentSize, others is equals. |
+| RedundantDataChunkNum     | 4             | The number of the data chunks in Erasure-Code algorithm.                                                                                                                             |
+| RedundantParityChunkNum   | 2             | The number of the parity chunks in Erasure-Code algorithm.                                                                                                                           |
+| MaxPayloadSize            | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MinChargeSize             | 1M            | The minimum charge size of the payload, objects smaller than this size will be charged as this size                                                                                  |
+| MaxBucketsPerAccount      | 100           | The maximum number of buckets that can be created per account                                                                                                                        |
 
 ## Messages
 
@@ -235,7 +227,7 @@ Used to send a copy of an object to another user.
 message MsgCopyObject {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // operator is the account address of the operator who has the CopyObject permission of the object to be deleted.
+  // operator is the account address of the operator who has the CopyObject permission.
   string operator = 1;
   // src_bucket_name is the name of the bucket where the object to be copied is located
   string src_bucket_name = 2;
@@ -291,8 +283,8 @@ message MsgCreateGroup {
   string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // group_name is the name of the group. it's not globally unique.
   string group_name = 2;
-  // member_request is a list of member which to be add or remove
-  repeated string members = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // extra defines extra info for the group
+  string extra = 3;
 }
 ```
 ### MsgDeleteGroup
@@ -324,5 +316,111 @@ message MsgLeaveGroup {
   string group_owner = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // group_name is the name of the group you want to leave
   string group_name = 3;
+}
+```
+
+### MsgMirrorObject
+
+Mirror an object to the destination chain as NFT.
+
+```protobuf
+message MsgMirrorObject {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the object owner.
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // id defines the unique u256 for object.
+  string id = 2 [
+    (cosmos_proto.scalar) = "cosmos.Uint",
+    (gogoproto.customtype) = "Uint",
+    (gogoproto.nullable) = false
+  ];
+  // bucket_name defines the name of the bucket where the object is stored
+  string bucket_name = 3;
+  // object_name defines the name of object
+  string object_name = 4;
+  // destination chain id
+  uint32 dest_chain_id = 5;
+}
+```
+
+### MsgMirrorBucket
+
+Mirror a bucket to the destination chain as NFT.
+
+```protobuf
+message MsgMirrorBucket {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the bucket owner.
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // id defines the unique u256 for bucket.
+  string id = 2 [
+    (cosmos_proto.scalar) = "cosmos.Uint",
+    (gogoproto.customtype) = "Uint",
+    (gogoproto.nullable) = false
+  ];
+  // bucket_name defines a globally unique name of bucket
+  string bucket_name = 3;
+  // destination chain id
+  uint32 dest_chain_id = 4;
+}
+```
+
+### MsgMirrorGroup
+
+Mirror a group to the destination chain as NFT.
+
+```protobuf
+message MsgMirrorGroup {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the group owner.
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // id defines the unique u256 for group.
+  string id = 2 [
+    (cosmos_proto.scalar) = "cosmos.Uint",
+    (gogoproto.customtype) = "Uint",
+    (gogoproto.nullable) = false
+  ];
+  // group_name defines the name of the group
+  string group_name = 3;
+  // destination chain id
+  uint32 dest_chain_id = 4;
+}
+```
+
+### MsgMigrateBucket
+
+Migrate a bucket to another primary SP.
+
+```protobuf
+message MsgMigrateBucket {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the operator who initial the migrate bucket
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // bucket_name defines the name of the bucket that need to be migrated
+  string bucket_name = 2;
+  // dst_primary_sp_id defines the destination SP for migration
+  uint32 dst_primary_sp_id = 3;
+  // dst_primary_sp_approval defines the approval of destination sp
+  common.Approval dst_primary_sp_approval = 4;
+}
+```
+
+### MsgCancelMigrateBucket
+
+Cancel an existing bucket migration.
+
+```protobuf
+message MsgCancelMigrateBucket {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the msg operator.
+  // Only the user can send this transaction to cancel the migrate bucket
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // bucket_name defines the name of the bucket that need to be migrated
+  string bucket_name = 2;
 }
 ```
