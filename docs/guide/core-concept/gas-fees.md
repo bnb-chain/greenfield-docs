@@ -21,9 +21,10 @@ resulting in lower transaction fees.
 it has redesigned the gashub module to calculate gas consumption based on the type and content of the transaction, 
 rather than just the consumption of storage and computational resources.**
 
-Unlike networks like Ethereum, Greenfield transactions do not feature a gas price field. 
-Instead, they consist of a fee and a gas wanted field. The gas price is inferred during the transaction pre-execution process, 
-and the transactions are queued based on the gas price
+Unlike networks like Ethereum, Greenfield transactions do not feature a gas price field. Instead, they consist of a fee
+and a gas-wanted field. The gas price is inferred during the transaction pre-execution process by fee/gas-wanted,
+and the transactions are queued based on the gas price, besides that the gas price should not be less than the minimum
+gas price on Greenfield: 5gwei.
 
 :::warning
 **This means that Greenfield does not refund any excess gas fees to the transaction sender. 
@@ -174,6 +175,7 @@ documentation.
 | cosmos.bank.v1beta1.MsgMultiSend           | 800 + 800 per item | 5 gwei    | $0.0012 per item |
 | cosmos.feegrant.v1beta1.MsgGrantAllowance  | 800 + 800 per item | 5 gwei    | $0.0012 per item |
 
+For more details, you can refer to [Greenfield Gas Params](https://greenfield-chain.bnbchain.org/cosmos/gashub/v1beta1/msg_gas_params).
 
 ## Usage of BNB Token on BNB Greenfield
 
@@ -210,7 +212,7 @@ Refer to [cross chain model](../core-concept/programmability.md) to get more det
 
 BNB is transferred from BSC to Greenfield as the first cross-chain action. The initial validator set and `storage provider` of Greenfield at the genesis will first lock a certain amount of BNB into the "Greenfield Token Hub" contract on BSC. This contract is used as part of the native bridge for BNB transferring after the genesis. These initial locked BNB will be used as the self-stake of `validators`, the deposit of `storage provider` and early days gas fees.
 
-The initial BNB allocation on greenfield is around 1M BNB. (TODO: not finalized)
+The initial BNB allocation on greenfield is around 500K BNB.
 
 :::tip
 No initial donors, foundation, or company will get funds in the genesis setup.
