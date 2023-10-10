@@ -5,6 +5,33 @@ order: 7
 
 # Contract Entrypoint
 
+## Mainnet
+DeployCommitId: c8e6a293b628f9063918ba8cd9c00ca41ded18db
+
+| contract name      | address                                    |
+|--------------------|--------------------------------------------|
+| GovHub             | 0x1c9766EbcA1f38A06A04947129B394bF7FEc4599 |
+| CrossChain         | 0x77e719b714be09F70D484AB81F70D02B0E182f7d |
+| TokenHub           | 0xeA97dF87E6c7F68C9f95A69dA79E19B834823F25 |
+| LightClient        | 0x433bB48Bd86c089375e53b2E2873A9C4bC0e986B |
+| RelayerHub         | 0x31C477F05CE58bB81A9FB4b8c00560f1cBe185d1 |
+| BucketHub          | 0xE909754263572F71bc6aFAc837646A93f5818573 |
+| ObjectHub          | 0x634eB9c438b8378bbdd8D0e10970Ec88db0b4d0f |
+| GroupHub           | 0xDd9af4573D64324125fCa5Ce13407be79331B7F7 |
+| BucketERC721Token  | 0xC92d1d4b64Aebe28042206656b9E70E571A0E5eF |
+| ObjectERC721Token  | 0x4B92705a60d69f7A96aaDB8faa892526eB71adb7 |
+| GroupERC721Token   | 0x943FAC6CEBE6e45CE59bA911E5B6447c1a991450 |
+| MemberERC1155Token | 0xAb73f243Be4d0fC5644c822351eC77e85DC2B5Ea |
+
+Extra:
+
+| contract name | address                                    |
+|---------------|--------------------------------------------|
+| Deployer      | 0x4763c12b21a548BCbD22a682fb15930565e27C43 |
+| ProxyAdmin    | 0xf9010DC773eE3961418C96dc67Fc5DcCB3EA2C08 |
+
+For more details, you can refer to [Greenfield Contracts Mainnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/56-deployment.json).
+
 ## Testnet
 DeployCommitId: 20cc1f5784a621438114847753cda289f3ed76fa
 
@@ -29,3 +56,5 @@ Extra:
 |---------------|--------------------------------------------|
 | Deployer      | 0x79aC4Ce73Cf5c4896a311CD39d2EB47E604D18E3 |
 | ProxyAdmin    | 0xdD1c0a54a9EDEa8d0821AEB5BE54c51B79fa4c2e |
+
+For more details, you can refer to [Greenfield Contracts Testnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/97-deployment.json).
