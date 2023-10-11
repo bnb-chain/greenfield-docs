@@ -12,7 +12,28 @@ complete tasks such as obtaining authentication information and sending request 
 provider's approval signature, we recommend using the more powerful tool [greenfield commands](https://github.com/bnb-chain/greenfield-cmd) 
 to complete such transactions and queries.
 
-For testnet usage, please replace the flag of node address `--node https://greenfield-chain.bnbchain.org:443` to --node `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
+The RPC addresses for mainnet and Testnet are listed below. In this tutorial, we are going to use Mainnet RPC address. 
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="mainnet"
+values={[
+{label: 'Mainnet', value: 'mainnet'},
+{label: 'Testnet', value: 'testnet'},
+]}>
+<TabItem value="mainnet">
+
+	node = "https://greenfield-chain.bnbchain.org:443"
+
+  </TabItem>
+  <TabItem value="testnet">
+
+	node = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+
+  </TabItem>
+</Tabs>
 
 ## HeadBucket
 
@@ -46,11 +67,11 @@ gnfd tx storage mirror-bucket [flags]
 
 Example:
 
-mirror a bucket by bucket name
+mirror a bucket to BSC by bucket name, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-bucket --bucket-name bucketname --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
-mirror a bucket by bucket id
+mirror a bucket to BSC by bucket id, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-bucket --bucket-id 1 --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
@@ -112,18 +133,18 @@ gnfd tx storage mirror-object [flags]
 
 Example:
 
-mirror a object by bucket, object name
+mirror an object to BSC by bucket, object name, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-object --bucket-name bucketname --object-name objectname --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
-mirror a bucket by bucket id
+mirror a bucket to BSC by bucket id, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-object --object-id 1 --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
 
-
 ## CreateGroup
 
+Create a group without members within
 ```shell
 gnfd tx storage create-group [group-name] [flags]
 ```
@@ -159,6 +180,7 @@ gnfd tx storage update-group-member groupname  ""  "" 0x... --from your_key --ho
 
 ## UpdateGroupExtra
 
+Update a group extra info.
 ```shell
 gnfd tx storage update-group-extra [group-name] [extra]
 ```
@@ -169,6 +191,7 @@ gnfd tx storage update-group-extra groupname extraInfo --from your_key --home ~/
 ```
 
 ## RenewGroupMember
+Renew a group member's expiration time.
 
 ```shell
 gnfd tx storage renew-group-member [group-name] [member] [member-expiration]
@@ -220,11 +243,11 @@ gnfd tx storage mirror-group [flags]
 
 Example:
 
-mirror a group by group name
+mirror a group to BSC by group name, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-group --group-name groupname --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
-mirror a group by group id
+mirror a group to BSC by group id, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-group --group-id 1 --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
