@@ -178,6 +178,29 @@ Example:
 gnfd tx storage renew-group-member groupname 0x... 123456678 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
 
+## HeadGroup
+
+```shell
+gnfd query storage head-group [group-owner] [group-name] [flags]
+```
+
+Example:
+
+```sh
+gnfd query storage head-group 0x... groupname --node https://greenfield-chain.bnbchain.org:443
+```
+
+## ListGroups
+
+```shell
+gnfd query storage list-groups [group-owner] [flags]
+```
+
+Example:
+
+```sh
+gnfd query storage list-groups 0x... --node https://greenfield-chain.bnbchain.org:443
+```
 
 ## LeaveGroup
 
