@@ -1,5 +1,5 @@
 ---
-title: Data Marketplace Demo
+title: Showcases
 order: 2
 ---
 
@@ -9,8 +9,10 @@ order: 2
 Data marketplace is a data exchange platform where users can freely create, list, trade, 
 and sell data assets, including digital publications, scientific experimental data, and specific domain data.
 
-Demo Link: https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/index.html
+### Demo Link
+- Mainnet: `https://marketplace.greenfield-sp.bnbchain.org/index.html`
+- Testnet: `https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/index.html`
 
-Frontend Repo: https://github.com/bnb-chain/greenfield-data-marketplace-frontend
-
-Smart Contract Repo: https://github.com/bnb-chain/greenfield-data-marketplace-contracts
+### Source Code
+- Frontend: `https://github.com/bnb-chain/greenfield-data-marketplace-frontend`
+- Smart Contracts: `https://github.com/bnb-chain/greenfield-data-marketplace-contracts`
