@@ -6,8 +6,9 @@ order: 1
 # Overview
 
 :::warning
-**Please note we will reset the test network around every two weeks, the data and test assets on the test network may be
-periodically cleared, and please do not rely on Greenfield to save important data on the test network.**
+**Greenfield Mainnet has been launched, offering users reliable decentralized storage services. It is important to note
+that buckets and objects on Greenfield Testnet will be regularly cleaned. Therefore, please refrain from storing
+important data on Greenfield Testnet, considering Greenfield Mainnet instead.**
 :::
 
 

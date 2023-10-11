@@ -9,27 +9,51 @@ The [RPC Endpoints](../../api/endpoints.md) you may need to know to connect to G
 
 ## Bridge
 
-Greenfield is a blockchain system that operates independently, but is connected to BNB Smart Chain (BSC). In order to move
-assets between Greenfield and BNB Smart Chain (BSC), users can utilize the [BNB Greenfield Bridge](https://greenfield.bnbchain.org/en/bridge)
-or [DCellar](https://dcellar.io).
+Greenfield and BSC account systems are fully compatible, using the same address format. This allows users to easily
+transfer their BNBs between Greenfield and BSC. The following cross-chain bridges are available.
+
+### Mainnet
+- [BNB Greenfield Bridge](https://greenfield.bnbchain.org/en/bridge), switch to Mainnet.
+- [DCellar](https://dcellar.io), switch to the Wallet part.
+
+### Testnet
+- [BNB Greenfield Bridge](https://greenfield.bnbchain.org/en/bridge), switch to Testnet.
+- [DCellar for Testnet](https://testnet.dcellar.io/), switch to the Wallet part.
 
 ## Block Explorers
 
-- [GreenfieldScan](https://greenfieldscan.com), developed by TraceReal.
+### Mainnet
+- [Greenfield Explorer](https://greenfieldscan.com), developed by TraceReal.
+- [BSC Explorer](https://bscscan.com/)
+
+### Testnet
+- [Greenfield Testnet Explorer](https://testnet.greenfieldscan.com/), developed by TraceReal.
 - [BSC Testnet Explorer](https://testnet.bscscan.com)
 
 ## DCellar
-[DCellar](https://dcellar.io), as the inaugural application built on the BNB Greenfield, serves as an ultimate client of the BNB Greenfield network. Besides Basic file management and asset management functions, DCellar can also greatly assist developers in comprehending the functionalities of Greenfield:
+[DCellar](https://dcellar.io), as the inaugural application built on the BNB Greenfield, serves as an ultimate client of
+the BNB Greenfield network. Besides Basic file management and asset management functions, DCellar can also greatly
+assist developers in comprehending the functionalities of Greenfield:
 
-- Basic File & Asset Management: With Dcellar, both developers and normal users can upload, store and share files very easily, as well as transfer in/out tokens easily. Besides, DCellar supports batch operations, you can upload, download, delete multiple files at a time. [Check it out →](https://docs.nodereal.io/docs/dcellar-get-started)
-- NFT Storage and Minting: With DCellar, developers and users can conveniently store their NFT resources and associated metadata, enabling them to easily mint their own NFTs. Compared to alternative solutions, DCellar provides a more intuitive interaction process, ensuring a seamless experience for users. [Check it out →](https://docs.nodereal.io/docs/dcellar-as-developer-tool#nft-metadata-and-medium-storage)
-- SP Connectivity Verification: Greenfield network clients can leverage DCellar to upload and download files to their Service Provider (SP), thereby verifying the correct connection of the SP to the network. This feature enables users to ensure smooth and reliable communication with their chosen SP.[Check it out →](https://docs.nodereal.io/docs/dcellar-as-developer-tool#nft-metadata-and-medium-storage)
-- Web Server Functionality: DCellar also functions as a web server, allowing users to effortlessly upload their frontend code to the platform. By setting the uploaded content to public access, anyone can access your web application simply by opening the universal link. This feature simplifies the process of hosting and sharing web applications.[Check it out →](https://docs.nodereal.io/docs/dcellar-as-developer-tool#web-hosting)
+- **Basic File & Asset Management**: With Dcellar, both developers and normal users can upload, store and share files very
+  easily, as well as transfer in/out tokens easily. Besides, DCellar supports batch operations, you can upload, download,
+  delete multiple files at a time. [Check it out →](https://docs.nodereal.io/docs/dcellar-get-started)
 
-## Testnet Faucet
+- **NFT Storage and Minting**: With DCellar, developers and users can conveniently store their NFT resources and associated
+  metadata, enabling them to easily mint their own NFTs. Compared to alternative solutions, DCellar provides a more
+  intuitive interaction process, ensuring a seamless experience for users. [Check it out →](https://docs.nodereal.io/docs/dcellar-as-developer-tool#nft-metadata-and-medium-storage)
 
-Please use the official BSC testnet faucet and convert it into BNB on Greenfield through [bridge](#bridge),
-[Check it out →](https://discord.com/invite/bnbchain) and claim in the testnet-faucet channel.
+- **SP Connectivity Verification**: Greenfield network clients can leverage DCellar to upload and download files to their
+  Service Provider (SP), thereby verifying the correct connection of the SP to the network. This feature enables users
+  to ensure smooth and reliable communication with their chosen SP.[Check it out →](https://docs.nodereal.io/docs/dcellar-as-developer-tool#nft-metadata-and-medium-storage)
+
+- **Web Server Functionality**: DCellar also functions as a web server, allowing users to effortlessly upload their frontend
+  code to the platform. By setting the uploaded content to public access, anyone can access your web application simply
+  by opening the universal link. This feature simplifies the process of hosting and sharing web applications.[Check it out →](https://docs.nodereal.io/docs/dcellar-as-developer-tool#web-hosting)
+
+Here are the domain names for DCellar:
+- **Mainnet**: `https://dcellar.io`
+- **Testnet**: `https://testnet.dcellar.io/`
 
 ## Related Projects
 

@@ -1,22 +1,21 @@
 ---
-title: Getting Test BNB
+title: Getting Test tBNB
 order: 3
 ---
 
-# Getting your test BNB
+# Getting Test tBNB Tokens
 
-You can claim the test BNB on BSC Testnet by the faucet, and bridge it to Greenfield Testnet.
+You can claim the test tBNB tokens on BSC Testnet by the faucet, and bridge it to Greenfield Testnet.
 
-# Claim tBNB from Faucet
+## Claim tBNB from BSC Faucet
 
-1. There are two ways to claim testing tBNB token, please refer to the BSC [faucet doc](https://docs.bnbchain.org/docs/bsc-faucet).
+1. There are several ways to claim test tBNB tokens, please refer to [BSC faucet doc](https://docs.bnbchain.org/docs/bsc-faucet).
 
-2. Switch to the BNB smart chain testnet in your wallet and check your balance. 
+2. Switch to the BSC Testnet in your wallet and check your balance. 
 
 ## Bridge to Greenfield
 
-[DCellar](http://dcellar.io) builds a bridge for transferring BNB from BSC to Greenfield and vice versa. You can follow
-[How to Transfer In](https://docs.nodereal.io/docs/dcellar-get-started#transfer-in) to bridge tBNBs from Greenfield Testnet to
-BSC Testnet.
-[How to Transfer Out](https://github.com/bnb-chain/greenfield-contracts/tree/verify-contracts#cross-chain-transfer-to-greenfield) to bridge tBNBs from BSC Testnet to
-Greenfield Testnet.
+You can use [BNB Greenfield Bridge](https://greenfield.bnbchain.org/en/bridge) or [DCellar Testnet](https://testnet.dcellar.io/)
+to transfer BNB from BSC to Greenfield and vice versa. You can follow [How to Transfer In](https://docs.nodereal.io/docs/dcellar-get-started#transfer-in)
+to bridge tBNBs from BSC Testnet to Greenfield Testnet, and [How to Transfer Out](https://docs.nodereal.io/docs/dcellar-get-started#transfer-out)
+to bridge tBNBs from Greenfield Testnet to BSC Testnet.
