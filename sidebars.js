@@ -244,7 +244,17 @@ const sidebars = {
       },
       items:[
         "sdks/sdk-go",
-        "sdks/sdk-js"
+        "sdks/sdk-js",
+         {
+          type: 'link',
+          label: 'Go SDK Official Doc', // The link label
+          href: 'https://pkg.go.dev/github.com/bnb-chain/greenfield-go-sdk/',
+        },
+        {
+          type: 'link',
+          label: 'JS SDK Official Doc', // The link label
+          href: 'https://docs.bnbchain.org/greenfield-js-sdk/',
+        },
       ],
     },
   ],

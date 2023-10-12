@@ -1,5 +1,5 @@
 ---
-title: Go SDK
+title: Go SDK Example
 ---
 
 # Quickstart

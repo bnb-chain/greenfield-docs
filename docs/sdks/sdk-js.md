@@ -1,5 +1,5 @@
 ---
-title: Javascript SDK
+title: Javascript SDK Example
 ---
 
 # Quickstart

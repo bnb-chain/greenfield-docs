@@ -5,7 +5,10 @@ info:
   version: 1.0.0
 
 servers:
-- url: https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org
+  - url: https://greenfield-chain.bnbchain.org
+    description: Mainnet RPC (uses live data)
+  - url: https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org
+    description: Testnet RPC (uses test data)
 
 paths:
   /greenfield/bridge/params:
