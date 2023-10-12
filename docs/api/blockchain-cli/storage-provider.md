@@ -8,7 +8,28 @@ order: 4
 ## Abstract
 The SP module is responsible for managing and maintaining all storage providers in the Greenfield network. It provides basic functions such as joining, depositing, editing, and etc.
 
-For testnet usage, please replace the flag of node address `--node https://greenfield-chain.bnbchain.org:443` to --node `https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443`
+The RPC addresses for mainnet and Testnet are listed below. In this tutorial, we are going to use Mainnet RPC address.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="mainnet"
+values={[
+{label: 'Mainnet', value: 'mainnet'},
+{label: 'Testnet', value: 'testnet'},
+]}>
+<TabItem value="mainnet">
+
+	node = "https://greenfield-chain.bnbchain.org:443"
+
+  </TabItem>
+  <TabItem value="testnet">
+
+	node = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+
+  </TabItem>
+</Tabs>
 
 ## List Storage providers
 
@@ -67,7 +88,7 @@ gnfd tx sp create-storage-provider [path/to/create_storage_provider_proposal.jso
 Example:
 
 ```sh
-gnfd tx sp create-storage-provider create_storage_provider_proposal.json  --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
+gnfd tx sp create-storage-provider create_storage_provider_proposal.json  --from your_funding_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
 
 ```json
@@ -91,7 +112,7 @@ gnfd tx sp create-storage-provider create_storage_provider_proposal.json  --from
       "endpoint": "https://sp0.greenfield.io",
       "deposit": {
         "denom": "BNB",
-        "amount": "1000000000000000000000"
+        "amount": "500000000000000000000"
       },
       "read_price": "0.108",
       "store_price": "0.016",
@@ -101,8 +122,8 @@ gnfd tx sp create-storage-provider create_storage_provider_proposal.json  --from
       "bls_proof": "8bbce5330c5a46416ec41bfb93d938e8fb2e01d0a4035bd7b87efb98762e5e71faf00427d991003680325b7f97b362640f8e58e69bf774cd59e2267bdfe5a2e6578194b6834531893a39253c718edae2511977991895cdc8dd9e1136e43d721c"
     }
   ],
-  "title": "create sp for test",
-  "summary": "test",
+  "title": "create sp",
+  "summary": "create sp",
   "metadata": "4pIMOgIGx1vZGU=",
   "deposit": "1000000000000000000BNB"
 }
@@ -110,7 +131,7 @@ gnfd tx sp create-storage-provider create_storage_provider_proposal.json  --from
 
 ## Deposit
 
-SP stake token from its funding account
+SP stake token from its funding account into Greenfield.
 
 ```shell
 gnfd tx sp deposit [sp-address] [fund-address] [value] [flags]
@@ -124,7 +145,6 @@ gnfd tx sp deposit 0x... 0x... 10000000000BNB  --from funding_key --home ~/.gnfd
 
 ## EditStorageProvider
 
-
 ```shell
 gnfd tx sp edit-storage-provider [sp-address] [flags]
 ```
@@ -137,18 +157,19 @@ gnfd tx sp edit-storage-provider 0x... --endpoint https://www.new-endpoint.com -
 
 ## UpdateStorageProviderStatus
 
+SP update status of itself, Currently status can be STATUS_IN_SERVICE and STATUS_IN_MAINTENANCE.
 ```shell
 gnfd tx sp update-status [sp-address] [new-status] [flags]
 ```
 
 Example:
 
-Update an SP to in service status
+Update an SP to in service status.
 ```sh
 gnfd tx sp update-status 0x... STATUS_IN_SERVICE --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
 
-Update an SP to in maintenance status with request duration in second
+Update an SP to in maintenance status with request duration is 1200 seconds.
 ```sh
 gnfd tx sp update-status 0x... STATUS_IN_MAINTENANCE --duration 1200 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
