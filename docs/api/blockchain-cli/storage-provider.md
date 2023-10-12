@@ -58,7 +58,7 @@ gnfd query sp storage-provider 1 --node https://greenfield-chain.bnbchain.org:44
 ## Query a Storage Provider by address
 
 ```shell
-gnfd query sp storage-provider-by-operator-address [sp-id] [flags]
+gnfd query sp storage-provider-by-operator-address [sp-address] [flags]
 ```
 
 Example:
@@ -114,8 +114,8 @@ gnfd tx sp create-storage-provider create_storage_provider_proposal.json  --from
         "denom": "BNB",
         "amount": "500000000000000000000"
       },
-      "read_price": "0.108",
-      "store_price": "0.016",
+      "read_price":"0.1469890427",
+      "store_price":"0.02183945725",
       "free_read_quota": 1073741824,
       "creator": "0x7b5Fe22B5446f7C62Ea27B8BD71CeF94e03f3dF2",
       "bls_key": "af8c586885a490a1775bcbef95e6162de1904777f3fb91e3bfd0ffd690fe0d477d0984f11852c64dc77d4583c99f34cb",
