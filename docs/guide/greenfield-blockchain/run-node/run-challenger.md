@@ -1,5 +1,5 @@
 ---
-title: Run Mainnet Challenger
+title: Run Challenger
 order: 6
 ---
 

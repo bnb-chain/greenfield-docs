@@ -1,5 +1,5 @@
 ---
-title: Run Mainnet Relayer
+title: Run Relayer
 order: 5
 ---
 
@@ -40,7 +40,7 @@ cd greenfield-relayer
 Modify `config/config.json`. Or, you can create a new one and specify the config path by `--config-path` flag when start the relayer.
 
 :::info
-Please refer to [Mainnet configure](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-testnet-values/values.yaml#L4) for the Mainnet config example.
+Please refer to [Mainnet configure](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-mainnet-values/values.yaml#L4) for the Mainnet config example.
 
 For Testnet config, refer to [Testnet configure](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-testnet-values/values.yaml#L4).
 :::
@@ -97,7 +97,7 @@ You might encounter `Rate limit` issue for using official BSC endpoints, we woul
       "max_open_conns": 100
     }
     ```
-replace ${pass}, ${user}, ${host} with your Mysql instance credentials and host. 
+replace ${pass}, ${user}, ${host} with your Mysql instance credential and host. 
 
 ## Build
 
