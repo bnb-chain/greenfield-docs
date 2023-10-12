@@ -90,13 +90,15 @@ You might encounter `Rate limit` issue for using official BSC endpoints, we woul
       "key_type": "local_private_key",
       "aws_region": "",
       "aws_secret_name": "",
-      "password": "pass",
-      "username": "root",
-      "url": "/greenfield-relayer?charset=utf8&parseTime=True&loc=Local",
+      "password": "${pass}",
+      "username": "${user}",
+      "url": "tcp(${host})/greenfield-relayer?charset=utf8&parseTime=True&loc=Local",
       "max_idle_conns": 10,
       "max_open_conns": 100
     }
     ```
+replace ${pass}, ${user}, ${host} with your Mysql instance credentials and host. 
+
 ## Build
 
 Build the binary:
