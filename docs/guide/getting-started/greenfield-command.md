@@ -17,14 +17,32 @@ The command tool supports the "--home" option to specify the path of the config 
 the default path is a directory called ".gnfd-cmd" under the home directory of the system.
 When running commands that interact with the greenfield, if there is no config/config.toml file under the path and the commands runs without "--config" flag, the tool will generate the config/config.toml file automatically which is consistent with the testnet configuration under the path.
 
-Below is an example of the config file. The rpcAddr and chainId should be consistent with the Greenfield network.
-For Greenfield Testnet, you can refer to [Greenfield Testnet RPC Endpoints](../../api/endpoints.md).
+Below is examples of the config file of Testnet and Mainnet. The rpcAddr and chainId should be consistent with the Greenfield network.
+For Greenfield Mainnet, you can refer to [Greenfield Mainnet RPC Endpoints](../../api/endpoints.md).
 The rpcAddr indicates the Tendermint RPC address with the port info.
 
-```
-rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
-chainId = "greenfield_5600-1"
-```
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+defaultValue="mainnet"
+values={[
+{label: 'Mainnet', value: 'mainnet'},
+{label: 'Testnet', value: 'testnet'},
+]}>
+<TabItem value="mainnet">
+
+	rpcAddr = "https://greenfield-chain.bnbchain.org:443"
+    chainId = "greenfield_1017-1"
+
+  </TabItem>
+  <TabItem value="testnet">
+
+	rpcAddr = "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
+    chainId = "greenfield_5600-1"
+  </TabItem>
+</Tabs>
 
 The command has the ability to intelligently select the correct storage provider to respond to the request. The user only needs to set the storage provider operator-address if they want to create a bucket on a specific SP. For example, the user can run "gnfd-cmd storage put test gnfd://bucket1/object1" to upload a file to bucket1 and then run "gnfd-cmd storage put test gnfd://bucket2/object" to upload a file to bucket2, which is stored on another SP without changing the config.
 
@@ -47,7 +65,7 @@ gnfd-cmd account import key.txt
 3.The terminal will prompt user to enter the password information. Users can also specify the password file path by using the "--passwordfile". Users are responsible for managing their password information.
 
 
-The keystore will be generated in the path "keystore/key.json" under the home directory of the system or the directory set by "-home".
+The keystore will be generated in the path "keystore/keyfile" under the home directory of the system or the directory set by "-home".
 And it is also the path to load keystore when running other commands.
 
 4. Delete the private key file which is created in step 1. It is not needed after the keystore has been generated.
@@ -58,29 +76,48 @@ If the user has no private key to import, he can use "account new" create a new 
 gnfd-cmd account account new
 ```
 
-To obtain the account and keystore info, users can use "account export" or "account ls" to display the information.
+To obtain the account and keystore info, users can use "account export" to print the private key info and "account ls" to display the accounts information.
 ```
 // list the account info and keystore path
 gnfd-cmd account ls
+
 // display the encrypted keystore or the private key 
 gnfd-cmd account export --unarmoredHex --unsafe
 ```
+
+Users can create multiple accounts using the "account import" or "account new" command. You can use the "set-default" command to specify which account to use for running other commands by default. When executing commands using the default account, there is no need to specify the keystore. 
+```
+// set the default account.
+gnfd-cmd account set-default [address]
+```
+
 
 ### SP Operations
 
 Before making a bucket and uploading files, we need to select a storage provider to store the files in the bucket. By executing the following command, we can obtain a list of storage providers on Greenfield.
 
 ```
-gnfd-cmd sp ls
+$ gnfd-cmd sp ls
+name     operator address                           endpoint                               status
+bnbchain 0x231099e40E1f98879C4126ef35D82FF006F24fF2 https://greenfield-sp.bnbchain.org:443 IN_SERVICE
+defibit  0x05b1d420DcAd3aB51EDDE809D90E6e47B8dC9880 https://greenfield-sp.defibit.io:443   IN_SERVICE
+ninicoin 0x2901FDdEF924f077Ec6811A4a6a1CB0F13858e8f https://greenfield-sp.ninicoin.io:443  IN_SERVICE
+nariox   0x88051F12AEaEC7d50058Fc20b275b388e15e2580 https://greenfield-sp.nariox.org:443   IN_SERVICE
+lumibot  0x3131865C8B61Bcb045ed756FBe50862fc23aB873 https://greenfield-sp.lumibot.org:443  IN_SERVICE
+voltbot  0x6651ED78A4058d8A93CA4979b7AD516D1C9010ac https://greenfield-sp.voltbot.io:443   IN_SERVICE
+nodereal 0x03c0799AD70d19e723359E036a83E8f44f4B8Ba7 https://greenfield-sp.nodereal.io:443  IN_SERVICE
 ```
 And the Users can obtain detailed information about a certain SP by "sp head" and "sp get-price" commands.
-Here is an example of obtaining information about an SP with endpoint https://gnfd-testnet-sp-1.nodereal.io.
+Here is an example of obtaining information about an SP with endpoint https://greenfield-sp.nodereal.io:443.
 ```
 // get storage provider info
-gnfd-cmd sp head  https://gnfd-testnet-sp-1.nodereal.io
+$ gnfd-cmd sp head  https://greenfield-sp.nodereal.io:443
 
 // get quota and storage price info of storage provider:
-gnfd-cmd sp get-price https://gnfd-testnet-sp-1.nodereal.io
+$ gnfd-cmd sp get-price https://greenfield-sp.nodereal.io:443
+get bucket read quota price: 0.1469890427  wei/byte
+get bucket storage price: 0.02183945725  wei/byte
+get bucket free quota: 1073741824
 ```
 
 You can take note of the operator-address information for the storage provider to which is intended to be uploaded. This parameter will be required for making the bucket in the next step.
@@ -123,8 +160,8 @@ gnfd-cmd object put --contentType "text/xml" file-path gnfd://testbucket/testobj
 ```
 
 If the object name has not been set, the command will use the file name as object name. After the command is executed, it will send createObject txn to the chain and uploads the payload of the object to the storage provider.
-The command will return the uploading info after the object have been sealed.
-
+The command will return after object completes sealing. Users can also choose to interrupt the sealing process, which does not affect the final completion of the object.
+During the upload process, the terminal will print the upload progress and upload speed.
 
 (2) download object
 
@@ -134,7 +171,7 @@ The filepath can be a specific file path, a directory path, or not set at all. I
 gnfd-cmd object get gnfd://testbucket/testobject file-path
 ```
 
-After the command is executed, it will send a download request to the storage provider and download the object.
+After the command is executed, it will send a download request to the storage provider and download the object. The terminal will print the download progress and speed.
 
 (3) list object and delete object
 
@@ -191,6 +228,12 @@ gnfd-cmd policy delete --groupId 11  grn:b::gnfd-bucket
 
 // delete the object policy from an grantee
 gnfd-cmd policy delete --grantee 0..  grn:o::gnfd-bucket/gnfd-object
+```
+
+Users can list the policy of the grantee or group-id by "policy ls" command
+```
+// list policy info of a group
+gnfd-cmd policy ls --groupId 11  grn:o::gnfd-bucket/gnfd-object
 ```
 
 In addition to the basic commands mentioned above, the Greenfield Command also supports functions such as transferring tokens and payment account operations. You can find more examples in the readme file of [Greenfield Command](https://github.com/bnb-chain/greenfield-cmd).
