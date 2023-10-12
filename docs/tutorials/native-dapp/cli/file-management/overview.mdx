@@ -22,9 +22,12 @@ We will also cover how to interact with the CLI tool, choose storage providers, 
 [Greenfield Command](https://github.com/bnb-chain/greenfield-cmd) is a powerful command line to interact with Greenfield.
 To begin, you will need to install the BNB Greenfield command line tool follow the instruction from CLI github page.
 
-When running commands that interact with the greenfield, if there is no config/config.toml file under the path and the commands runs without "--config" flag, the tool will generate the config/config.toml file automatically which is consistent with the testnet configuration under the path.
+When running commands that interact with the greenfield, if there is no config/config.toml file under the path and the commands runs without "--config" flag, the tool will generate the config/config.toml file automatically which is consistent with the network configuration under the path.
 
 Config file example will set up the necessary RPC address and chain id:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs
   defaultValue="mainnet"
@@ -75,31 +78,31 @@ To query the network and get a list of storage providers, execute:
 ./gnfd-cmd sp ls
 ```
 
-The result should display a list of storage providers. For testnet, there are several active storage providers, which can be used for development purposes.
+The result should display a list of storage providers. For mainnet, there are several active storage providers, which can be used for development purposes.
 
 ```
-SP list:
-sp[0]: operator-address:0x02Ad74D9B2349c2f0B1e9598aB018B3414dDe87A, endpoint:https://gnfd-testnet-sp-1.nodereal.io, Status:STATUS_IN_SERVICE
-sp[1]: operator-address:0x14361bB0E7f1A4d656588F08dC56836C9Feb2454, endpoint:https://gnfd-testnet-sp-4.bnbchain.org, Status:STATUS_IN_SERVICE
-sp[2]: operator-address:0x169321fC04A12c16D0DaF30BBfD0c805D0223803, endpoint:https://gnfd-testnet-sp-5.bnbchain.org, Status:STATUS_IN_SERVICE
-sp[3]: operator-address:0x216B1EA22422F930E4A157d6f38F7b12206c2A39, endpoint:https://gnfd-testnet-sp-7.bnbchain.org, Status:STATUS_IN_SERVICE
-sp[4]: operator-address:0x33b22C9d21670f001fA430fe9f35239123978e79, endpoint:https://gnfd-testnet-sp-1.bnbchain.org, Status:STATUS_IN_SERVICE
-sp[5]: operator-address:0xd8283E74d729B428712C2d393632Fc527B0F39CF, endpoint:https://gnfd-testnet-sp-2.bnbchain.org, Status:STATUS_IN_SERVICE
-sp[6]: operator-address:0xdc5dFFfa5Fc0Addf4A3c32F8DB6F39E1554ecbcf, endpoint:https://gnfd-testnet-sp-3.bnbchain.org, Status:STATUS_IN_SERVICE
-sp[7]: operator-address:0xEE380501A7fAA03CadBDF981B865064F824bC3EC, endpoint:https://gnfd-testnet-sp-6.bnbchain.org, Status:STATUS_IN_SERVICE
+name     operator address                           endpoint                               status
+bnbchain 0x231099e40E1f98879C4126ef35D82FF006F24fF2 https://greenfield-sp.bnbchain.org:443 IN_SERVICE
+defibit  0x05b1d420DcAd3aB51EDDE809D90E6e47B8dC9880 https://greenfield-sp.defibit.io:443   IN_SERVICE
+ninicoin 0x2901FDdEF924f077Ec6811A4a6a1CB0F13858e8f https://greenfield-sp.ninicoin.io:443  IN_SERVICE
+nariox   0x88051F12AEaEC7d50058Fc20b275b388e15e2580 https://greenfield-sp.nariox.org:443   IN_SERVICE
+lumibot  0x3131865C8B61Bcb045ed756FBe50862fc23aB873 https://greenfield-sp.lumibot.org:443  IN_SERVICE
+voltbot  0x6651ED78A4058d8A93CA4979b7AD516D1C9010ac https://greenfield-sp.voltbot.io:443   IN_SERVICE
+nodereal 0x03c0799AD70d19e723359E036a83E8f44f4B8Ba7 https://greenfield-sp.nodereal.io:443  IN_SERVICE
 ```
 
 The price for each storage provider can be checked using the operator address, for example:
 
 ```
-./gnfd-cmd sp get-price 0x169321fC04A12c16D0DaF30BBfD0c805D0223803
+./gnfd-cmd sp get-price 0x231099e40E1f98879C4126ef35D82FF006F24fF2
 ```
 
 The response will retrieve the price for reading the data, as well as for storing the data per second.
 
 ```
-get bucket read quota price: 0.087 wei/byte
-get bucket storage price: 0.0048 wei/byte
+get bucket read quota price: 0.1469890427  wei/byte
+get bucket storage price: 0.02183945725  wei/byte
+get bucket free quota: 1073741824
 ```
 
 To deduce the price for gigabytes (GB) per month from the metric of data usage in wei/byte, one needs to multiply the result by 0.002783138807808, as there are 1,073,741,824 bytes in 1 GB, 2,592,000 seconds in a month (30 days * 24 hours * 60 minutes * 60 seconds), and 10^18 wei in 1 BNB. 
@@ -107,8 +110,8 @@ To deduce the price for gigabytes (GB) per month from the metric of data usage i
 The result will be the price for storing or transferring data in gigabytes per month, expressed in BNB. This calculation takes into account the rate of data usage and the duration of a month. Following the returned rate of wei/byte/sec, the converted amounts are:
 
 ```
-get bucket read quota price: 0.000241465581804 BNB/GB/month
-get bucket storage price: 0.000013359066277 BNB/GB/month
+get bucket read quota price: 0.00041 BNB/GB/month
+get bucket storage price: 0.00006 BNB/GB/month
 ```
 
 Keep in mind that the pricing model and calculations may vary depending on the specific storage provider you are using. Always refer to the documentation or provider's information for accurate and up-to-date pricing details.
@@ -116,21 +119,21 @@ Keep in mind that the pricing model and calculations may vary depending on the s
 ### Account Management
 While BNB Smart Chain (BSC) and BNB Greenfield define their accounts in the same format, it's important to understand that they are two separate blockchains with distinct ledgers. As a result, users need to manage their balances separately on both BSC and BNB Greenfield blockchains. 
 
-Users can acquire test BNB tokens for testing purposes by using a test faucet provided by BNB Greenfield which can be accessed at https://gnfd-bsc-faucet.bnbchain.org/. By visiting the faucet website, users can request a certain amount of test BNB tokens to be sent to their BSC testnet address. 
-
-To transfer test BNB from the BSC testnet to BNB Greenfield, users can utilize the [dCellar](https://dcellar.io/) application. By using the dCellar application, users can initiate the transfer process from their BSC testnet address to their BNB Greenfield address.
+To transfer test BNB from the BSC to BNB Greenfield, users can utilize the [dCellar](https://dcellar.io/) application. By using the dCellar application, users can initiate the transfer process from their BSC  address to their BNB Greenfield address.
 
 ![Transfer Tokens](transfer-tokens.png)
+
+For testnet, users can acquire test BNB tokens for testing purposes by using a test faucet provided by BNB Greenfield which can be accessed at https://gnfd-bsc-faucet.bnbchain.org/. By visiting the faucet website, users can request a certain amount of test BNB tokens to be sent to their BSC testnet address.
 
 The balance can be checked using the following command:
 
 ```
-./gnfd-cmd bank balance --address 0x9998b49AE77DC803eC01f0a58035290fDDFDf5f5                           
+./gnfd-cmd bank balance --address 0x14cfe3777565d942f7a3e1d1dcffd7945170c8fe
 ```
 
 And the result will be the current balance:
 ```
-balance: 50000000000000000000BNB
+balance: 10001464255952380934 weiBNB
 ```
 ### Object Operations
 
@@ -139,23 +142,23 @@ In BNB Greenfield objects and buckets are key components. Buckets are containers
 To create a bucket one need to call the following storage make-bucket command with the desired bucket name.
 
 ```
-./gnfd-cmd bucket create gnfd://bucket123123123           
+./gnfd-cmd bucket create gnfd://bucket123123123
 ```
 
 The operation will automatically choose a storage provider and submit a transaction to BNB Greenfield blockchain to write the associated metadata. Alternatively you can provide storage provider address, that is operator-address, if a specific provider should be used. The result should look something similar to the following:                                                                
 
 ```
-choose primary sp: https://gnfd-testnet-sp-1.nodereal.io
-create bucket bucket123123123 succ, txn hash: 55A6DDB6C15F4E3358D72AE2F0E11430F77243CDE693B8A828A37A84522005FF
+choose primary sp: https://greenfield-sp.bnbchain.org:443
+create bucket bucket123123123 succ, txn hash: 0x6c89316c5912cda8b69eac6e96aa644d374c39c635e07fae4297e03496e7726a
 ```
 
-As you can see, the result returns a transaction hash, which one can inspect using the block scanner, e.g. https://greenfieldscan.com. Going to https://greenfieldscan.com/tx/0x55A6DDB6C15F4E3358D72AE2F0E11430F77243CDE693B8A828A37A84522005FF, will show all the details of the transaction. 
+As you can see, the result returns a transaction hash, which one can inspect using the block scanner, e.g. [https://greenfieldscan.com](https://greenfieldscan.com/). Going to [https://greenfieldscan.com/tx/0x6c89316c5912cda8b69eac6e96aa644d374c39c635e07fae4297e03496e7726a](https://greenfieldscan.com/tx/0x6c89316c5912cda8b69eac6e96aa644d374c39c635e07fae4297e03496e7726a), will show all the details of the transaction.
 
 ![Transaction Details](transaction.png)
 
 Notice that we in the details we can see the bucket owner details, moi; primary storage provider address, and the payment address. Since we haven’t created a separate payment account, our default account will serve as the payment account as well.
 
-With regards to the storage provider address, if you remember, it was picked for us automatically as https://gnfd-testnet-sp-1.nodereal.io. And from Selecting Storage Providers section we can see that its address is indeed 0x02Ad74D9B2349c2f0B1e9598aB018B3414dDe87A.
+With regards to the storage provider address, if you remember, it was picked for us automatically as [https://greenfield-sp.bnbchain.org:443](https://greenfieldscan.com/account/0x231099e40E1f98879C4126ef35D82FF006F24fF2). And from Selecting Storage Providers section we can see that its address is indeed 0x231099e40E1f98879C4126ef35D82FF006F24fF2.
 
 Lastly, it’s time to upload a file, but before we upload anything, let’s create one with a sample text using the echo command as follows:
 
@@ -171,11 +174,11 @@ Finally to upload the file to our newly created bucket bucket123123123, one need
 Notice that we’ve provided the visibility flag and made the file private. The successful result should be similar to the following: 
 
 ```
-create object test4.txt on chain finish, txn Hash: F2E23F29BF78FCB69316B6A31173C80B15233C2C92720781A71EAC58FB4014E5
+create object test4.txt on chain finish, txn Hash: 0x5a885b7da8e8eb6921c84540d29b385b2dcee1f5ebdb4bb6c9219cf82e6ca80d
 put object test4.txt successfully 
 ```
 
-Similarly, going to https://greenfieldscan.com/tx/0xF2E23F29BF78FCB69316B6A31173C80B15233C2C92720781A71EAC58FB4014E5 will show the details of the file upload. Here, observe the transaction payload and scroll to the “visibility” attribute, which confirms the privacy status.
+Similarly, going to [https://greenfieldscan.com/tx/0x5a885b7da8e8eb6921c84540d29b385b2dcee1f5ebdb4bb6c9219cf82e6ca80d](https://greenfieldscan.com/tx/0x5a885b7da8e8eb6921c84540d29b385b2dcee1f5ebdb4bb6c9219cf82e6ca80d) will show the details of the file upload. Here, observe the transaction payload and scroll to the “visibility” attribute, which confirms the privacy status.
 
 ```
 {"key":"visibility" "value":"\"VISIBILITY_TYPE_PRIVATE\"" }

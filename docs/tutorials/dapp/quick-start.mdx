@@ -99,7 +99,9 @@ $ gnfd-cmd -c config.toml -k keyA.json -p password.txt policy put --groupId ${Gr
 ```shell
 ## Example, replace the ${GroupId} with the group id you get in the previous step
 ## 97 is the chainId of BSC testnet
-$ export ChainId=97
+## 56 is the chainId of BSC mainnet
+
+$ export ChainId=56
 $ gnfd-cmd -c config.toml -k keyA.json -p password.txt group mirror --destChainId ${GroupId} --id ${GroupId} 
 ```
 
@@ -127,11 +129,11 @@ It turns out that AccountB is not permitted to access the file, which is expecte
   ]}>
   <TabItem value="mainnet">
 
-	export RPC_TEST=https://greenfield-chain.bnbchain.org:443
+	export RPC_MAIN=https://bsc-dataseed.bnbchain.org
 	$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
 	--sig "updateGroup(address operator, uint256 groupId, address member)" \
 	${AccountA} ${GroupId} ${AccountB} \
-	-f https://bsc-dataseed.bnbchain.org \
+	-f $RPC_MAIN \
 	--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
 	--legacy \
 	--broadcast
@@ -139,11 +141,11 @@ It turns out that AccountB is not permitted to access the file, which is expecte
   </TabItem>
   <TabItem value="testnet">
 
-	export RPC_TEST=https://gnfd-bsc-testnet-dataseed1.bnbchain.org
+	export RPC_TEST=https://bsc-testnet-dataseed.bnbchain.org
 	$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
 	--sig "updateGroup(address operator, uint256 groupId, address member)" \
 	${AccountA} ${GroupId} ${AccountB} \
-	-f https://greenfield-bsc-testnet-ap.nodereal.io/ \
+	-f $RPC_TEST\
 	--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
 	--legacy \
 	--broadcast
