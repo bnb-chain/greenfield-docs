@@ -25,6 +25,8 @@ order: 3
   - `https://greenfield-sp.lumibot.org`
   - `https://greenfield-sp.voltbot.io`
 
+  The above SPs are joined in the genesis state. For more SP endpoints, you can refer to [GreenfieldScan SPs](https://greenfieldscan.com/storage-providers).
+
 ### BSC (chain-id: 56)
 - **RPC Endpoints:**
   - `https://bsc-dataseed.bnbchain.org`
@@ -54,6 +56,8 @@ order: 3
   - `https://gnfd-testnet-sp1.nodereal.io`
   - `https://gnfd-testnet-sp2.nodereal.io`
   - `https://gnfd-testnet-sp3.nodereal.io`
+
+  The above SPs are joined in the genesis state. For more SP endpoints, you can refer to [GreenfieldScan Testnet SPs](https://testnet.greenfieldscan.com/storage-providers).
 
 ### BSC Testnet (chain-id: 97)
 
