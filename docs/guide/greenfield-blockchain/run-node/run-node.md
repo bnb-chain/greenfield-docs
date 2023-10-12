@@ -1,22 +1,26 @@
 ---
-title: Run Testnet Node
+title: Run Node
 order: 4
 ---
 
-# Run Testnet Node
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# Run Node
 
 ## Minimum System Requirements
 The hardware must meet certain requirements to run a Full Node.
 
 * Desktop or laptop hardware running recent versions of Mac OS X, or Linux.
 * 1 TB of free disk space, accessible at a minimum read/write speed of 100 MB/s.
-* 4 cores of CPU and 8 gigabytes of memory (RAM).
+* 4 cores of CPU and 12 gigabytes of memory (RAM).
 * A broadband Internet connection with upload/download speeds of at least 1 megabyte per second.
 
 ## Setting Up a New Node
 
 :::info 
-Please check the [greenfield repo](https://github.com/bnb-chain/greenfield/releases/latest) for information on the testnet, including the correct version of the binaries to use and details about the config file
+Please check the [greenfield repo](https://github.com/bnb-chain/greenfield/releases/latest) for information, including the correct version of the binaries to use and details about the config file
 :::
 
 1. You need to choose a home folder `$NODE_HOME` (i.e. ~/.gnfd) for Greenfield Chain. You can setup this by:
@@ -27,12 +31,26 @@ mkdir ~/.gnfd/config
 ```
 2. Download `app.toml`,  `config.toml` and `genesis.json` from `https://github.com/bnb-chain/greenfield/releases` and copy them into `$NODE_HOME/config`
 
+<Tabs>
+<TabItem value="mainnet" label="Mainnet">
+
+```bash
+wget  $(curl -s https://api.github.com/repos/bnb-chain/greenfield/releases/latest |grep browser_ |grep mainnet_config |cut -d\" -f4)
+unzip mainnet_config.zip
+cp mainnet_config/*  ~/.gnfd/config/
 ```
+
+</TabItem>
+<TabItem value="testnet" label="Testnet">
+
+```bash
 wget  $(curl -s https://api.github.com/repos/bnb-chain/greenfield/releases/latest |grep browser_ |grep testnet_config |cut -d\" -f4)
 unzip testnet_config.zip
 cp testnet_config/*  ~/.gnfd/config/
 ```
 
+</TabItem>
+</Tabs>
 
 You can edit this moniker later, in the `$NODE_HOME/config/config.toml` file:
 ```toml
@@ -56,10 +74,10 @@ gnfd start
 Alternatively, if you choose a different $NODE_HOME location and you are not using the suggested default `~/.gnfd`, you may start the full node by using below script, where $NODE_HOME is your selected directory. 
 
 
-Example: If you set `/usr/local/gnfd-testnet` as your home directory. Run the Full Node with below command.
+Example: If you set `/usr/local/gnfd` as your home directory. Run the Full Node with below command.
 
 ```shell
-gnfd start --home /usr/local/gnfd-testnet
+gnfd start --home /usr/local/gnfd
 ```
 :::
 
@@ -94,6 +112,6 @@ You can verify if state sync is done by `curl localhost:26657/status` several ti
 
 Prometheus is enabled on port `26660` by default, and the endpoint is `/metrics`.
 
-## Testnet Tools
+## Tools
 
 * [Explorer](https://greenfieldscan.com/)

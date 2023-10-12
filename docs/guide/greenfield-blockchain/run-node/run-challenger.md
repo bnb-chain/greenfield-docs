@@ -41,7 +41,7 @@ See [testnet values](https://github.com/bnb-chain/bnb-chain-charts/blob/master/g
    ```
    
 Note:
-The `private_key` and `bls_private_key` refer to the keys `validator_challenger` and `validator_bls` created in [become-testnet-validator](../run-node/become-testnet-validator.md) step 2.
+The `private_key` and `bls_private_key` refer to the keys `validator_challenger` and `validator_bls` created in [become-validator](../run-node/become-validator.md) step 2.
 Follow the below instruction to export keys. Make sure `private_key` has balance on Greenfield blockchain before running the challenger, the `bls_private_key` does not need to have balance.
 
 ```bash

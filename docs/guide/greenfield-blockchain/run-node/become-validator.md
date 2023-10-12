@@ -1,27 +1,37 @@
 ---
-title: Become Testnet Validator
+title: Become Validator
 order: 6
 ---
 
-# Become Testnet Validator
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# Become Validator
 
 ## Minimum Requirements
 
 - Number of BNB to be staked: `1000BNB`
 - Hardware Requirements:  Desktop or laptop hardware running recent versions of Mac OS X, or Linux.
 - CPU: 4 cores
-- RAM: 8 GB
+- RAM: 12 GB
 - HDD/SDD: 1 TB
 - Bandwidth: 1 MB/s
-- Slashing details: No slashing will occur for validator in the testnet so far, but will enable it short future.
+- Slashing details: No slashing will occur for validator so far.
 
 ## Setting up Validator Node
 
 ### 1. Install Fullnode
 
-Follow the instructions [here to set up a full node](./run-testnet-node.md).
+Follow the instructions [here to set up a full node](./run-node.md).
 
-### 2. Prepare validator, validator BLS, relayer, and challenger accounts
+### 2. Prepare validator, delegator, validator BLS, relayer, and challenger accounts
+
+:::warning
+The current key generation and storage procedures are not very secure. It is highly recommended to implement a more robust method, particularly when dealing with keys like the `delegator` and `operator` keys.
+
+For enhanced security and best practices, the usage of the `coldwallet` and `MPC` wallet is strongly encouraged. These wallets are fully compatible with the `gnfd-tx-sender` tool, and for further information and guidance, please consult the **[gnfd-tx-sender documentation](https://gnfd-tx-sender.nodereal.io/)**.
+:::
 
 :::note
 The `keyring-backend` supports multiple storage backends, some of which may not be available on all operating systems.
@@ -30,6 +40,7 @@ See more details [here](../../core-concept/key-management.md).
 
 ```bash
 gnfd keys add validator --keyring-backend test
+gnfd keys add delegator --keyring-backend test
 gnfd keys add validator_bls --keyring-backend test --algo eth_bls
 gnfd keys add validator_relayer --keyring-backend test
 gnfd keys add validator_challenger --keyring-backend test
@@ -41,12 +52,13 @@ Alternatively, if you choose a different $KEY_HOME location and you are not usin
 
 ```bash
 gnfd keys add validator --keyring-backend test --home ${KEY_HOME}
+gnfd keys add delegator --keyring-backend test --home ${KEY_HOME}
 gnfd keys add validator_bls --keyring-backend test --algo eth_bls --home ${KEY_HOME}
 gnfd keys add validator_relayer --keyring-backend test --home ${KEY_HOME}
 gnfd keys add validator_challenger --keyring-backend test --home ${KEY_HOME}
 ```
 
-### 3.  Obtain validator, validator BLS, relayer, and challenger account addresses
+### 3.  Obtain validator, delegator, validator BLS, relayer, and challenger account addresses
 
 :::note
 Ensure you choose the correct --keyring-backend and that --home is set correctly if you saved the files in a custom folder in `step 2`.
@@ -54,6 +66,7 @@ Ensure you choose the correct --keyring-backend and that --home is set correctly
 
 ```bash
 VALIDATOR_ADDR=$(gnfd keys show validator -a --keyring-backend test)
+DELEGATOR_ADDR=$(gnfd keys show delegator -a --keyring-backend test)
 RELAYER_ADDR=$(gnfd keys show validator_relayer -a --keyring-backend test)
 CHALLENGER_ADDR=$(gnfd keys show validator_challenger -a --keyring-backend test)
 VALIDATOR_BLS=$(gnfd keys show validator_bls --keyring-backend test --output json | jq -r '.pubkey_hex')
@@ -67,6 +80,7 @@ Replace the values in the following JSON and save it as create_validator_proposa
 - `${NODE_NAME}`: A custom human-readable name for this node.
 - `${VALIDATOR_NODE_PUB_KEY}`: The consensus key generated in step 1 (stored in ${HOME}/.gnfd/config/priv_validator_key.json by default).
 - `${VALIDATOR_ADDR}`: The operator address created in step 2.
+- `${DELEGATOR_ADDR}`: The delegator address created in step 2.
 - `${VALIDATOR_BLS}`: The BLS key created in step 2.
 - `${VALIDATOR_BLS_PROOF}`: The BLS proof created in step2.
 - `${RELAYER_ADDR}`: The relayer address created in step 2.
@@ -90,7 +104,7 @@ Replace the values in the following JSON and save it as create_validator_proposa
     "max_change_rate": "0.010000000000000000"
    },
    "min_self_delegation": "1000000000000000000000",
-   "delegator_address": "${VALIDATOR_ADDR}",
+   "delegator_address": "${DELEGATOR_ADDR}",
    "validator_address": "${VALIDATOR_ADDR}",
    "pubkey": {
     "@type": "/cosmos.crypto.ed25519.PubKey",
@@ -114,10 +128,38 @@ Replace the values in the following JSON and save it as create_validator_proposa
 }
 ```
 
-Run create validator command to submit the proposal. Ensure the validator account has enough BNB tokens.
+### 4.1 Run create validator command to submit the proposal by local keys. Ensure the delegator account has enough BNB tokens.
+
+:::info
+If you are utilizing the `coldwallet` or `MPC` wallet, please proceed to step [#4.2](#42-submit-the-proposal-by-gnfd-tx-sender-ensure-the-delegator-account-has-enough-bnb-tokens).
+:::
+
+<Tabs>
+<TabItem value="mainnet" label="Mainnet">
+
 ```bash
-gnfd tx staking create-validator ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${VALIDATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
+gnfd tx staking create-validator ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_1017-1" --from ${DELEGATOR_ADDR} --node "https://greenfield-chain.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
 ```
+
+</TabItem>
+<TabItem value="testnet" label="Testnet">
+
+```bash
+gnfd tx staking create-validator ./create_validator_proposal.json --keyring-backend test --chain-id "greenfield_5600-1" --from ${DELEGATOR_ADDR} --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443" -b sync --gas "200000000" --fees "1000000000000000000BNB" --yes
+```
+
+</TabItem>
+</Tabs>
+
+### 4.2 submit the proposal by `gnfd-tx-sender`. Ensure the delegator account has enough BNB tokens.
+
+Run command to generate the transaction details.
+```bash
+gnfd tx staking create-validator ./create_validator_proposal.json --from ${DELEGATOR_ADDR} --print-eip712-msg-type
+```
+
+Submit the proposal by `gnfd-tx-sender`.
+![submit-proposal](../../../../static/asset/14-gnfd-tx-sender.png)
 
 ### 5. Wait for the voting until the Proposal is passed.
 
@@ -130,6 +172,20 @@ Please ensure that the validator node is running before it is selected.
 :::
 
 ### 6. Query all validators
+<Tabs>
+<TabItem value="mainnet" label="Mainnet">
+
+```bash
+gnfd query staking validators --node "https://greenfield-chain.bnbchain.org:443"
+
+```
+
+</TabItem>
+<TabItem value="testnet" label="Testnet">
+
 ```bash
 gnfd query staking validators --node "https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org:443"
 ```
+
+</TabItem>
+</Tabs>
