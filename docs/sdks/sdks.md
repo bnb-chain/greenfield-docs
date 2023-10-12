@@ -6,11 +6,8 @@ pagination_prev: null
 ---
 
 # SDKs
-Below is the list of Official SDKs for BNB Greenfield in different languages. 
+Below are the lists of Official SDKs for BNB Greenfield in different languages. 
 
 ## Official SDKs
-* [Go SDK](sdk-go.md)
-* [Javascript SDK](sdk-js.md)
-
-
-
+* [Greenfield Go SDK](sdk-go.md), more details refer to [Go SDK Docs](https://pkg.go.dev/github.com/bnb-chain/greenfield-go-sdk).
+* [Greenfield Javascript SDK](sdk-js.md), more details refer to [JS SDK Docs](https://docs.bnbchain.org/greenfield-js-sdk/).

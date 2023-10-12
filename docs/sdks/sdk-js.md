@@ -255,5 +255,8 @@ export const searchKey = async (key: string) => {
 * [Next.js](https://github.com/bnb-chain/greenfield-js-sdk/tree/alpha/examples/nextjs)
 * [Node.js](https://github.com/bnb-chain/greenfield-js-sdk/tree/alpha/examples/nodejs)
 
-## Code Repository SDK
+## Code Repository
 - [Official JS implementation SDK](https://github.com/bnb-chain/greenfield-js-sdk)
+
+## API Documentation
+- [Greenfield JS SDK Docs](https://docs.bnbchain.org/greenfield-js-sdk/)
