@@ -28,9 +28,13 @@ Follow the instructions [here to set up a full node](./run-node.md).
 ### 2. Prepare validator, delegator, validator BLS, relayer, and challenger accounts
 
 :::warning
-The current key generation and storage procedures are not very secure. It is highly recommended to implement a more robust method, particularly when dealing with keys like the `delegator` and `operator` keys.
+The current key generation and storage procedures are not very secure. It is highly recommended to implement a more
+robust method, particularly when dealing with keys like the `delegator` and `operator` keys.
 
-For enhanced security and best practices, the usage of the `coldwallet` and `MPC` wallet is strongly encouraged. These wallets are fully compatible with the `gnfd-tx-sender` tool, and for further information and guidance, please consult the **[gnfd-tx-sender documentation](https://gnfd-tx-sender.nodereal.io/)**.
+For enhanced security and best practices, the usage of the `Cold Wallet` and `MPC Wallet` is strongly encouraged.
+These wallets are fully compatible with the `gnfd-tx-sender` tool, you can use `gnfd` with `--print-eip712-msg-type`
+flags to generate inputs data of each transaction, and then go to [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/)
+`Custom Tx` page to send transactions.
 :::
 
 :::note
@@ -128,10 +132,10 @@ Replace the values in the following JSON and save it as create_validator_proposa
 }
 ```
 
-### 4.1 Run create validator command to submit the proposal by local keys. Ensure the delegator account has enough BNB tokens.
+#### 4.1 Run create validator command to submit the proposal by local keys. Ensure the delegator account has enough BNB tokens.
 
 :::info
-If you are utilizing the `coldwallet` or `MPC` wallet, please proceed to step [#4.2](#42-submit-the-proposal-by-gnfd-tx-sender-ensure-the-delegator-account-has-enough-bnb-tokens).
+If you are using the `Cold Wallet` or `MPC wallet`, please proceed to step [#4.2](#42-submit-the-proposal-by-gnfd-tx-sender-ensure-the-delegator-account-has-enough-bnb-tokens).
 :::
 
 <Tabs>
@@ -151,14 +155,14 @@ gnfd tx staking create-validator ./create_validator_proposal.json --keyring-back
 </TabItem>
 </Tabs>
 
-### 4.2 submit the proposal by `gnfd-tx-sender`. Ensure the delegator account has enough BNB tokens.
+#### 4.2 Submit the proposal by `gnfd-tx-sender`. Ensure the delegator account has enough BNB tokens.
 
 Run command to generate the transaction details.
 ```bash
 gnfd tx staking create-validator ./create_validator_proposal.json --from ${DELEGATOR_ADDR} --print-eip712-msg-type
 ```
 
-Submit the proposal by `gnfd-tx-sender`.
+Submit the proposal by [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/).
 ![submit-proposal](../../../../static/asset/14-gnfd-tx-sender.png)
 
 ### 5. Wait for the voting until the Proposal is passed.
@@ -168,7 +172,9 @@ It will last 7days on mainnet while 1 day on testnet. Once it has passed and is 
 you can verify that the node has become a validator. 
 
 :::warning
-Please ensure that the validator node is running before it is selected.
+Please ensure that the validator node is running before it is selected. And the validator is responsible for
+[running relayer](./run-relayer.md) and [runing challenger](./run-challenger.md), please ensure all these services are
+running as expected.
 :::
 
 ### 6. Query all validators
@@ -177,7 +183,6 @@ Please ensure that the validator node is running before it is selected.
 
 ```bash
 gnfd query staking validators --node "https://greenfield-chain.bnbchain.org:443"
-
 ```
 
 </TabItem>
