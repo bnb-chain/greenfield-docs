@@ -55,9 +55,11 @@ values={[
 
 #### Hot Wallet Manual
 
-You can use the gnfd command to send the create storage provider transaction directly if you import your funding private
-key into the Keystore. However, this is not safe enough to use a hot wallet for Mainnet, so you can follow the
-[Hardware Wallet Manual](#hardware-wallet-manual) when you use a hardware wallet.
+You can use the `gnfd` command to directly send the transaction for creating a storage provider. To do this,  please
+import the private key of the funding account into the Keystore.
+
+However, it is not safe to use a hot wallet for Mainnet. Instead, you should refer to the [Hardware Wallet Manual](#hardware-wallet-manual)
+for instructions on using a hardware wallet.
 
 Command for creating storage provider:
 ```shell
@@ -109,14 +111,14 @@ cat ./create_storage_provider.json
 
 The gnfd command is not available for connecting with the hardware wallet, so you should use the [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/) to send transactions. Here are the steps:
 
-1. Generate the Input Data.
+1. Generate the transaction data.
 ```shell
 ./build/bin/gnfd tx sp create-storage-provider ./create_storage_provider.json --from {funding_address} --print-eip712-msg-type
 ```
-2. Visit [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/).
+2. Visit the [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/) website.
 3. Add your hardware wallet into Metamask, and connect the wallet.
-4. Click `Custom Tx` page and fill in the corresponding generated transaction data in step1.
-5. Send the transaction.
+4. Navigate to the `Custom Tx` page and fill in the generated transaction data in step1.
+5. Click the `Submit` button to send the transaction.
 
 ![submit proposal](../../../../static/asset/019-submit-proposal.jpg)
 

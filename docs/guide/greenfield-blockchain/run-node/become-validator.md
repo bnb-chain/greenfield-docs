@@ -32,9 +32,7 @@ The current key generation and storage procedures are not very secure. It is hig
 robust method, particularly when dealing with keys like the `delegator` and `operator` keys.
 
 For enhanced security and best practices, the usage of the `Cold Wallet` and `MPC Wallet` is strongly encouraged.
-These wallets are fully compatible with the `gnfd-tx-sender` tool, you can use `gnfd` with `--print-eip712-msg-type`
-flags to generate inputs data of each transaction, and then go to [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/)
-`Custom Tx` page to send transactions.
+These wallets are fully compatible with the `gnfd-tx-sender` tool, you can refer to [transaction data](../../../api/blockchain-cli/README.md#transaction-data) for more details.
 :::
 
 :::note
@@ -135,7 +133,7 @@ Replace the values in the following JSON and save it as create_validator_proposa
 #### 4.1 Run create validator command to submit the proposal by local keys. Ensure the delegator account has enough BNB tokens.
 
 :::info
-If you are using the `Cold Wallet` or `MPC wallet`, please proceed to step [#4.2](#42-submit-the-proposal-by-gnfd-tx-sender-ensure-the-delegator-account-has-enough-bnb-tokens).
+If you are utilizing the `Cold Wallet` or `MPC wallet`, please proceed to step [#4.2](#42-submit-the-proposal-by-gnfd-tx-sender-ensure-the-delegator-account-has-enough-bnb-tokens).
 :::
 
 <Tabs>
@@ -162,7 +160,9 @@ Run command to generate the transaction details.
 gnfd tx staking create-validator ./create_validator_proposal.json --from ${DELEGATOR_ADDR} --print-eip712-msg-type
 ```
 
-Submit the proposal by [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/).
+Submit the transaction using [gnfd-tx-sender](https://gnfd-tx-sender.nodereal.io/).
+Please refer to [this guide](../../../api/blockchain-cli/README.md#transaction-data) for instructions.
+
 ![submit-proposal](../../../../static/asset/14-gnfd-tx-sender.png)
 
 ### 5. Wait for the voting until the Proposal is passed.
