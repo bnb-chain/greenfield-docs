@@ -3,7 +3,7 @@ title: Basic File Management
 order: 1
 ---
 
-# Building with Greenfield SDK
+# Basic File Management with SDK
 
 Several Chain API libraries are available. These libraries manage the low-level logic of connecting to Greenfield node, making requests, and handing the responses.
 * [go-sdk](https://github.com/bnb-chain/greenfield-go-sdk)
