@@ -23,10 +23,16 @@ In the case of BNB Greenfield, the decentralized network of storage providers co
 To start, create a separate bucket for your website on BNB Greenfield using the following command: 
 
 ```bash
-./gnfd-cmd bucket create gnfd://my-plato-website
+./gnfd-cmd bucket create --visibility=public-read gnfd://my-plato-website --primarySP 0x231099e40E1f98879C4126ef35D82FF006F24fF2
 ```
 
-Make a note of the primary service provider (SP) address, as it may be required later. 
+The example return message is like the following:
+```
+make_bucket: my-plato-website
+transaction hash:  E083FB2647D0A53640B63AD1DB8EFA0E1C5CC05454C0774E3DB2A4822E73D423
+```
+
+You can verify the transaction in explorer [here](https://greenfieldscan.com/tx/E083FB2647D0A53640B63AD1DB8EFA0E1C5CC05454C0774E3DB2A4822E73D423).
 
 ### Uploading Supporting Files
 
@@ -83,6 +89,15 @@ Upload the modified index.html file to your bucket using the following command:
 gnfd://my-plato-website/index.html 
 ```
 
+Example output:
+```
+object index.html created on chain
+transaction hash:  20921F3C1DBE3F911217CE82BDC9DC2A745AF61912651A5F9D80F10989A8FC20
+
+sealing...
+upload index.html to gnfd://my-plato-website/index.html
+```
+
 Now, let's eagerly click the link to view our brand new website at https://gnfd-testnet-sp1.bnbchain.org/view/my-plato-website/index.html and feel the anticipation building up.
 
 🥁Drum beat... 
@@ -127,7 +142,7 @@ And finally, we heard the triumphant sound of trumpets!
 
 ![Plato Website](website-example.png)
 
-However, as we gaze upon the site, we can't help but admit that it doesn't look particularly astonishing. It falls short of our grandest expectations. Yet, considering that we generated and uploaded it in just a matter of minutes, it's still a decent outcome given our investment of time and effort.
+However, as we gaze upon [the site](https://greenfield-sp.bnbchain.org/view/my-plato-website/index.html), we can't help but admit that it doesn't look particularly astonishing. It falls short of our grandest expectations. Yet, considering that we generated and uploaded it in just a matter of minutes, it's still a decent outcome given our investment of time and effort.
 
 The content and image look good though, it just needs more love with styling…but that’s a story for another tutorial.
 
