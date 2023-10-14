@@ -40,14 +40,12 @@ cd greenfield-relayer
 Modify `config/config.json`. Or, you can create a new one and specify the config path by `--config-path` flag when start the relayer.
 
 :::info
-Please refer to [Mainnet configure](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-mainnet-values/values.yaml#L4) for the Mainnet config example.
-
-For Testnet config, refer to [Testnet configure](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-testnet-values/values.yaml#L4).
+For Testnet config, refer to [Testnet configure](https://github.com/bnb-chain/bnb-chain-charts/blob/master/gnfd-relayer-testnet-values/values.yaml#L4). 
+You can use it as a template for your Mainnet config by adapting a few changes as illustrated below.
 :::
 
 
-1. Set relayer private key and bls private key import method (via file or aws secret) and keys, and the block monitoring start height.
-
+1. Set relayer private key and bls private key import method (via file or aws secret) and keys, the block monitoring start heights.
     ```
       "greenfield_config": {
         "key_type": "local_private_key", // or "aws_private_key" if you are using aws secret manager.
@@ -55,36 +53,72 @@ For Testnet config, refer to [Testnet configure](https://github.com/bnb-chain/bn
         "aws_bls_secret_name": "",
         "private_key": "your_private_key", // this is the relayer private key for relaying transaction.
         "bls_private_key": "your_private_key", // this is the bls key for signing crosschain package.
+        "rpc_addrs": [
+          "https://greenfield-chain.bnbchain.org:443"
+         ]
+        "chain_id": 1017,
          ...
-        "start_height": 1,  // please change to the current block height of greenfield network.
+        "start_height": 1,  // please change to the current block height of Greenfield network.
+        "chain_id_string": "greenfield_1017-1"
       }, 
       "bsc_config": {
         "key_type": "local_private_key",  // or "aws_private_key" if you are using aws secret manager.
         ...
         "rpc_addrs": [
-           "bsc_rpc_address"
+           "BSC_RPC"
         ],
         "private_key": "your_private_key", // same as the above one in greenfield_congfig.
+        "gas_limit": 20000000,
+        "gas_price": 3000000001,
         ...
         "start_height": 0,   // please change to the current block height of BSC network.
+        "chain_id": 56
       }
     ```
-Note:
-You might encounter `Rate limit` issue for using official BSC endpoints, we would highly recommend using 3rd Party RPCs, like the [NodeReal MegaNode](https://nodereal.io/meganode)
+   Note:
+   Refer to [Greenfield Endpoints](../../../api/endpoints.md) for Greenfield RPC address,
+   [BSC Endpoints](https://docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes) for BSC RPC address, and use the appropriate ones based on your location.
+   
+   You might encounter `Rate limit` issue for using official BSC endpoints, we would highly recommend using 3rd Party RPCs, like the [NodeReal MegaNode](https://nodereal.io/meganode)
 
 2. Config crossChain, greenfield light client and relayer hub smart contracts addresses, others can keep the default value, refer to this 
-   [contract-list](../../../tutorials/dapp/contract-list.md) to get these addresses.
-    ```
+   [contract-list](../../../tutorials/dapp/contract-list.md) to get addresses for Mainnet/Testnet.
+   
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+   <Tabs
+   defaultValue="mainnet"
+   values={[
+   {label: 'Mainnet', value: 'mainnet'},
+   {label: 'Testnet', value: 'testnet'},
+   ]}>
+   <TabItem value="mainnet">
+
+    "relay_config": {
+        ... 
+        "cross_chain_contract_addr": "0x77e719b714be09F70D484AB81F70D02B0E182f7d",
+        "greenfield_light_client_contract_addr": "0x433bB48Bd86c089375e53b2E2873A9C4bC0e986B",
+        "relayer_hub_contract_addr": "0x31C477F05CE58bB81A9FB4b8c00560f1cBe185d1"
+      }
+
+  </TabItem>
+  <TabItem value="testnet">
+
     "relay_config": {
         ... 
         "cross_chain_contract_addr": "0xa5B2c9194131A4E0BFaCbF9E5D6722c873159cb7",
         "greenfield_light_client_contract_addr": "0xa9249cefF9cBc9BAC0D9167b79123b6C7413F50a",
-        "relayer_hub_contract_addr": "0x31C477F05CE58bB81A9FB4b8c00560f1cBe185d1"
+        "relayer_hub_contract_addr": "0x91cA83d95c8454277d1C297F78082B589e6E4Ea3"
       }
-    ```
+
+  </TabItem>
+</Tabs>
+
+
 
 3. Config the database settings.
-    ```
+ ```
     "db_config": {
       "dialect": "mysql",
       "key_type": "local_private_key",
@@ -96,8 +130,8 @@ You might encounter `Rate limit` issue for using official BSC endpoints, we woul
       "max_idle_conns": 10,
       "max_open_conns": 100
     }
-    ```
-replace ${pass}, ${user}, ${host} with your Mysql instance credential and host. 
+   ```
+Please replace `${pass}`, `${user}`, `${host}` with your Mysql instance credential and host. 
 
 ## Build
 
