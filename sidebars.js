@@ -34,7 +34,7 @@ const sidebars = {
       items:[
         "guide/getting-started/overview",
         "guide/getting-started/ecosystem",
-        "guide/getting-started/wallet-onfiguration",
+        "guide/getting-started/wallet-configuration",
         "guide/getting-started/token-transfer",
         "guide/getting-started/network-info",
         "guide/getting-started/get-test-bnb",
@@ -84,7 +84,7 @@ const sidebars = {
             "guide/greenfield-blockchain/modules/world-state",
           ]
         },
-        
+
         {
           type: "category",
           label: "Run Node",
@@ -141,7 +141,7 @@ const sidebars = {
             "guide/storage-provider/modules/bsdb",
           ]
         },
-        
+
         {
           type: "category",
           label: "Run Storage Provider",
@@ -160,6 +160,11 @@ const sidebars = {
       ]
     },
     {type:'doc', label:'Contribute', id:'contribute'},
+    {
+          type: 'link',
+          label: 'Whitepaper',
+          href: 'https://github.com/bnb-chain/greenfield-whitepaper',
+    },
   ],
 
   apiReferenceSidebar:[
@@ -192,9 +197,9 @@ const sidebars = {
       // @ts-ignore
       items: [
 
-        require("./docs/greenfield-api/sidebar.js"),      
+        require("./docs/greenfield-api/sidebar.js"),
     ]
-      
+
     },
     {
       type: 'doc', label:'Storage Command Line', id: 'api/sp-cli',
@@ -320,7 +325,7 @@ const sidebars = {
 
   faqSidebar:[
     {
-      type:"category", 
+      type:"category",
       label: "FAQs",
       link: {type: 'doc', id: 'faq/greenfield-faqs'},
       collapsible: true,

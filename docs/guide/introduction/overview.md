@@ -18,7 +18,7 @@ What sets Greenfield apart from existing centralized and decentralized storage s
 
 - It provides developers with similar API primitives and performance as popular existing Web2 cloud storage.
 
-The ultimate goal of Greenfield is to establish a test field for new data economy and dApp models, which will
+The ultimate goal of Greenfield is to establish a foundation for new data economy and dApp models, which will
 undoubtedly aid in the development and evolution of the foundation for Web3.
 
 ## How BNB Greenfield Works

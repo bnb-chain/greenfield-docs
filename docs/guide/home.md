@@ -39,4 +39,8 @@ Start building dapps to create value based on the data assets and its related ec
 - [Start building with SDK](../tutorials/dapp/quick-start.mdx)
 
 ## Help & Support 
-Check out the Greenfield Developer Discord for technical support. (pending...)
+Check out the Greenfield Developer community for technical support.
+
+* [Discord](https://discord.com/invite/bnbchain)
+* [Build N'Build Forum](https://forum.bnbchain.org/c/bnb-greenfield/)
+* [GitHub](https://github.com/bnb-chain/greenfield)
