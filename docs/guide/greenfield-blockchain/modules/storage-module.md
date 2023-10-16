@@ -76,8 +76,8 @@ they can be updated with governance.
 | MaxSegmentSize            | 16M           | The maximum size of the segment. The payload data of an object will split into several segment. Only the size of the last segment can be less than MaxSegmentSize, others is equals. |
 | RedundantDataChunkNum     | 4             | The number of the data chunks in Erasure-Code algorithm.                                                                                                                             |
 | RedundantParityChunkNum   | 2             | The number of the parity chunks in Erasure-Code algorithm.                                                                                                                           |
-| MaxPayloadSize            | 2G            | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
-| MinChargeSize             | 1M            | The minimum charge size of the payload, objects smaller than this size will be charged as this size                                                                                  |
+| MaxPayloadSize            | 32G           | The maximum size of the payload data that allowed in greenfield storage network.                                                                                                     |
+| MinChargeSize             | 128KB         | The minimum charge size of the payload, objects smaller than this size will be charged as this size                                                                                  |
 | MaxBucketsPerAccount      | 100           | The maximum number of buckets that can be created per account                                                                                                                        |
 
 ## Messages

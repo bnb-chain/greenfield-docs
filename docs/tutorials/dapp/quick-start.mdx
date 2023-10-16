@@ -91,7 +91,7 @@ The console will return the id of the group, which is `136` in this case.
 ```shell
 ## Example, replace the ${GroupId} with the group id you get in the previous step
 $ export GroupId=136
-$ gnfd-cmd -c config.toml -k keyA.json -p password.txt policy put --groupId ${GroupId} --actions get gnfd://funbucket/story.txt   
+$ gnfd-cmd -c config.toml -k keyA.json -p password.txt policy put --groupId ${GroupId} --actions get grn:o::funbucket/story.txt   
 ```
 
 6. Mirror the group to BSC network.
@@ -131,7 +131,7 @@ It turns out that AccountB is not permitted to access the file, which is expecte
 
 	export RPC_MAIN=https://bsc-dataseed.bnbchain.org
 	$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
-	--sig "updateGroup(address operator, uint256 groupId, address member)" \
+	--sig "addMember(address operator, uint256 groupId, address member)" \
 	${AccountA} ${GroupId} ${AccountB} \
 	-f $RPC_MAIN \
 	--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
@@ -143,7 +143,7 @@ It turns out that AccountB is not permitted to access the file, which is expecte
 
 	export RPC_TEST=https://bsc-testnet-dataseed.bnbchain.org
 	$ forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
-	--sig "updateGroup(address operator, uint256 groupId, address member)" \
+	--sig "addMember(address operator, uint256 groupId, address member)" \
 	${AccountA} ${GroupId} ${AccountB} \
 	-f $RPC_TEST\
 	--private-key 148748590a8b83dxxxxxxxxxxxxxxxxx \
@@ -152,8 +152,6 @@ It turns out that AccountB is not permitted to access the file, which is expecte
 
   </TabItem>
 </Tabs>
-
-
 
 10. Wait 30 seconds, and try to access the file through AccountB again.
 ```shell

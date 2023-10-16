@@ -9,7 +9,7 @@ If you are interested in the HTTP Restful API, we invite you to the [following p
 
 ## Overview
 
-![gateway-flow](../../../../static/asset/06-gateway.jpg)
+<div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/06-gateway.jpg" width="500" height="100" /></div>
 
 <div style={{textAlign:'center'}}><i>Gateway Architecture</i></div>
 
@@ -57,7 +57,7 @@ Universal Endpoint supports using any valid endpoint for any SP, and automatical
 
 For instance, when users access a testnet endpoint `gnfd-testnet-sp-1.bnbchain.org` of SP1, the request URL will be: `https://gnfd-testnet-sp-1.bnbchain.org/download/mybucket/myobject.jpg`. Universal Endpoint will find the correct endpoint for myobject.jpg, here SP3, and redirect the user to: `https://gnfd-testnet-sp-3.bnbchain.org/download/mybucket/myobject.jpg` and download the file.
 
-![gattway-universal-endpoint-flow](../../../../static/asset/501-SP-Gateway-Universal-Endpoint.png)
+<div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/501-SP-Gateway-Universal-Endpoint.png" width="500" height="100" /></div>
 
 <div style={{textAlign:'center'}}><i>Universal Endpoint Logic Flow</i></div>
 

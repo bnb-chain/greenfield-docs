@@ -10,7 +10,7 @@ Manager is an abstract interface to do some internal service management, it is r
 
 ## Overview
 
-![manager-flow](../../../../static/asset/07-manager.jpg)
+<div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/07-manager.jpg" width="500" height="100" /></div>
 
 <div style={{textAlign:'center'}}><i>Manager Architecture</i></div>
 
@@ -105,7 +105,7 @@ Stop Serving is the background service running in primary SP, which is used to a
 
 **It only runs in testnet environment for remove historical data, and it will NOT run in mainnet.**
 
-![Stop-Serving-Workflow](../../../../static/asset/502-Stop-Serving-Workflow.png)
+<div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/502-Stop-Serving-Workflow.png" width="1000" height="100" /></div>
 
 <div style={{textAlign:'center'}}><i>Stop Serving Main Workflows</i></div>
 

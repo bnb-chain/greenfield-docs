@@ -2,7 +2,7 @@
 title: P2P
 ---
 
-# P2P
+# [Deprecated]P2P
 
 P2P networks are decentralized, meaning participants communicate directly with one another on a relative “equal footing.” No central server or authority controls the network. P2P networks do not require a privileged set of “servers” that behave differently from their “clients,” as in the predominant client-server model.
 
