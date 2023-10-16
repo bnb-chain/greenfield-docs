@@ -16,15 +16,15 @@ to install it.
 
 2. Click **Connect Wallet**.
 
-
 ![connect-wallet](../../../static/asset/201-Connect-Wallet.png)
 
 3. Find **Greenfield Mainnet**, and click **Add To Metamask**.
 
-![Greenfield-Mainnet-Chain-List](../../../static/asset/202-Greenfield-Mainnet-Chain-List.png)
-
+<img width="346" alt="Greenfield-Mainnet-Chain-List" src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/202-Greenfield-Mainnet-Chain-List.png" style={{width:"40%"}}/>
 
 4. When MetaMask prompts a window, click **Approve**.
+
+<img width="346" alt="Approve-Add-Greenfield-Mainnet" src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/203-Approve-Add-Greenfield-Mainnet.png" style={{width:"40%"}}/>
 
 ## Add Greenfield Testnet
 1. Visit [BNBChain List](https://www.bnbchainlist.org/).
@@ -34,7 +34,9 @@ to install it.
 
 3. Find **Greenfield Mekong Testnet**, and click **Add To Metamask**
 
-![greenfield-chain-list](../../../static/asset/204-Greenfield-Testnet-Chain-List.png)
+<img width="346" alt="Greenfield-Testnet-Chain-List" src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/204-Greenfield-Testnet-Chain-List.png" style={{width:"40%"}}/>
 
 4. When MetaMask prompts a window, click **Approve**
+
+<img width="346" alt="Approve-Add-Greenfield-Testnet" src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/205-Approve-Add-Greenfield-Testnet.png" style={{width:"40%"}}/>
 

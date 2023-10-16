@@ -145,7 +145,7 @@ We denote this text message as `M2`
 
 and request user to sign and get the signature`S2`:
 
-![auth-update-key-metamask](../../../../static/asset/015-Auth-Update-Key-Metamask.png)
+<div align="left"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/015-Auth-Update-Key-Metamask.png" width="500" height="100" /></div>
 
 Finally, the app invokes [SP API "update\_key"](../../../api/storage-provider-rest/update_key.md) by putting `S2` into http Authorization header. The following is an example:
 

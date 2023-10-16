@@ -33,11 +33,12 @@ const sidebars = {
       collapsed: true,
       items:[
         "guide/getting-started/overview",
+        "guide/getting-started/ecosystem",
         "guide/getting-started/wallet-onfiguration",
+        "guide/getting-started/token-transfer",
         "guide/getting-started/network-info",
         "guide/getting-started/get-test-bnb",
         "guide/getting-started/greenfield-command",
-        "guide/getting-started/ecosystem",
       ],
     },
     {
@@ -138,7 +139,6 @@ const sidebars = {
             "guide/storage-provider/modules/piece-store",
             "guide/storage-provider/modules/redundancy",
             "guide/storage-provider/modules/bsdb",
-            "guide/storage-provider/modules/p2p",
           ]
         },
         

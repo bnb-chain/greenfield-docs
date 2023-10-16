@@ -5,13 +5,6 @@ order: 1
 
 # Overview
 
-:::warning
-**Greenfield Mainnet has been launched, offering users reliable decentralized storage services. It is important to note
-that buckets and objects on Greenfield Testnet will be regularly cleaned. Therefore, please refrain from storing
-important data on Greenfield Testnet, considering Greenfield Mainnet instead.**
-:::
-
-
 Greenfield is a decentralized storage infrastructure within the broader BNB chain ecosystem where users and dApps can
 create, store, and exchange data with full ownership to form a new data economy. BNB remains the main utility token on
 Greenfield, which can be used to pay the gas fee and storage fees.
@@ -24,4 +17,8 @@ reuse existing accounts and infrastructure from BSC. For example, you can use Tr
 compatible wallets to deposit your BNB from BSC to Greenfield and interact with dApps on Greenfield. It is also easy
 to identify the same owner by referring to the same addresses on both BSC and Greenfield.
 
-
+:::note
+**Greenfield Mainnet has been launched, offering users reliable decentralized storage services. It is important to note
+that buckets and objects on Greenfield Testnet will be regularly cleaned. Therefore, please refrain from storing
+important data on Greenfield Testnet, considering Greenfield Mainnet instead.**
+:::
