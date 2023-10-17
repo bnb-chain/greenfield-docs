@@ -30,6 +30,9 @@ to install it.
 
 4. When extension wallet prompts a window, click **Approve**.
 
+
+<img width="346" alt="Approve-Add-Greenfield-Mainnet" src="https://raw.githubusercontent.com/maxnodereal/greenfield-docs/main/static/asset/211-Approve-Add-Greenfield-Mainnet.png" style={{width:"40%"}}/>
+
 <img width="346" alt="Approve-Add-Greenfield-Mainnet" src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/203-Approve-Add-Greenfield-Mainnet.png" style={{width:"40%"}}/>
 
 ## Add Greenfield Testnet
