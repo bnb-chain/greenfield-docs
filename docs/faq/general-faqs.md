@@ -7,7 +7,6 @@ Wallet does not support transfers on BNB Greenfield because BNB Greenfield use a
 
 <img
   src={require('../../static/img/transfer_error.png').default}
-  alt="opBNB-bridge-supported-tokens"
   style={{zoom:"50%"}}
 />
 
@@ -16,7 +15,6 @@ When users perform actions on the BNB Greenfield, such as creating buckets or up
 
 <img
   src={require('../../static/img/signature.png').default}
-  alt="opBNB-bridge-supported-tokens"
   style={{zoom:"50%"}}
 />
 
