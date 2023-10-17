@@ -17,6 +17,7 @@ We're working on expanding this FAQ with more content, including questions from 
 * [Official GitHub Repo](https://github.com/bnb-chain/greenfield)
 * [API Reference](/docs/api/endpoints)
 * [SDKs](/docs/sdks/sdks.md)
-* Build a dapp on Greenfield (_**Coming Soon**_⏰)
+* [Price Calculator](https://dcellar.io/pricing-calculator)
+* [Build a dapp on Greenfield](/docs/tutorials/overview.md)
 * [Block Explorer](https://greenfieldscan.com)
 * Help Center ([Discord](https://discord.com/invite/bnbchain))

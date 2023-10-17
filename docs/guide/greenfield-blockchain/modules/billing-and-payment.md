@@ -5,8 +5,8 @@ order: 3
 
 # Billing and Payment
 
-If you need a reminder on the different type of fees, we invite you to
-the [following page](../../core-concept/billing-payment.md).
+If you're interested in knowing the real-time pricing for storage and querying on Greenfield, we invite you to
+the [Price Calculator](https://dcellar.io/pricing-calculator).
 
 The fees are paid on Greenfield in the style of
 `Stream` from users to Global Virtual Groups and Global Virtual Group Families at a constant rate.
