@@ -250,6 +250,11 @@ const sidebars = {
       items:[
         "sdks/sdk-go",
         "sdks/sdk-js",
+        {
+          type: 'link',
+          label: 'Python SDK Examplesc', // The link label
+          href: 'https://github.com/bnb-chain/greenfield-python-sdk/tree/main/examples',
+        },
          {
           type: 'link',
           label: 'Go SDK Official Doc', // The link label
