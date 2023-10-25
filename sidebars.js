@@ -332,7 +332,10 @@ const sidebars = {
       collapsed: true,
       items:[
         {type: 'doc', id: 'faq/general-faqs'},
+        {type: 'doc', id: 'faq/storage-faqs'},
+        {type: 'doc', id: 'faq/sp-faqs'},
         {type: 'doc', id: 'faq/mirroring-faqs'},
+        {type: 'doc', id: 'faq/challenge-faqs'},
       ]
     },
   ],

@@ -23,12 +23,19 @@ For storage, every object stored on Greenfield is charged at the price calculate
 a base price ratio, and other parameters. Once the object is stored, the total charge of
 storage will be mainly only related to time and the base price.
 
-Users are granted a free, time-based quota for downloading data, with each bucket corresponding to a set of their
-objects. If the quota is exceeded, users can upgrade their data package to obtain additional quota. The price for each
-data package is fixed for a certain period (unless the read price has been changed and the user
-takes some actions to reflect the price change), during which users will only be charged based on the amount of time
-they spend downloading and the package price. This charging scheme remains in effect until the user modifies their data
-package settings.
+The storage fee calculation is:
+
+```math
+Storage Fee = sum(ChargedSize) * (PrimaryStorePrice + SecondaryStorePrice*SecondarySPNumber) * (1+Validator Tax Rate) * ReserveTime
+```
+
+Users are granted a free, time-based quota for downloading data, with each bucket corresponding to a set of their objects. If the quota is exceeded, users can upgrade their data package to obtain additional quota. The price for each data package is fixed for a certain period (unless the read price has been changed and the user takes some actions to reflect the price change), during which users will only be charged based on the amount of time they spend downloading and the package price. This charging scheme remains in effect until the user modifies their data package settings.
+
+The download quota fee calculation is:
+
+```math
+Download Quota Fee Fee = ChargedReadQuota * ReadPrice * (1 + Validator Tax Rate) * ReserveTime
+```
 
 ### Global Virtual Group Family & Global Virtual Group
 For storage fee, it will be not streamed to storage providers directly. It will be streamed to:

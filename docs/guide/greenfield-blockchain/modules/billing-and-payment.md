@@ -619,13 +619,16 @@ The locked fee is calculated as below:
 	lockAmount = totalRate * ReserveTime
 ```
 
-The `ChargeSize` is calculated from the object's payload size, if the payload size is less than 128k then `ChargeSize`
-is
-128k, otherwise `ChargeSize` is equal to payload size.
+The `ChargeSize` is calculated from the object's payload size, if the payload size is less than **128KB** then `ChargeSize` is **128KB**, otherwise `ChargeSize` is equal to payload size.
+
+:::note
+To optimize your cost, it is advisable to consolidate small files into payloads exceeding **128KB**. Failing to do so may result in higher charges.
+:::
+
+### Seal Object
 
 When creating an object which is empty, it will be sealed directly.
 
-### Seal Object
 
 When sealing object, the locked fee will be moved from lock balance to buffer balance and the following outflows will be
 created for the payment account.
