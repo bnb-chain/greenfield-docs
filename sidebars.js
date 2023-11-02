@@ -304,6 +304,7 @@ const sidebars = {
           items:[
             "tutorials/cli/file-management/overview",
             "tutorials/cli/cmd-access-control",
+            "tutorials/cli/mirror",
           ]
         },
         {

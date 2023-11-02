@@ -199,6 +199,39 @@ To validate the integrity of the file, we can compare its content to the origina
 ```
 diff test4.txt test4-copy.txt 
 ```
+### Upload multiple objects
+
+`gnfd-cmd` also support uploads all files from a folder recursively.
+
+Let's say that there is a folder called `website` where you store all the files for your website.
+
+```shell
+$ ls
+index.html  plato.jpeg  styles.css
+```
+To upload all these files into your bucket, you can run the following commands:
+
+```
+gnfd-cmd object put --recursive ./website gnfd://ylatitsb
+```
+
+Please note that `--recursive` is used to put all files or objects under the specified directory or prefix in a recursive way. The default value is false
+
+The successful result should be similar to the following:
+
+```
+sealing...
+upload index.html to gnfd://ylatitsb
+
+sealing...
+upload plato.jpeg to gnfd://ylatitsb
+
+sealing...
+upload styles.css to gnfd://ylatitsb
+```
+
+You can go to [GreenfieldScan](https://testnet.greenfieldscan.com) to view the change of your bucket.
+
 ## Conclusion
 Overall, backups during software development offer peace of mind, efficient recovery, and safeguarding of the project's integrity. They minimize downtime and prevent significant setbacks.
 
