@@ -7,9 +7,18 @@ order: 1
 
 In this section, we will introduce the two main methods for developing dApps on BNB Greenfield: using smart contracts deployed to BNB Smart Chain (BSC) and interacting directly with BNB Greenfield through our Software Development Kit (SDK) or Command Line Interface (CLI).
 
-## Table of Contents
-1. [Developing with smart contracts on BSC](#developing-with-smart-contracts-on-bsc)
-2. [Interacting with BNB Greenfield through SDK and CLI](#interacting-with-bnb-greenfield-through-sdk-and-cli)
+## Data Marketplace Demo
+Data marketplace is a data exchange platform where users can freely create, list, trade,
+and sell data assets, including digital publications, scientific experimental data, and specific domain data.
+
+### Demo Link
+- Mainnet: `https://marketplace.greenfield-sp.bnbchain.org/index.html`
+- Testnet: `https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/index.html`
+
+### Source Code
+- Frontend: `https://github.com/bnb-chain/greenfield-data-marketplace-frontend`
+- Smart Contracts: `https://github.com/bnb-chain/greenfield-data-marketplace-contracts`
+
 
 ## Developing with smart contracts on BSC
 One of the primary methods for building dApps with BNB Greenfield is by deploying smart contracts to the BSC. Smart contracts are self-executing programs that facilitate and enforce the execution of agreements without the need for intermediaries.

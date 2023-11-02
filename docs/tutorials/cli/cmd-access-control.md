@@ -1,5 +1,5 @@
 ---
-title: Access Control Management with CLI
+title: Access Control
 order: 1
 ---
 
@@ -17,13 +17,13 @@ Please refer to [this doc](./file-management/overview#Installation) to make sure
 ## Query Bucket Info
 To query the bucket, execute:
 
-```
+```shell
 ./gnfd-cmd bucket head gnfd://website-bucket
 ```
 
 You should be able to see
 
-```
+```shell
 latest bucket info:
 owner:"0x525482AB3922230e4D73079890dC905dCc3D37cd"
 bucket_name:"website-bucket"
@@ -71,7 +71,7 @@ gnfd-cmd group update --addMembers 0x843e77D639b6C382e91ef489881963209cB238E5 gn
 To verify the new member is indeed part of the group
 ```shell
 // head group member
-gnfd-cmd group head-member  0x843e77D639b6C382e91ef489881963209cB238E5 gnfd://website-group
+gnfd-cmd group head-member  0x843e77D639b6C382e91ef489881963209cB238E5 website-group
 ```
 
 The result should look something similar to the following:
@@ -86,12 +86,10 @@ The principal is need to be set by `--grantee` which indicates a greenfield acco
 
 The object policy action can be "create", "delete", "copy", "get" , "execute", "list" or "all". The bucket policy actions can be "update", "delete", "create", "list", "update", "getObj", "createObj" and so on. The group policy actions can be "update", "delete" or all, update indicates the update-group-member action.
 
-The policy effect can set to be "allow" or "deny" by `--effect`
-
 In this example, the principal grants the `delete bucket`, `update bucket` access to this group
 ```shell
 // grant bucket operation permissions to a group
-gnfd-cmd policy put --groupId 172 --actions delete,update,createObj,getObj grn:b::website-bucket
+gnfd-cmd policy put --groupId 712 --actions delete,update,createObj,getObj grn:b::website-bucket
 ```
 
 The result should look something similar to the following:
@@ -108,9 +106,9 @@ Upload a private file with principal account:
 gnfd-cmd object put --contentType "text/xml" --visibility private ./website/index.html gnfd://website-bucket/index.html
 ```
 
-In this example, the principal grants the `delete bucket`, `update bucket` access to this group
+In this example, the principal grants the `delete object`, `update object` access to this group
 ```shell
-// grant bucket operation permissions to a group
+// grant object operation permissions to a group
 gnfd-cmd policy put --groupId 712 --actions get,delete grn:o::website-bucket/index.html
 ```
 
@@ -121,13 +119,18 @@ latest object policy info:
  id:"2318" principal:<type:PRINCIPAL_TYPE_GNFD_GROUP value:"712" > resource_type:RESOURCE_TYPE_OBJECT resource_id:"187293" statements:<effect:EFFECT_ALLOW actions:ACTION_GET_OBJECT actions:ACTION_DELETE_OBJECT >
 ```
 
-![Transaction Details](../../static/asset/view_private_file.png)
+![Transaction Details](../../../static/asset/view_private_file.png)
 
 
 To verify the group policy is working, you can try view the private object with account `0x843e77D639b6C382e91ef489881963209cB238E5`.
 1. Go to explorer and find the detail page of the private object.
 2. Click on "Preview" button
 3. Unlock your wallet and choose the right address. Then, you should be able to view the html file.
+
+or you can download the file with `gnfd-cmd`
+```shell
+./gnfd-cmd object get  gnfd://website-bucket/index.html
+```
 
 ### Update Access Control with Group
 
@@ -151,10 +154,12 @@ gnfd-cmd group update --removeMembers 0xca807A58caF20B6a4E3eDa3531788179E5bc816b
 #### Remove Policy
 
 Here is an example to delete a policy
+* Delete a policy for an adress
 ```shell
 gnfd-cmd policy rm --grantee 0x843e77D639b6C382e91ef489881963209cB238E5 --actions get grn:o::website-bucket/index.html
 ```
 
+* Delete a policy for a group
 ```shell
 gnfd-cmd policy rm --groupId 111 --actions get grn:o::website-bucket/index.html
 ```

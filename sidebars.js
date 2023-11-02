@@ -272,51 +272,62 @@ const sidebars = {
       collapsed: true,
       link: {type:'doc', id:'tutorials/overview'},
       items:[
-        {
+         {
           type: "category",
-          label: "Building with Smart Contract",
+          label: "Building Data Marketplace",
           collapsible: true,
           collapsed: true,
-          link: {type:'doc', id:'tutorials/dapp/overview'},
+          link: {type:'doc', id:'tutorials/data-marketplace/overview'},
           items:[
-            "tutorials/dapp/overview",
-            "tutorials/dapp/quick-start",
-            "tutorials/dapp/dapp-integration",
-            "tutorials/dapp/permission-control",
-            "tutorials/dapp/primitive-interface",
-            "tutorials/dapp/contract-list",
-            "tutorials/dapp/showcases",
+            "tutorials/data-marketplace/overview",
+            "tutorials/data-marketplace/mirror",
+            "tutorials/data-marketplace/sdk",
+            "tutorials/data-marketplace/interface",
+            {
+              type: 'link',
+              label: 'Data Marketplace Mainnet Demo', // The link label
+              href: 'https://marketplace.greenfield-sp.bnbchain.org/index.html',
+            },
+            {
+              type: 'link',
+              label: 'Data Marketplace Testnet Demo', // The link label
+              href: 'https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/index.html',
+            },
           ]
         },
         {
           type: "category",
-          label: "Building without Smart Contract",
+          label: "Greenfield CLI",
           collapsible: true,
           collapsed: true,
-          link: {type:'doc', id:'tutorials/native-dapp/overview'},
+          link: {type:'doc', id:'tutorials/cli/file-management/overview'},
           items:[
-            "tutorials/native-dapp/overview",
-            {
-              type: "category",
-              label: "CLI",
-              collapsible: true,
-              collapsed: true,
-              items:[
-                "tutorials/native-dapp/cli/file-management/overview",
-                "tutorials/native-dapp/cli/hosting-websites/overview",
-              ]
-            },
-            {
-              type: "category",
-              label: "SDK",
-              collapsible: true,
-              collapsed: true,
-              items:[
-                "tutorials/native-dapp/sdk/file-management/overview",
-                "tutorials/native-dapp/sdk/resumable-upload/overview",
-                "tutorials/native-dapp/sdk/batch-upload"
-              ]
-            },
+            "tutorials/cli/file-management/overview",
+            "tutorials/cli/cmd-access-control",
+          ]
+        },
+        {
+          type: "category",
+          label: "Basic Resource Management",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'tutorials/native-dapp/cli/hosting-websites/overview'},
+          items:[
+            "tutorials/native-dapp/cli/hosting-websites/overview",
+            "tutorials/native-dapp/sdk/file-management/overview",
+            "tutorials/native-dapp/sdk/resumable-upload/overview",
+          ]
+        },
+        {
+          type: "category",
+          label: "Access Control",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'tutorials/native-dapp/sdk/access-control'},
+          items:[
+            "tutorials/native-dapp/sdk/access-control",
+            "tutorials/native-dapp/sdk/cross-chain",
+            "tutorials/dapp/quick-start",
           ]
         }
       ]
