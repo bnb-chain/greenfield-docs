@@ -283,6 +283,7 @@ const sidebars = {
             "tutorials/data-marketplace/mirror",
             "tutorials/data-marketplace/sdk",
             "tutorials/data-marketplace/interface",
+            "tutorials/data-marketplace/contract-list",
             {
               type: 'link',
               label: 'Data Marketplace Mainnet Demo', // The link label

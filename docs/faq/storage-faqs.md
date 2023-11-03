@@ -11,9 +11,13 @@ If you're interested in knowing the real-time pricing for storage and querying o
 
 In Greenfield, bsides transaction fee, users are required to pay two kinds of storage service fees: `storage fee` and `download quota fee`. These storage service fees are charged by Storage Providers (SPs) in a [stream payment](../guide/greenfield-blockchain/modules/billing-and-payment.md). Users need to lock some BNB when they start using the service.
 
+```math
 Storage Fee = sum(ChargedSize) * (PrimaryStorePrice + SecondaryStorePrice*SecondarySPNumber) * (1+Validator Tax Rate) * ReserveTime
+```
 
-Download Quota Fee Fee = ChargedReadQuota * ReadPrice * (1 + Validator Tax Rate) * ReserveTime
+```math
+Download Quota Fee = ChargedReadQuota * ReadPrice * (1 + Validator Tax Rate) * ReserveTime
+```
 
 Currently,  `ReserveTime` is 180 days and `Validator Tax Rate` is 1%
 
