@@ -48,6 +48,9 @@ To perform a cross-chain transfer from Greenfield to Binance Smart Chain (BSC), 
 You can also use [DCellar](https://dcellar.io/) and follow [How to Transfer Out](https://docs.nodereal.io/docs/dcellar-get-started#transfer-out)
 to transfer BNBs from Greenfield to BSC.
 
+One thing to note, if the value of the cross chain transfer is larger than 1000BNB, the funds will be locked in `TokenHub` for 12 hours before they can be withdrawn.
+Usually, a third-party server will help withdraw the unlocked token to the target account, and users can also withdraw to the target account themselves by following [unlock document](https://github.com/bnb-chain/greenfield-contracts#large-transfer-unlock)
+
 ## Internal Transfers within Greenfield
 
 Greenfield allows for easy and secure transfers between different accounts. However, due to the particularity of the
