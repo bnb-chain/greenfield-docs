@@ -21,6 +21,12 @@ This guide will help you join Greenfield SP Network: Mainnet and Testnet.
 - [Tools](#tools)
 - [Trouble Shooting](#trouble-shooting)
 
+## Prerequisite for Becoming a Mainnet SP
+To ensure the stable provision of data services, Storage Providers must meet specific criteria to join the mainnet.
+- The SP must join the testnet for a minimum of one month.
+- The SP must store over 1K files across more than 100 buckets on the testnet.
+- There were fewer than 500 slash events on the SP in the past month.
+
 ## How to Join SP Network?
 
 Greenfield Blockchain validators are responsible for selecting storage providers. For each on-chain proposal to add new storage provider, there are deposit period for depositing BNB and voting period for validators to make votes. Once the proposal passes, new SP can join the network afterwards.
