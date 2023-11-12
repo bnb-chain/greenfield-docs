@@ -1,6 +1,6 @@
 ---
-title: Access Control
-order: 1
+title: Access Control Management Demo
+order: 2
 ---
 
 # Access Control Management with CLI

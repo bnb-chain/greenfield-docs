@@ -1,10 +1,11 @@
 ---
-title: Mirror Bucket with Greenfield SDK
+title: Cross-chain Access Control with Greenfield SDK
 order: 3
 ---
 
-# Access Control with Greenfield SDK
-In this tutorial we’ll use the go-SDK library to manage your buckets and objects.
+# Cross-chain Access Control with Resource Mirroring
+
+In this tutorial we’ll use the go-SDK library to transfer control over objects to the smart contract on BSC and allowing on-chain management. Object mirroring enables greater flexibility and control over decentralized storage on BNB Greenfield to all dApps on BSC. It leverages the capabilities of the BSC and its smart contract functionality to provide enhanced functionality and interoperability between the two platforms.
 
 ## Prerequisites
 Before getting started, you should be familiar with:
@@ -151,3 +152,8 @@ During the mirroring process from BNB Greenfield to BSC, the content of the file
 ```
 
 You can also inspect using the block scanner, e.g. [https://greenfieldscan.com](https://greenfieldscan.com/).
+
+
+### Source Code
+* [Go-SDK](https://github.com/bnb-chain/greenfield-go-sdk/blob/master/examples/crosschain.go)
+* [JS-SDK](https://github.com/bnb-chain/greenfield-js-sdk/blob/main/examples/nextjs/src/components/mirror/index.tsx)

@@ -50,7 +50,21 @@ const sidebars = {
         "guide/core-concept/accounts",
         "guide/core-concept/key-management",
         "guide/core-concept/billing-payment",
-        "guide/core-concept/programmability",
+        //"guide/core-concept/programmability",
+        {
+          type: "category",
+          label: "Cross-Chain Programmability",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'guide/core-concept/programmability'},
+          items:[
+            "guide/core-concept/programmability",
+            "tutorials/data-marketplace/mirror",
+            "tutorials/data-marketplace/sdk",
+            "tutorials/data-marketplace/interface",
+            "tutorials/data-marketplace/contract-list",
+          ]
+        },
         "guide/core-concept/simple-storage-service",
         "guide/core-concept/data-availability",
         "guide/core-concept/transaction-lifecycle",
@@ -279,16 +293,16 @@ const sidebars = {
       items:[
          {
           type: "category",
-          label: "Building Data Marketplace",
+          label: "How to Build Data Marketplace",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/data-marketplace/overview'},
           items:[
             "tutorials/data-marketplace/overview",
-            "tutorials/data-marketplace/mirror",
-            "tutorials/data-marketplace/sdk",
-            "tutorials/data-marketplace/interface",
-            "tutorials/data-marketplace/contract-list",
+            // "tutorials/data-marketplace/mirror",
+            // "tutorials/data-marketplace/sdk",
+            // "tutorials/data-marketplace/interface",
+            // "tutorials/data-marketplace/contract-list",
             {
               type: 'link',
               label: 'Data Marketplace Mainnet Demo', // The link label
@@ -315,7 +329,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Basic Resource Management",
+          label: "How to build simple dApps ",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/native-dapp/cli/hosting-websites/overview'},

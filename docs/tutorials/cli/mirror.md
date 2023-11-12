@@ -1,4 +1,9 @@
-# Mirror Resources
+---
+title: Resources Mirroring Demo
+order: 3
+---
+
+# Resources Mirroring with CLI
 
 ## Introduction
 

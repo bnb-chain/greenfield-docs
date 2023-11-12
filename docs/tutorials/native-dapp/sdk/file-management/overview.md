@@ -1,6 +1,6 @@
 ---
-title: Basic File Management
-order: 1
+title: Simple dApp for File Management
+order: 2
 ---
 
 # Building with Greenfield SDK
@@ -397,3 +397,7 @@ The function DeleteObject support deleting objects.
 
 ## Conclusion
 Congratulations on making it all the way through this tutorial! In this tutorial, we learned the basics of interacting with the Greenfield network using SDK library.
+
+### Source Code
+* [Go-SDK](https://github.com/bnb-chain/greenfield-go-sdk/blob/master/examples/storage.go)
+* [JS-SDK](https://github.com/bnb-chain/greenfield-js-sdk/blob/main/examples/nodejs/storage.js)

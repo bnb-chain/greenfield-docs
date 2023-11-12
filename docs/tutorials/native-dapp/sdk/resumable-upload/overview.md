@@ -1,6 +1,6 @@
 ---
-title: Resumable Upload/Download
-order: 2
+title: Resumable Upload/Download Demo
+order: 3
 ---
 
 # Resumable Upload & Resumable Download
@@ -88,3 +88,6 @@ err = s.Client.FGetObjectResumable(
 ```
 
 In the above example, the **`FGetObjectResumable`** function is used to perform a resumable download of a file from the specified bucket and object name. If an error occurs during the download, the subsequent function calls will check the existence and validity of the **`object_{operatoraddress}{getrange}.tmp`** file, and resume the download from the last offset.
+
+### Source code
+* [Go-SDK demo](https://github.com/bnb-chain/greenfield-go-sdk/blob/4940fb69df1258fcb232b92e1ed4894ead516583/e2e/e2e_storage_test.go#L452)

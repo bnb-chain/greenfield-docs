@@ -1,5 +1,5 @@
 ---
-title: Hosting a Website
+title: Hosting a Website on Greenfield
 order: 1
 ---
 
