@@ -36,7 +36,7 @@ for more details.
 
 The Greenfield blockchain does not support smart contract, but the native cross chain between BSC and Greenfield bring
 programmability to the ecosystem. More tech details is explained [here](../guide/core-concept/programmability.md),
-you can start integrating smart contract with Greenfield following the [tutorial](../tutorials/dapp/quick-start.mdx).
+you can start integrating smart contract with Greenfield following the [tutorial](../tutorials/access-control/quick-start.mdx).
 
 ### What consensus algorithm does Greenfield run on?
 

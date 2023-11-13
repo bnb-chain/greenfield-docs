@@ -6,7 +6,7 @@
 
 #### Pre-requisite Readings
 
-* [Native cross chain Resource Mirror](../../guide/greenfield-blockchain/modules/cross-chain.md#resource-mirror-layer)
+* [Native cross chain Resource Mirror](../../greenfield-blockchain/modules/cross-chain.md#resource-mirror-layer)
 
 :::
 
@@ -29,7 +29,7 @@ This integration between Greenfield Blockchain and BNB Smart Chain allows for gr
 when it comes to accessing and manipulating data, ultimately leading to a more streamlined and efficient
 data management process.
 
-More details are discussed in [Mirroring FAQ](../../faq/mirroring-faqs.md).
+More details are discussed in [Mirroring FAQ](../../../faq/mirroring-faqs.md).
 
 
 

@@ -50,7 +50,6 @@ const sidebars = {
         "guide/core-concept/accounts",
         "guide/core-concept/key-management",
         "guide/core-concept/billing-payment",
-        //"guide/core-concept/programmability",
         {
           type: "category",
           label: "Cross-Chain Programmability",
@@ -59,10 +58,10 @@ const sidebars = {
           link: {type:'doc', id:'guide/core-concept/programmability'},
           items:[
             "guide/core-concept/programmability",
-            "tutorials/data-marketplace/mirror",
-            "tutorials/data-marketplace/sdk",
-            "tutorials/data-marketplace/interface",
-            "tutorials/data-marketplace/contract-list",
+            "guide/core-concept/cross-chain/mirror",
+            "guide/core-concept/cross-chain/sdk",
+            "guide/core-concept/cross-chain/interface",
+            "guide/core-concept/cross-chain/contract-list",
           ]
         },
         "guide/core-concept/simple-storage-service",
@@ -299,10 +298,6 @@ const sidebars = {
           link: {type:'doc', id:'tutorials/data-marketplace/overview'},
           items:[
             "tutorials/data-marketplace/overview",
-            // "tutorials/data-marketplace/mirror",
-            // "tutorials/data-marketplace/sdk",
-            // "tutorials/data-marketplace/interface",
-            // "tutorials/data-marketplace/contract-list",
             {
               type: 'link',
               label: 'Data Marketplace Mainnet Demo', // The link label
@@ -329,14 +324,14 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "How to build simple dApps ",
+          label: "Greenfield Sample Use Case",
           collapsible: true,
           collapsed: true,
-          link: {type:'doc', id:'tutorials/native-dapp/cli/hosting-websites/overview'},
+          link: {type:'doc', id:'tutorials/dapp/overview'},
           items:[
-            "tutorials/native-dapp/cli/hosting-websites/overview",
-            "tutorials/native-dapp/sdk/file-management/overview",
-            "tutorials/native-dapp/sdk/resumable-upload/overview",
+            "tutorials/dapp/hosting-websites/overview",
+            "tutorials/dapp/file-management/overview",
+            "tutorials/dapp/resumable-upload/overview",
           ]
         },
         {
@@ -344,11 +339,11 @@ const sidebars = {
           label: "Access Control",
           collapsible: true,
           collapsed: true,
-          link: {type:'doc', id:'tutorials/native-dapp/sdk/access-control'},
+          link: {type:'doc', id:'tutorials/access-control/access-control'},
           items:[
-            "tutorials/native-dapp/sdk/access-control",
-            "tutorials/native-dapp/sdk/cross-chain",
-            "tutorials/dapp/quick-start",
+            "tutorials/access-control/access-control",
+            "tutorials/access-control/cross-chain",
+            "tutorials/access-control/quick-start",
           ]
         }
       ]

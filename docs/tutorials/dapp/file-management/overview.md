@@ -1,9 +1,9 @@
 ---
-title: Simple dApp for File Management
+title: Simple Tool for File Management
 order: 2
 ---
 
-# Building with Greenfield SDK
+# Building File Management Tool with Greenfield SDK
 
 Several Chain API libraries are available. These libraries manage the low-level logic of connecting to Greenfield node, making requests, and handing the responses.
 * [go-sdk](https://github.com/bnb-chain/greenfield-go-sdk)

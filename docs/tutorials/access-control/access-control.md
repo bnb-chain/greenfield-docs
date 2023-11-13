@@ -1,15 +1,15 @@
 ---
-title: Build dApps with Access Control
-order: 1
+title: Access Control Feature of Greenfield SDK
+order: 2
 ---
 
-# How to Build dApps with Access Control
+# Access Control Feature of Greenfield SDK
 
 In this tutorial we’ll use the go-SDK library to manage your buckets and objects.
 
 ## Prerequisites
 Before getting started, you should be familiar with:
-* [Greenfield basics](https://docs.bnbchain.org/greenfield-docs/docs/guide/introduction/overview)
+* [Greenfield basics](../../guide/introduction/overview.md)
 * Greenfield command line [examples](https://github.com/bnb-chain/greenfield-cmd#examples)
 
 Also, make sure you have the following dependencies installed with the latest version:
@@ -59,7 +59,7 @@ go mod tidy
 
 ### Test a simple function
 
-You can refer to the [overview](./file-management/overview.md) to learn about how to create a simple `main.go`
+You can refer to the [overview](../dapp/file-management/overview.md) to learn about how to create a simple `main.go`
 
 If everything is set up correctly, your code will be able to connect to the Greenfield node and return the chain data as shown above.
 

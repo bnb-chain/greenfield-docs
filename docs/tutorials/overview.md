@@ -36,4 +36,4 @@ The Command Line Interface (CLI) is another native application provided by BNB G
 
 In the following sections, we will delve deeper into each native application, providing step-by-step guides, code snippets, and best practices to empower you to create powerful and innovative dApps without the need for smart contract development.
 
-You can find more information and detailed instructions in the [Building Native dApps](/docs/tutorials/native-dapp/overview) section.
+You can find more information and detailed instructions in the [Building Native dApps](/docs/tutorials/cli/cmd-access-control) section.

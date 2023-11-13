@@ -1,9 +1,9 @@
 ---
-title: Cross-chain Access Control with Greenfield SDK
+title: Access Control with Resource Mirroring
 order: 3
 ---
 
-# Cross-chain Access Control with Resource Mirroring
+# Access Control with Resource Mirroring
 
 In this tutorial we’ll use the go-SDK library to transfer control over objects to the smart contract on BSC and allowing on-chain management. Object mirroring enables greater flexibility and control over decentralized storage on BNB Greenfield to all dApps on BSC. It leverages the capabilities of the BSC and its smart contract functionality to provide enhanced functionality and interoperability between the two platforms.
 
@@ -66,7 +66,7 @@ go mod tidy
 
 ### Test a simple function
 
-You can refer to the [overview](./file-management/overview.md) to learn about how to create a simple `main.go`
+You can refer to the [overview](../dapp/file-management/overview.md) to learn about how to create a simple `main.go`
 
 If everything is set up correctly, your code will be able to connect to the Greenfield node and return the chain data as shown above.
 
@@ -85,7 +85,7 @@ account, err := types.NewAccountFromPrivateKey("test", privateKey)
 
 ```
 
-### Create Buckets
+## Create Buckets
 Now, let's use the imported account to create a bucket.
 
 In this example,
@@ -127,8 +127,88 @@ The example return message is like the following:
 ```shell
 2023/10/31 13:14:54 bucket info: owner:"0x525482AB3922230e4D73079890dC905dCc3D37cd" bucket_name:"ylatitsb" visibility:VISIBILITY_TYPE_PRIVATE id:"3175" create_at:1698779691 payment_address:"0x525482AB3922230e4D73079890dC905dCc3D37cd" global_virtual_group_family_id:40
 ```
+## Create Group
+The next step is to create a group, whose member will receive `get object` access from the principla account.
 
-### Mirror Bucket Metadata to BSC
+```go
+  // create group
+  groupTx, err := cli.CreateGroup(ctx, groupName, types.CreateGroupOptions{})
+  handleErr(err, "CreateGroup")
+  _, err = cli.WaitForTx(ctx, groupTx)
+  if err != nil {
+    log.Fatalln("txn fail")
+  }
+
+  log.Printf("create group %s successfully \n", groupName)
+
+  // head group info
+  creator, err := cli.GetDefaultAccount()
+  handleErr(err, "GetDefaultAccount")
+  groupInfo, err := cli.HeadGroup(ctx, groupName, creator.GetAddress().String())
+  handleErr(err, "HeadGroup")
+  log.Println("head group info:", groupInfo.String())
+
+  _, err = sdk.AccAddressFromHexUnsafe(memberAddress)
+  if err != nil {
+    log.Fatalln("the group member is invalid")
+  }
+  // add group member
+  updateTx, err := cli.UpdateGroupMember(ctx, groupName, creator.GetAddress().String(), []string{memberAddress}, []string{},
+    types.UpdateGroupMemberOption{})
+  handleErr(err, "UpdateGroupMember")
+  _, err = cli.WaitForTx(ctx, updateTx)
+  if err != nil {
+    log.Fatalln("txn fail")
+  }
+
+  log.Printf("add group member: %s to group: %s successfully \n", memberAddress, groupName)
+
+  // head group member
+  memIsExist := cli.HeadGroupMember(ctx, groupName, creator.GetAddress().String(), memberAddress)
+  if !memIsExist {
+    log.Fatalf("head group member %s fail \n", memberAddress)
+  }
+
+  log.Printf(" head member %s exist \n", memberAddress)
+```
+
+The result should look something similar to the following:
+```shell
+2023/10/31 09:34:54 create group sample-group successfully
+2023/10/31 09:34:54 head group info: owner:"0x525482AB3922230e4D73079890dC905dCc3D37cd" group_name:"sample-group" id:"720"
+2023/10/31 09:35:01 add group member: 0x843e77D639b6C382e91ef489881963209cB238E5 to group: sample-group successfully
+2023/10/31 09:35:01  head member 0x843e77D639b6C382e91ef489881963209cB238E5 exist
+```
+
+## Create Policy
+Now, you can let the principal grants the `get object`  access to this group
+```go
+// put bucket policy
+	bucketActions := []permTypes.ActionType{
+    	permTypes.ACTION_GET_OBJECT,
+	}
+	ctx := context.Background()
+	statements := utils.NewStatement(bucketActions, permTypes.EFFECT_ALLOW, nil, types.NewStatementOptions{})
+
+	policyTx, err := cli.PutBucketPolicy(ctx, bucketName, principalStr, []*permTypes.Statement{&statements},
+		types.PutPolicyOption{})
+	handleErr(err, "PutBucketPolicy")
+	_, err = cli.WaitForTx(ctx, policyTx)
+	if err != nil {
+		log.Fatalln("txn fail")
+	}
+	log.Printf("put bucket %s policy sucessfully, principal is: %s.\n", bucketName, principal)
+```
+
+After you run the code, the result should look something similar to the following:
+
+```shell
+2023/10/31 10:46:55 put bucket sdkexamplebucket policy sucessfully, principal is:
+2023/10/31 10:46:55 bucket: sdkexamplebucket policy info:id:"2358" principal:<type:PRINCIPAL_TYPE_GNFD_ACCOUNT value:"0x843e77D639b6C382e91ef489881963209cB238E5" > resource_type:RESOURCE_TYPE_BUCKET resource_id:"429" statements:<effect:EFFECT_ALLOW actions:ACTION_UPDATE_BUCKET_INFO actions:ACTION_DELETE_BUCKET actions:ACTION_DELETE_OBJECT actions:ACTION_GET_OBJECT >
+```
+You can also inspect using the block scanner, e.g. [https://greenfieldscan.com](https://greenfieldscan.com/).
+
+## Mirror Group to BSC
 In Greenfield, object mirroring refers to the process of transferring control over objects stored on BNB Greenfield to a smart contract on BNB Smart Chain (BSC)
 
 This allows the object to be fully managed on-chain on BSC, meaning that users or other smart contracts can perform various operations and changes to the object through on-chain transactions.
@@ -137,23 +217,51 @@ During the mirroring process from BNB Greenfield to BSC, the content of the file
 
 
 ```go
+	//head group
+	groupInfo, err := cli.HeadGroup(ctx, groupName, creator.GetAddress().String())
+  	handleErr(err, "HeadGroup")
+  	log.Println("head group info:", groupInfo.String())
+
 	// mirror bucket
-	txResp, err := cli.MirrorBucket(ctx, sdk.ChainID(crossChainDestBsChainId), bucketInfo.Id, bucketName, gnfdSdkTypes.TxOption{})
-	handleErr(err, "MirrorBucket")
+	txResp, err := cli.MirrorGroup(ctx, sdk.ChainID(crossChainDestBsChainId), groupInfo.Id, groupName, gnfdSdkTypes.TxOption{})
+	handleErr(err, "MirrorGroup")
 	waitForTx, _ = cli.WaitForTx(ctx, txResp.TxHash)
 	log.Printf("Wait for tx: %s", waitForTx.TxResult.String())
-	log.Printf("successfully mirrored bucket wiht bucket id %s to BSC", bucketInfo.Id)
+	log.Printf("successfully mirrored group wiht  id %s to BSC", groupInfo.Id)
 
 ```
 
 ```shell
-2023/10/31 21:43:57 bucket: sdkexamplebucket policy info:id:"2358" principal:<type:PRINCIPAL_TYPE_GNFD_ACCOUNT value:"0x843e77D639b6C382e91ef489881963209cB238E5" > resource_type:RESOURCE_TYPE_BUCKET resource_id:"429" statements:<effect:EFFECT_ALLOW actions:ACTION_UPDATE_BUCKET_INFO actions:ACTION_DELETE_BUCKET actions:ACTION_DELETE_OBJECT actions:ACTION_GET_OBJECT >
+2023/10/31 21:43:57 group: sdkexamplegroup policy info:id:"712" principal:<type:PRINCIPAL_TYPE_GNFD_ACCOUNT value:"0x843e77D639b6C382e91ef489881963209cB238E5" > resource_type:RESOURCE_TYPE_BUCKET resource_id:"429" statements:<effect:EFFECT_ALLOW actions:ACTION_GET_OBJECT >
 2023/10/31 21:43:57 bucket info: owner:"0x525482AB3922230e4D73079890dC905dCc3D37cd" bucket_name:"ylatitsb" visibility:VISIBILITY_TYPE_PRIVATE id:"3175" create_at:1698779691 payment_address:"0x525482AB3922230e4D73079890dC905dCc3D37cd" global_virtual_group_family_id:40
 ```
 
 You can also inspect using the block scanner, e.g. [https://greenfieldscan.com](https://greenfieldscan.com/).
 
+## Access Control Management on BSC
+
+Now you have mirrored your group to BSC and there is an ERCC-721 token minted. At present, the NFTs are not transferable. The group membership can be directly managed by smart contracts on BSC. These operations will directly affect the storage format, access permissions, and other aspects of the data on greenfield with the help of [Greenfield Contract](https://github.com/bnb-chain/greenfield-contracts/tree/master).
+
+First, you have to install the dependencies and setup environment by following the [guides](https://github.com/bnb-chain/greenfield-contracts/tree/master#requirement).
+
+Once it's all set, you can run the following script to add member to your group:
+
+```
+# set your private-key, operator address, group id, and member address
+forge script foundry-scripts/GroupHub.s.sol:GroupHubScript \
+--private-key ${your private key} \
+--sig "addMember(address operator, uint256 groupId, address member)" \
+${the owner of the group} ${your group id} ${the member address to add} \
+-f https://data-seed-prebsc-1-s1.binance.org:8545/ \
+--legacy --ffi --broadcast
+```
+
+## Conclusion
+
+The Greenfield Blockchain provides a comprehensive set of resources that can be mirrored on the BNB Smart Chain (BSC). This includes buckets, objects, and groups, which can be stored and managed on the BSC as non-fungible tokens (NFTs) conforming to the ERC-721 standard. This integration between Greenfield Blockchain and BNB Smart Chain allows for greater flexibility and accessibility when it comes to accessing and manipulating data, ultimately leading to a more streamlined and efficient data management process.
+
 
 ### Source Code
 * [Go-SDK](https://github.com/bnb-chain/greenfield-go-sdk/blob/master/examples/crosschain.go)
 * [JS-SDK](https://github.com/bnb-chain/greenfield-js-sdk/blob/main/examples/nextjs/src/components/mirror/index.tsx)
+* [Greenfield Contract Examples](https://github.com/bnb-chain/greenfield-contracts/tree/master/foundry-scripts/examples).

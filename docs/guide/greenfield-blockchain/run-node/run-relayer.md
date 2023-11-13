@@ -82,7 +82,7 @@ You can use it as a template for your Mainnet config by adapting a few changes a
    You might encounter `Rate limit` issue for using official BSC endpoints, we would highly recommend using 3rd Party RPCs, like the [NodeReal MegaNode](https://nodereal.io/meganode)
 
 2. Config crossChain, greenfield light client and relayer hub smart contracts addresses, others can keep the default value, refer to this 
-   [contract-list](../../../tutorials/dapp/contract-list.md) to get addresses for Mainnet/Testnet.
+   [contract-list](../../core-concept/cross-chain/contract-list.md) to get addresses for Mainnet/Testnet.
    
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
