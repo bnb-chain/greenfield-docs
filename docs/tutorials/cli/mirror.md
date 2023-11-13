@@ -1,5 +1,5 @@
 ---
-title: Resources Mirroring Demo
+title: Resources Mirroring with CLI
 order: 3
 ---
 

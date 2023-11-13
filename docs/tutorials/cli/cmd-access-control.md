@@ -1,5 +1,5 @@
 ---
-title: Access Control Management Demo
+title: Access Control Management with CLI
 order: 2
 ---
 
