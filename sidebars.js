@@ -324,7 +324,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Greenfield Sample Use Case",
+          label: "Greenfield Demos",
           collapsible: true,
           collapsed: true,
           link: {type:'doc', id:'tutorials/dapp/overview'},
