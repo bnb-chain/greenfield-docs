@@ -5,7 +5,7 @@ order: 7
 
 # Contract Entrypoint
 
-## Mainnet
+## BSC Mainnet
 DeployCommitId: c8e6a293b628f9063918ba8cd9c00ca41ded18db
 
 | contract name      | address                                    |
@@ -32,7 +32,7 @@ Extra:
 
 For more details, you can refer to [Greenfield Contracts Mainnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/56-deployment.json).
 
-## Testnet
+## BSC Testnet
 DeployCommitId: 20cc1f5784a621438114847753cda289f3ed76fa
 
 | contract name      | address                                    |
@@ -58,3 +58,31 @@ Extra:
 | ProxyAdmin    | 0xdD1c0a54a9EDEa8d0821AEB5BE54c51B79fa4c2e |
 
 For more details, you can refer to [Greenfield Contracts Testnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/97-deployment.json).
+
+
+## opBNB Testnet
+DeployCommitId: 6857ebfd2fd157c776cb8fc5f3dfb42696efeed2
+
+| contract name      | address                                    |
+|--------------------|--------------------------------------------|
+| GovHub             | 0x64cB82CF53BE02fF56a3D5527beEF7302E740911 |
+| CrossChain         | 0xF0Bcf6E4F72bCB33b944275dd5c9d4540a259eB9 |
+| TokenHub           | 0x59614C9e9B5Df6dF4dc9e457cc7F3a67D796d3b2 |
+| LightClient        | 0xc50791892F6528E42A58DD07869726079C71F3f2 |
+| RelayerHub         | 0x59ACcF658CC4589C3C41720fd48e869B97A748a1 |
+| BucketHub          | 0xCAB5728B7cc21D0056E237D371b28efEEBFd8C2d |
+| ObjectHub          | 0xb23002c5C3DCe3312e190d9D186C4aB29F7cF26F |
+| GroupHub           | 0xe53725ac14bD77fA4754fC5a09889135C2c7Bc25 |
+| BucketERC721Token  | 0xCacc33C05ad335c929e62D87BB96D5c5E5A19641 |
+| ObjectERC721Token  | 0xb3e4d757b36A76fd968C97ed922Bd77AB2c72f62 |
+| GroupERC721Token   | 0x8C74F8e6cD4DCb307d344F358683594A68d66CD9 |
+| MemberERC1155Token | 0x5116a3255C33029756013B6a0d1690775413EE6D |
+
+Extra:
+
+| contract name | address                                    |
+|---------------|--------------------------------------------|
+| Deployer      | 0x84b3418faA3be4Bed168E2D00C7696b21008DcfD |
+| ProxyAdmin    | 0x9d067d0D30CA19bB24551c9b654B8b9BB83c8634 |
+
+For more details, you can refer to [Greenfield Contracts Testnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/5611-deployment.json).
