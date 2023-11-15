@@ -38,6 +38,14 @@ order: 3
 
   You could find more endpoints from [here](https://chainlist.org/chain/56).
 
+### opBNB (chain-id: 204)
+- **RPC Endpoints:**
+  - `https://opbnb-mainnet-rpc.bnbchain.org`
+  - `https://opbnb-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3`
+  - `https://opbnb-mainnet.nodereal.io/v1/e9a36765eb8a40b9bd12e680a1fd2bc5`
+
+  For more details, you can refer to [here](https://docs.bnbchain.org/opbnb-docs/docs/build-on-opbnb/opbnb-network-info).
+
 ## Testnet
 ### Greenfield Testnet (chain-id: greenfield_5600-1)
 
@@ -68,3 +76,11 @@ order: 3
   - `https://data-seed-prebsc-2-s2.bnbchain.org:8545`
   - `https://data-seed-prebsc-1-s3.bnbchain.org:8545`
   - `https://data-seed-prebsc-2-s3.bnbchain.org:8545`
+
+### opBNB (chain-id: 5611)
+- **RPC Endpoints:**
+  - `https://opbnb-testnet-rpc.bnbchain.org`
+  - `https://opbnb-testnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3`
+  - `https://opbnb-testnet.nodereal.io/v1/e9a36765eb8a40b9bd12e680a1fd2bc5`
+
+  For more details, you can refer to [here](https://docs.bnbchain.org/opbnb-docs/docs/build-on-opbnb/opbnb-network-info).
