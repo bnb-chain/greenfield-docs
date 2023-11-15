@@ -3,6 +3,12 @@ title: Run Relayer
 order: 5
 ---
 
+# Run Relayer
+
+This tutorial is for running relayers for Greenfield to BSC and opBNB. Please note that they are using the same binary, 
+but two individual processes which require different databases connected. Most configs for these two relayers are 
+the same, with a few differences which will be illustrated below.
+
 ## Prerequisites
 
 ### Recommended Hardware
@@ -14,7 +20,7 @@ The following lists the recommended hardware requirements:
 - Relational database: Mysql
 
 ### Key Preparation
-- Relayer private key: This is the account which is used to relay transaction between Greenfield and the BSC. Ensure it has balance on both Blockchain network.
+- Relayer private key: This is the account which is used to relay transaction between Greenfield and the BSC/opBNB. Ensures it has balance on both Blockchain networks.
 - Bls private key: Used to create bls signature for cross-chain package.
 
 These two keys refer to `validator_relayer` and `validator_bls` created in [become-validator](../run-node/become-validator.md) step 2.
@@ -72,14 +78,34 @@ You can use it as a template for your Mainnet config by adapting a few changes a
         "gas_price": 3000000001,
         ...
         "start_height": 0,   // please change to the current block height of BSC network.
-        "chain_id": 56
+        "chain_id": 56  // 56 is BSC Mainnet chain id.
       }
     ```
+   
+   For setting up the relayer that crosschain to opBNB, modify the `bsc_config` as below.
+   ```
+   "bsc_config": {
+        "op_bnb": true, // this specifies that conifg is for opBNB crosschain.
+        "key_type": "local_private_key",  // or "aws_private_key" if you are using aws secret manager.
+        ...
+        "rpc_addrs": [
+           "opBNB_RPC"
+        ],
+        "private_key": "your_private_key", // same as the above one in greenfield_congfig.
+        "gas_limit": 20000000,
+        "gas_price": 3000000001,
+        ...
+        "start_height": 0,   // please change to the current block height of opBNB network.
+        "chain_id": 5611 // opBNB testnet chain id
+      }
+   ```
+
    Note:
    Refer to [Greenfield Endpoints](../../../api/endpoints.md) for Greenfield RPC address,
-   [BSC Endpoints](https://docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes) for BSC RPC address, and use the appropriate ones based on your location.
+   [BSC Endpoints](https://docs.bscscan.com/misc-tools-and-utilities/public-rpc-nodes) for BSC RPC address, and use the appropriate ones based on your location, 
+   [opBNB Endpoints](https://docs.bnbchain.org/opbnb-docs/docs/build-on-opbnb/opbnb-network-info) for opBNB RPC address, and use the appropriate ones based on your location.
    
-   You might encounter `Rate limit` issue for using official BSC endpoints, we would highly recommend using 3rd Party RPCs, like the [NodeReal MegaNode](https://nodereal.io/meganode)
+   You might encounter `Rate limit` issue for using official BSC/opBNB endpoints, we would highly recommend using 3rd Party RPCs, like the [NodeReal MegaNode](https://nodereal.io/meganode)
 
 2. Config crossChain, greenfield light client and relayer hub smart contracts addresses, others can keep the default value, refer to this 
    [contract-list](../../../tutorials/dapp/contract-list.md) to get addresses for Mainnet/Testnet.
@@ -88,12 +114,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
    <Tabs
-   defaultValue="mainnet"
+   defaultValue="BSC-Mainnet"
    values={[
-   {label: 'Mainnet', value: 'mainnet'},
-   {label: 'Testnet', value: 'testnet'},
+   {label: 'BSC-Mainnet', value: 'BSC-Mainnet'},
+   {label: 'BSC-Testnet', value: 'BSC-Testnet'},
+   {label: 'opBNB-Testnet', value: 'opBNB-Testnet'},
    ]}>
-   <TabItem value="mainnet">
+   <TabItem value="BSC-Mainnet">
 
     "relay_config": {
         ... 
@@ -103,7 +130,7 @@ import TabItem from '@theme/TabItem';
       }
 
   </TabItem>
-  <TabItem value="testnet">
+  <TabItem value="BSC-Testnet">
 
     "relay_config": {
         ... 
@@ -113,8 +140,17 @@ import TabItem from '@theme/TabItem';
       }
 
   </TabItem>
-</Tabs>
+  <TabItem value="opBNB-Testnet">
 
+    "relay_config": {
+        ... 
+        "cross_chain_contract_addr": "0xF0Bcf6E4F72bCB33b944275dd5c9d4540a259eB9",
+        "greenfield_light_client_contract_addr": "0xc50791892F6528E42A58DD07869726079C71F3f2",
+        "relayer_hub_contract_addr": "0x59ACcF658CC4589C3C41720fd48e869B97A748a1"
+      }
+
+  </TabItem>
+</Tabs>
 
 
 3. Config the database settings.
@@ -131,7 +167,8 @@ import TabItem from '@theme/TabItem';
       "max_open_conns": 100
     }
    ```
-Please replace `${pass}`, `${user}`, `${host}` with your Mysql instance credential and host. 
+   Note: Please  replace `${pass}`, `${user}`, `${host}` with your Mysql instance credential and host. And use a distinct database other than `greenfield-relayer`, e.g. `greenfield-op-relayer` when running the 
+   Greenfield Relayer for crosschain to opBNB on the same DB instance.  
 
 ## Build
 
