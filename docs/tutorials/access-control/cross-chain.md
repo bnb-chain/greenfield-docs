@@ -1,9 +1,9 @@
 ---
-title: Access Control with Resource Mirroring
+title: Advanced Access Control Part1
 order: 3
 ---
 
-# Access Control with Resource Mirroring
+# Advanced Access Control Part1
 
 In this tutorial we’ll use the go-SDK library to transfer control over objects to the smart contract on BSC and allowing on-chain management. Object mirroring enables greater flexibility and control over decentralized storage on BNB Greenfield to all dApps on BSC. It leverages the capabilities of the BSC and its smart contract functionality to provide enhanced functionality and interoperability between the two platforms.
 
