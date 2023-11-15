@@ -7,6 +7,26 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v1.1.0 - Pampas Upgrade
+BNB Greenfield v1.1.0 introduces the Pampas Hardfork, which enables cross-chain resource interoperability between
+Greenfield and opBNB. With this upgrade, developers can now control resources on Greenfield by writing applications on
+opBNB. This cross-chain programmability is similar to the interoperability between BSC and Greenfield. However, compared
+to BSC, opBNB offers cheaper gas fees and faster cross-chain finality. It's important to note that the cross-chain
+access between Greenfield and opBNB is limited to storage resources (bucket, object, group) and does not support the
+transfer of BNB tokens between these two chains.
+
+To facilitate cross-chain accessibility between Greenfield and opBNB, validators need to upgrade their relayers running
+between Greenfield and BSC to [Relayer v1.1.0](https://github.com/bnb-chain/greenfield-relayer/releases/tag/v1.1.0) before
+the Pampas Hardfork. Additionally, they should deploy an additional relayer for Greenfield and opBNB, following the
+instructions in the [Run Relayer](../guide/greenfield-blockchain/run-node/run-relayer.md).
+
+Furthermore, in version v1.1.0, we have temporarily disabled the SP Exit and Bucket Migration processes due to their
+complexity and the difficulty in ensuring stability. We are working on optimizing these features and will introduce a
+more efficient and robust solution in the next version.
+
+Greenfield v1.1.0 also includes several optimization features and bug fixes. For more details about this release, please
+refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.1.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.1.0).
+
 ## Greenfield v1.0.0 - Initial version for Mainnet
 This is the official version released for Greenfield Mainnet, which includes most of the features that have been
 thoroughly tested during the Testnet phase. You can refer to our [Feature Lists](./features.md).

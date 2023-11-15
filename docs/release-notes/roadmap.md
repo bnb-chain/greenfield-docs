@@ -8,10 +8,17 @@ order: 2
 
 ## Upcoming
 
-### October 17th, Launch Mainnet Lena
+### December 4th, Mainnet Pampas Upgrade
 
-This version will be our first version for Greenfield Mainnet, including major features introduced on the Testnet, please
-refer to [Features](./features.md) for details.
+After this upgrade, Greenfield and opBNB will be able to achieve cross-chain programming, allowing users to write smart
+contracts on opBNB to control resources on Greenfield.
+
+### November 20th, Testnet Pampas Upgrade
+
+After this upgrade, Greenfield Testnet and opBNB Testnet will be able to achieve cross-chain programming, allowing users
+to write smart contracts on opBNB to control resources on Greenfield.
+
+Additionally, this upgrade will temporarily disable the SP Exit and Bucket Migration features on the Testnet.
 
 ## Long Term
 
