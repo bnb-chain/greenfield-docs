@@ -1,9 +1,9 @@
 ---
-title: Access Control Feature of Greenfield SDK
+title: Native Access Control
 order: 2
 ---
 
-# Access Control Feature of Greenfield SDK
+# Native Access Control
 
 In this tutorial we’ll use the go-SDK library to manage your buckets and objects.
 
