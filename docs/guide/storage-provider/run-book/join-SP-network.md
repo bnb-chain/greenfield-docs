@@ -26,7 +26,7 @@ This guide will help you join Greenfield SP Network: Mainnet and Testnet.
 To ensure the stable provision of data services, Storage Providers must meet specific criteria to join the mainnet.
 - The SP must join the testnet for a minimum of one month.
 - The SP must store over 1K files across more than 100 buckets on the testnet.
-- There were fewer than 500 slash events on the SP in the past month.
+- There were no slash event on the SP in the past week.
 
 ## How to Join SP Network?
 
