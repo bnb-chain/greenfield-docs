@@ -75,7 +75,6 @@ You can use it as a template for your Mainnet config by adapting a few changes a
         ],
         "private_key": "your_private_key", // same as the above one in greenfield_congfig.
         "gas_limit": 20000000,
-        "gas_price": 3000000001,
         ...
         "start_height": 0,   // please change to the current block height of BSC network.
         "chain_id": 56  // 56 is BSC Mainnet chain id.
@@ -93,7 +92,6 @@ You can use it as a template for your Mainnet config by adapting a few changes a
         ],
         "private_key": "your_private_key", // same as the above one in greenfield_congfig.
         "gas_limit": 20000000,
-        "gas_price": 3000000001,
         ...
         "start_height": 0,   // please change to the current block height of opBNB network.
         "chain_id": 5611 // opBNB testnet chain id
