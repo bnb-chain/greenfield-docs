@@ -283,9 +283,13 @@ DisableMetrics = false
 # required
 DisablePProf = false
 # required
+DisableProbe = false
+# required
 MetricsHTTPAddress = ''
 # required
 PProfHTTPAddress = ''
+# required
+ProbeHTTPAddress = ''
 
 # optional
 [Rcmgr]
@@ -510,6 +514,10 @@ message GfSpLimiter {
 }
 ```
 
+### SP Probe
+
+It contains two probes: liveness and readiness probe. If users want to check SP whether is healthy and ready. Users can refer [Kubernetes docs](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) to learn related concepts. About detailed SP probe info, users can refer [SP probe](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/prober/prober.go).
+
 ## SP Mainnet Recommended Config
 
 This section shows the config of official in Greenfield, so users can add use similar config:
@@ -660,9 +668,13 @@ DisableMetrics = false
 # required
 DisablePProf = false
 # required
+DisableProbe = false
+# required
 MetricsHTTPAddress = '0.0.0.0:24367'
 # required
 PProfHTTPAddress = '0.0.0.0:24368'
+# required
+ProbeHTTPAddress = '0.0.0.0:24369'
 
 # optional
 [Rcmgr]

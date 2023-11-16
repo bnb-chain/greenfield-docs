@@ -18,6 +18,7 @@ This guide will help you join Greenfield SP Network: Mainnet and Testnet.
   - [EditStorageProvider](#editstorageprovider)
   - [Update SP Price](#update-sp-price)
   - [Update SP Quota](#update-sp-quota)
+  - [Recover SP Objects](#recover-sp-objects)
 - [Tools](#tools)
 - [Trouble Shooting](#trouble-shooting)
 
@@ -256,6 +257,24 @@ gnfd-sp update.quota [command options] [arguments...]
 Example:
 ```shell
 ./build/bin/gnfd-sp update.quota --quota 1073741824 --config ./config.toml
+```
+
+### Recover SP Objects
+
+Besides the above commands, you can also use the `gnfd-sp` command to recover objects for SP,
+whether it is the primary or secondary sp of the object.
+The recover.object command is used to recover an object or objects of the SP, it will send a request
+to other SPs to get replicate of the object(s) you want to recover.
+
+Usage:
+```shell
+gnfd-sp recover.object [command options] [arguments...]
+```
+
+Example:
+```shell
+./build/bin/gnfd-sp recover.object --config ./config.toml -b bucket_name -o single_object_name
+./build/bin/gnfd-sp recover.object --config ./config.toml -b bucket_name -l object_name1//_object_name2//object_name3
 ```
 
 ## Tools

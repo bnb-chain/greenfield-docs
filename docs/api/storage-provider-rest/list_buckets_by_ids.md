@@ -113,6 +113,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <UpdateTxHash>0x2a1c313dec9196b07cef8008f0e0e614c804a0c28dc08c9d78648afac1908bce</UpdateTxHash>
             <UpdateAt>82179</UpdateAt>
             <UpdateTime>1692450975</UpdateTime>
+            <StorageSize>2386542</StorageSize>
         </Value>
     </BucketEntry>
     <BucketEntry>

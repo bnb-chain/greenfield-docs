@@ -67,6 +67,7 @@ Host: BucketName.gnfd-testnet-sp-*.bnbchain.org
 | ChargedReadQuota | uint64                            | ChargedReadQuota defines the traffic quota for read in bytes per month.                                 |
 | BucketStatus     | [BucketStatus](#bucketstatus)     | BucketStatus define the status of the bucket                                                            |
 | Vgf              | [Vgf](#vgf)                       | Vgf define the global virtual group family info of bucket                                               |
+| StorageSize      | string                            | StorageSize defines the storage size of bucket                                                          |
 ### StreamRecord
 
 | ParameterName     | Type                                        | Description                                                                                                             |
@@ -182,6 +183,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <PrimarySpId>1</PrimarySpId>
             <VirtualPaymentAddress>0x26281179b8885F21f95b0a246c8AD70957A95A23</VirtualPaymentAddress>
         </Vgf>
+        <StorageSize>2386542</StorageSize>
     </Bucket>
     <StreamRecord>
         <Account>0xBC212bF5d6004311E350a531A1946D572C4d85E4</Account>

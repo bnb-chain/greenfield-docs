@@ -121,6 +121,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <PrimarySpId>3</PrimarySpId>
             <VirtualPaymentAddress>0x25f7c6161eEFFCA4A69059FdC022AC36cE9Bf3C8</VirtualPaymentAddress>
         </Vgf>
+        <StorageSize>111111</StorageSize>
     </Buckets>
     <Buckets>
         <BucketInfo>
@@ -148,6 +149,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <PrimarySpId>3</PrimarySpId>
             <VirtualPaymentAddress>0x25f7c6161eEFFCA4A69059FdC022AC36cE9Bf3C8</VirtualPaymentAddress>
         </Vgf>
+        <StorageSize>2386542</StorageSize>
     </Buckets>
     <Buckets>
         <BucketInfo>
@@ -175,6 +177,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <PrimarySpId>1</PrimarySpId>
             <VirtualPaymentAddress>0x26281179b8885F21f95b0a246c8AD70957A95A23</VirtualPaymentAddress>
         </Vgf>
+        <StorageSize>32179842</StorageSize>
     </Buckets>
     <Buckets>
         <BucketInfo>
@@ -202,6 +205,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <PrimarySpId>1</PrimarySpId>
             <VirtualPaymentAddress>0x26281179b8885F21f95b0a246c8AD70957A95A23</VirtualPaymentAddress>
         </Vgf>
+        <StorageSize>12332122</StorageSize>
     </Buckets>
 </GfSpGetUserBucketsResponse>
 ```

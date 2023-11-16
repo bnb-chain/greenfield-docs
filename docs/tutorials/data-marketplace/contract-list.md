@@ -5,7 +5,7 @@ order: 7
 
 # Contract Entrypoint
 
-## Mainnet
+## BSC Mainnet
 DeployCommitId: c8e6a293b628f9063918ba8cd9c00ca41ded18db
 
 | contract name      | address                                    |
@@ -32,7 +32,7 @@ Extra:
 
 For more details, you can refer to [Greenfield Contracts Mainnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/56-deployment.json).
 
-## Testnet
+## BSC Testnet
 DeployCommitId: 20cc1f5784a621438114847753cda289f3ed76fa
 
 | contract name      | address                                    |
@@ -58,6 +58,7 @@ Extra:
 | ProxyAdmin    | 0xdD1c0a54a9EDEa8d0821AEB5BE54c51B79fa4c2e |
 
 For more details, you can refer to [Greenfield Contracts Testnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/97-deployment.json).
+
 
 ## opBNB Testnet
 DeployCommitId: 6857ebfd2fd157c776cb8fc5f3dfb42696efeed2
@@ -85,4 +86,3 @@ Extra:
 | ProxyAdmin    | 0x9d067d0D30CA19bB24551c9b654B8b9BB83c8634 |
 
 For more details, you can refer to [Greenfield Contracts Testnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/5611-deployment.json).
-

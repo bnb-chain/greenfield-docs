@@ -14,19 +14,20 @@ we invite you to read [this page](../../core-concept/programmability.md#framewor
 
 The communication layer is composed of a set of **Greenfield Relayers**:
 
-- Each validator should run a relayer. Each relayer possesses a BLS
-  private key, with the address of the key stored on-chain as part
-  of the validator's mandatory information.
+- Each validator should run two relayers. One is for crosschain communication with BSC,
+  whereas the other is responsible for communication with opBNB. Both relayers possess the same
+  BLS private key, and the corresponding address of the key stored on-chain as part of the validator's 
+  mandatory information.
 
-- The relayer watches all cross-chain events happen on BSC and the
-  Greenfield blockchain independently. Once a sufficient number of blocks 
+- The relayer watches all cross-chain events happen on BSC/opBNB and the
+  Greenfield blockchain separately. Once a sufficient number of blocks 
   have been confirmed to reach finality, the relayer will sign a message 
-  using the BLS key to confirm the events. This signed message is called the "vote". 
+  using the BLS key to confirm these events. This signed message is called the "vote". 
   The relayer will then broadcast the vote through a p2p network to other relayers.
 
-- Once enough votes from the relayer are collected, the relayer will
-  assemble a cross-chain package transaction and submit it to BSC or
-  Greenfield network.
+- Once enough votes from the relayers operated by other validators are collected, 
+  the relayer will assemble a cross-chain package transaction and submit it to 
+  BSC/opBNB or Greenfield network.
 
 Here more details about the communication layer and economics will be explained.
 
@@ -65,7 +66,7 @@ different channels.
 
 ### Reliability Protocol
 A protocol is defined to ensure reliable stream delivery of data
-between BSC and Greenfield.
+between BSC/opBNB and Greenfield.
 
 The protocol must recover the scenarios when the cross-chain data is
 damaged, duplicated, or delivered out of order by the relayers. It
@@ -92,10 +93,10 @@ can be quite light-weighted. However, sufficient data must be appended
 onto the package to indicate the validators who sign the events, this
 can be achieved by combining a bitmap and a validator set on-chain.
 However, the Greenfield validator set is volatile, Greenfield validators
-have to sync the information to BSC once there is an update about the
+have to sync the information to BSC/opBNB once there is an update about the
 Greenfield validator set. This is implemented by building a Greenfield
-light client on BSC, which is similar to the light client implemented
-for BNB Beacon Chain on BSC.
+light client on BSC/opBNB, which is similar to the light client implemented
+for BNB Beacon Chain on BSC/opBNB.
 
 ### Economic
 
@@ -119,7 +120,7 @@ To encourage Greenfield relayers to sign cross-chain packages:
 
 There are multiple Greenfield relayers, and they may compete to submit
 the aggregated multi-signed packages onto the Greenfield blockchain and
-BSC. To avoid racing transactions caused by the competition, which
+BSC/opBNB. To avoid racing transactions caused by the competition, which
 wastes gas, the relayers are rotated to relay transactions, e.g. taking
 shifts every 10 minutes. Each cross-chain package gets a timestamp, if
 it is not relayed within a limited delay when the designated relayer
@@ -128,16 +129,16 @@ relay such a package.
 
 #### Callbacks and Limited Gas
 
-BSC dApps, i.e. smart contracts on BSC, are allowed to implement their
+BSC/opBNB dApps, i.e. smart contracts on BSC/opBNB, are allowed to implement their
 own logic to handle `ACK` or `FAIL_ACK` packages. The smart contracts can
 register callback functions to handle the `ACK` packages. As it is
 impossible for the cross-chain infrastructure to predict the gas
 consumption of the callback, a gas limitation estimate should be defined
 from the smart contracts that register the callbacks.
 
-For any cross-chain packages that start from BSC, the smart contract
+For any cross-chain packages that start from BSC/opBNB, the smart contract
 needs to specify the gas limitation for the `ACK` or `FAIL_ACK` package, the
-relayer fee is prepaid accordingly on BSC. Relayers may refund the
+relayer fee is prepaid accordingly on BSC/opBNB. Relayers may refund the
 excessive fees later.
 
 ## Resource Mirror Layer
@@ -146,32 +147,33 @@ excessive fees later.
 
 The purposes of almost all the cross-chain packages are to change the
 state of the resource entities on the Greenfield blockchain. Thus, the
-below resource entities should be able to be mirrored on BSC: Account, BNB, Bucket, Object and Group.
+below resource entities should be able to be mirrored on BSC/opBNB: Account, Bucket, Object and Group. 
+The only resource entity different from others is BNB, which is able to be mirrored on BSC but not opBNB from Greenfield.
 
-The account mapping is natural as BSC and Greenfield use the same
+The account mapping is natural as BSC/opBNB and Greenfield use the same
 address scheme. The same address values on both sides mean that it is the same
-account. They do not require an actual mirror.
+account. They don't require an actual mirror.
 
 BNB is a natively pegged token from the genesis of Greenfield. The
 `Token Hub` contract is a smart contract built on BSC to ensure
-that Greenfield cannot inflate BNB and secure the total circulation of
+that Greenfield can't inflate BNB and secure the total circulation of
 BNB.
 
-Bucket, Object, and Group are mirrored onto BSC as NFTs of a new BEP
+Bucket, Object, and Group are mirrored onto BSC/opBNB as NFTs of a new BEP
 revised from the [ERC-721](https://eips.ethereum.org/EIPS/eip-721) and 
 [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155) standard. 
 These NFTs have corresponding metadata information for the resources. 
-The ownerships of the NFTs on BSC stand for the ownerships of these 
-resources on Greenfield. As these ownerships are not transferable on 
-Greenfield, these NFTs are not transferable on BSC.
+The ownerships of the NFTs on BSC/opBNB stand for the ownerships of these 
+resources on Greenfield. As these ownerships aren't transferable on 
+Greenfield, these NFTs aren't transferable on BSC/opBNB.
 
 To avoid state racing, the following rules are introduced:
 
-- Any resources that are initiated to create by BSC can only be controlled by BSC;
+- Any resources that are initiated to be created by BSC/opBNB can only be controlled by BSC/opBNB;
 
-- Any resources that are controlled by BSC can not transfer control rights to Greenfield;
+- Any resources that are controlled by BSC/opBNB can't transfer control rights to Greenfield;
 
-- Any resources that are controlled by Greenfield can transfer control rights to BSC.
+- Any resources that are controlled by Greenfield can transfer control rights to BSC/opBNB.
 
 ### Cross-Chain Operating Primitives
 
@@ -183,7 +185,7 @@ in a similar way as EOAs.
 
 **Accounts**:
 
-- create payment accounts on BSC
+- create payment accounts on BSC/opBNB
 
 **BNB**:
 
@@ -191,33 +193,33 @@ in a similar way as EOAs.
 
 **Bucket**:
 
-- create a bucket on BSC
+- create a bucket on BSC/opBNB
 
-- mirror bucket from Greenfield to BSC
+- mirror bucket from Greenfield to BSC/opBNB
 
 **Object**:
 
-- mirror object from Greenfield to BSC
+- mirror object from Greenfield to BSC/opBNB
 
-- create an object on BSC
+- create an object on BSC/opBNB
 
-- grant/revoke permissions of objects on BSC to accounts/groups
+- grant/revoke permissions of objects on BSC/opBNB to accounts/groups
 
-- copy objects on BSC
+- copy objects on BSC/opBNB
 
-- Kick off the execution of an object on BSC
+- Kick off the execution of an object on BSC/opBNB
 
-- associate buckets to payment accounts on BSC
+- associate buckets to payment accounts on BSC/opBNB
 
 **Group**:
 
-- mirror group from Greenfield to BSC
+- mirror group from Greenfield to BSC/opBNB
 
-- create a group on BSC
+- create a group on BSC/opBNB
 
-- change group members on BSC
+- change group members on BSC/opBNB
 
-- leave a group on BSC
+- leave a group on BSC/opBNB
 
 Once these primitives are called by an EOA or smart contracts, the
 predefined events will be emitted. Greenfield Relayers should pick up
