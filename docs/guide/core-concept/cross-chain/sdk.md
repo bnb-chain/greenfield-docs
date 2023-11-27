@@ -5,7 +5,7 @@ designed to facilitate the development of community-driven projects. The SDK ser
 [Greenfield-Contracts](https://github.com/bnb-chain/greenfield-contracts) library, which implements the cross-chain
 communication functionality. By providing a user-friendly interface to the underlying interface, the SDK simplifies the
 development process and enables developers to create and manage a variety of greenfield resources, like bucket,
-group, and object on BSC through smart contract directly.
+group, and object on EVM-compatible chains, like BNBChain and opBNB, through smart contract directly.
 
 The SDK is organized into four primary parts: `BaseApp`, `BucketApp`, `ObjectApp`, and `GroupApp`.
 These components serve as the building blocks for developers. The `BaseApp` serves as the foundation for the other three
@@ -20,7 +20,7 @@ Each of these components is equipped with unique functions and virtual functions
 
 1. **BaseApp:** Contains common functions used by the other components, as well as three virtual functions that need to be implemented for specific project requirements.
 2. **BucketApp:** A specialized module designed to handle bucket-related operations, such as creating and deleting buckets, and processing bucket resource calls.
-3. **ObjectApp:** A specialized module focused on object-related operations, specifically object deletion since creating objects from BSC is not supported.
+3. **ObjectApp:** A specialized module focused on object-related operations, specifically object deletion since creating objects from EVM-compatible chains is not supported.
 4. **GroupApp:** A more complex module that handles group-related operations, such as creating, deleting, and updating groups, and managing group resource calls.
 
 ### BaseApp
@@ -40,7 +40,7 @@ In addition to these functions, BaseApp provides three virtual functions:
 1. `greenfieldCall(uint32 status, uint8 resourceType, uint8 operationType, uint256 resourceId, bytes calldata callbackData):`
    This function is a callback hook designed to handle cross-chain response. It is a virtual function that needs to be
    implemented by developers to define custom behaviors for different types of resources and operation types.
-   This function is triggered when a cross-chain operation is completed on greenfield side and return a package to bsc,
+   This function is triggered when a cross-chain operation is completed on greenfield side and return a package to EVM-compatible chains,
    allowing developers to execute specific actions or update states in response to the completion of an operation.
    If the developers don’t need callback, this function(as well as other callback related functions) can be undefined.
 2. `retryPackage(uint8 resourceType):` This function handles the retry mechanism for a package, based on its resource
@@ -77,13 +77,13 @@ By implementing these virtual functions, developers can tailor the BucketApp com
 
 The ObjectApp component is a specialized module designed to handle object-related operations in the smart contract SDK.
 This component offers a range of functions to manage objects and process object resource operations. However, please
-note that creating objects from BSC is currently not supported. Below, we provide a detailed overview of the functions
+note that creating objects from EVM-compatible chains is currently not supported. Below, we provide a detailed overview of the functions
 included in the ObjectApp:
 
 1. `_objectGreenfieldCall(uint32 status, uint8 operationType, uint256 resourceId, bytes calldata callbackData)`: This function serves as a router for object resource callback. It processes and directs the call based on the provided parameters.
 2. `_retryObjectPackage()`: This function retries a failed object resource package.
 3. `_skipObjectPackage()`: This function skips a failed object resource package.
-4. `_deleteObject(uint256 _tokenId)`: This function deletes an object using the provided token ID. As creating objects from BSC is not supported, the ObjectApp focuses on deletion operations.
+4. `_deleteObject(uint256 _tokenId)`: This function deletes an object using the provided token ID. As creating objects from EVM-compatible chains is not supported, the ObjectApp focuses on deletion operations.
 5. `_deleteObject(uint256 _tokenId, address _refundAddress, PackageQueue.FailureHandleStrategy _failureHandleStrategy, bytes memory _callbackData, uint256 _callbackGasLimit)`: This function deletes an object with a callback, using the provided token ID and callback data.
 
 In addition to these functions, the ObjectApp provides one virtual function:

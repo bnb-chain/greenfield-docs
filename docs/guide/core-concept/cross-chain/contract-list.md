@@ -5,7 +5,7 @@ order: 7
 
 # Contract Entrypoint
 
-## Mainnet
+## BNBChain Mainnet
 DeployCommitId: c8e6a293b628f9063918ba8cd9c00ca41ded18db
 
 | contract name      | address                                    |
@@ -32,7 +32,7 @@ Extra:
 
 For more details, you can refer to [Greenfield Contracts Mainnet Deployment](https://github.com/bnb-chain/greenfield-contracts/blob/master/deployment/56-deployment.json).
 
-## Testnet
+## BNBChain Testnet
 DeployCommitId: 20cc1f5784a621438114847753cda289f3ed76fa
 
 | contract name      | address                                    |
