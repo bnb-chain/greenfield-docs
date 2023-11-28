@@ -300,13 +300,18 @@ const sidebars = {
             "tutorials/data-marketplace/overview",
             {
               type: 'link',
-              label: 'Data Marketplace Mainnet Demo', // The link label
+              label: 'Data Marketplace BSC Mainnet Demo', // The link label
               href: 'https://marketplace.greenfield-sp.bnbchain.org/index.html',
             },
             {
               type: 'link',
-              label: 'Data Marketplace Testnet Demo', // The link label
+              label: 'Data Marketplace BSC Testnet Demo', // The link label
               href: 'https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/index.html',
+            },
+             {
+              type: 'link',
+              label: 'Data Marketplace opBNB Testnet Demo', // The link label
+              href: 'https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/op-bnb-testnet-index.html ',
             },
           ]
         },
