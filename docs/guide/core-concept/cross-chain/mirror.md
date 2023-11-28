@@ -10,7 +10,7 @@
 
 :::
 
-The Greenfield Blockchain provides a comprehensive set of resources that can be mirrored on the EVM-compatible chains, like BNBChain and opBNB.
+The Greenfield Blockchain provides a comprehensive set of resources that can be mirrored on the EVM-compatible chains, like BSC and opBNB.
 This includes buckets, objects, and groups, which can be stored and managed on the EVM-compatible chains as non-fungible tokens (NFTs)
 conforming to the ERC-721 standard.
 

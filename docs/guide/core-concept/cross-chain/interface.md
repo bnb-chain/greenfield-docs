@@ -8,7 +8,7 @@ title: Primitive Interfaces
 This document give a detailed introduction of cross-chain primitives that have been defined on EVM-compatible chains to enable developers to manage greenfield resources on the EVM-compatible chains directly.
 
 The [Greenfield-Contracts Repo](https://github.com/bnb-chain/greenfield-contracts) is the underlying backbone of the
-cross chain communication protocol. It is responsible for implementing the core cross-chain communication functionality that enables seamless interaction between Greenfield and EVM-compatible chains, like BNBChain and opBNB. The library handles the complexities of cross-chain operations, ensuring secure and efficient communication.
+cross chain communication protocol. It is responsible for implementing the core cross-chain communication functionality that enables seamless interaction between Greenfield and EVM-compatible chains, like BSC and opBNB. The library handles the complexities of cross-chain operations, ensuring secure and efficient communication.
 
 During the development process, developers are most likely to interact with the following contracts: `CrossChain`, `BucketHub`, `ObjectHub` and `GroupHub`. 
 They provide the following interfaces respectively:
@@ -20,7 +20,7 @@ Additional fees need to be paid to the relayer during the cross-chain process, a
    interface ICrossChain {
        /** @dev Query relayFee and minAckRelayFee. 
         * @return relayFee, the fee required for the relayer to relay the package to GNFD.
-        * @return minAckRelayFee, the minimum fee required for the relayer to circulate the ACK package to BNBChain.
+        * @return minAckRelayFee, the minimum fee required for the relayer to circulate the ACK package to BSC.
         * The caller will need to pay no less than this [relayFee+minAckRelayFee] to send the cross-chain request.
         */
        function getRelayFees() external returns (uint256 relayFee, uint256 minAckRelayFee);
@@ -35,7 +35,7 @@ Additional fees need to be paid to the relayer during the cross-chain process, a
 
 **IGroupHub**
 
-The `GroupHub` contract provides the following interfaces to manage Group on BNBChain directly.
+The `GroupHub` contract provides the following interfaces to manage Group on BSC/opBNB directly.
 
    ```solidity
    interface IGroupHub {
@@ -123,7 +123,7 @@ The `GroupHub` contract provides the following interfaces to manage Group on BNB
 
 **IBucketHub**
 
-The `BucketHub` contract provides the following interfaces to manage bucket on EVM-compatible chains, like BNBChain and opBNB, directly.
+The `BucketHub` contract provides the following interfaces to manage bucket on EVM-compatible chains, like BSC and opBNB, directly.
    ```solidity
    interface IBucketHub {
       /** 
@@ -178,7 +178,7 @@ The `BucketHub` contract provides the following interfaces to manage bucket on E
 
 **IObjectHub**
 
-The `ObjectHub` contract provides the following interfaces to manage object on EVM-compatible chains, like BNBChain and opBNB, directly.
+The `ObjectHub` contract provides the following interfaces to manage object on EVM-compatible chains, like BSC and opBNB, directly.
 
    ```solidity
    interface IObjectHub {
@@ -210,7 +210,7 @@ The `ObjectHub` contract provides the following interfaces to manage object on E
    ```
 
 ## CallBack Handling
-dApps on EVM-compatible chains, i.e. smart contracts on BNBChain, are allowed to implement their own logic to handle ACK and FAIL_ACK packages.
+dApps on EVM-compatible chains, i.e. smart contracts on BSC, are allowed to implement their own logic to handle ACK and FAIL_ACK packages.
 The smart contracts can register callback functions to handle the ACK packages.
 To avoid consuming too much gas in callbacks, a gas limitation estimation should be done by the smart contracts that register 
 the callbacks.

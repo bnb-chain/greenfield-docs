@@ -5,7 +5,7 @@ designed to facilitate the development of community-driven projects. The SDK ser
 [Greenfield-Contracts](https://github.com/bnb-chain/greenfield-contracts) library, which implements the cross-chain
 communication functionality. By providing a user-friendly interface to the underlying interface, the SDK simplifies the
 development process and enables developers to create and manage a variety of greenfield resources, like bucket,
-group, and object on EVM-compatible chains, like BNBChain and opBNB, through smart contract directly.
+group, and object on EVM-compatible chains, like BSC and opBNB, through smart contract directly.
 
 The SDK is organized into four primary parts: `BaseApp`, `BucketApp`, `ObjectApp`, and `GroupApp`.
 These components serve as the building blocks for developers. The `BaseApp` serves as the foundation for the other three
