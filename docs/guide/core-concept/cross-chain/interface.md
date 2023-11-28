@@ -42,20 +42,20 @@ The `GroupHub` contract provides the following interfaces to manage Group on BSC
        /** 
         * @dev  Query the contract address of group NFT
         * @return The contract address of group token
-        * Each group will be mapped as a NFT on BNBChain.
+        * Each group will be mapped as a NFT on BSC.
         * Group ID and NFT token ID are the same.
         */
        function ERC721Token() external view returns (address);
       /** 
         * @dev  Query the contract address of member NFT
         * @return The contract address of member token
-        * The member inside a group  will be mapped as a ERC1155 token on BNBChain.
+        * The member inside a group  will be mapped as a ERC1155 token on BSC.
         * The ID of the ERC1155 token is same with the group ID.
         */
        function ERC1155Token() external view returns (address);
 
       /**
-        * @dev create a group and send cross-chain request from BNBChain to GNFD
+        * @dev create a group and send cross-chain request from BSC to GNFD
         *
         * @param creator The group's owner
         * @param name The group's name
@@ -63,7 +63,7 @@ The `GroupHub` contract provides the following interfaces to manage Group on BSC
        function createGroup(address creator, string memory name) external payable returns (bool);
    
       /**
-        * @dev create a group and send cross-chain request from BNBChain to GNFD.
+        * @dev create a group and send cross-chain request from BSC to GNFD.
         * Callback function will be called when the request is processed.
         *
         * @param creator The group's owner
@@ -80,14 +80,14 @@ The `GroupHub` contract provides the following interfaces to manage Group on BSC
        ) external payable returns (bool);
    
        /**
-        * @dev delete a group and send cross-chain request from BNBChain to GNFD
+        * @dev delete a group and send cross-chain request from BSC to GNFD
         *
         * @param id The group's id
         */
        function deleteGroup(uint256 id) external payable returns (bool);
    
        /**
-        * @dev delete a group and send cross-chain request from BNBChain to GNFD
+        * @dev delete a group and send cross-chain request from BSC to GNFD
         * Callback function will be called when the request is processed.
         *
         * @param id The group's id
@@ -98,14 +98,14 @@ The `GroupHub` contract provides the following interfaces to manage Group on BSC
        function deleteGroup(uint256 id, uint256 callbackGasLimit, CmnStorage.ExtraData memory extraData) external payable returns (bool);
 
        /**
-        * @dev update a group's member and send cross-chain request from BNBChain to GNFD
+        * @dev update a group's member and send cross-chain request from BSC to GNFD
         *
         * @param synPkg Package containing information of the group to be updated
         */
        function updateGroup(GroupStorage.UpdateGroupSynPackage memory synPkg) external payable returns (bool);
    
        /**
-        * @dev update a group's member and send cross-chain request from BNBChain to GNFD
+        * @dev update a group's member and send cross-chain request from BSC to GNFD
         * Callback function will be called when the request is processed.
         *
         * @param synPkg Package containing information of the group to be updated
@@ -129,20 +129,20 @@ The `BucketHub` contract provides the following interfaces to manage bucket on E
       /** 
         * @dev  Query the contract address of bucket NFT
         * @return The contract address of bucket token
-        * Each bucket will be mapped as a NFT on BNBChain.
+        * Each bucket will be mapped as a NFT on BSC.
         * Bucket ID and NFT token ID are the same.
         */
        function ERC721Token() external view returns (address);
    
        /**
-        * @dev create a bucket and send cross-chain request from BNBChain to GNFD
+        * @dev create a bucket and send cross-chain request from BSC to GNFD
         *
         * @param synPkg Package containing information of the bucket to be created
         */
        function createBucket(BucketStorage.CreateBucketSynPackage memory synPkg) external payable returns (bool);
    
         /**
-        * @dev create a bucket and send cross-chain request from BNBChain to GNFD.
+        * @dev create a bucket and send cross-chain request from BSC to GNFD.
         * Callback function will be called when the request is processed.
         *
         * @param synPkg Package containing information of the bucket to be created
@@ -157,14 +157,14 @@ The `BucketHub` contract provides the following interfaces to manage bucket on E
        ) external payable returns (bool);
 
       /**
-        * @dev delete a bucket and send cross-chain request from BNBChain to GNFD
+        * @dev delete a bucket and send cross-chain request from BSC to GNFD
         *
         * @param id The bucket's id
         */
        function deleteBucket(uint256 id) external payable returns (bool);
 
       /**
-        * @dev delete a bucket and send cross-chain request from BNBChain to GNFD.
+        * @dev delete a bucket and send cross-chain request from BSC to GNFD.
         * Callback function will be called when the request is processed.
         *
         * @param id The bucket's id
@@ -185,19 +185,19 @@ The `ObjectHub` contract provides the following interfaces to manage object on E
        /** 
         * @dev  Query the contract address of object NFT
         * @return The contract address of object token
-        * Each object will be mapped as a NFT on BNBChain.
+        * Each object will be mapped as a NFT on BSC.
         * Object ID and NFT token ID are the same.
         */
        function ERC721Token() external view returns (address);
 
       /**
-       * @dev delete a object and send cross-chain request from BNBChain to GNFD
+       * @dev delete a object and send cross-chain request from BSC to GNFD
        *
        * @param id, the Id of the object
        */
        function deleteObject(uint256 id) external payable returns (bool);
       /**
-       * @dev delete a object and send cross-chain request from BNBChain to GNFD
+       * @dev delete a object and send cross-chain request from BSC to GNFD
        * Callback function will be called when the request is processed
        *
        * @param id, the Id of the object
