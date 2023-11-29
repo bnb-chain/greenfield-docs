@@ -81,7 +81,7 @@ You can use it as a template for your Mainnet config by adapting a few changes a
       }
     ```
    
-   For setting up the relayer that crosschain to opBNB, modify the `bsc_config` as below.
+   For setting up the relayer that crosschain to `opBNB`, modify the `bsc_config` as below.
    ```
    "bsc_config": {
         "op_bnb": true, // this specifies that conifg is for opBNB crosschain.
@@ -94,7 +94,7 @@ You can use it as a template for your Mainnet config by adapting a few changes a
         "gas_limit": 20000000,
         ...
         "start_height": 0,   // please change to the current block height of opBNB network.
-        "chain_id": 5611 // opBNB testnet chain id
+        "chain_id": 204 // opBNB mainnet chain id
       }
    ```
 
@@ -116,6 +116,7 @@ import TabItem from '@theme/TabItem';
    values={[
    {label: 'BSC-Mainnet', value: 'BSC-Mainnet'},
    {label: 'BSC-Testnet', value: 'BSC-Testnet'},
+   {label: 'opBNB-Mainnet', value: 'opBNB-Mainnet'},
    {label: 'opBNB-Testnet', value: 'opBNB-Testnet'},
    ]}>
    <TabItem value="BSC-Mainnet">
@@ -138,6 +139,16 @@ import TabItem from '@theme/TabItem';
       }
 
   </TabItem>
+  <TabItem value="opBNB-Mainnet">
+
+    "relay_config": {
+        ... 
+        "cross_chain_contract_addr": "0x7E376AEFAF05E20e3eB5Ee5c08fE1B9832b175cE",
+        "greenfield_light_client_contract_addr": "0xf51ba131716776685A805E8E4Ecc95be2f923B93",
+        "relayer_hub_contract_addr": "0xEd873b460C53D22f0FF3fc511854d9b8b16C4aE2"
+      }
+
+  </TabItem> 
   <TabItem value="opBNB-Testnet">
 
     "relay_config": {
@@ -148,6 +159,7 @@ import TabItem from '@theme/TabItem';
       }
 
   </TabItem>
+
 </Tabs>
 
 

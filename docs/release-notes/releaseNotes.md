@@ -16,7 +16,7 @@ access between Greenfield and opBNB is limited to storage resources (bucket, obj
 transfer of BNB tokens between these two chains.
 
 To facilitate cross-chain accessibility between Greenfield and opBNB, validators need to upgrade their relayers running
-between Greenfield and BSC to [Relayer v1.1.0](https://github.com/bnb-chain/greenfield-relayer/releases/tag/v1.1.0) before
+between Greenfield and BSC to [Relayer v1.1.1](https://github.com/bnb-chain/greenfield-relayer/releases/tag/v1.1.1) before
 the Pampas Hardfork. Additionally, they should deploy an additional relayer for Greenfield and opBNB, following the
 instructions in the [Run Relayer](../guide/greenfield-blockchain/run-node/run-relayer.md).
 
