@@ -351,6 +351,16 @@ const sidebars = {
             "tutorials/access-control/cross-chain",
             "tutorials/access-control/quick-start",
           ]
+        },
+        {
+          type: "category",
+          label: "Artificial Intelligence",
+          collapsible: true,
+          collapsed: true,
+          link: {type:'doc', id:'tutorials/ai/hugging-face-intro'},
+          items:[
+            "tutorials/ai/hugging-face-intro",
+          ]
         }
       ]
     },
