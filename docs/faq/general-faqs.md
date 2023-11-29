@@ -80,4 +80,16 @@ Testnet is used for testing, so it won't keep user's data for a long time. It is
 
 Currently, gnfd-cmd does not allow you to specify content-type. Therefore, if the content-type is not correctly parsed, it will defaults to binary and results in direct downloading. The team is looking into supporting it in future developments.
 
+### What to do if you are unable to upgrade Greenfield in time?
+
+Since this is a hardfork, your gnfd binary cannot continue running if it’s not upgraded in time. 
+Add the following filed in app.toml:
+# chain-id for op bnb destination chain 
+`dest-op-chain-id = 204`
+
+Stop the binary, then execute the rollback command:
+`gnfd rollback --hard`
+Finally, restart your binary.
+
+
 
