@@ -312,7 +312,7 @@ const sidebars = {
              {
               type: 'link',
               label: 'Data Marketplace opBNB Testnet Demo', // The link label
-              href: 'https://data-marketplace.gnfd-testnet-sp4.bnbchain.org/op-bnb-testnet-index.html ',
+              href: 'https://data-marketplace.testnet-opbnb.bnbchain.org/',
             },
           ]
         },
