@@ -26,12 +26,21 @@ Greenfield Providers features for managing permissions to your buckets and objec
 * Public Access - If the bucket or object set to public, every one can access it but not modify it.
 * Resource-Based Policy - The owner can configure resource-based permissions for his buckets and the objects in them.
 
-for more informations, see [Permission Module Design](../greenfield-blockchain/modules/permission.md).
+for more information, see [Permission Module Design](../greenfield-blockchain/modules/permission.md).
 
 ## Keys
 
 ### Bucket
-In Greenfield, a bucket is a virtual container for storing objects. Users must assign each bucket a unique name that complies with DNS naming conventions, consisting of one or more labels separated by periods. It's crucial that the bucket name be globally unique within the Greenfield namespace to prevent two buckets from sharing the same name. 
+In Greenfield, a bucket is a virtual container for storing objects. Users must assign each bucket a unique name that
+complies with DNS naming conventions, consisting of one or more labels separated by periods. It's crucial that the bucket
+name be globally unique within the Greenfield namespace to prevent two buckets from sharing the same name. Here are the
+bucket name rules for Greenfield:
+
+* The bucket name should be between 3 (minimum) and 63 (maximum) characters in length.
+* The bucket name should only include lowercase letters, numbers, dots (.), and hyphens (-).
+* The bucket name should start and end with a letter or number.
+* The bucket name should not have two consecutive periods.
+* The bucket name should not be in the format of an IP address (e.g., 192.168.5.4).
 
 Once a bucket has been created, objects can be uploaded to it using various methods such as the `gnfd` command line or the `SDKs`. 
 Objects within a bucket can be organized and managed like folders (also called "prefixes"). 
@@ -45,7 +54,13 @@ address will be the default payment account.
 ### Object
 
 An object is a fundamental unit of storage in Greenfield, which represents a file consisting of data and its associated 
-metadata. Each object is uniquely identified within a bucket by its object name (a string value). 
+metadata. Each object is uniquely identified within a bucket by its object name (a string value). Here are the object
+name rules for Greenfield:
+
+* The object name should be between 1 (minimum) and 1024 (maximum) characters in length.
+* The object name should only include UTF-8 characters.
+* The object name should not include "./", "../", or "//".
+
 While objects are commonly used to store files, they can contain any type of data, including text, 
 images, videos, and program binaries.
 
@@ -67,8 +82,13 @@ objects under the same bucket, but it may be a heavy-lifting job for a large buc
 
 ### Group
 
-A Group is a collection of accounts with the same permissions. The group name is not allowed to be duplicated under the
-same user. However, a group can not create or own any resource. A group can not be a member of another group either.
+A Group is a collection of accounts with the same permissions. Here are the group name rules for Greenfield:
+
+* The group name should be between 3 (minimum) and 64 (maximum) characters in length.
+* The group name should only include UTF-8 characters.
+
+The group name is not allowed to be duplicated under the same user. However, a group can not create or own any resource.
+A group can not be a member of another group either.
 
 A resource can only have a limited number of groups associated with it for permissions. This ensures that the on-chain
 permission check can be finished within a constant time.
