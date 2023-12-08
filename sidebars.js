@@ -338,6 +338,7 @@ const sidebars = {
             "tutorials/dapp/hosting-websites/overview",
             "tutorials/dapp/file-management/overview",
             "tutorials/dapp/resumable-upload/overview",
+            "tutorials/dapp/4everland-hosting/overview",
           ]
         },
         {
