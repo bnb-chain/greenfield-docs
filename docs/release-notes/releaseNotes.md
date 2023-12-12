@@ -7,6 +7,22 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v1.2.0 - Manchurian Upgrade
+BNB Greenfield v1.2.0 introduces the Manchurian Hardfork, which includes the following features:
+
+1. Support setting tags for buckets, objects, and groups. We encourage the community to create an indexing service for tags to enhance
+query capabilities. For additional information, please visit [here](https://github.com/bnb-chain/community-contributions/blob/main/bnb-greenfield-wishlist-corechain.md#challenge-greenfield-tagging-and-indexing-service).
+
+2. Users can query object before the object is sealed. Currently, users have to wait for an object to be sealed before
+they can download the object. However, sealing the object requires coordination among SPs. If some SPs are temporarily
+unavailable, it can affect the sealing process and consequently impact user access. In this version, the Primary SP will
+make every effort to ensure successful sealing of the file on the blockchain. Until then, users can access the object in
+advance. It is important to note that there is still a small probability that the file may fail to seal, in which case
+the SP will reject it and users will need to handle such exceptional situations.
+
+Greenfield v1.2.0 also includes several optimization features and bug fixes. For more details about this release, please
+refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.2.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.2.0).
+
 ## Greenfield v1.1.0 - Pampas Upgrade
 BNB Greenfield v1.1.0 introduces the Pampas Hardfork, which enables cross-chain resource interoperability between
 Greenfield and opBNB. With this upgrade, developers can now control resources on Greenfield by writing applications on

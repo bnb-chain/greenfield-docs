@@ -8,17 +8,15 @@ order: 2
 
 ## Upcoming
 
-### December 4th, Mainnet Pampas Upgrade
+### January 4th, Mainnet Manchurian Upgrade
 
-After this upgrade, Greenfield and opBNB will be able to achieve cross-chain programming, allowing users to write smart
-contracts on opBNB to control resources on Greenfield.
+After the upgrade, users on Greenfield Mainnet can assign tags to their resources like buckets, objects, and groups.
+They can also query the object before it is sealed.
 
-### November 20th, Testnet Pampas Upgrade
+### December 19th, Testnet Manchurian Upgrade
 
-After this upgrade, Greenfield Testnet and opBNB Testnet will be able to achieve cross-chain programming, allowing users
-to write smart contracts on opBNB to control resources on Greenfield.
-
-Additionally, this upgrade will temporarily disable the SP Exit and Bucket Migration features on the Testnet.
+After the upgrade, users on Greenfield Testnet can assign tags to their resources like buckets, objects, and groups.
+They can also query the object before it is sealed.
 
 ## Long Term
 
@@ -38,19 +36,32 @@ Additionally, this upgrade will temporarily disable the SP Exit and Bucket Migra
 ### September 2023, Launch Mainnet Lena
 
 - Support SP standard framework
-- Support SP join by governance, and SP exits freely
+- Support SP join by governance
 - Support data recovery
 - Support large object and breakpoint resume transfer
 
 ### December 2023, Mainnet
 
-- Support SP reputation system
 - Enrich the ecosystem by building abundant toolchains and programming paradigms, such as data marketplace, NFT toolset,
   data migration toolset and so on
 - Link Greenfield with opBNB
+- Greenfield bundle service
+- Resource tagging and indexing
+
+### March 2024, Mainnet
+- Cross-chain permission control
+- Support the free exit of SP
+- Simple data migration
+- Object atomic update
 
 ### June 2024, Mainnet
 
+- Greenfield desktop daemon
+- Paymaster
+- Data availability layer for BSC and L2 blockchains
+
+### December 2024, Mainnet
+
 - Support off-chain generic computing
 - Support perpetual storage
-- Data availability layer for BSC and L2 blockchains
+- Higher performance
