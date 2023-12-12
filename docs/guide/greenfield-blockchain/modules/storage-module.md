@@ -32,6 +32,7 @@ Objects in Greenfield have several important characteristics, including:
 - checkSums for the storage pieces
 - storage status
 - associated SP information
+- tags
 
 ## Group
 
@@ -109,6 +110,8 @@ message MsgCreateBucket {
   // The available read data for each user is the sum of the free read data provided by SP and
   // the ChargeReadQuota specified here.
   uint64 charged_read_quota = 7;
+  // tags defines a list of tags which will be set to the bucket
+  ResourceTags tags = 8 [(gogoproto.nullable) = false];
 }
 ```
 
@@ -120,10 +123,9 @@ Used to delete an existing bucket. It is important to note that you cannot delet
 message MsgDeleteBucket {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // creator is the account address of the grantee who has the DeleteBucket permission of the bucket to be deleted.
+  // creator defines the account address of the grantee who has the DeleteBucket permission of the bucket to be deleted.
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // bucket_name is the name of the bucket to be deleted.
+  // bucket_name defines the name of the bucket to be deleted.
   string bucket_name = 2;
 }
 ```
@@ -174,11 +176,13 @@ message MsgCreateObject {
   // content_type defines a standard MIME type describing the format of the object.
   string content_type = 6;
   // primary_sp_approval defines the approval info of the primary SP which indicates that primary sp confirm the user's request.
-  common.Approval primary_sp_approval = 7;
+  Approval primary_sp_approval = 7;
   // expect_checksums defines a list of hashes which was generate by redundancy algorithm.
   repeated bytes expect_checksums = 8;
   // redundancy_type can be ec or replica
   RedundancyType redundancy_type = 9;
+  // tags defines a list of tags which will be set to the object
+  ResourceTags tags = 10 [(gogoproto.nullable) = false];
 }
 ```
 ### MsgDeleteObject
@@ -189,11 +193,11 @@ Used to delete object that is no longer useful, the deleted storage object is no
 message MsgDeleteObject {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // operator is the account address of the operator who has the DeleteObject permission of the object to be deleted.
+  // operator defines the account address of the operator who has the DeleteObject permission of the object to be deleted.
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // bucket_name is the name of the bucket where the object which to be deleted is stored.
+  // bucket_name defines the name of the bucket where the object which to be deleted is stored.
   string bucket_name = 2;
-  // object_name is the name of the object which to be deleted.
+  // object_name defines the name of the object which to be deleted.
   string object_name = 3;
 }
 
@@ -227,18 +231,18 @@ Used to send a copy of an object to another user.
 message MsgCopyObject {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // operator is the account address of the operator who has the CopyObject permission.
+  // operator defines the account address of the operator who has the CopyObject permission.
   string operator = 1;
-  // src_bucket_name is the name of the bucket where the object to be copied is located
+  // src_bucket_name defines the name of the bucket where the object to be copied is located
   string src_bucket_name = 2;
-  // dst_bucket_name is the name of the bucket where the object is copied to.
+  // dst_bucket_name defines the name of the bucket where the object is copied to.
   string dst_bucket_name = 3;
-  // src_object_name is the name of the object which to be copied
+  // src_object_name defines the name of the object which to be copied
   string src_object_name = 4;
-  // dst_object_name is the name of the object which is copied to
+  // dst_object_name defines the name of the object which is copied to
   string dst_object_name = 5;
-  // primary_sp_approval is the approval info of the primary SP which indicates that primary sp confirm the user's request.
-  Approval dst_primary_sp_approval = 6;
+  // primary_sp_approval defines the approval info of the primary SP which indicates that primary sp confirm the user's request.
+  common.Approval dst_primary_sp_approval = 6;
 }
 ```
 ### MsgRejectSealObject
@@ -248,11 +252,12 @@ A storage provider may reject to seal an object if it refuses to, or be unable t
 ```protobuf
 message MsgRejectSealObject {
   option (cosmos.msg.v1.signer) = "operator";
-  // operator is the account address of the object owner
+
+  // operator defines the account address of the object owner
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // bucket_name is the name of the bucket where the object is stored.
+  // bucket_name defines the name of the bucket where the object is stored.
   string bucket_name = 2;
-  // object_name is the name of unsealed object to be reject.
+  // object_name defines the name of unsealed object to be reject.
   string object_name = 3;
 }
 ```
@@ -263,11 +268,12 @@ The users are able to cancel an initial object before it is sealed with this mes
 ```protobuf
 message MsgCancelCreateObject {
   option (cosmos.msg.v1.signer) = "operator";
-  // operator is the account address of the operator
+
+  // operator defines the account address of the operator
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // bucket_name is the name of the bucket
+  // bucket_name defines the name of the bucket
   string bucket_name = 2;
-  // object_name is the name of the object
+  // object_name defines the name of the object
   string object_name = 3;
 }
 ```
@@ -279,12 +285,14 @@ Used to create a new group.
 message MsgCreateGroup {
   option (cosmos.msg.v1.signer) = "creator";
 
-  // owner is the account address of group owner who create the group
+  // owner defines the account address of group owner who create the group
   string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // group_name is the name of the group. it's not globally unique.
+  // group_name defines the name of the group. it's not globally unique.
   string group_name = 2;
   // extra defines extra info for the group
   string extra = 3;
+  // tags defines a list of tags which will be set to the group
+  ResourceTags tags = 4 [(gogoproto.nullable) = false];
 }
 ```
 ### MsgDeleteGroup
@@ -295,9 +303,9 @@ Used to delete a group that is no longer used. Please note that the underlying m
 message MsgDeleteGroup {
   option (cosmos.msg.v1.signer) = "operator";
 
-  // operator is the account address of the operator who has the DeleteGroup permission of the group to be deleted.
+  // operator defines the account address of the operator who has the DeleteGroup permission of the group to be deleted.
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // group_name is the name of the group which to be deleted
+  // group_name defines the name of the group which to be deleted
   string group_name = 2;
 }
 
@@ -310,11 +318,11 @@ A group member can choose to leave a group by sending this message.
 message MsgLeaveGroup {
   option (cosmos.msg.v1.signer) = "member";
 
-  // member is the account address of the member who want to leave the group
+  // member defines the account address of the member who want to leave the group
   string member = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // group_owner is the owner of the group you want to leave
+  // group_owner defines the owner of the group you want to leave
   string group_owner = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // group_name is the name of the group you want to leave
+  // group_name defines the name of the group you want to leave
   string group_name = 3;
 }
 ```
@@ -422,5 +430,21 @@ message MsgCancelMigrateBucket {
   string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // bucket_name defines the name of the bucket that need to be migrated
   string bucket_name = 2;
+}
+```
+### MsgSetTag
+
+Used to update the tags of a resource. The old tags will be overwritten directly. 
+
+```protobuf
+message MsgSetTag {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the operator who adds the tags
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // resource defines a greenfield standard resource name that can be generated by GRN structure
+  string resource = 2;
+  // tags defines a list of tags which will be set to the resource
+  ResourceTags tags = 3;
 }
 ```
