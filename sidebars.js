@@ -39,6 +39,7 @@ const sidebars = {
         "guide/getting-started/network-info",
         "guide/getting-started/get-test-bnb",
         "guide/getting-started/greenfield-command",
+        "guide/getting-started/get-started-dev",
       ],
     },
     {
