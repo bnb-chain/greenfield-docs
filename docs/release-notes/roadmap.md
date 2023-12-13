@@ -65,3 +65,5 @@ They can also query the object before it is sealed.
 - Support off-chain generic computing
 - Support perpetual storage
 - Higher performance
+
+For additional information, please refer to the [BNB Greenfield Roadmap Proposal](https://forum.bnbchain.org/t/bnb-greenfield-roadmap-proposal/2273).
