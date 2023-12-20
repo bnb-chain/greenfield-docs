@@ -22,17 +22,32 @@ npm install @bnb-chain/greenfield-js-sdk
 To utilize the SDK functionality, users need to instantiate a client object from the SDK. This client object serves as the interface to interact with BNB Greenfield and perform the desired operations.
 
 ### Create client
-```js
-import {Client} from '@bnb-chain/greenfield-js-sdk'
 
-// Node.js
+<Tabs groupId="example">
+   <TabItem value="browser" label="Browser">
+
+> Browser need load wasm manually.
+
+```js title="Browser create client"
+import { Client } from '@bnb-chain/greenfield-js-sdk'
+
+export const client = Client.create(GRPC_URL, String(GREEN_CHAIN_ID), {
+   // wasm url
+   zkCryptoUrl: 'https://unpkg.com/@bnb-chain/greenfield-zk-crypto/dist/node/zk-crypto.wasm',
+});
+```
+
+   </TabItem>
+   <TabItem value="nodejs" label="Nodejs">
+
+```js title="Nodejs create client"
 const { Client } = require('@bnb-chain/greenfield-js-sdk');
-const { ACCOUNT_ADDRESS, ACCOUNT_PRIVATEKEY } = require('./env');
 
 const client = Client.create('https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org', '5600');
 ```
 
-> Browser need load wasm manually.
+   </TabItem>
+</Tabs>
 
 The SDK offers two types of operations - sending transactions to BNB Greenfield, allowing users to modify the state of the blockchain; the second type enables users to send queries and retrieve metadata information about objects stored on the blockchain. 
 
@@ -415,14 +430,77 @@ Now let's make a complete example, includes:
 2. create object and upload it to the bucket
 3. download the object
 
-:::info Prepare
+### Prepare
 
-First, you must make a [Token Transfer](https://docs.bnbchain.org/greenfield-docs/docs/guide/getting-started/token-transfer), otherwise the transaction cannot be executed.
+To begin, create an account and deposit tokens into it on Greenfield. Follow the instructions provided in [Token Transfer](/docs/guide/getting-started/token-transfer). Please be aware that if your account does not have any BNB, the transaction will not be executed.
+
+#### Choose Storage Provider
+
+Storing data is one of the most important features of Greenfield. All storage-related apis require the [storage provider](/docs/guide/storage-provider/introduction/overview) to be chose.
+
+```js title="select sp"
+const spList = await client.sp.getStorageProviders();
+const sp = {
+   operatorAddress: spList[0].operatorAddress,
+   endpoint: spList[0].endpoint,
+};
+```
+
+#### ECDSA / OffChainAuth
+
+[ECDSA](/docs/api/storage-provider-rest#for-auth-type-gnfd1-ecdsa) require users to use private key for authentication.
+
+[OffChainAuth](/docs/guide/storage-provider/modules/authenticator) is used to authenticate yourself to the provider.
+
+> Code can't access user's private key on browser, so we use `OffChainAuth` on browser and use `ECDSA` on Nodejs.
+
+<Tabs groupId="example">
+   <TabItem value="browser" label="Browser">
+
+```js title="Browser"
+// MetaMask
+const provider = window.ethereum;
+
+const offchainAuthRes = await client.offchainauth.genOffChainAuthKeyPairAndUpload({
+   sps: {
+      address: sp.operatorAddress,
+      endpoint: sp.endpoint,
+   },
+   chainId: '5600',
+   expirationMs: 5 * 24 * 60 * 60 * 1000,
+   domain: window.location.origin,
+   // your wallet account
+   address: '0x..',
+}, provider);
+```
+
+   </TabItem>
+
+   <TabItem value="nodejs" label="Nodejs">
+
+:::info
+Nodejs don't need offchainauth.
 :::
+
+```js title="Nodejs"
+// your account
+const ACCOUNT_ADDRESS = '0x....'
+
+// your account's private key
+const ACCOUNT_PRIVATEKEY = '0x....'
+```
+
+   </TabItem>
+</Tabs>
 
 ### 1. Create Bucket
 
 #### 1.1 construct create bucket tx
+
+Bucket can be private or public, you can customize it with options (`visibility`):
+
+* `VISIBILITY_TYPE_PUBLIC_READ`
+* `VISIBILITY_TYPE_PRIVATE`
 
 <Tabs groupId="example">
    <TabItem value="browser" label="Browser">
@@ -435,7 +513,7 @@ const createBucketTx = await client.bucket.createBucket(
     visibility: 'VISIBILITY_TYPE_PUBLIC_READ',
     chargedReadQuota: '0',
     spInfo: {
-      primarySpAddress: 'primary_sp_address',
+      primarySpAddress: sp.operatorAddress,
     },
     paymentAddress: address,
   },
@@ -521,6 +599,44 @@ const res = await createBucketTx.broadcast({
 
 #### 2.1 construct create object tx
 
+Like the [visibility of bucket](#11-construct-create-bucket-tx), object also has a visibility:
+
+* `VISIBILITY_TYPE_PUBLIC_READ`
+* `VISIBILITY_TYPE_PRIVATE`
+
+Getting file's checksum need [reed-solomon](https://github.com/bnb-chain/greenfield-js-sdk/tree/main/packages/reed-solomon):
+
+<Tabs groupId="example">
+   <TabItem value="browser" label="Browser">
+
+```js
+import { ReedSolomon } from '@bnb-chain/reed-solomon';
+
+const rs = new ReedSolomon();
+
+// file is File type
+const fileBytes = await file.arrayBuffer();
+const expectCheckSums = rs.encode(new Uint8Array(fileBytes));
+```
+
+   </TabItem>
+   <TabItem value="nodejs" label="Nodejs">
+
+```js
+const fs = require('node:fs');
+const { NodeAdapterReedSolomon } = require('@bnb-chain/reed-solomon/node.adapter');
+
+const filePath = './CHANGELOG.md';
+const fileBuffer = fs.readFileSync(filePath);
+const rs = new NodeAdapterReedSolomon();
+const expectCheckSums = await rs.encodeInWorker(__filename, Uint8Array.from(fileBuffer));
+```
+
+   </TabItem>
+</Tabs>
+
+
+
 <Tabs groupId="example">
    <TabItem value="browser" label="Browser">
 
@@ -529,12 +645,16 @@ const createObjectTx = await client.object.createObject(
   {
     bucketName: 'bucket_name',
     objectName: 'object_name',
+    // user's account address
     creator: '0x...',
     visibility: 'VISIBILITY_TYPE_PRIVATE',
+    // file's type
     fileType: 'json',
     redundancyType: 'REDUNDANCY_EC_TYPE',
+    // file's size
     contentLength: 13311,
-    expectCheckSums: JSON.parse(expectCheckSums),
+    // file's checksums
+    expectCheckSums: expectCheckSums,
   },
   // highlight-start
   {
@@ -553,14 +673,17 @@ const createObjectTx = await client.object.createObject(
 ```js
 const createObjectTx = await client.object.createObject(
    {
-      bucketName: bucketName,
-      objectName: objectName,
+      bucketName: 'bucket_name',
+      objectName: 'object_name',
       creator: ACCOUNT_ADDRESS,
       visibility: 'VISIBILITY_TYPE_PRIVATE',
-      fileType: fileType,
+      // file's type
+      fileType: 'json',
       redundancyType: 'REDUNDANCY_EC_TYPE',
-      contentLength,
-      expectCheckSums: JSON.parse(expectCheckSums),
+      // file's size
+      contentLength: 13311,
+      // file's checksums
+      expectCheckSums: expectCheckSums,
    },
    // highlight-start
    {
