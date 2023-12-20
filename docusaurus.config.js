@@ -14,7 +14,7 @@ const config = {
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   trailingSlash: false,
-  
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "bnb-chain", // Usually your GitHub org/user name.
@@ -42,7 +42,14 @@ const config = {
           customCss: require.resolve("./src/css/custom.css")
         }
       })
-    ]
+    ],
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-LSRFL0KHRR',
+        anonymizeIP: true,
+      },
+    ],
   ],
 
   themeConfig:
@@ -56,15 +63,15 @@ const config = {
       algolia: {
         // The application ID provided by Algolia
         appId: '3LF005YNGZ',
-  
+
         // Public API key: it is safe to commit it
         apiKey: 'dbc11ec6638f9c767ef6ed2856871f58',
-  
+
         indexName: 'bnbchain',
-  
+
         // Optional: see doc section below
         // contextualSearch: true,
-  
+
         // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
         externalUrlRegex: 'https://docs.bnbchain.org/',
       },
@@ -93,7 +100,7 @@ const config = {
           },
           {
             label: "Releases",
-            position:"left",
+            position: "left",
             to: "/docs/release-notes/releaseNotes"
           },
           {
@@ -128,7 +135,7 @@ const config = {
             outputDir: "docs/greenfield-api",
             downloadUrl:
               "https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/swagger/greenfield-api.yaml",
-           sidebarOptions: {
+            sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag"
             }
