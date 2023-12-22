@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "BNB Greenfield",
   tagline: "Decentralized Data Storage and Economy",
-  url: "https://bnb-chain.github.io/",
+  url: "https://docs.bnbchain.org",
   baseUrl: "/greenfield-docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
