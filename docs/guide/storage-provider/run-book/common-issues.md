@@ -4,42 +4,6 @@ title: SP Common Issues
 
 This is a list of solutions to common SP deployment issues
 
-- [On-chain Proposal](#on-chain-proposal)
-  - [1. Why send tx failed?](#1-why-send-tx-failed)
-  - [2. Why is Proposal Rejected?](#2-why-is-proposal-rejected)
-  - [3. Why is Proposal Failed](#3-why-is-proposal-failed)
-- [SP Node Issues](#sp-node-issues)
-  - [1. Address Not Found Issue](#1-address-not-found-issue)
-    - [Description](#description)
-    - [Root Cause](#root-cause)
-    - [Solution](#solution)
-  - [2. Database Configuration Issue](#2-database-configuration-issue)
-    - [Description](#description-1)
-    - [Root Cause](#root-cause-1)
-    - [Solution](#solution-1)
-  - [3. Object Sealed State Issue](#3-object-sealed-state-issue)
-    - [Description](#description-2)
-    - [Root Cause](#root-cause-2)
-    - [Solution](#solution-2)
-  - [4. P2P Issue](#4-p2p-issue)
-    - [Description](#description-3)
-    - [Root Cause](#root-cause-3)
-    - [Solution](#solution-3)
-  - [5.MinIO Authentication Issue](#5minio-authentication-issue)
-    - [Description](#description-4)
-    - [Root Cause](#root-cause-4)
-    - [Solution](#solution-4)
-  - [6. SP Standard Test Issue](#6-sp-standard-test-issue)
-    - [Description](#description-5)
-    - [Root Cause](#root-cause-5)
-    - [Solution](#solution-5)
-- [DCellar Integration Issues](#dcellar-integration-issues)
-  - [1. No 'Access-Control-Allow-Origin' header is present on the requested resource](#1-no-access-control-allow-origin-header-is-present-on-the-requested-resource)
-    - [Solution](#solution-6)
-  - [2. when an OPTION request is made, I get OPTIONS 405 (Method Not Allowed) error](#2-when-an-option-request-is-made-i-get-options-405-method-not-allowed-error)
-    - [Root cause](#root-cause-6)
-    - [Solution](#solution-7)
-
 ## On-chain Proposal
 
 ### 1. Why send tx failed?
@@ -224,6 +188,57 @@ Nginx does not support large file
 #### Solution
 
 Enlarge `proxy-boody-size`
+
+### 6. SP Crashed After Manchurian Upgrade
+
+
+#### Description
+
+BNB Greenfield SP [v1.2.2](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.2.2) introduces the [Manchurian Hardfork](https://docs.bnbchain.org/greenfield-docs/docs/release-notes/releaseNotes). If your SP node is not upgraded in time, it will crash.
+
+#### Solution
+
+Upgrade your SP binary to [v1.2.2](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.2.2)
+
+Update your `onfig.toml` accordingly:
+
+```diff
+[Parallel]
+-DiscontinueBucketEnabled = false
+-DiscontinueBucketKeepAliveDays = 365
++DiscontinueBucketEnabled = true
++DiscontinueBucketKeepAliveDays = 90
+ GlobalMaxUploadingParallel = 3072
+ UploadObjectParallelPerNode = 100
+ ReceivePieceParallelPerNode = 1024
+ ConnsOutbound = 2147483647
+
+ [BlockSyncer]
+-Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree','virtual_group','sp_exit_events','object_id_map']
++Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree','virtual_group','sp_exit_events','object_id_map','general']
+ BsDBWriteAddress = "tf-dex-preview-gnfd-testnet-sp-b-db.cluster-cqiexhbenqhn.us-east-1.rds.amazonaws.com:3306"
+ Workers = 50
+
+
+ [Manager]
+ EnableLoadTask = true
++EnableHealthyChecker = true
+ GVGPreferSPList = [1,2,3,4,5,6,7]
+ SPBlackList = [10,11,12,13,15,16]
++EnableTaskRetryScheduler = true
+
+ [Executor]
+ ListenSealRetryTimeout = 30
++BucketTrafficKeepTimeDay = 180
++ReadRecordKeepTimeDay = 180
++
++[GC]
++EnableGCZombie = true
++EnableGCMeta = true
++# 86400 seconds means one day
++GCMetaTimeInterval = 86400
+```
+
 
 ## DCellar Integration Issues
 
