@@ -189,36 +189,28 @@ Nginx does not support large file
 
 Enlarge `proxy-boody-size`
 
-### 6. SP Crashed After Manchurian Upgrade
+### 7. SP Configuration Changelogs
 
-
-#### Description
-
-BNB Greenfield SP [v1.2.2](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.2.2) introduces the [Manchurian Hardfork](https://docs.bnbchain.org/greenfield-docs/docs/release-notes/releaseNotes). If your SP node is not upgraded in time, it will crash.
-
-#### Solution
-
-Upgrade your SP binary to [v1.2.2](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.2.2)
-
-Update your `onfig.toml` accordingly:
-
+#### Testnet Exclusive
+Considering the maintenance cost of SP, the Greenfield Testnet will not permanently store user data. It is recommended
+to enable the following settings for Testnet's SP, which will automatically delete buckets created more than 90 days ago.
 ```diff
 [Parallel]
 -DiscontinueBucketEnabled = false
 -DiscontinueBucketKeepAliveDays = 365
 +DiscontinueBucketEnabled = true
 +DiscontinueBucketKeepAliveDays = 90
- GlobalMaxUploadingParallel = 3072
- UploadObjectParallelPerNode = 100
- ReceivePieceParallelPerNode = 1024
- ConnsOutbound = 2147483647
+```
 
+#### v1.2.2
+Version 1.2.2 has introduced several enhancements to improve the stability of the SP. Here are some suggested configurations
+for all SPs to take note of.
+```diff
  [BlockSyncer]
 -Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree','virtual_group','sp_exit_events','object_id_map']
 +Modules = ['epoch','bucket','object','payment','group','permission','storage_provider','prefix_tree','virtual_group','sp_exit_events','object_id_map','general']
  BsDBWriteAddress = "tf-dex-preview-gnfd-testnet-sp-b-db.cluster-cqiexhbenqhn.us-east-1.rds.amazonaws.com:3306"
  Workers = 50
-
 
  [Manager]
  EnableLoadTask = true
