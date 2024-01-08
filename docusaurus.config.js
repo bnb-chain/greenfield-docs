@@ -40,15 +40,12 @@ const config = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
+        },
+        gtag: {
+          trackingID: 'G-LSRFL0KHRR',
+          anonymizeIP: true,
         }
       })
-    ],
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-LSRFL0KHRR',
-        anonymizeIP: true,
-      },
     ],
   ],
 
