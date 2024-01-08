@@ -323,4 +323,4 @@ SP can use Greenfield Cmd or DCellar to verify its functions:
 
 ## Trouble Shooting
 
-If you meet issues, please refer to [SP common issues](./common-issues).
+If you meet issues, please refer to [SP common issues](./common-issues.md).

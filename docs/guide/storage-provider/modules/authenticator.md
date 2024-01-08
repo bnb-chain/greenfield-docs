@@ -169,7 +169,7 @@ If the API returns the new key nonce, the account public key has been successful
 In Step1 & Step2, we generated EdDSA keys and registered them into SP. In Step3, we can use `EdDSA_private_K` to sign request when an app invokes a certain SP API.
 
 To sign a request, the app needs to calculate the signedMsg before doing the actual signing.  
-See [calculate the signedMsg](../../../api/storage-provider-rest#the-step-of-generating-authorization-header)
+See [calculate the signedMsg](../../../api/storage-provider-rest/README.md#the-step-of-generating-authorization-header)
 
 And the following is an example
 ```shell
@@ -205,7 +205,7 @@ To delete a user's registered EdDSA account public key in an SP, apps can invoke
 
 ### Auth API Specification
 
-See [SP Auth Rest API Doc](../../../api/storage-provider-rest)
+See [SP Auth Rest API Doc](../../../api/storage-provider-rest/README.md)
 
 ## Rational
 

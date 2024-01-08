@@ -35,7 +35,7 @@ The Authorization Header could be composed of 3 parts.
 
 #### Auth type
 
-Update_key API expects `GNFD1-ETH-PERSONAL_SIGN` as [authentication type](../../../docs/api/storage-provider-rest#authentication-type) in HTTP Authorization header.
+Update_key API expects `GNFD1-ETH-PERSONAL_SIGN` as [authentication type](README.md#authentication-type) in HTTP Authorization header.
 
 #### SignedMsg
 

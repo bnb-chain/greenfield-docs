@@ -39,3 +39,4 @@ Mirroring in BNB Greenfield is based on the unique object ID and is not influenc
 ### Can the mirrored object be migrated between storage providers?
 The mirroring process in BNB Greenfield allows for object migration between storage providers because the object's data and metadata always reside on BNB Greenfield. As the data is not copied over to BSC, the mirroring remains unaffected. This means that migrating the actual content from one storage provider to another does not impact the mirroring process.
 
+

@@ -8,12 +8,12 @@ order: 2
 
 ## Upcoming
 
-### January 4th, Mainnet Manchurian Upgrade
+### Mainnet Manchurian Upgrade
 
 After the upgrade, users on Greenfield Mainnet can assign tags to their resources like buckets, objects, and groups.
 They can also query the object before it is sealed.
 
-### December 19th, Testnet Manchurian Upgrade
+### Testnet Manchurian Upgrade
 
 After the upgrade, users on Greenfield Testnet can assign tags to their resources like buckets, objects, and groups.
 They can also query the object before it is sealed.
