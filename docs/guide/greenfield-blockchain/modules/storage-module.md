@@ -110,8 +110,6 @@ message MsgCreateBucket {
   // The available read data for each user is the sum of the free read data provided by SP and
   // the ChargeReadQuota specified here.
   uint64 charged_read_quota = 7;
-  // tags defines a list of tags which will be set to the bucket
-  ResourceTags tags = 8 [(gogoproto.nullable) = false];
 }
 ```
 
@@ -181,8 +179,6 @@ message MsgCreateObject {
   repeated bytes expect_checksums = 8;
   // redundancy_type can be ec or replica
   RedundancyType redundancy_type = 9;
-  // tags defines a list of tags which will be set to the object
-  ResourceTags tags = 10 [(gogoproto.nullable) = false];
 }
 ```
 ### MsgDeleteObject
@@ -291,8 +287,6 @@ message MsgCreateGroup {
   string group_name = 2;
   // extra defines extra info for the group
   string extra = 3;
-  // tags defines a list of tags which will be set to the group
-  ResourceTags tags = 4 [(gogoproto.nullable) = false];
 }
 ```
 ### MsgDeleteGroup
