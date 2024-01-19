@@ -85,15 +85,33 @@ To ensure the quality of service provided, we strongly recommend that SPs conduc
 
 ## Exit
 
-At some point, the SP may choose to voluntarily exit the Greenfield storage network for various reasons. Ensuring a graceful exit process is crucial to ensure a seamless transition of responsibilities and data to other SPs. During the exit process, the SP has the option to withdraw its staked tokens, but this withdrawal may be subject to any penalties or obligations associated with the exit.
+There are two types of exit based on the behavior and choices of the SP: Graceful Exit and Forced Exit.
 
-To execute a graceful exit, the SP needs to migrate all its stored data to other SPs that are willing to take over. This data migration process involves transferring data from the exiting SP to the new SP in a secure and efficient manner. The exiting SP initiates this migration by sending a `SwapOut` transaction to the Greenfield Blockchain, formally withdrawing from the respective Global Virtual Group (GVG) or GVG Family. Simultaneously, the SP will receive back its staking tokens for data storage, ensuring a fair settlement.
+### Graceful Exit
+At some point, the SP may choose to voluntarily exit the Greenfield storage network for various reasons. 
+Ensuring a graceful exit process is crucial to ensure a seamless transition of responsibilities and data to other SPs. 
+During the exit process, the SP has the option to withdraw its staked tokens, but this withdrawal may be subject to any 
+penalties or obligations associated with the exit.
 
-Once the successor SP successfully takes over all data in a GVG or GVG Family, it will send a `CompleteSwapOut` transaction to the Greenfield Blockchain, confirming the completion of the data transfer process.
+To execute a graceful exit, all its stored data need to be migrated to other successor SPs that are willing to take over.  
+This data migration process involves recovering data from the exiting SP by successor SPs in a secure and efficient manner.
+After the exit SP sending a `StorageProviderExit` transaction to the Greenfield Blockchain, its status will turn to `STATUS_GRACEFUL_EXITING`.
+A successor SP can initiate the recovery process by first sending a `ReserveSwapIn` transaction to the Greenfield Blockchain, reserving the
+exit SP's position in the respective Global Virtual Group (GVG) or GVG Family so that it will be allowed to recover data from other SPs.
+Once the successor SP successfully takes over all data in a GVG or GVG Family, it will send a `CompleteSwapIn` transaction to the Greenfield Blockchain, 
+confirming the completion of the data transfer process.
 
-Greenfield Blockchain incorporates an effective consensus mechanism to facilitate and validate the graceful exit process. This mechanism ensures that the exit is carried out transparently, maintaining the network's integrity and preventing any disruptions or data loss during the transition.
+Greenfield Blockchain incorporates an effective consensus mechanism to facilitate and validate the graceful exit process. 
+This mechanism ensures that the exit is carried out transparently, maintaining the network's integrity and preventing 
+any disruptions or data loss during the transition.
 
-To ensure the safe and reliable migration of data, frequent data challenges are applied to the SPs that take over the data. These challenges are designed to verify the integrity and consistency of the migrated data, reassuring users that their data remains secure and accessible.
+To ensure the safe and reliable migration of data, frequent data challenges are applied to the SPs that take over the data. 
+These challenges are designed to verify the integrity and consistency of the migrated data, reassuring users that their data remains secure and accessible.
+
+### Forced Exit
+An uncooperative SP no longer wishes to provide service and refuses to go through the standard graceful exit process. In such a case,
+Greenfield governance will force the SP to exit, make it enter `STATUS_FORCED_EXITING`. The data recovery process for successor SP is the same as graceful exit mentioned above.
+However, a forced exit SP will face penalties and its staked BNB can not be withdrawn.
 
 :::note
 for more information, please see [SP exit](../greenfield-blockchain/modules/virtual-group.md#sp-exit-workflow)

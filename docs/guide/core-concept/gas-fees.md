@@ -168,7 +168,11 @@ documentation.
 | /greenfield.virtualgroup.MsgSwapOut         | 24000              | 5 gwei    | $0.02400000                     |
 | /greenfield.virtualgroup.MsgCompleteSwapOut | 24000              | 5 gwei    | $0.02400000                     |
 | /greenfield.virtualgroup.MsgCancelSwapOut   | 1200               | 5 gwei    | $0.00120000                     |
+| /greenfield.virtualgroup.MsgReserveSwapIn   | 1200               | 5 gwei    | $0.00120000                     |
+| /greenfield.virtualgroup.MsgCancelSwapIn   | 1200               | 5 gwei    | $0.00120000                     |
+| /greenfield.virtualgroup.MsgCompleteSwapIn   | 1200               | 5 gwei    | $0.00120000                     |
 | /greenfield.virtualgroup.MsgStorageProviderExit | 1200               | 5 gwei    | $0.00120000                     |
+| /greenfield.virtualgroup.MsgStorageProviderForcedExit | 1200               | 5 gwei    | $0.00120000                     |
 | /greenfield.virtualgroup.MsgCompleteStorageProviderExit | 1200               | 5 gwei    | $0.00120000                     |
 | /greenfield.virtualgroup.MsgUpdateParams    | 1200               | 5 gwei    | $0.00120000                     |
 | cosmos.authz.v1beta1.MsgGrant              | 800 + 800 per item | 5 gwei    | $0.0008 per item                |

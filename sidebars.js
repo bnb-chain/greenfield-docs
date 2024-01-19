@@ -166,6 +166,7 @@ const sidebars = {
             "guide/storage-provider/run-book/run-local-SP-network",
             "guide/storage-provider/run-book/run-SP-node",
             "guide/storage-provider/run-book/join-SP-network",
+            "guide/storage-provider/run-book/exit-SP-network",
             "guide/storage-provider/run-book/piece-store",
             "guide/storage-provider/run-book/config",
             "guide/storage-provider/run-book/common-issues"
