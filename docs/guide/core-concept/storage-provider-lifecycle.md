@@ -89,9 +89,9 @@ There are two types of exit based on the behavior and choices of the SP: Gracefu
 
 ### Graceful Exit
 At some point, the SP may choose to voluntarily exit the Greenfield storage network for various reasons. 
-Ensuring a graceful exit process is crucial to ensure a seamless transition of responsibilities and data to other SPs. 
-During the exit process, the SP has the option to withdraw its staked tokens, but this withdrawal may be subject to any 
-penalties or obligations associated with the exit.
+Ensuring a graceful exit process is crucial to ensure a seamless transition of responsibilities and data to other SPs.
+During the exit process, the SP must continue to fulfill user serve user querying requests, Once the exit process is 
+successfully completed, the SP can retrieve all the staked BNB.
 
 To execute a graceful exit, all its stored data need to be migrated to other successor SPs that are willing to take over.  
 This data migration process involves recovering data from the exiting SP by successor SPs in a secure and efficient manner.
@@ -111,7 +111,7 @@ These challenges are designed to verify the integrity and consistency of the mig
 ### Forced Exit
 An uncooperative SP no longer wishes to provide service and refuses to go through the standard graceful exit process. In such a case,
 Greenfield governance will force the SP to exit, make it enter `STATUS_FORCED_EXITING`. The data recovery process for successor SP is the same as graceful exit mentioned above.
-However, a forced exit SP will face penalties and its staked BNB can not be withdrawn.
+However, a forced exit SP will face penalties, and its staked BNB will be locked into the Payment module governance account, this payment account is used to receive forced settlement fee, and pay for potential debt from late forced settlement.
 
 :::note
 for more information, please see [SP exit](../greenfield-blockchain/modules/virtual-group.md#sp-exit-workflow)

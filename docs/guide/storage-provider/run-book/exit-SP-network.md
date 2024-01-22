@@ -123,9 +123,17 @@ Example:
 # Query the GVG(id=1) recover progress
 ./gnfd-sp recover-vgf --config /config/config.toml --gid 1
 ```
-Upon completion of the data recovery process and successful verification, the successor SP needs to send a `CompleteSwapIn` 
-transaction to the Greenfield blockchain, it will be automatically conducted before the recover process exit, 
+
+#### 2.3 CompleteSwapIn
+
+Upon completion of the data recovery process and successful verification, the successor SP needs to send a `CompleteSwapIn`
+transaction to the Greenfield blockchain, it will be automatically conducted before the recover process concludes,
 This will finalize the recovery process and allow the successor SP to take over the position in the GVG Family or GVG.
+
+:::note
+It is crucial to note that under no circumstances should the `CompleteSwapIn` be triggered manually if the successor SP 
+has not completed the data recovery process but acknowledges it. Doing so may result in data availability challenges and 
+potential loss of funds. 
 
 ### 3. Finalize the Exit
 Once the successor SP has completed the data recovery process and taken over the position in the GVG Family or GVG, by checking the 
