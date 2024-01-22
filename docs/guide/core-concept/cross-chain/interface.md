@@ -209,6 +209,55 @@ The `ObjectHub` contract provides the following interfaces to manage object on E
    }
    ```
 
+**IPermissionHub**
+
+The `PermissionHub` contract provides the following interfaces to manage permission on EVM-compatible chains, like BSC and opBNB, directly.
+
+   ```solidity
+   interface IPermissionHub {
+    /** 
+     * @dev  Query the contract address of permission NFT
+     * @return The contract address of permission token
+     * Each permission policy will be mapped as a NFT on BSC.
+     * Policy ID and NFT token ID are the same.
+     */
+    function ERC721Token() external view returns (address);
+
+    /**
+     * @dev delete a policy and send cross-chain request from BSC to GNFD
+     *
+     * @param id The policy id
+     */
+    function deletePolicy(uint256 id) external payable returns (bool);
+    
+    /**
+     * @dev delete a policy and send cross-chain request from BSC to GNFD
+     *
+     * @param id The policy id
+     * @param _extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+     */
+    function deletePolicy(uint256 id, PermissionStorage.ExtraData memory _extraData) external payable returns (bool);
+
+    /**
+     * @dev create a policy and send cross-chain request from BSC to GNFD
+     *
+     * @param data policy data encoded by protobuf
+     * @param _extraData Extra data for callback function. The `appAddress` in `extraData` will be ignored.
+     */
+    function createPolicy(
+        bytes calldata _data,
+        PermissionStorage.ExtraData memory _extraData
+    ) external payable returns (bool);
+
+    /**
+     * @dev create a policy and send cross-chain request from BSC to GNFD
+     *
+     * @param data policy data encoded by protobuf
+     */
+    function createPolicy(bytes calldata _data) external payable returns (bool);
+   }
+   ```
+
 ## CallBack Handling
 dApps on EVM-compatible chains, i.e. smart contracts on BSC, are allowed to implement their own logic to handle ACK and FAIL_ACK packages.
 The smart contracts can register callback functions to handle the ACK packages.
