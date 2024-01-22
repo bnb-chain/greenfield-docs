@@ -7,6 +7,17 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v1.3.0 - Hulunbeier Upgrade
+BNB Greenfield v1.3.0 introduces the Hulunbeier Hardfork, which includes the following features:
+1. Cross-chain permission module: With this new feature, users can now grant permissions from the BSC/opBNB side. This
+   enhancement provides greater programmability and flexibility. For more details, please refer to [here](https://github.com/bnb-chain/BEPs/pull/334).
+
+2. Support the exit of SP: With this new feature, SPs on Greenfield can now exit without any restrictions. For more
+   details, please refer to [here](https://github.com/bnb-chain/BEPs/pull/338).
+
+Greenfield v1.3.0 also includes several optimization features and bug fixes. For more details about this release, please
+refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.3.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.3.0).
+
 ## Greenfield v1.2.0 - Manchurian Upgrade
 BNB Greenfield v1.2.0 introduces the Manchurian Hardfork, which includes the following features:
 
