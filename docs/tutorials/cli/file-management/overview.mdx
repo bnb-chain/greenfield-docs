@@ -220,15 +220,59 @@ Please note that `--recursive` is used to put all files or objects under the spe
 The successful result should be similar to the following:
 
 ```
-sealing...
-upload index.html to gnfd://ylatitsb
+================================================
+Your batch upload is submitted as a task, task ID is sdgerdf-sfdgasg-1237hedfg
+You can check your task status and progress by using cmd as below:
 
-sealing...
-upload plato.jpeg to gnfd://ylatitsb
+- List all your tasks: ./gnfd-cmd task ls
+- Check status: ./gnfd-cmd task status --task.id taskID
+- Retry (in case this process is killed accidentally): ./gnfd-cmd task retry --task.id taskID
+- Delete task: ...
 
-sealing...
-upload styles.css to gnfd://ylatitsb
+>>================================================
+Upload Task building
+
+sealed index.html
 ```
+
+#### Task Operations
+When object put --recursive is used, tasks are automatically created
+
+You can view/retry/delete tasks with `gnfd-cmd task`
+
+Using the `gnfd-cmd task` requires a new session to be opened while the `gfnd-cmd object put --recursive` is in progress. If the current session is interrupted, the put object is interrupted
+
+```
+./build/gnfd-cmd task  status --taskId abe92a9a-1aa0-45be-9e0b-4cd400c38a06
+```
+Viewing Task status
+taskId will be generated after the `gfnd-cmd object put --recursive`
+
+```
+Folder: ./website
+Status: created
+sealed            index.html
+wait_for_upload   styles.css
+```
+
+```
+./build/gnfd-cmd task  retry --taskId abe92a9a-1aa0-45be-9e0b-4cd400c38a06
+```
+
+`gfnd-cmd object put --recursive` will be used to retry after a failure or interruption
+
+```
+task: abe92a9a-1aa0-45be-9e0b-4cd400c38a06
+folder name: ./website
+retrying...
+
+sealed index.html
+```
+
+```
+./build/gnfd-cmd task  delete --taskId abe92a9a-1aa0-45be-9e0b-4cd400c38a06
+```
+You can delete a task by deleting it
 
 You can go to [GreenfieldScan](https://testnet.greenfieldscan.com) to view the change of your bucket.
 
