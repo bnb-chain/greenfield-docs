@@ -30,6 +30,8 @@ Glacier DeVector is a decentralized vector database built on top of Greenfield b
 ## QuickStart
 In this quickstart, we store a dataset related to programing-lang and chat with the documents.
 
+* [Demo Project](https://github.com/Glacier-Labs/devector-demo)
+
 ### Create a GlacierClient
 ```js
 const privateKey = `<your-wallet-privateKey>`;
