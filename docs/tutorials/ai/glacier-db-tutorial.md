@@ -1,15 +1,15 @@
 ---
-title: Glacier Chat With Documents
-description: How to use BSC smart contract as a simple showcase of cross chain program-ability of Greenfield..
-keywords: [BNB Greenfield, Access control, Permission]
+title: Glacier Decentralized VectorDB
+description: How to manage vector data on top of BNB Greenfield.
+keywords: [BNB Greenfield, Glacier, VectorDB]
 order: 3
 ---
 
-# How to Chat With You Docs Powered by Glacier.io DB
+# How to Manage Vector Data Utilizing Glacier VectorDB
 
 ## Background
 
-Welcome to this tutorial focused on leveraging Greenfield's capabilities for AI and machine learning, alongside interacting with [Glacier DeVector Database](https://www.glacier.io/ai). In this comprehensive guide, we delve into an innovative technique: integrating OpenAI's GPT models with Greenfield's blockchain data through [Retrieval-Augmented Generation (RAG)](https://research.ibm.com/blog/retrieval-augmented-generation-RAG). This approach is particularly crucial for handling recent or specialized data, which traditional models might struggle with.
+Welcome to this tutorial focused on leveraging Greenfield's capabilities for AI and machine learning, alongside interacting with [Glacier DeVector Database](https://www.glacier.io/ai). In this comprehensive guide, we delve into an innovative technique: integrating OpenAI's GPT models with Greenfield's blockchain data through `Retrieval-Augmented Generation (RAG)`. This approach is particularly crucial for handling recent or specialized data, which traditional models might struggle with.
 
 Our journey will include utilizing Glacier DeVector for efficient data management and query processing. This ensures that our text generation is not only smooth and context-aware but also enriched with the most current real-time data. By combining these cutting-edge technologies, we empower our models to generate content that is not only highly accurate but also exceptionally relevant and up-to-date.
 
@@ -17,7 +17,7 @@ Our journey will include utilizing Glacier DeVector for efficient data managemen
 
 Glacier DeVector is a decentralized vector database built on top of Greenfield blockchain, seamlessly integrated into the AI ecosystem.
 
-![](/asset/glacierdb.png)
+![](../../../static/asset/glacierdb.png)
 
 
 ## Prerequisites
@@ -191,3 +191,7 @@ Chat response: Based on the provided context, the language that is about the sys
 # Conclusion
 
 In conclusion, this tutorial has demonstrated the powerful synergy between Greenfield's blockchain technology and OpenAI's GPT models, enhanced through Retrieval-Augmented Generation (RAG). By integrating these technologies with Glacier DeVector's efficient data management system, we have unlocked new potentials in AI and machine learning, particularly in generating up-to-date, relevant, and accurate content. We hope this journey has been enlightening and that it inspires you to explore further into the exciting world of AI and blockchain technology.
+
+
+Build AI-powered application utilizing Glacier VectorDB on Greenfield:
+Please contact info@glacier.io
