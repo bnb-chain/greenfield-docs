@@ -102,6 +102,8 @@ Follow the decision-making guide below, to see which resource is recommended for
 
 - [RPC list](https://docs.bnbchain.org/greenfield-docs/docs/api/endpoints)
 
+- [Bundle service](https://docs.nodereal.io/docs/greenfield-bundle-service)
+
 - [Web hosting](https://docs.bnbchain.org/greenfield-docs/docs/tutorials/dapp/4everland-hosting/overview)
 
 - [BSC developer tools](https://docs.bnbchain.org/docs/learn/ecosystem)

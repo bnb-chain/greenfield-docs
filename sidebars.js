@@ -255,6 +255,8 @@ const sidebars = {
 
     {type: 'doc', id: 'api/events'},
 
+    {type: 'doc', id: 'api/bundle-service'},
+
     {
       type: "category",
       label: "SDKs",
