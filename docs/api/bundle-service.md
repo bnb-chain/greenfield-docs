@@ -129,6 +129,7 @@ The bundler service is primarily designed to address the storage performance and
 
 #### Upload Bundle
 Since users may want to upload files at the same time like uploading a website, the bundle service allows users to upload a valid bundle.
+You can use the [bundle commandline tool](https://github.com/bnb-chain/greenfield-bundle-sdk/tree/master?tab=readme-ov-file#command-line-tool) to easily combine small objects into a bundle.
 
 The bundle service will validate the uploaded bundle, if the bundle is invalid, the request will be rejected.
 
