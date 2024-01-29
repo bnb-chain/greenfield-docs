@@ -15,9 +15,10 @@ it costs more for both the users and Greenfield. For instance, imagine a user's 
 Greenfield. If the files of the website are tiny but there are a lot of them, it leads to the same problem: too much
 metadata and higher costs.
 
-NodeReal has designed a bundling service to solve this problem. Bundling service provides a solution to small files
-together into one big file before sending it to Greenfield.Thus, developers can can cut down unnecessary costs while
-still get to each file in the big file as if they were separate.
+BNBChain has proposed the core protocol for the Greenfield bundle to solve this problem. You can find more details about [BEP-323](https://github.com/bnb-chain/BEPs/pull/323).
+NodeReal is the first infrastructure provider to implement the bundling service. Bundling service provides a solution to
+combine small files together into one big file before sending it to Greenfield. Thus, developers can can cut down unnecessary
+costs while still get to each file in the big file as if they were separate.
 
 NodeReal Bundling service is fully open sourced, developers can use NodeReal bundle service directly, while they can also
 deploy their own bundle service if needed.
@@ -86,9 +87,9 @@ to upload files. However, all users can access the files through the bundler ser
 func (c *Client) CreateBucket(ctx context.Context, bucketName string, primaryAddr string, opts types.CreateBucketOptions) (string, error)
 ```
 
-* Step 2: To ensure optimal performance when uploading bundled files to Greenfield, the bundler service offers multiple operator addresses. Get the operator address for creating the bundled objects on Greenfield.
+* Step 2: To ensure optimal performance when uploading bundled files to Greenfield, the bundler service offers multiple operator addresses. The operator address is used to replace the user in uploading the bundled objects to Greenfield. Get the operator address for creating the bundled objects on Greenfield.
 
-* Step 3: Grant fee and permission for creating bundled objects under the bucket. For the fee grant,  you can only create a fee allowance for object creation.
+* Step 3: Grant fee and permission to the operator address for creating bundled objects under the bucket. For the fee grant, you can only create a fee allowance for object creation.
 ```go
 func (c *Client) GrantAllowance(ctx context.Context, granteeAddr string, allowance feegrant.FeeAllowanceI, txOption gnfdsdktypes.TxOption) (string, error)
 
