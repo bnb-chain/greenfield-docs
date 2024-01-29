@@ -1,5 +1,7 @@
 ---
 title: Bundle Service
+description: How to use bundle service to combine small objects.
+keywords: [BNB Greenfield, NodeReal, Bundle, Bundle Service]
 ---
 
 :::note
