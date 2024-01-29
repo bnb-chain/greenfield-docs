@@ -194,6 +194,11 @@ The operation will download the file and output the length of the file, as follo
 download object test4.txt successfully, the file path is ./test4-copy.txt, content length:19
 ```
 
+If you know the sp endpoint that object belongs to, you can optimize the download speed by add --spEndpoint flag to download cmd, such as:
+```
+./gnfd-cmd object get --spEndpoint https://gnfd-testnet-sp3.nodereal.io gnfd://bucket123123123/test4.txt ./test4-copy.txt
+```
+
 To validate the integrity of the file, we can compare its content to the originally uploaded one. Empty output confirms there are no differences.
 
 ```
