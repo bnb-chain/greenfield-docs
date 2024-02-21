@@ -59,7 +59,9 @@ name rules for Greenfield:
 
 * The object name should be between 1 (minimum) and 1024 (maximum) characters in length.
 * The object name should only include UTF-8 characters.
-* The object name should not include "./", "../", or "//".
+* The object name should not include "./", "../", "//", "..", or "\\".
+* The object name should not be "/".
+* The object name should be free of patterns that could be exploited for SQL injection attacks.
 
 While objects are commonly used to store files, they can contain any type of data, including text, 
 images, videos, and program binaries.
