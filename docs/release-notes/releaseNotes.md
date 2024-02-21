@@ -7,6 +7,17 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v1.4.0 - Ural Upgrade
+BNB Greenfield v1.4.0 introduces the Ural Hardfork, which includes the following features:
+1. Support setting resource tags by accounts with permission: Previously, only the owner of a resource could set tags.
+   However, in certain scenarios, users may desire other authorized accounts to be able to set tags on behalf of the owner.
+
+2. Support bucket migration: In Greenfield, each bucket is associated with a primary SP. If a user is dissatisfied with
+   the service from their current primary SP, they have the option to migrate their bucket to another SP.
+
+Greenfield v1.4.0 also includes several optimization features and bug fixes. For more details about this release, please
+refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.4.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.4.0).
+
 ## Greenfield v1.3.0 - Hulunbeier Upgrade
 BNB Greenfield v1.3.0 introduces the Hulunbeier Hardfork, which includes the following features:
 1. Cross-chain permission module: With this new feature, users can now grant permissions from the BSC/opBNB side. This

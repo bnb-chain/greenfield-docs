@@ -8,18 +8,18 @@ order: 2
 
 ## Upcoming
 
-### Hulunbeier Upgrade
-
-The Hulunbeier hardfork introduces two significant features in this upgrade.
-1. Cross-chain permission module: With this new feature, users can now grant permissions from the BSC/opBNB side. This
-   enhancement provides greater programmability and flexibility. For more details, please refer to [here](https://github.com/bnb-chain/BEPs/pull/334).
-2. Support the exit of SP: With this new feature, SPs on Greenfield can now exit without any restrictions. For more
-   details, please refer to [here](https://github.com/bnb-chain/BEPs/pull/338).
-
 ### Ural Upgrade
 The Ural hardfork introduces one significant feature in this upgrade.
 1. Support bucket migration: With this new feature, users can migrate their bucket to another storage provider(SP) as
    the primary SP if they are not satisfied with the current service provided.
+
+### Pawnee Upgrade
+The Pawnee hardfork will introduce several enhance features in this upgrade.
+1. Support atomic object update: To update an object currently, the process involves deleting the existing object on the
+   chain and then creating a new object with the same name. This feature enables users to directly modify the content of
+   objects. For further information, please refer to [BEP346](https://github.com/bnb-chain/BEPs/pull/346).
+2. Support delete object in created status: Currently, objects in the 'created' state can only be deleted through a
+   'cancel create' transaction. This feature enables users to send deletion transactions for objects in any state.
 
 ## Long Term
 
@@ -59,7 +59,7 @@ The Ural hardfork introduces one significant feature in this upgrade.
 
 ### June 2024, Mainnet
 
-- Greenfield desktop daemon
+- Enhance user experience of using greenfield and cross-chain programming
 - Paymaster
 - Data availability layer for BSC and L2 blockchains
 
