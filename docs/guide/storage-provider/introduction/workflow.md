@@ -24,9 +24,15 @@ If users send multiple `CreateBucket` or `CreateObject` approval requests in a s
 
 See request and response details for this API: [GetApproval](../../../api/storage-provider-rest/get_approval.md).
 
+Users do not need to ask approval to update existing objects, they can directly send the `MsgUpdateObjectContent` to Greenfield Chain.
+
 ## Upload Object
 
-After successfully sending requests to the [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storage-provider-rest/get_approval.html) API and receiving results, you can upload an object to SP. This API involves two steps: first, users manually upload an object to PrimarySP; second, after a successful upload to PrimarySP, the object is automatically replicated to secondarySP to ensure data reliability.
+For new object, after successfully sending requests to the [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storage-provider-rest/get_approval.html) API and receiving results, then the new object is created on Greenfield chain. 
+
+you can upload an object to SP. For updating an existing object, you can upload directly once confirmed the `MsgUpdateObjectContent` tx on Greenfield chain.
+
+This API involves two steps: first, users manually upload an object to PrimarySP; second, after a successful upload to PrimarySP, the object is automatically replicated to secondarySP to ensure data reliability.
 
 Upload to PrimarySP flow chart is shown below:
 
@@ -178,6 +184,18 @@ The flow chart is shown below:
 - TaskExecutor send requests to SPDB to delete entries from BucketTraffic using SpDBImpl::DeleteAllBucketTrafficExpired for expired BucketTrafficTable.
 - TaskExecutor send requests to SPDB to delete entries from ReadRecord using SpDBImpl::DeleteAllReadRecordExpired for expired ReadRecord table.
 
+## GC stale version object 
+
+GC StaleVersion is used to gc stale version of object data in piece store and metadata in DB when the object update is performed.
+The flow chart is shown below:
+
+![gc-stale-object-flow](../../../../static/asset/gc-stale-object.png)
+
+<div style={{textAlign:'center'}}><i>GC StaleVersion</i></div>
+
+- Manager dispatches GCStaleVersionObjectTask to TaskExecutor.
+- TaskExecutor validate if the object data and meta is stale, and do the clean up in piece store and DB.
+- 
 ## Migrate Bucket
 
 Bucket user can select primary sp freely and use the migration bucket to migrate the sp service when they feel that the SP service quality is poor.

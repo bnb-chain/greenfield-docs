@@ -6,7 +6,8 @@ title: Put Object
 
 ## RESTful API Description
 
-This API is used to upload an object to Greenfield SP. And it supports both `virtual-hosted-style` and `path-style` requests.
+This API is used to upload an object to Greenfield SP. It serves for two types of upload, either a new object which is just created or to update an existing object. 
+And it supports both `virtual-hosted-style` and `path-style` requests.
 
 ## HTTP Request Format
 

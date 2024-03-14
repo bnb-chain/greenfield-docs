@@ -442,3 +442,43 @@ message MsgSetTag {
   ResourceTags tags = 3;
 }
 ```
+
+### MsgUpdateObjectContent
+
+Used to update an existing object content
+
+```protobuf
+message MsgUpdateObjectContent {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the operator, either the object owner or the updater with granted permission.
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // bucket_name defines the name of the bucket where the object is stored.
+  string bucket_name = 2;
+  // object_name defines the name of object
+  string object_name = 3;
+  // payload_size defines size of the object's payload
+  uint64 payload_size = 4;
+  // content_type defines a standard MIME type describing the format of the object.
+  string content_type = 5;
+  // expect_checksums defines a list of hashes which was generate by redundancy algorithm.
+  repeated bytes expect_checksums = 6;
+}
+```
+
+### MsgCancelUpdateObjectContent
+
+Used to cancel the update on an existing object
+
+```protobuf
+message MsgCancelUpdateObjectContent {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the operator, either the object owner or the updater with granted permission.
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // bucket_name defines the name of the bucket
+  string bucket_name = 2;
+  // object_name defines the name of the object
+  string object_name = 3;
+}
+```
