@@ -7,6 +7,15 @@ order: 7
 ---
 
 # Release Notes
+
+## Greenfield v1.5.0 - Pawnee Upgrade
+BNB Greenfield v1.5.0 introduces the Pawnee Hardfork, which includes the following major feature:
+- Support Greenfield Atomic Object Update: Previously, users face the inconvenience of having to delete and recreate objects in Greenfield in order to replace their content. 
+   v1.5.0 offer a more efficient and seamless object update process. See https://github.com/bnb-chain/BEPs/pull/346
+
+Greenfield v1.5.0 also includes several optimization features and bug fixes. For more details about this release, please
+refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.5.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.5.0).
+
 ## Greenfield v1.4.0 - Ural Upgrade
 BNB Greenfield v1.4.0 introduces the Ural Hardfork, which includes the following features:
 1. Support setting resource tags by accounts with permission: Previously, only the owner of a resource could set tags.

@@ -8,6 +8,11 @@ order: 2
 
 ## Upcoming
 
+### Pawnee Upgrade
+The Pawnee Upgrade introduces the following major feature:
+- Support Greenfield Atomic Object Update: Previously, users face the inconvenience of having to delete and recreate objects in Greenfield in order to replace their content.
+  Pawnee Upgrade offers a more efficient and seamless object update process. See https://github.com/bnb-chain/BEPs/pull/346
+
 ### Ural Upgrade
 The Ural hardfork introduces one significant feature in this upgrade.
 1. Support bucket migration: With this new feature, users can migrate their bucket to another storage provider(SP) as
