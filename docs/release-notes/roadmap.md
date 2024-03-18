@@ -12,7 +12,7 @@ order: 2
 The Pawnee hardfork will introduce several enhance features in this upgrade.
 1. Support atomic object update: To update an object currently, the process involves deleting the existing object on the
    chain and then creating a new object with the same name. This feature enables users to directly modify the content of
-   objects. For further information, please refer to [BEP366](https://github.com/bnb-chain/BEPs/pull/346).
+   objects. For further information, please refer to [BEP366](https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-366.md).
 2. Support delete object in created status: Currently, objects in the 'created' state can only be deleted through a
    'cancel create' transaction. This feature enables users to send deletion transactions for objects in any state.
 
