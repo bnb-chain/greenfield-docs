@@ -4,7 +4,7 @@ title: How to transition from S3 to Greenfield
 description: BNB Greenfield is a blockchain-based decentralized storage solution designed to enhance the decentralization of data ownership and management, allowing users to manage their own data and assets.
 ---
 
-# Seamlessly Transitioning from S3 to Greenfield: A Quick Start Guide
+# How to transition from S3 to Greenfield
 
 ## Introduction
 
