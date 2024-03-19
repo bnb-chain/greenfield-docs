@@ -24,7 +24,6 @@ const sidebars = {
       items:[
         "guide/introduction/overview",
         "guide/introduction/why-greenfield",
-        "guide/introduction/transitioning-from-s3-to-greenfield",
       ],
     },
     {
@@ -41,6 +40,7 @@ const sidebars = {
         "guide/getting-started/get-test-bnb",
         "guide/getting-started/greenfield-command",
         "guide/getting-started/get-started-dev",
+        "guide/introduction/transitioning-from-s3-to-greenfield",
       ],
     },
     {

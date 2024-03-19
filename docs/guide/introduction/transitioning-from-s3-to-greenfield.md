@@ -189,6 +189,8 @@ file, types.PutObjectOptions{TxnHash: txnHash})
 handleErr(err, "PutObject")
 ```
 
+
+In the process of creating objects, there is a difference between Greenfield and S3. In Greenfield, it is necessary to first create the object before performing the put object operation. This is because Greenfield requires users to create metadata on the Greenfield blockchain before submitting object to the SP, in order to ensure the integrity of the object.
 ## List objects
 
 **S3**
@@ -343,8 +345,6 @@ func main() {
     }
 
     // create object
-    //The reason Greenfield requires creating an Object before Putting an Object is that we operate in a decentralized manner.
-    //This process ensures that, during upload, user data undergoes fragmentation and permission verification.
     file, err := os.Open(UploadPath + UploadObjectKey)
     handleErr(err, "PutObject")
     defer file.Close()
