@@ -40,7 +40,6 @@ const sidebars = {
         "guide/getting-started/get-test-bnb",
         "guide/getting-started/greenfield-command",
         "guide/getting-started/get-started-dev",
-        "guide/introduction/transitioning-from-s3-to-greenfield",
       ],
     },
     {
@@ -305,6 +304,7 @@ const sidebars = {
           items:[
             "tutorials/get-started/file-management/overview",
             "tutorials/get-started/cmd-access-control",
+            "tutorials/get-started/transitioning-from-s3-to-greenfield",
           ]
         },
         {
