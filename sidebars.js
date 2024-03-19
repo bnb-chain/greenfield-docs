@@ -24,6 +24,7 @@ const sidebars = {
       items:[
         "guide/introduction/overview",
         "guide/introduction/why-greenfield",
+        "guide/introduction/transitioning-from-s3-to-greenfield",
       ],
     },
     {
