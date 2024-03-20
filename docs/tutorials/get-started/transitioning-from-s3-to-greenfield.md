@@ -336,12 +336,12 @@ func main() {
     handleErr(err, "CreateBucket")
 
     // list buckets
-    bucketsList, err := cli.ListBuckets(context.TODO(), types.ListBucketsOptions{
-    ShowRemovedBucket: false,
+    bucketsList, err := cli.ListBuckets(context.TODO(), types.ListBucketsOptions {
+        ShowRemovedBucket: false,
     })
     handleErr(err, "ListBuckets")
     for _, bucket := range bucketsList.Buckets {
-    fmt.Printf("* %s\n", bucket.BucketInfo.BucketName)
+        fmt.Printf("* %s\n", bucket.BucketInfo.BucketName)
     }
 
     // create object
@@ -368,12 +368,12 @@ func main() {
     time.Sleep(10 * time.Second)
 
     // list objects
-    objects, err := cli.ListObjects(context.TODO(), BucketName, types.ListObjectsOptions{
-    ShowRemovedObject: false, Delimiter: "", MaxKeys: 100, SPAddress: "",
+    objects, err := cli.ListObjects(context.TODO(), BucketName, types.ListObjectsOptions {
+        ShowRemovedObject: false, Delimiter: "", MaxKeys: 100, SPAddress: "",
     })
     handleErr(err, "ListObjects")
     for _, obj := range objects.Objects {
-    log.Printf("* %s\n", obj.ObjectInfo.ObjectName)
+        log.Printf("* %s\n", obj.ObjectInfo.ObjectName)
     }
 
     // get object
@@ -386,36 +386,36 @@ func main() {
 
     _, err = io.Copy(outFile, reader)
     handleErr(err, "DownloadObject")
-    }
+}
 
-    func NewFromConfig(chainID, rpcAddress, privateKeyStr string) (client.IClient, string, error) {
+func NewFromConfig(chainID, rpcAddress, privateKeyStr string) (client.IClient, string, error) {
     account, err := types.NewAccountFromPrivateKey("test", privateKeyStr)
     if err != nil {
-    log.Fatalf("New account from private key error, %v", err)
-    return nil, "", err
+        log.Fatalf("New account from private key error, %v", err)
+        return nil, "", err
     }
 
     cli, err := client.New(chainID, rpcAddress, client.Option{DefaultAccount: account})
     if err != nil {
-    log.Fatalf("unable to new greenfield client, %v", err)
-    return nil, "", err
+        log.Fatalf("unable to new greenfield client, %v", err)
+        return nil, "", err
     }
     ctx := context.Background()
 
     // get storage providers list
     spLists, err := cli.ListStorageProviders(ctx, true)
     if err != nil {
-    log.Fatalf("fail to list in service sps")
-    return nil, "", err
+        log.Fatalf("fail to list in service sps")
+        return nil, "", err
     }
     // choose the first sp to be the primary SP
     primarySP := spLists[0].GetOperatorAddress()
-    return cli, primarySP, nil
+        return cli, primarySP, nil
     }
 
     func handleErr(err error, funcName string) {
     if err != nil {
-    log.Fatalln("fail to " + funcName + ": " + err.Error())
+        log.Fatalln("fail to " + funcName + ": " + err.Error())
     }
 }
 ```
@@ -460,7 +460,7 @@ func main() {
     client := s3.NewFromConfig(cfg)
 
     // create bucket
-    _, err = client.CreateBucket(context.TODO(), &s3.CreateBucketInput{
+    _, err = client.CreateBucket(context.TODO(), &s3.CreateBucketInput {
         Bucket: aws.String(BucketName),
     })
     handleErr(err, "CreateBucket")
@@ -477,7 +477,7 @@ func main() {
     handleErr(err, "PutObject")
     defer file.Close()
 
-    _, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
+    _, err = client.PutObject(context.TODO(), &s3.PutObjectInput {
         Bucket: aws.String(BucketName),
         Key:    aws.String(UploadObjectKey),
         Body:   file,
@@ -486,7 +486,7 @@ func main() {
 
     // wait for object having been successfully uploaded
     time.Sleep(10 * time.Second)
-    objects, err := client.ListObjectsV2(context.TODO(), &s3.ListObjectsV2Input{
+    objects, err := client.ListObjectsV2(context.TODO(), &s3.ListObjectsV2Input {
         Bucket: aws.String(BucketName),
     })
     handleErr(err, "ListObjectsV2")
@@ -495,7 +495,7 @@ func main() {
     }
 
     // download object
-    resp, err := client.GetObject(context.TODO(), &s3.GetObjectInput{
+    resp, err := client.GetObject(context.TODO(), &s3.GetObjectInput {
         Bucket: aws.String(BucketName),
         Key:    aws.String(UploadObjectKey),
     })
@@ -511,19 +511,19 @@ func main() {
     _, err = io.Copy(outFile, resp.Body)
     handleErr(err, "DownloadObject")
 
-    _, err = client.DeleteObject(context.TODO(), &s3.DeleteObjectInput{
+    _, err = client.DeleteObject(context.TODO(), &s3.DeleteObjectInput {
         Bucket: aws.String(BucketName),
         Key:    aws.String(ObjectKey),
     })
     handleErr(err, "Delete Object")
 
-    _, err = client.DeleteBucket(context.TODO(), &s3.DeleteBucketInput{
+    _, err = client.DeleteBucket(context.TODO(), &s3.DeleteBucketInput {
         Bucket: aws.String(BucketName),
     })
     handleErr(err, "Delete Bucket")
-    }
+}
 
-    func handleErr(err error, funcName string) {
+func handleErr(err error, funcName string) {
     if err != nil {
         log.Fatalln("fail to " + funcName + ": " + err.Error())
     }
