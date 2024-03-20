@@ -410,10 +410,10 @@ func NewFromConfig(chainID, rpcAddress, privateKeyStr string) (client.IClient, s
     }
     // choose the first sp to be the primary SP
     primarySP := spLists[0].GetOperatorAddress()
-        return cli, primarySP, nil
-    }
+    return cli, primarySP, nil
+}
 
-    func handleErr(err error, funcName string) {
+func handleErr(err error, funcName string) {
     if err != nil {
         log.Fatalln("fail to " + funcName + ": " + err.Error())
     }
