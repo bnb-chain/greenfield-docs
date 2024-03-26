@@ -63,10 +63,7 @@ Install SDK:
 ```js title="Create testnet Client"
 import { Client } from '@bnb-chain/greenfield-js-sdk';
 
-const client = Client.create('https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org, '5600', {
-  zkCryptoUrl:
-    'https://unpkg.com/@bnb-chain/greenfield-zk-crypto/dist/node/zk-crypto.wasm',
-});
+const client = Client.create('https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org, '5600');
 ```
 
    </TabItem>
@@ -466,29 +463,21 @@ const getOffchainAuthKeys = async (address: string, provider: any) => {
 
 Bucket can be private or public. You can customize it with options.
 
+`VisibilityType`:
+
 * `VISIBILITY_TYPE_PUBLIC_READ`
 * `VISIBILITY_TYPE_PRIVATE`
 
-<Tabs groupId="example">
-   <TabItem value="browser" label="Browser">
-
 ```jsx title="create bucket"
+import { Long, VisibilityType, RedundancyType, bytesFromBase64 } from '@bnb-chain/greenfield-js-sdk';
 const createBucketTx = await client.bucket.createBucket(
   {
     bucketName: info.bucketName,
     creator: address,
-    visibility: 'VISIBILITY_TYPE_PUBLIC_READ',
-    chargedReadQuota: '0',
-    spInfo: {
-      primarySpAddress: spInfo.primarySpAddress,
-    },
+    visibility: VisibilityType.VISIBILITY_TYPE_PUBLIC_READ,
+    chargedReadQuota: Long.fromString('0'),
+    primarySpAddress: spInfo.primarySpAddress,
     paymentAddress: address,
-  },
-  {
-    type: 'EDDSA',
-    domain: window.location.origin,
-    seed: offChainData.seedString,
-    address,
   },
 );
 
@@ -506,44 +495,6 @@ const res = await createBucketTx.broadcast({
   granter: '',
 });
 ```
-
-   </TabItem>
-   <TabItem value="nodejs" label="Nodejs">
-
-```js title="create bucket"
-const createBucketTx = await client.bucket.createBucket(
-  {
-    bucketName: 'yourBucketName',
-    creator: ACCOUNT_ADDRESS,
-    visibility: 'VISIBILITY_TYPE_PUBLIC_READ',
-    chargedReadQuota: '0',
-    spInfo: {
-      primarySpAddress: primarySP,
-    },
-    paymentAddress: ACCOUNT_ADDRESS,
-  },
-  {
-    type: 'ECDSA',
-    privateKey: ACCOUNT_PRIVATEKEY,
-  },
-);
-
-const createBucketTxSimulateInfo = await createBucketTx.simulate({
-  denom: 'BNB',
-});
-
-const createBucketRes = await createBucketTx.broadcast({
-  denom: 'BNB',
-  gasLimit: Number(createBucketTxSimulateInfo?.gasLimit),
-  gasPrice: createBucketTxSimulateInfo?.gasPrice || '5000000000',
-  payer: ACCOUNT_ADDRESS,
-  granter: '',
-  privateKey: ACCOUNT_PRIVATEKEY,
-});
-```
-
-   </TabItem>
-</Tabs>
 
 ### 3. Create Object and Upload Object
 
@@ -582,26 +533,17 @@ const expectCheckSums = await rs.encodeInWorker(__filename, Uint8Array.from(file
 
 Getting approval of creating an object and sending `createObject` txn to the Greenfield network:
 
-<Tabs groupId="example">
-   <TabItem value="browser" label="Browser">
-
 ```jsx
 const createObjectTx = await client.object.createObject(
   {
     bucketName: info.bucketName,
     objectName: info.objectName,
     creator: address,
-    visibility: 'VISIBILITY_TYPE_PRIVATE',
-    fileType: info.file.type,
-    redundancyType: 'REDUNDANCY_EC_TYPE',
-    contentLength: fileBytes.byteLength,
-    expectCheckSums: expectCheckSums,
-  },
-  {
-    type: 'EDDSA',
-    domain: window.location.origin,
-    seed: offChainData.seedString,
-    address,
+    visibility: VisibilityType.VISIBILITY_TYPE_PRIVATE,
+    contentType: fileType,
+    redundancyType: RedundancyType.REDUNDANCY_EC_TYPE,
+    payloadSize: Long.fromInt(fileBuffer.length),
+    expectChecksums: expectCheckSums.map((x) => bytesFromBase64(x)),
   },
 );
 
@@ -617,31 +559,6 @@ const res = await createObjectTx.broadcast({
   granter: '',
 });
 ```
-
-   </TabItem>
-   <TabItem value="nodejs" label="Nodejs">
-
-```js
-const createObjectTx = await client.object.createObject(
-  {
-    bucketName: bucketName,
-    objectName: objectName,
-    creator: ACCOUNT_ADDRESS,
-    visibility: 'VISIBILITY_TYPE_PRIVATE',
-    fileType: fileType,
-    redundancyType: 'REDUNDANCY_EC_TYPE',
-    contentLength: fileBuffer.length,
-    expectCheckSums,
-  },
-  {
-    type: 'ECDSA',
-    privateKey: ACCOUNT_PRIVATEKEY,
-  },
-);
-```
-
-   </TabItem>
-</Tabs>
 
 Upload Object:
 
@@ -673,7 +590,7 @@ await client.object.uploadObject(
   {
       bucketName: bucketName,
       objectName: objectName,
-      body: fileBuffer,
+      body: createFile(filePath),
       txnHash: createObjectTxRes.transactionHash,
   },
   {
@@ -681,6 +598,19 @@ await client.object.uploadObject(
       privateKey: ACCOUNT_PRIVATEKEY,
   }
 );
+
+// convert buffer to file
+function createFile(path) {
+  const stats = fs.statSync(path);
+  const fileSize = stats.size;
+
+  return {
+    name: path,
+    type: '',
+    size: fileSize,
+    content: fs.readFileSync(path),
+  }
+}
 ```
 
    </TabItem>

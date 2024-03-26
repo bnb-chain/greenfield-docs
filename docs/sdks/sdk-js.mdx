@@ -23,31 +23,11 @@ To utilize the SDK functionality, users need to instantiate a client object from
 
 ### Create client
 
-<Tabs groupId="example">
-   <TabItem value="browser" label="Browser">
-
-> Browser need load wasm manually.
-
-```js title="Browser create client"
+```js
 import { Client } from '@bnb-chain/greenfield-js-sdk'
 
-export const client = Client.create(GRPC_URL, String(GREEN_CHAIN_ID), {
-   // wasm url
-   zkCryptoUrl: 'https://unpkg.com/@bnb-chain/greenfield-zk-crypto/dist/node/zk-crypto.wasm',
-});
+export const client = Client.create('https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org', '5600');
 ```
-
-   </TabItem>
-   <TabItem value="nodejs" label="Nodejs">
-
-```js title="Nodejs create client"
-const { Client } = require('@bnb-chain/greenfield-js-sdk');
-
-const client = Client.create('https://gnfd-testnet-fullnode-tendermint-ap.bnbchain.org', '5600');
-```
-
-   </TabItem>
-</Tabs>
 
 The SDK offers two types of operations - sending transactions to BNB Greenfield, allowing users to modify the state of the blockchain; the second type enables users to send queries and retrieve metadata information about objects stored on the blockchain. 
 
@@ -83,7 +63,7 @@ This function returns the estimated gas limit, gas price, and overall gas fee.
 ```js
 // simulate tx
 const simulateInfo = await simulate({
-    denom: 'BNB',
+   denom: 'BNB',
 });
 
 ```
@@ -134,6 +114,7 @@ const broadcastRes = await broadcast({
 ```
 
 If you broadcast in Nodejs, you can broadcast a tx by `privateKey`:
+
 ```js
 const broadcastRes = await broadcast({
   //...
@@ -258,7 +239,6 @@ Example output after broadcast your transaction:
 
 </details>
 
-
 #### 4. Multi-Transactions
 
 The SDK also provides support for bundling multiple operations into a single transaction, thereby reducing gas fees. This feature allows users to optimize their transactions by combining several operations together, minimizing the overall gas cost associated with executing them individually. By leveraging this functionality, users can effectively manage their gas fees and enhance the efficiency of their transactions within the blockchain network using the SDK.
@@ -266,10 +246,10 @@ The SDK also provides support for bundling multiple operations into a single tra
 ```js
 const createGroupTx = await client.group.createGroup(params);
 const mirrorGroupTx = await client.crosschain.mirrorGroup({
-    groupName,
-    id,
-    operator,
-  });
+   groupName,
+   id,
+   operator,
+});
 
 const principal = {
   type: PermissionTypes.PrincipalType.PRINCIPAL_TYPE_GNFD_GROUP,
@@ -502,58 +482,19 @@ Bucket can be private or public, you can customize it with options (`visibility`
 * `VISIBILITY_TYPE_PUBLIC_READ`
 * `VISIBILITY_TYPE_PRIVATE`
 
-<Tabs groupId="example">
-   <TabItem value="browser" label="Browser">
 
 ```js title="construct create bucket tx"
 const createBucketTx = await client.bucket.createBucket(
   {
     bucketName: 'bucket_name',
     creator: address,
-    visibility: 'VISIBILITY_TYPE_PUBLIC_READ',
-    chargedReadQuota: '0',
-    spInfo: {
-      primarySpAddress: sp.operatorAddress,
-    },
+    visibility: VisibilityType.VISIBILITY_TYPE_PUBLIC_READ,
+    chargedReadQuota: Long.fromString('0'),
+    primarySpAddress: sp.operatorAddress,
     paymentAddress: address,
-  },
-  // highlight-start
-  {
-    type: 'EDDSA',
-    domain: window.location.origin,
-    seed: offChainData.seedString,
-    address,
-  },
-  // highlight-end
+  }
 );
 ```
-
-   </TabItem>
-   <TabItem value="nodejs" label="Nodejs">
-
-```js title="construct create bucket tx"
-const createBucketTx = await client.bucket.createBucket(
-  {
-    bucketName: bucketName,
-    creator: ACCOUNT_ADDRESS,
-    visibility: 'VISIBILITY_TYPE_PUBLIC_READ',
-    chargedReadQuota: '0',
-    spInfo: {
-      primarySpAddress: spInfo.primarySpAddress,
-    },
-    paymentAddress: ACCOUNT_ADDRESS,
-  },
-  // highlight-start
-  {
-    type: 'ECDSA',
-    privateKey: ACCOUNT_PRIVATEKEY,
-  },
-  // highlight-end
-);
-```
-
-   </TabItem>
-</Tabs>
 
 #### 1.2 simulate create bucket tx
 
@@ -636,10 +577,6 @@ const expectCheckSums = await rs.encodeInWorker(__filename, Uint8Array.from(file
 </Tabs>
 
 
-
-<Tabs groupId="example">
-   <TabItem value="browser" label="Browser">
-
 ```js
 const createObjectTx = await client.object.createObject(
   {
@@ -647,55 +584,14 @@ const createObjectTx = await client.object.createObject(
     objectName: 'object_name',
     // user's account address
     creator: '0x...',
-    visibility: 'VISIBILITY_TYPE_PRIVATE',
-    // file's type
-    fileType: 'json',
-    redundancyType: 'REDUNDANCY_EC_TYPE',
-    // file's size
-    contentLength: 13311,
-    // file's checksums
-    expectCheckSums: expectCheckSums,
-  },
-  // highlight-start
-  {
-    type: 'EDDSA',
-    domain: window.location.origin,
-    seed: offChainData.seedString,
-    address,
-  },
-  // highlight-end
+    visibility: VisibilityType.VISIBILITY_TYPE_PRIVATE,
+    contentType: 'json',
+    redundancyType: RedundancyType.REDUNDANCY_EC_TYPE,
+    payloadSize: Long.fromInt(13311),
+    expectChecksums: expectCheckSums.map((x) => bytesFromBase64(x)),
+  }
 );
 ```
-
-   </TabItem>
-   <TabItem value="nodejs" label="Nodejs">
-
-```js
-const createObjectTx = await client.object.createObject(
-   {
-      bucketName: 'bucket_name',
-      objectName: 'object_name',
-      creator: ACCOUNT_ADDRESS,
-      visibility: 'VISIBILITY_TYPE_PRIVATE',
-      // file's type
-      fileType: 'json',
-      redundancyType: 'REDUNDANCY_EC_TYPE',
-      // file's size
-      contentLength: 13311,
-      // file's checksums
-      expectCheckSums: expectCheckSums,
-   },
-   // highlight-start
-   {
-      type: 'ECDSA',
-      privateKey: ACCOUNT_PRIVATEKEY,
-   },
-   // highlight-end
-);
-```
-
-   </TabItem>
-</Tabs>
 
 #### 2.2 simulate create object tx
 
@@ -730,13 +626,14 @@ const createObjectTxRes = await createObjectTx.broadcast({
    gasPrice: createObjectTxSimulateInfo?.gasPrice || '5000000000',
    payer: ACCOUNT_ADDRESS,
    granter: '',
+   // highlight-start
    privateKey: ACCOUNT_PRIVATEKEY,
+   // highlight-end
 });
 ```
 
    </TabItem>
 </Tabs>
-
 
 #### 2.4 upload object
 
@@ -770,7 +667,7 @@ const uploadRes = await client.object.uploadObject(
    {
       bucketName: bucketName,
       objectName: objectName,
-      body: fileBuffer,
+      body: createFile(filePath),
       txnHash: createObjectTxRes.transactionHash,
    },
    // highlight-start
@@ -780,6 +677,19 @@ const uploadRes = await client.object.uploadObject(
    }
    // highlight-end
 );
+
+// convert buffer to file
+function createFile(path) {
+  const stats = fs.statSync(path);
+  const fileSize = stats.size;
+
+  return {
+    name: path,
+    type: '',
+    size: fileSize,
+    content: fs.readFileSync(path),
+  }
+}
 ```
 
    </TabItem>
@@ -811,7 +721,7 @@ const res = await client.object.downloadFile(
    <TabItem value="nodejs" label="Nodejs">
 
 ```js
-const res = await client.object.downloadFile(
+const res = await client.object.getObject(
    {
       bucketName: 'bucket_name',
       objectName: 'object_name',
@@ -823,6 +733,11 @@ const res = await client.object.downloadFile(
    }
    // highlight-end
 );
+
+// res.body is Blob
+console.log('res', res)
+const buffer = Buffer.from([res.body]);
+fs.writeFileSync('your_output_file', buffer)
 ```
 
    </TabItem>
