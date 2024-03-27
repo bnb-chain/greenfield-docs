@@ -6,23 +6,25 @@
 
 ### Authentication type
 
-Authentication type represents which authentication mode the users want to use. Now there are three supported authentication modes: `GNFD1-ECDSA`, `GNFD1-ETH-PERSONAL_SIGN`, `GNFD1-EDDSA`.
+Authentication type represents which authentication mode the users want to use. Now there are three supported authentication modes: `GNFD1-ECDSA`, `GNFD1-ETH-PERSONAL_SIGN`, `GNFD2-EDDSA`.
 
 `GNFD1-ECDSA` require users to use `private key` for authentication. This mode is used in `greenfield-go-sdk`. We recommend users using this mode when calling Greenfield SP RESTful APIs.
 
-`GNFD1-ETH-PERSONAL_SIGN` is used for verify wallet personal signature from a certain dapp website, which is not able to access users' `private key` but can interact with users by using wallets. This mode is currently only used to register the following `GNFD1-EDDSA` user public key, from web apps to SP servers.
+`GNFD1-ETH-PERSONAL_SIGN` is used for verify wallet personal signature from a certain dapp website, which is not able to access users' `private key` but can interact with users by using wallets. This mode is currently only used to register the following `GNFD2-EDDSA` user public key, from web apps to SP servers.
 
-`GNFD1-EDDSA` Once the dapp and user set up the "off chain auth" user account key in SPs (see [details](../../guide/storage-provider/modules/authenticator.md)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
+`GNFD2-EDDSA` Once the dapp and user set up the "off chain auth" user account key in SPs (see [details](../../guide/storage-provider/modules/authenticator.md)) , users can communicate with SP without needing to make any explicit signature for most interactions (e.g. download private files, get SP approvals when create objects/buckets)
 
 ### Encryption algorithm type
 For `GNFD1-ECDSA` auth type, Greenfield SP RESTful APIs use `ECDSA-secp256k1` to sign `SignedMsg` field to get `Signature` field. Users can refer the following library to generate `Signature` field:
 
 - [secp256k1](https://github.com/cosmos/cosmos-sdk/tree/main/crypto/keys/secp256k1)
 
-For `GNFD1-EDDSA` auth type, Greenfield SP RESTful APIs use `Edwards-curve Digital Signature Algorithm` to sign `SignedMsg` field to get `Signature` field. Users can refer the following library to generate `Signature` field:
+For `GNFD2-EDDSA` auth type, Greenfield SP RESTful APIs use `Edwards-curve Digital Signature Algorithm` to sign `SignedMsg` field to get `Signature` field.
+The EdDSA elliptic curve is Ed25519. 
+Users can refer the following library to generate `Signature` field:
 
-- [greenfield go sdk] https://github.com/bnb-chain/greenfield-go-sdk/blob/master/client/api_off_chain_auth.go#L32-L37
-- [gnark-crypto] https://github.com/Consensys/gnark-crypto/tree/master/ecc/bn254/fr/mimc
+- [greenfield go sdk] https://github.com/bnb-chain/greenfield-go-sdk/blob/a21d3b5eb75a211266105ea78ad1c76fcdc87c4d/client/api_off_chain_auth.go#L37-L41
+- [greenfield js sdk] https://github.com/bnb-chain/greenfield-js-sdk/blob/9d4463b2b0d845c56ce2093eab15c15fb2ba4787/packages/js-sdk/src/clients/spclient/auth.ts#L69-L70
 
 ### The step of generating authorization header
 1. Add a `X-Gnfd-Expiry-Timestamp` header into request, to define the expiry timestamp for the generated signature in the authorization headers.
@@ -41,12 +43,11 @@ Create a canonical request by concatenating the following strings, separated by 
    CanonicalHeaders
    SignedHeaders
    ```
-
-- HTTPMethod: The HTTP method.
-- CanonicalUri: The URI-encoded version of the absolute path component URL (everything between the host and the question mark character (?) that starts the query string parameters). If the absolute path is empty, use a forward slash character `/`.
-- CanonicalQueryString – The URL-encoded query string parameters, separated by ampersands (&). Percent-encode reserved characters, including the space character. Encode names and values separately. If there are empty parameters, append the equals sign to the parameter name before encoding. After encoding, sort the parameters alphabetically by key name. If there is no query string, use an empty string `""`.
-- CanonicalHeaders – The request headers, that will be signed, and their values, separated by newline characters. Header names must use lowercase characters, must appear in alphabetical order, and must be followed by a colon `:`. For the values, trim any leading or trailing spaces, convert sequential spaces to a single space, and separate the values for a multi-value header using commas. You must include the host header (HTTP/1.1) or any x-gnfd-* headers in the signature. You can optionally include other standard headers in the signature, such as content-type.
-- SignedHeaders – The list of headers that you included in CanonicalHeaders, separated by semicolons `;`. This indicates which headers are part of the signing process. Header names must use lowercase characters and must appear in alphabetical order.
+   - HTTPMethod: The HTTP method.
+   - CanonicalUri: The URI-encoded version of the absolute path component URL (everything between the host and the question mark character (?) that starts the query string parameters). If the absolute path is empty, use a forward slash character `/`.
+   - CanonicalQueryString – The URL-encoded query string parameters, separated by ampersands (&). Percent-encode reserved characters, including the space character. Encode names and values separately. If there are empty parameters, append the equals sign to the parameter name before encoding. After encoding, sort the parameters alphabetically by key name. If there is no query string, use an empty string `""`.
+   - CanonicalHeaders – The request headers, that will be signed, and their values, separated by newline characters. Header names must use lowercase characters, must appear in alphabetical order, and must be followed by a colon `:`. For the values, trim any leading or trailing spaces, convert sequential spaces to a single space, and separate the values for a multi-value header using commas. You must include the host header (HTTP/1.1) or any x-gnfd-* headers in the signature. You can optionally include other standard headers in the signature, such as content-type.
+   - SignedHeaders – The list of headers that you included in CanonicalHeaders, separated by semicolons `;`. This indicates which headers are part of the signing process. Header names must use lowercase characters and must appear in alphabetical order.
 
    See example code at:
    https://github.com/bnb-chain/greenfield-common/blob/8bcfd1ccaf6a8ffc3404abc48260d1f4c7f436b2/go/http/gen_sign_str.go#L75-L86
@@ -64,8 +65,8 @@ After you create the string to sign, you are ready to calculate the signature fo
    - For auth type `GNFD1-ECDSA`  
    [Ethereum-secp256k1](https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1) lib provides two functions: RecoverPubkey and VerifySignature that helps recover user address and whether data has been tampered with.
 
-   - For auth type `GNFD1-EDDSA`  
-   [gnark-crypto] (https://github.com/Consensys/gnark-crypto/blob/master/ecc/bn254/twistededwards/eddsa/eddsa.go#L189) lib provides a Verify function that helps recover if users' signature matches their public key registered in SP previously.
+   - For auth type `GNFD2-EDDSA`  
+   [noble-ed25519](https://github.com/paulmillr/noble-ed25519?tab=readme-ov-file#usage) lib provides a sign/verify functions that helps check if users' signature matches their public key registered in SP previously.
 
 ### Authorization header example
 #### For auth type `GNFD1-ECDSA`
@@ -77,22 +78,28 @@ Authorization: GNFD1-ECDSA, Signature=53e2f098411c5df46b71111337a5cf48bf254ba4a8
 X-Gnfd-Expiry-Timestamp: 2023-10-18T03:20:04Z
 ```
 
-#### For auth type `GNFD1-EDDSA`
+#### For auth type `GNFD2-EDDSA`
 ```shell
 Authorization = auth_type + "," + Signature
 string-to-sign = crypto.Keccak256(canonical)
 Signature = privateKey.EdDSA-Sign(string-to-sign)
-Authorization: GNFD1-ECDSA, Signature=9dac5eeaca7fb65265528773e11819cb9980cd9be68eebe8a10dea643f265c8302887f014eb78c3249c05d1038e81f93b4253a298cd9edf18982345c394ba9fb
+Authorization: GNFD2-EDDSA, Signature=9dac5eeaca7fb65265528773e11819cb9980cd9be68eebe8a10dea643f265c8302887f014eb78c3249c05d1038e81f93b4253a298cd9edf18982345c394ba9fb
 X-Gnfd-Expiry-Timestamp: 2023-10-18T03:20:04Z
 ```
 
 
 ### Code examples in Greenfield Go SDK
 
-The Greenfield Go SDK includes source code on GitHub that shows how to sign Greenfield SP API requests.
+The Greenfield JS/Go SDK  includes source code on GitHub that shows how to sign Greenfield SP API requests.
 
-- [SignRequest](https://github.com/bnb-chain/greenfield-go-sdk/blob/develop/client/api_client.go#L477)
-- [MsgToSign](https://github.com/bnb-chain/greenfield-common/blob/master/go/http/gen_sign_str.go#L87)
+- JS SDK
+  - [MsgToSign](https://github.com/bnb-chain/greenfield-js-sdk/blob/9d4463b2b0d845c56ce2093eab15c15fb2ba4787/packages/js-sdk/src/clients/spclient/auth.ts#L63)
+  - [SignRequest](https://github.com/bnb-chain/greenfield-js-sdk/blob/9d4463b2b0d845c56ce2093eab15c15fb2ba4787/packages/js-sdk/src/clients/spclient/auth.ts#L69C1-L70C1)
+
+- GO SDK
+  - [MsgToSign](https://github.com/bnb-chain/greenfield-common/blob/eb2f0efea22882dee610bd3b06589ed0e50fb8ce/go/http/gen_sign_str.go#L91-L94)
+  - [SignRequest](https://github.com/bnb-chain/greenfield-go-sdk/blob/a21d3b5eb75a211266105ea78ad1c76fcdc87c4d/client/api_client.go#L676-L685)
+  
 
 ## X-Gnfd-Unsigned-Msg header
 
