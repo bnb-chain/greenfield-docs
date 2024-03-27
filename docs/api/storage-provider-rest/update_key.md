@@ -38,7 +38,7 @@ Update_key API expects `GNFD1-ETH-PERSONAL_SIGN` as [authentication type](README
 
 #### SignedMsg
 
-Application needs to popup wallet to let users sign for a text, which includes user's `EdDSA public key`, `Expiration Time`, `nonce value` for SPs and other related information, so that users can understand what they sign for.
+Application needs to popup wallet to let users sign for a text, which includes user's `EdDSA public key`, `Expiration Time` for SPs and other related information, so that users can understand what they sign for.
 
 The text message to be signed by users can be formalized by following template:
 
