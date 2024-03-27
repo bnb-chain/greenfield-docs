@@ -59,14 +59,14 @@ Permission management and authentication mechanisms are essential for a decentra
 
 * `GNFD1-ECDSA`
 It requires users to use a private key to sign for authentication.
-* `GNFD1-EDDSA`
+* `GNFD2-EDDSA`
 It is used for web-based applications and users to store the “off chain auth” EdDSA account key in SPs. Users can communicate with the SP without explicit signature for most interactions.
 * `GNFD1-ETH-PERSONAL_SIGN`
 It is only used to verify wallet personal signature when registering EdDSA account key in SP from a web application (e.g. https://dcellar.io).
 
 ## Open source Implementation
 
-The open source storage provider framework implements the Greenfield storage provider API and protocol specifications. It provides standardized interfaces and abstractions for SP node developers, greatly reducing the difficulty of setting up a storage provider. Developers can quickly build SP based on this framework and conduct secondary development according to their business needs. This helps cultivate the developer ecosystem of the Greenfield Network and encourages more technical teams to join the construction of the Greenfield Network. Refer to the [github repo](https://github.com/bnb-chain/greenfield-storage-provider) for more details.
+The open source storage provider framework implements the Greenfield storage provider API and protocol specifications. It provides standardized interfaces and abstractions for SP node developers, greatly reducing the difficulty of setting up a storage provider. Developers can quickly build SP based on this framework and conduct secondary development according to their business needs. This helps cultivate the developer ecosystem of the Greenfield Network and encourages more technical teams to join the construction of the Greenfield Network. Refer to the [GitHub repo](https://github.com/bnb-chain/greenfield-storage-provider) for more details.
 
 ### Interfaces
 

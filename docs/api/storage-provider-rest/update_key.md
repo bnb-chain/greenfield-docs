@@ -12,22 +12,21 @@ See [off-chain authentication specification](../../guide/storage-provider/module
 
 ## HTTP Request Format
 
-| Description | Definition                     |
-| ----------- | ------------------------------ |
+| Description | Definition                    |
+| ----------- |-------------------------------|
 | Host        | gnfd-testnet-sp*.bnbchain.org |
-| Path        | /auth/update_key               |
-| Method      | POST                           |
+| Path        | /auth/update_key_v2           |
+| Method      | POST                          |
 
 ## HTTP Request Header
 
-| ParameterName              | Type   | Required | Description                                                                                                                                                                                                 |
-| -------------------------- | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Origin                     | string | yes      | the origin value , which should be the same as app's domain                                                                                                                                                 |
-| X-Gnfd-App-Domain          | string | yes      | app domain for the account key                                                                                                                                                                              |
-| X-Gnfd-App-Reg-Nonce       | string | yes      | the nonce value which the account key is updated for                                                                                                                                                        |
-| X-Gnfd-App-Reg-Public-Key  | string | yes      | the account key needed to update                                                                                                                                                                            |
-| X-Gnfd-Expiry-Timestamp | string | yes      | It defines the Expiry-Date is the ISO 8601 datetime string (e.g. 2021-09-30T16:25:24Z), used to register the EDDSA public key. This expire date should be future timestamp but within **7 days** since now. |
-| Authorization              | string | yes      | see [Authorization Header](#authorization-header)                                                                                                                                                           |
+| ParameterName             | Type   | Required | Description                                                                                                                                                                                                 |
+|---------------------------| ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Origin                    | string | yes      | the origin value , which should be the same as app's domain                                                                                                                                                 |
+| X-Gnfd-App-Domain         | string | yes      | app domain for the account key                                                                                                                                                                              |
+| X-Gnfd-App-Reg-Public-Key | string | yes      | the account key needed to update                                                                                                                                                                            |
+| X-Gnfd-Expiry-Timestamp   | string | yes      | It defines the Expiry-Date is the ISO 8601 datetime string (e.g. 2021-09-30T16:25:24Z), used to register the EDDSA public key. This expire date should be future timestamp but within **7 days** since now. |
+| Authorization             | string | yes      | see [Authorization Header](#authorization-header)                                                                                                                                                           |
 
 ### Authorization Header
 
@@ -51,11 +50,9 @@ var issue_time = "2023-04-28T16:25:24Z"
 var expiry_time = "2023-04-28T16:25:24Z"
 var sp_addr1 = "0x70d1983A9A76C8d5d80c4cC13A801dc570890819"   // SP operator address
 var sp_name1 = "SP_001" // SP name, can be found in https://greenfieldscan.com
-var sp_nonce_value1 = "1" // can be retrieved by invoking SP get_nonce API
 
 var sp_addr2 = "0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0"   // SP operator address
 var sp_name2 = "SP_002" // SP name, can be found in https://greenfieldscan.com
-var sp_nonce_value2 = "4" // can be retrieved by invoking SP get_nonce API
 
 var unSignedMsgTemplate = 
 `${app_domain} wants you to sign in with your BNB Greenfield account:
@@ -68,9 +65,6 @@ Version: 1
 Chain ID: 5600
 Issued At: ${issue_time}
 Expiration Time: ${expiry_time}
-Resources:
-- SP ${sp_addr1} (name: ${sp_name1}) with nonce: ${sp_nonce_value1}
-- SP ${sp_addr2} (name: ${sp_name2}) with nonce: ${sp_nonce_value2}`
 
 // You can append single or multiple SP information under Resources section
 
@@ -86,7 +80,7 @@ e.g. `0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576
 Below is an example:
 
 ```HTTP
-Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
+Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z
 ```
 
 ## HTTP Request Parameter
@@ -108,8 +102,8 @@ The request does not have a request body.
 POST /auth/update_key HTTP/1.1
 Host: gnfd-testnet-sp*.bnbchain.org
 Origin: Origin
+x-Gnfd-User-Address: UserAddress
 X-Gnfd-App-Domain: AppDomain
-X-Gnfd-App-Reg-Nonce: Nonce
 X-Gnfd-App-Reg-Public-Key: PublicKey
 X-Gnfd-Expiry-Timestamp: ExpiryDate
 Authorization: AuthorizationString
@@ -131,9 +125,9 @@ If the request is successful, the service sends back an HTTP 200 response.
 
 The following data is returned in XML format by the service.
 
-| ParameterName | Type    | Description                                                |
-| ------------- | ------- | ---------------------------------------------------------- |
-| Result        | boolean | indicate if the user public key successfully updated in SP |
+| ParameterName | Type    | Description                                                   |
+| ------------- | ------- |---------------------------------------------------------------|
+| Result        | boolean | indicate if the user public key is successfully updated in SP |
 
 ## Response Syntax
 
@@ -155,16 +149,16 @@ POST /auth/update_key HTTP/1.1
 Host: gf-stagenet-sp-e.bk.nodereal.cc
 Origin: https://greenfield.dapp.cc
 X-Gnfd-App-Domain: https://greenfield.dapp.cc
-X-Gnfd-App-Reg-Nonce: 1
+x-Gnfd-User-Address: 0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0
 X-Gnfd-App-Reg-Public-Key: 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083
 X-Gnfd-Expiry-Timestamp: 2023-04-28T16:25:24Z
-Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z\nResources:\n- SP 0x70d1983A9A76C8d5d80c4cC13A801dc570890819 (name: SP_001) with nonce: 1\n- SP 0x20Bb76D063a6d2B18B6DaBb2aC985234a4B9eDe0 (name: SP_002) with nonce: 4,Signature=0x8663c48cfecb611d64540d3b653f51ef226f3f674e2c390ea9ca45746b22a4f839a15576b5b4cc1051183ae9b69ac54160dc3241bbe99c695a52fe25eaf2f8c01b
+Authorization: GNFD1-ETH-PERSONAL_SIGN,SignedMsg=https://greenfield.dapp.cc wants you to sign in with your BNB Greenfield account:\n0x3d0a49B091ABF8940AD742c0139416cEB30CdEe0\n\nRegister your identity public key 4db642fe6bc2ceda2e002feb8d78dfbcb2879d8fe28e84e02b7a940bc0440083\n\nURI: https://greenfield.dapp.cc\nVersion: 1\nChain ID: 5600\nIssued At: 2023-04-24T16:25:24Z\nExpiration Time: 2023-04-28T16:25:24Z
 ```
 
 #### response
 
 ```xml
-<UpdateUserPublicKeyResp>
-<result>true</result>
-</UpdateUserPublicKeyResp>
+<UpdateUserPublicKeyV2Resp>
+    <result>true</result>
+</UpdateUserPublicKeyV2Resp>
 ```
