@@ -122,6 +122,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <VirtualPaymentAddress>0x25f7c6161eEFFCA4A69059FdC022AC36cE9Bf3C8</VirtualPaymentAddress>
         </Vgf>
         <StorageSize>111111</StorageSize>
+        <OffChainStatus>1</OffChainStatus>
     </Buckets>
     <Buckets>
         <BucketInfo>

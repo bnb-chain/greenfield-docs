@@ -36,7 +36,7 @@ forwards them to other modules within SP. Since Gater does not allow customizati
 
 - **Authenticator**: It is responsible for verifying authentication.
 
-- **Approver**: It is responsible for handling approval requests, specifically `CreateBucketApproval` and `CreateObjectApproval`, etc.
+- **Approver**: It is responsible for handling approval requests, specifically `MigrateBucketApproval`, etc.
 
 - **Uploader**: It handles the `PutObject` requests from user accounts and stores payload data into piece store of the primary SP.
 

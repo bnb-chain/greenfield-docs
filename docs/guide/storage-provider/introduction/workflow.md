@@ -4,7 +4,7 @@ This section will combine all the current and existing workflows of SP to help y
 
 ## Get Approval
 
-[GetApproval](../../../api/storage-provider-rest/get_approval.md) API includes actions: `CreateBucket` and `CreateObject`. To upload an object into SP, you must first send a CreateBucket approval request, which will create a bucket on the Greenfield blockchain. If the request is successful, you can then send a CreateObject approval request. Both of these actions are used to determine whether SP is willing to serve the request. SP may reject users with a bad reputation or specific objects or buckets. SP approves the request by signing a message for the action and responding to the users. By default, SP will serve the request, but it can refuse if it chooses to do so. Each SP can customize its own strategy for accepting or rejecting requests.
+[GetApproval](../../../api/storage-provider-rest/get_approval.md) API includes actions: `MigrateBucket`. If the request is successful, you can then send a MigrateBucket approval request. This action is used to determine whether SP is willing to serve the request. SP may reject users with a bad reputation or specific objects or buckets. SP approves the request by signing a message for the action and responding to the users. By default, SP will serve the request, but it can refuse if it chooses to do so. Each SP can customize its own strategy for accepting or rejecting requests.
 
 The flow chart is shown below:
 
@@ -13,18 +13,23 @@ The flow chart is shown below:
 - Gateway receives GetApproval requests from the request originator.
 - Gateway verifies the signature of request to ensure that the request has not been tampered with.
 - Gateway invokes Authenticator to check the authorization to ensure the corresponding account is existed.
-- Gateway invokes Approver to fills the CreateBucket/CreateObject message timeout field and dispatches the request to Signer service.
+- Gateway invokes Approver to fills the MigrateBucket message timeout field and dispatches the request to Signer service.
 - Gets Signature from Signer, fills the message's approval signature field, and returns to the request originator.
 
 **Note**
 
-By default, each account can create a maximum of 100 buckets.
-
-If users send multiple `CreateBucket` or `CreateObject` approval requests in a short period of time, SP will provide the same results due to an expired blockchain height that is set to prevent repeated requests, such as DDoS attacks.
+If users send multiple `MigrateBucket` approval requests in a short period of time, SP will provide the same results due to an expired blockchain height that is set to prevent repeated requests, such as DDoS attacks.
 
 See request and response details for this API: [GetApproval](../../../api/storage-provider-rest/get_approval.md).
 
 Users do not need to ask approval to update existing objects, they can directly send the `MsgUpdateObjectContent` to Greenfield Chain.
+
+## Create Bucket/Object
+<div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/07-create_bucket_object.png" /></div>
+
+The `Create Bucket` operation initiates a request through the Go SDK. It then queries the greenfield-chain interface to obtain an optimal Global Virtual Group Family ID. This ID is used to request the creation of a bucket on the greenfield chain.
+
+Service Providers periodically refresh and monitor all SPs within the Global Virtual Group Family to check if there is available storage space within the Global Virtual Groups (GVG). If no space is available, they request the greenfield chain to create a new GVG. This update is to provide an available VGF for the `Create Bucket` operation to select from.
 
 ## Upload Object
 

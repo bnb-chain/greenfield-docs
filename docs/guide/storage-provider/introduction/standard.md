@@ -80,7 +80,7 @@ The open source storage provider framework implements the Greenfield storage pro
 
 ### Modules
 
-* [Approver](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/module/README.md) : Approver is a module to handle approval requests, such as CreateBucketApproval and CreateObjectApproval.
+* [Approver](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/module/README.md) : Approver is a module to handle approval requests, such as MigrateBucketApproval.
 * [Authorizer](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/module/README.md): Authorizer is a module to authority verification.
 * [Downloader](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/module/README.md): Downloader is a module to handle download requests from users, and get challenge info requests from other components in the system.
 * [TaskExecutor](https://github.com/bnb-chain/greenfield-storage-provider/blob/master/core/module/README.md): TaskExecutor is a module to handle background task, it will ask task from Manager modular, handle the tasks and report the results or status to the manager module includes: `ReplicatePieceTask`, `SealObjectTask`, `ReceivePieceTask`, `GCObjectTask`, `GCZombiePieceTask`, `GCMetaTask`.

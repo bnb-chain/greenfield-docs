@@ -62,18 +62,6 @@ Signer interface inherits [Modular interface](./common/lifecycle_modular.md#modu
 
 In terms of the functions provided by Signer module, there are ten methods. You can rewrite these methods to meet your own requirements.
 
-## SignCreateBucketApproval
-
-The corresponding `protobuf` definition is shown below:
-
-- [MsgCreateBucket](./common/proto.md#msgcreatebucket-proto)
-
-## SignCreateObjectApproval
-
-The corresponding `protobuf` definition is shown below:
-
-- [MsgCreateObject](./common/proto.md#msgcreateobject-proto)
-
 ## SignReplicatePieceApproval
 
 The second params of SignReplicatePieceApproval is a task interface, the corresponding interface definition is shown below:

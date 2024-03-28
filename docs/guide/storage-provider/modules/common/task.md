@@ -100,7 +100,7 @@ before serving the bucket and object. If SP approves the message, it will sign t
 verify the signature of the approval message to determine whether the SP accepts the bucket and object. When primary replicating
 pieces to secondary SPs, the approval message is broadcast to other SPs. If they approve the message, the primary SP will
 select some of them to replicate the pieces to. Before receiving the pieces, the selected SPs will verify the signature
-of the approval message. `ApprovalTask` includes `ApprovalCreateBucketTask`, `ApprovalCreateBucketTask` and `ApprovalReplicatePieceTask`.
+of the approval message. `ApprovalTask` includes `ApprovalReplicatePieceTask`.
 
 `ObjectTask` is associated with an object and records information about its different stages. This includes `UploadObjectTask`
 which uploads the object payload data to the primary SP, `ReplicatePieceTask`, which replicates the object pieces to the

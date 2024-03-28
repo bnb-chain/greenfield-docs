@@ -78,7 +78,7 @@ message StorageProvider {
   string funding_address = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // seal_address defines one of the storage provider's accounts which is used to SealObject
   string seal_address = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  // approval_address defines one of the storage provider's accounts which is used to approve use's createBucket/createObject request
+  // approval_address defines one of the storage provider's accounts which is used to approve use's migrateBucket request
   string approval_address = 5 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   // gc_address defines one of the storage provider's accounts which is used for gc purpose.
   string gc_address = 6 [(cosmos_proto.scalar) = "cosmos.AddressString"];

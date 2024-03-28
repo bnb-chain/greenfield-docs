@@ -114,6 +114,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
             <UpdateAt>82179</UpdateAt>
             <UpdateTime>1692450975</UpdateTime>
             <StorageSize>2386542</StorageSize>
+            <OffChainStatus>1</OffChainStatus>
         </Value>
     </BucketEntry>
     <BucketEntry>
