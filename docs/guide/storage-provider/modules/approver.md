@@ -36,9 +36,9 @@ type Approver interface {
 
 Approver interface inherits [Modular interface](./common/lifecycle_modular.md#modular-interface), so Approver module can be managed by lifecycle and resource manager.
 
-In terms of the functions provided by Approver module, it can be divided into two parts: MigrateBucketApproval. MigrateBucketApproval have three methods: PreXXX, HanldeXXX and PostXXX. Therefore, if you can rewrite these methods to meet your own requirements.
+The functionality of the Approver module is primarily centered around the MigrateBucketApproval process. This process encompasses three distinct phases, each managed by a dedicated method: PreXXX for preliminary actions, HandleXXX for core processing, and PostXXX for follow-up operations. Users have the flexibility to customize these methods to align with their specific needs, enabling a tailored approach to the migration process.
 
-As we can see from the second parameter of the methods defined in `Approver` interface, bucketApproval is splitted into `ApprovalMigrateBucketTask`. They are also defined as an interface.
+The second parameter in PreMigrateBucketApproval(ctx context.Context, task task.ApprovalMigrateBucketTask), which is ApprovalMigrateBucketTask, is also an interface. This design facilitates future customization by the user.
 
 We can query ApprovalMigrateBucket task that we care about by `QueryTasks` method through using subKey.
 

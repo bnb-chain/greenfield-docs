@@ -25,6 +25,16 @@ This API only supports path-style requests.
 | X-Gnfd-Unsigned-Msg                                                      | string | yes      | defines unsigned msg                         |
 | [Authorization](../storage-provider-rest/README.md#authorization-header) | string | yes      | The authorization string of the HTTP request |
 
+X-Gnfd-Unsigned-Msg header consists of [MsgMigrateBucket](#msgmigratebucket). You can read [Greenfield headers](../storage-provider-rest/README.md) to know how to marshal and unmarshal them.
+
+### MsgMigrateBucket
+| ParameterName        | Type                              | Description                                                                                                                                                                                                         |
+| ---------------------| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Operator             | string                            | Operator defines the account address of the operator who initial the migrated bucket                                     |
+| BucketName           | string                            | BucketName is a globally unique name of bucket.                                                                         |
+| DstPrimarySpId       | uint32                            | DstPrimarySpId defines the destination SP for migration                                                                 |
+| DstPrimarySpApproval | [Approval](#approval)             | DstPrimarySpApproval is the approval info of the primary SP which indicates that primary sp confirm the user's request. |
+
 ### Approval
 
 | ParameterName | Type      | Description                               |

@@ -24,16 +24,20 @@ See request and response details for this API: [GetApproval](../../../api/storag
 
 Users do not need to ask approval to update existing objects, they can directly send the `MsgUpdateObjectContent` to Greenfield Chain.
 
-## Create Bucket/Object
+## Create Bucket
 <div align="center"><img src="https://raw.githubusercontent.com/bnb-chain/greenfield-docs/main/static/asset/07-create_bucket_object.png" /></div>
 
 The `Create Bucket` operation initiates a request through the Go SDK. It then queries the greenfield-chain interface to obtain an optimal Global Virtual Group Family ID. This ID is used to request the creation of a bucket on the greenfield chain.
 
 Service Providers periodically refresh and monitor all SPs within the Global Virtual Group Family to check if there is available storage space within the Global Virtual Groups (GVG). If no space is available, they request the greenfield chain to create a new GVG. This update is to provide an available VGF for the `Create Bucket` operation to select from.
 
+## Create Object
+
+After creating a bucket, the user sends a create object request through the Go SDK, selecting the corresponding bucket name. This object is then sent as a transaction to Greenfield. After waiting for the object to reach the status of OBJECT_STATUS_CREATED, the object is successfully created.
+
 ## Upload Object
 
-For new object, after successfully sending requests to the [GetApproval](https://greenfield.bnbchain.org/docs/api-sdk/storage-provider-rest/get_approval.html) API and receiving results, then the new object is created on Greenfield chain. 
+For new object, after successfully creating on Greenfield chain.
 
 you can upload an object to SP. For updating an existing object, you can upload directly once confirmed the `MsgUpdateObjectContent` tx on Greenfield chain.
 
