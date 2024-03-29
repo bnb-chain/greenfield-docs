@@ -448,6 +448,10 @@ GCZombiePieceObjectIDInterval = 0
 EnableGCMeta = false
 # optional
 GCMetaTimeInterval = 0
+
+[Quota]
+# optional
+MonthlyFreeQuota = 0
 ```
 
 ### App info
@@ -573,6 +577,15 @@ message GfSpLimiter {
   GfSpLimit transient = 2;
   map<string, GfSpLimit> service_limit = 3;
 }
+```
+
+### Quota
+
+Here is quota config. The configuration of MonthlyFreeQuota define the free quota in each month.It will be reduced when the charge quota is exhausted.
+
+```toml
+[Quota]
+MonthlyFreeQuota = 0
 ```
 
 ### SP Probe
@@ -871,4 +884,7 @@ EnableTaskRetryScheduler = true
 [Executor]
 # optional
 ListenSealRetryTimeout = 30
+
+[Quota]
+MonthlyFreeQuota = 0
 ```

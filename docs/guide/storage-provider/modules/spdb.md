@@ -194,13 +194,15 @@ type BucketQuota struct {
 
 // BucketTraffic is record traffic by year and month.
 type BucketTraffic struct {
-    BucketID              uint64
-    BucketName            string
-    ReadConsumedSize      uint64
-    FreeQuotaSize         uint64 // the total free quota size of SP price meta
-    FreeQuotaConsumedSize uint64 // the consumed free quota size
-    ChargedQuotaSize      uint64 // the total charged quota of bucket
-    ModifyTime            int64
+    BucketID                     uint64
+    BucketName                   string
+    ReadConsumedSize             uint64
+    FreeQuotaSize                uint64 // the total free quota size of SP price meta
+    FreeQuotaConsumedSize        uint64 // the consumed free quota size
+    ChargedQuotaSize             uint64 // the total charged quota of bucket
+    MonthlyFreeQuotaConsumedSize uint64 // indicates the consumed monthly free quota size of this month
+    MonthlyQuotaSize             uint64 // indicate the remained monthly free quota
+    ModifyTime                   int64
 }
 
 // TrafficTimeRange is used by query, return records in [StartTimestampUs, EndTimestampUs).

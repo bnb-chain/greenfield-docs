@@ -41,7 +41,7 @@ For each data related operation on Greenfield, validators can get some rewards f
 You can query the value from [this API](https://docs.bnbchain.org/greenfield-docs/docs/greenfield-api/payment-params)
 
 ### What is Read Price?
-A storage provider can update its free read quote, suggested primary store price and read price. All SPs' suggested primary store and read prices will be used to generate the global primary/secondary store price and read price.
+A storage provider can update its free read quote and monthly gree read quota, suggested primary store price and read price. All SPs' suggested primary store and read prices will be used to generate the global primary/secondary store price and read price.
 
 ### What is Reserve Time?
 The storage fee will be charged on Greenfield in a steam payment style. The fees are paid on Greenfield in the style of "Stream" from users to receiver accounts at a constant rate. By reseveing some balance, users do not need to payment the fee in a very high frequency. Currently, the reserve time is 6 months and it can be governed.

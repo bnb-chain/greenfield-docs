@@ -64,14 +64,17 @@ The response returns the following HTTP headers.
 
 If the request is successful, the service sends back an HTTP 200 response.
 
-| ParameterName       | Type    | Description                                                         |
-|---------------------| ------- |---------------------------------------------------------------------|
-| BucketName          | string  | bucket name                                                         |
-| BucketID            | string  | bucket id                                                           |
-| ReadQuotaSize       | integer | ReadQuotaSize is the greenfield chain bucket info's read quota size |
-| SPFreeReadQuotaSize | integer | SPFreeReadQuotaSize is the sp default free quota                    |
-| ReadConsumedSize    | integer | ReadConsumedSize is currently consumed size                         |
-| FreeConsumedSize    | integer | ReadConsumedSize is the consumed free quota size                    |
+| ParameterName            | Type    | Description                                                         |
+|--------------------------|---------|---------------------------------------------------------------------|
+| BucketName               | string  | bucket name                                                         |
+| BucketID                 | string  | bucket id                                                           |
+| ReadQuotaSize            | integer | ReadQuotaSize is the greenfield chain bucket info's read quota size |
+| SPFreeReadQuotaSize      | integer | SPFreeReadQuotaSize is the sp default free quota                    |
+| ReadConsumedSize         | integer | ReadConsumedSize is currently consumed size                         |
+| FreeConsumedSize         | integer | ReadConsumedSize is the consumed free quota size                    |
+| MonthlyFreeQuota         | integer | MonthlyFreeQuota is the monthly free quota                          |
+| MonthlyQuotaConsumedSize | integer | MonthlyQuotaConsumedSize is the consumed monthly free quota size    |
+
 
 If you failed to send request to get approval, you will get error response body in [XML](./sp_response.md#sp-error-response).
 
@@ -112,5 +115,7 @@ Date: Fri, 31 March 2023 17:32:10 GMT
     <SPFreeReadQuotaSize>10</SPFreeReadQuotaSize>
     <ReadConsumedSize>5</ReadConsumedSize>
     <FreeConsumedSize>5</FreeConsumedSize>
+    <MonthlyFreeQuota>5</MonthlyFreeQuota>
+    <MonthlyQuotaConsumedSize>5</MonthlyQuotaConsumedSize>
 </GetBucketReadQuotaResult>
 ```
