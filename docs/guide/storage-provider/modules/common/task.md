@@ -280,6 +280,8 @@ type UploadObjectTask interface {
     InitUploadObjectTask(vgfID uint32, object *storagetypes.ObjectInfo, params *storagetypes.Params, timeout int64)
     // GetVirtualGroupFamilyId returns the object's virtual group family which is bind in bucket.
     GetVirtualGroupFamilyId() uint32
+    // GetIsAgentUpload returns Whether the task is a agent upload
+    GetIsAgentUpload() bool
 }
 ```
 
@@ -304,6 +306,8 @@ type ResumableUploadObjectTask interface {
     GetCompleted() bool
     // SetCompleted sets the state from request in InitResumableUploadObjectTask
     SetCompleted(completed bool)
+	// GetIsAgentUpload returns Whether the task is a agent upload
+	GetIsAgentUpload() bool
 }
 ```
 
@@ -339,6 +343,8 @@ type ReplicatePieceTask interface {
     GetGlobalVirtualGroupId() uint32
     // GetSecondaryEndpoints return the secondary sp domain.
     GetSecondaryEndpoints() []string
+    // GetIsAgentUpload returns the task's isAgentUpload.
+    GetIsAgentUpload() bool
 }
 ```
 
@@ -398,6 +404,8 @@ type ReceivePieceTask interface {
     GetBucketMigration() bool
     // SetBucketMigration sets the bucket migration
     SetBucketMigration(bool)
+    // GetIsAgentUpload return the task's is_agent_upload field
+    GetIsAgentUpload() bool
 }
 ```
 

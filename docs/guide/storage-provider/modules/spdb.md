@@ -26,7 +26,7 @@ UploadObjectProgressDB interface which records upload object related progress(in
 ```go
 type UploadObjectProgressDB interface {
     // InsertUploadProgress inserts a new upload object progress.
-    InsertUploadProgress(objectID uint64) error
+	InsertUploadProgress(objectID uint64, isAgentUpload bool) error
     // DeleteUploadProgress deletes the upload object progress.
     DeleteUploadProgress(objectID uint64) error
     // UpdateUploadProgress updates the upload object progress state.
@@ -51,6 +51,8 @@ type UploadObjectMeta struct {
     SecondaryEndpoints   []string
     SecondarySignatures  [][]byte
     ErrorDescription     string
+    CreateTimeStampSecond int64
+    IsAgentUpload         bool
 }
 ```
 
@@ -129,7 +131,7 @@ type SignatureDB interface {
     // UpdateIntegrityChecksum update IntegrityMetaTable's integrity checksum
     UpdateIntegrityChecksum(integrity *IntegrityMeta) error
     // UpdatePieceChecksum if the IntegrityMetaTable already exists, it will be appended to the existing PieceChecksumList.
-    UpdatePieceChecksum(objectID uint64, redundancyIndex int32, checksum []byte) error
+	UpdatePieceChecksum(objectID uint64, redundancyIndex int32, checksum []byte, dataLength uint64) error
     /*
         Piece Signature is used to help replicate object's piece data to secondary sps, which is temporary.
     */
@@ -139,6 +141,8 @@ type SignatureDB interface {
     GetAllReplicatePieceChecksum(objectID uint64, redundancyIdx int32, pieceCount uint32) ([][]byte, error)
     // DeleteAllReplicatePieceChecksum deletes all piece hashes.
     DeleteAllReplicatePieceChecksum(objectID uint64, redundancyIdx int32, pieceCount uint32) error
+    // DeleteReplicatePieceChecksumsByObjectID deletes all piece hashes for a given object, called by primary SP to clear delegated upload object meta.
+    DeleteReplicatePieceChecksumsByObjectID(objectID uint64) error
 }
 
 // IntegrityMeta defines the payload integrity hash and piece checksum with objectID.
@@ -147,6 +151,7 @@ type IntegrityMeta struct {
     RedundancyIndex   int32
     IntegrityChecksum []byte
     PieceChecksumList [][]byte
+	ObjectSize        uint64
 }
 ```
 
