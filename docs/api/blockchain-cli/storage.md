@@ -251,3 +251,14 @@ mirror a group to BSC by group id, `56` is the BSC Mainnet chain id.
 ```shell
 gnfd tx storage mirror-group --group-id 1 --dest-chain-id 56 --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
 ```
+
+### SetBucketFlowRateLimit
+
+```shell
+gnfd tx storage set-bucket-flow-rate-limit [bucket-name] [payment-account] [bucket-owner] [flow-rate-limit]
+```
+
+Example:
+```shell
+gnfd tx storage set-bucket-flow-rate-limit yourbucket 0x... 0x... 1000- --from your_key --home ~/.gnfd --node https://greenfield-chain.bnbchain.org:443
+```

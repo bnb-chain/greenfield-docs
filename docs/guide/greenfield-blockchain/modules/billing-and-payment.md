@@ -566,6 +566,31 @@ message MsgDisableRefund {
 }
 ```
 
+### MsgSetBucketFlowRateLimit
+
+Used to set the flow rate limit for a bucket.
+
+```
+message MsgSetBucketFlowRateLimit {
+  option (cosmos.msg.v1.signer) = "operator";
+
+  // operator defines the account address of the operator, either the object owner or the updater with granted permission.
+  string operator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // bucket_name defines the name of the bucket
+  string bucket_name = 2;
+  // bucket_owner defines the account address of the bucket owner
+  string bucket_owner = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // payment_address defines an account address to pay the fee for the bucket.
+  string payment_address = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // flow_rate_limit defines the flow rate limit of the bucket
+  string flow_rate_limit = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Int",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
 ## Related Storage Key Workflows
 
 ### Create Bucket
@@ -601,6 +626,13 @@ When deleting a bucket, there should be no object in it. The related outflows wi
 
 - the outflow which goes to the Global Virtual Group Family will be decreased or removed
 - the outflow which goes to validator tax pool will be decreased or removed
+
+### Set Bucket Flow Rate Limit
+
+If the flow rate limit set for a bucket is less than the current flow rate, the related outflows will be updated,
+
+- the outflow which goes to the Global Virtual Group Family will be decreased to 0 or removed
+- the outflow which goes to validator tax pool will be decreased to 0 or removed
 
 ### Create Object
 

@@ -60,6 +60,19 @@ Users can deposit into, withdraw from, and query the balance of payment accounts
 but users cannot use payment accounts to perform staking or other on-chain transactions.
 Payment accounts can be set as "non-refundable". Users cannot withdraw funds from such payment accounts.
 
+### Paymaster
+
+Besides using the owner's address or payment accounts to pay for the storage and bandwidth, users can also use others' 
+address or payment account by setting the payment account for the bucket. The owner of payment account need to set
+the flow rate limit for the bucket before the bucket can be used.
+
+This will lower the barrier for users to use Greenfield since they don't need to have BNB to pay for the storage and bandwidth
+and they don't need to understand the charging mechanism of Greenfield which is quite complex.
+
+It will also provide a possibility for projects to sponsor the storage and bandwidth for their users.
+
+For more details, you can refer to the [BEP of the paymaster](https://github.com/bnb-chain/BEPs/pull/362).
+
 ### Downgraded service
 
 Once the payment accounts run out of BNB, the objects associated with these payment accounts will
