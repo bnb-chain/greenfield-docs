@@ -177,4 +177,7 @@ https://gnfd-testnet-bundle.nodereal.io
 ```
 
 #### Greenfield Mainnet
-Coming soon...
+Using the mainnet's bundle service, the bundle file will be uploaded to the Greenfield mainnet. Endpoint:
+```
+https://gnfd-mainnet-bundle.nodereal.io
+```
