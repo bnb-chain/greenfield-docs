@@ -7,11 +7,19 @@ order: 7
 ---
 
 # Release Notes
+## Greenfield v1.6.0 - Serengeti Upgrade
+BNB Greenfield v1.6.0 introduces the Serengeti Hardfork, which includes the following major features:
+- Primary Storage Provider acts as the upload agent for object creation and update on Greenfield. See https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-364.md
+- Streamline off-chain authentication on Greenfield: it introduces GNFD2-EDDSA, a simplified off-chain authentication signature verification method. It streamlines the authentication process, reducing developer integration complexity and improving user interaction. See https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-346.md
+- SP Free Monthly Quota: To further incentivize users to utilize Greenfield and simplify the process of purchasing read quota, SPs can offer a certain amount of free data to each Bucket every month.
+
+Greenfield v1.6.0 also includes several optimization features and bug fixes. For more details about this release, please
+refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.6.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.6.0).
 
 ## Greenfield v1.5.0 - Pawnee Upgrade
 BNB Greenfield v1.5.0 introduces the Pawnee Hardfork, which includes the following major feature:
 - Support Greenfield Atomic Object Update: Previously, users face the inconvenience of having to delete and recreate objects in Greenfield in order to replace their content. 
-   v1.5.0 offer a more efficient and seamless object update process. See https://github.com/bnb-chain/BEPs/pull/346
+   v1.5.0 offer a more efficient and seamless object update process. See https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-366.md
 
 Greenfield v1.5.0 also includes several optimization features and bug fixes. For more details about this release, please
 refer to [Greenfield Blockchain](https://github.com/bnb-chain/greenfield/releases/tag/v1.5.0) and [Greenfield SP](https://github.com/bnb-chain/greenfield-storage-provider/releases/tag/v1.5.0).
