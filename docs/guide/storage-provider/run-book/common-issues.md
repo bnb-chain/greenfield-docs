@@ -33,7 +33,10 @@ If you see the following message:
 failed_reason: 'spendable balance 999009992000000000000BNB is smaller than 1000000000000000000000BNB:
 ```
 
-It means the proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit.
+It means the proposal initiator should be the funding address, and it should have balance of **1k BNB** as deposit, according to above error msg.
+
+Please note the initial deposit requirement varies on different environments. 
+see [funding-address](join-SP-network.md#funding-address)
 
 ## SP Node Issues
 

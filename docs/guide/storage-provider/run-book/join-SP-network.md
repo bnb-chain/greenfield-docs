@@ -14,6 +14,9 @@ This guide will help you join Greenfield SP Network: Mainnet and Testnet.
   - [4. Activate SP](#4-activate-sp)
     - [Storage Provider Standard Test](#storage-provider-standard-test)
     - [Update SP status](#update-sp-status)
+  - [5. SP address deposit](#5-sp-address-deposit)
+    - [Funding Address](#funding-address)
+    - [Operator Address](#operator-address)
 - [Storage Provider Operations](#storage-provider-operations)
   - [EditStorageProvider](#editstorageprovider)
   - [Update SP Price](#update-sp-price)
@@ -207,6 +210,21 @@ gnfd tx sp update-status [sp-address] STATUS_IN_SERVICE [flags]
 
 Refer to [Maintenance Mode](../../core-concept/storage-provider-lifecycle.md#in-maintenance) for more details.
 
+### 5. SP address deposit
+
+#### Funding Address
+As a new SP, you need deposit a minimum amount of BNB into the funding address. 
+Please note the initial deposit requirement varies on different environments.
+You can check the `sp.params.min_deposit` value (in wei BNB) from genesis endpoint response of Greenfield testnet/mainnet.
+By the time when this doc is written,
+- According to https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/genesis, SP in testnet requires minimum **1000BNB** deposited in funding address.
+- According to https://greenfield-chain.bnbchain.org/genesis, SP in mainnet requires minimum **500BNB** deposited in funding address.
+
+#### Operator Address
+SP operator address will be used to send "Create Global Virtual Group", "Edit Storage Provider", "Update Storage Provider Status" and other txs to greenfield chain.
+So it requires some BNB deposited for transaction fee as well.
+We recommend SP operator address can hold at least **0.1** BNB but not necessarily as much as possible. 
+
 ## Storage Provider Operations
 
 ### EditStorageProvider
@@ -283,15 +301,41 @@ To claim income, a storage provider can use `settle` cmd to settle income in glo
 virtual groups. To find the global virtual group families or global virtual groups to settle, a storage provider can
 use `query.primary.sp.income` or `query.secondary.sp.income` of `gnfd-sp` commands.
 
+#### To query the income of a primary sp
 Usage:
 ```shell
 # query sp's income in global virtual group families
 gnfd-sp query.primary.sp.income --config config.toml --sp.id ${sp_id}
 ```
+
+An example of response will look like:
+
+```js
+querying primary sp income details for sp  1
+query timestamp 1698830787 2023-11-01 17:26:27 +0800 CST
+query results: [{"vgf_id":2,"stream_record":{"account":"primary_sp_virtual_payment_account_address_1","crud_timestamp":1698631653,"netflow_rate":"4643666191","static_balance":"1093710972008743","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"2018422795287337"},{"vgf_id":13,"stream_record":{"account":"primary_sp_virtual_payment_account_address_2","crud_timestamp":1698745565,"netflow_rate":"5452639431","static_balance":"38607334626064242","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"39072019463652924"},{"vgf_id":15,"stream_record":{"account":"primary_sp_virtual_payment_account_address_3","crud_timestamp":1698573876,"netflow_rate":"1925652979","static_balance":"55285141693450020","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"55779863125937889"},{"vgf_id":23,"stream_record":{"account":"primary_sp_virtual_payment_account_address_4","crud_timestamp":1698745588,"netflow_rate":"5063874897","static_balance":"2339430126330703","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"2770867203680206"},{"vgf_id":246,"stream_record":{"account":"primary_sp_virtual_payment_account_address_5","crud_timestamp":1698667216,"netflow_rate":"59568181","static_balance":"19326420423320","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"29070047357671"}]
+```
+
+The unit of the unsettled income is **wei BNB**.  The first element in above query result array means the sp 1 gets **2018422795287337** **wei BNB** in vgf_id 2.
+
+#### To query the income of a secondary sp
+
 ```shell
 # query sp's income in global virtual groups
 gnfd-sp query.secondary.sp.income --config config.toml --sp.id ${sp_id}
 ```
+
+An exmaple of response will look like:
+```js
+querying secondary sp income details for sp  1
+query timestamp 1698830440 2023-11-01 17:20:40 +0800 CST
+query results: [{"gvg_id":2531,"stream_record":{"account":"secondary_sp_virtual_payment_account_address_1","crud_timestamp":1695347375,"netflow_rate":"22256589564","static_balance":"917684637479280","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"13073138794535490"},{"gvg_id":8,"stream_record":{"account":"secondary_sp_virtual_payment_account_address_2","crud_timestamp":1696735440,"netflow_rate":"6698761332","static_balance":"24312367733445348","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"6391045453997558"},{"gvg_id":11,"stream_record":{"account":"secondary_sp_virtual_payment_account_address_3","crud_timestamp":1696072153,"netflow_rate":"6832159830","static_balance":"15803326565544654","buffer_balance":"0","lock_balance":"0","frozen_netflow_rate":"0"},"income":"5774730701092644"}
+...
+]
+```
+The unit of the unsettled income is **wei BNB**.  The first element in above query result array means the sp 1 gets **13073138794535490** **wei BNB** in gvg_id 2531.
+
+
 ```shell
 # settle income in global virtual group family or global virtual groups
 gnfd tx virtualgroup settle [global-virtual-group-family-id] [global-virtual-group-ids] [flags]
