@@ -619,6 +619,8 @@ The `unbond` command allows the user to unbond shares from a validator.
 gnfd tx staking unbond [validator-addr] [amount] [flags]
 ```
 
+After executing unbond command, it will take **7 days** to receive BNB back.
+
 Example:
 
 ```sh
