@@ -220,6 +220,10 @@ By the time when this doc is written,
 - According to https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org/genesis, SP in testnet requires minimum **1000BNB** deposited in funding address.
 - According to https://greenfield-chain.bnbchain.org/genesis, SP in mainnet requires minimum **500BNB** deposited in funding address.
 
+In addition, to join the network in [Step 2](#2-deposit-bnb-to-proposal), an SP must initiate a proposal using a funding address and stake 1 BNB to enter the voting phase. 
+After the voting concludes, the 1 BNB will be refunded to the original account. 
+Therefore, it is advisable for the Funding Address to reserve an additional >1 BNB to cover these costs.
+
 #### Operator Address
 SP operator address will be used to send "Create Global Virtual Group", "Edit Storage Provider", "Update Storage Provider Status" and other txs to greenfield chain.
 So it requires some BNB deposited for transaction fee as well.
