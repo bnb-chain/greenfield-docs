@@ -8,11 +8,6 @@ order: 2
 
 ## Upcoming
 
-### Serengeti Upgrade
-The Serengeti hardfork will introduce server features in this upgrade:
-1. Primary SP acts as an upload agent: It allows users to send objects directly to the primary SP without sending transactions on chain.  The primary SP will then create the object on-chain on behalf of the user, eliminating the requirement for users to switch over to the Greenfield network and incur gas fees when they create objects on Greenfield. Please refer to [BEP364](https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-364.md).
-2. Simplifying Off-Chain Authentication: It streamlines the authentication process, reducing developer integration complexity and improving user interaction. Please refer to [BEP346](https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-346.md).
-
 ### Erdos Upgrade
 The Erdos hardfork will introduce server features in this upgrade:
 1. Improve payment user experience: It is a storage fee paymaster solution for sponsors to cover storage costs on Greenfield, making it easier for regular users to utilize the platform. Please refer to [BEP362](https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-362.md).
