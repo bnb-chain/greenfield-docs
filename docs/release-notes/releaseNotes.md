@@ -9,7 +9,8 @@ order: 7
 # Release Notes
 ## Greenfield v1.7.0 - Erdos Upgrade
 BNB Greenfield v1.7.0 introduces the Erdos Hardfork, which includes the following major features:
-- Add new cross-chain channel `ExecutorChanne` and corresponding cross-app `ExecutorApp`. See https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-363.md
+- Add new cross-chain channel `ExecutorChannel` and corresponding cross-app `ExecutorApp`. See https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-363.md
+- Add multi-message support for greenfield crosschain app. See https://github.com/bnb-chain/greenfield-cosmos-sdk/pull/417
 - Implement storage fee paymaster. See https://github.com/bnb-chain/BEPs/blob/master/BEPs/BEP-362.md
 
 ## Greenfield v1.6.0 - Serengeti Upgrade
