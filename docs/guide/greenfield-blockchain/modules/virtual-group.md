@@ -39,7 +39,7 @@ All staking tokens will be managed by the Virtual Group Module account. Only dur
 
 ### Creation and Destruction
 
-A Global Virtual Group (GVG) can be created autonomously by any storage provider without the need for approvals from secondary SPs. Nevertheless, in order to control the proliferation of validator groups, the creation of a GVP entails relatively higher fees and need staking for storage.
+A Global Virtual Group (GVG) can be created autonomously by any storage provider without the need for approvals from secondary SPs. Nevertheless, in order to control the proliferation of validator groups, the creation of a GVG entails relatively higher fees and need staking for storage.
 
 The count of secondary SPs within a group can serve as an indicator of redundancy for all objects stored within that group. With the capability to establish distinct secondary virtual groups with varying levels of redundancy, the system offers significant flexibility.
 
@@ -72,7 +72,7 @@ Below are the key workflow of Bucket Migration:
 
 1. The user submits a bucket migration transaction with the signature of the new primary SP.
 2. The new SP starts receiving full data from the old primary SP or from secondary SPs.
-3. The new SP distributes data among the secondary SPs according to his new GVPs. (more details required...)
+3. The new SP distributes data among the secondary SPs according to his new GVGs. (more details required...)
 4. The new SP submit a bucket seal transaction on-chain along with all the aggregate signature from new secondary SPs.
 5. The on-chain module will:
    * Unbind the old LVG and GVG mapping, and build a new mapping relationship.
